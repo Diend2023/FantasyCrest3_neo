@@ -6,6 +6,7 @@ bin-release/
 
 # Other files and folders
 .settings/
+FantasyCrest3_neo/
 
 # Executables
 *.swf
