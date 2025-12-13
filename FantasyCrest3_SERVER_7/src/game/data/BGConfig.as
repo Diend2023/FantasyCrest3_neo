@@ -17,6 +17,16 @@ package game.data
          "moveY":150
       }];
       
+      public static const jiuwei:Object = [{ // 添加新地图九尾之地
+         "name":"0_0", //
+         "align":"bottom", //
+         "move":150, //
+         "moveY":150 //
+      },{ //
+         "name":"map6", //
+         "type":"sound" //
+      }]; //
+      
       public static const senlin:Object = [{
          "name":"3_0",
          "align":"bottom",
@@ -46,6 +56,17 @@ package game.data
          "name":"map",
          "type":"sound"
       }];
+
+      public static const scene1:Object = [{ // 添加新地图幻想纹章4
+         "name":"4_0", //
+         "align":"bottom", //
+         "move":150, //
+         "moveY":150, //
+         "scale":4 //
+      },{ //
+         "name":"map7", //
+         "type":"sound" //
+      }]; //
       
       public function BGConfig()
       {

@@ -64,7 +64,8 @@ package game.view
          {
             p2pshow = true;
          }
-         _2p = new HPMP(p2pshow);
+         // _2p = new HPMP(p2pshow);
+         _2p = new HPMP(true); // 添加CD条
          _1p.x = 10;
          _1p.y = 10;
          _2p.x = stage.stageWidth - 10;
@@ -83,7 +84,8 @@ package game.view
                GameCore.currentWorld.onDown(13);
             }
          };
-         for(i = 0; i < this.numChildren; )
+         i = 0;
+         while(i < this.numChildren)
          {
             s = this.getChildAt(i).scaleX > 0 ? 1 : -1;
             this.getChildAt(i).scaleX = 0.9 * s;
@@ -127,16 +129,20 @@ package game.view
       {
          var i:int = 0;
          var s:int = 0;
-         _3p = new HPMP(false);
+         // _3p = new HPMP(false);
+         _3p = new HPMP(true); // 添加CD条
          _3p.x = 10;
-         _3p.y = stage.stageHeight - 50;
+         // _3p.y = stage.stageHeight - 50;
+         _3p.y = stage.stageHeight - 100; // 上移3p，4p血条
          this.addChildAt(_3p,0);
-         _4p = new HPMP(false);
+         // _4p = new HPMP(false);
+         _4p = new HPMP(true); // 添加CD条
          _4p.x = _2p.x;
          _4p.y = _3p.y;
          _4p.scaleX = -1;
          this.addChildAt(_4p,0);
-         for(i = 0; i < this.numChildren; )
+         i = 0;
+         while(i < this.numChildren)
          {
             if(this.getChildAt(i) is HPMP)
             {
@@ -174,7 +180,8 @@ package game.view
          var i:int = 0;
          var hpmp:HPMP = null;
          var tips:Image = null;
-         for(i = 1; i <= 4; )
+         i = 1;
+         while(i <= 4)
          {
             hpmp = this["_" + i + "p"] as HPMP;
             if(hpmp)
@@ -214,6 +221,7 @@ package game.view
       
       public function get totalGPUMemory() : String
       {
+         var _loc4_:String;
          var num:Number = NaN;
          try
          {
@@ -222,7 +230,7 @@ package game.view
          }
          catch(e:Error)
          {
-            var _loc4_:String = "0";
+            _loc4_ = "0";
          }
          return _loc4_;
       }

@@ -10,8 +10,9 @@ package game.data
    
    public class Game4399Tools
    {
-      
-      public var serviceHold:Object;
+      // 原本的定义4399服务的代码
+      // public var serviceHold:Object;
+      public var serviceHold:ServiceHold; // 自定义4399服务类
       
       public var data:Object;
       
@@ -28,6 +29,8 @@ package game.data
       public function Game4399Tools()
       {
          super();
+         serviceHold = new ServiceHold(); // 初始化4399服务类
+         data = serviceHold.isLog[0]; //
       }
       
       public function set main(pmain:Stage) : void
@@ -107,7 +110,8 @@ package game.data
          {
             return null;
          }
-         return serviceHold.isLog;
+         // return serviceHold.isLog;
+         return serviceHold.isLog[0]; //
       }
       
       public function get nickName() : String
@@ -170,9 +174,11 @@ package game.data
                   {
                      onSaveed();
                   }
-                  break;
                }
-               SceneCore.pushView(new GameTipsView("储存失败"));
+               else
+               {
+                  SceneCore.pushView(new GameTipsView("储存失败"));
+               }
                break;
             case "saveBackIndex":
                tmpObj = e.ret as Object;

@@ -23,6 +23,8 @@ package game.view
    import zygame.core.SceneCore;
    import zygame.display.KeyDisplayObject;
    import zygame.display.World;
+   import starling.display.Quad; //添加Quad用于创建mask
+
    
    public class GameSelectView extends KeyDisplayObject
    {
@@ -67,7 +69,8 @@ package game.view
          {
             World.defalutClass = worldClass;
          }
-         this.addEventListener("removedFromStage",onRemove);
+         // this.addEventListener("removedFromStage",onRemove);
+         this.addEventListener("removedFromStage",onRemoveForClearKey); // 修复函数名称重复的问题
          is1PSelect = Math.random() > 0.5;
       }
       
@@ -79,7 +82,8 @@ package game.view
          return view;
       }
       
-      public function onRemove(e:Event) : void
+      // public function onRemove(e:Event) : void
+      public function onRemoveForClearKey(e:Event) : void //修复函数名称重复的问题
       {
          this.clearKey();
       }
@@ -111,6 +115,13 @@ package game.view
          this.addChild(_1p);
          _2p = new SelectRole(16711680,_config);
          this.addChild(_2p);
+         var mask1P:Quad = new Quad(stage.stageWidth / 2, stage.stageHeight); //使用mask限制范围，解决1p角色列表右侧被2p遮挡的问题
+         this.addChild(mask1P); // mask 对象也需要被添加到显示列表
+         _1p.mask = mask1P; //
+         var mask2P:Quad = new Quad(stage.stageWidth / 2, stage.stageHeight); //
+         mask2P.x = stage.stageWidth / 2; // 将 2P 的遮罩移动到屏幕右半边
+         this.addChild(mask2P); //
+         _2p.mask = mask2P; //
          _2p.scaleX = -1;
          _2p.x = stage.stageWidth;
          _1p.call = onSelectCall;
@@ -267,7 +278,8 @@ package game.view
             }
             else if(World.defalutClass == _1VSB)
             {
-               SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_1p.group.array.concat()));
+               // SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_1p.group.array.concat()));
+               SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_2p.group.array));
             }
             else if(World.defalutClass == _2V2LEVEL)
             {
@@ -289,7 +301,9 @@ package game.view
                {
                   if(_mapList.selectedIndex > 0)
                   {
-                     _mapList.selectedIndex--;
+                     var _loc2_:List = _mapList;
+                     var _loc3_:* = _loc2_.selectedIndex - 1;
+                     _loc2_.selectedIndex = _loc3_;
                   }
                   break;
                }
@@ -298,7 +312,9 @@ package game.view
                {
                   if(_mapList.selectedIndex < _mapList.dataProvider.length - 1)
                   {
-                     _mapList.selectedIndex++;
+                     _loc2_ = _mapList;
+                     _loc3_ = _loc2_.selectedIndex + 1;
+                     _loc2_.selectedIndex = _loc3_;
                   }
                   break;
                }

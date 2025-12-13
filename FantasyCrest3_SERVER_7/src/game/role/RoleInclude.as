@@ -74,6 +74,18 @@ package game.role
          Es;
          AFTERdragon;
          ZhiRen;
+         ZhiZhiXiong; //添加志志雄真实(纹4)
+         BLL; // 添加布罗利(纹4)
+         JiFengZuo; // 添加疾风传佐助
+         MJMan; // 添加麻将人
+         Tom; // 添加汤姆
+         KW; // 添加空我
+         BaiJin; // 添加白金
+         XiaoLi; // 添加李洛克
+         ZhouZuo; // 添加咒印佐助
+         ZhiXuBaiMian; // 添加秩序白面
+         JS; // 添加嘉神慎之介
+         ZhaoMei; // 添加由岐照美
       }
    }
 }

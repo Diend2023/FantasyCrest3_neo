@@ -43,7 +43,13 @@ package game.view
    import zygame.display.TouchDisplayObject;
    import zygame.server.Service;
    import zygame.utils.ServerUtils;
-   
+   import flash.net.FileReference; // 导入FileReference用于导出存档
+   import flash.filesystem.File; // 导入File用于文件操作
+   import flash.filesystem.FileMode; // 导入FileMode用于文件读写模式
+   import flash.filesystem.FileStream; // 导入FileStream用于文件流操作
+   import lzm.starling.STLConstant; //导入STLConstant用于手机端自动全屏
+   import flash.display.StageDisplayState; //导入StageDisplayState用于手机端自动全屏
+
    public class GameStartMain extends TouchDisplayObject
    {
       
@@ -74,6 +80,8 @@ package game.view
       private var _mouseTips:Image;
       
       private var _high:Image;
+
+      public var _music:Button; // 添加音乐按钮引用
       
       public function GameStartMain()
       {
@@ -263,11 +271,15 @@ package game.view
          arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","登陆账号"];
          if(Phone.isPhone())
          {
-            arr = ["闯关模式","对战模式","练习模式","英雄","商店"];
+            // arr = ["闯关模式","对战模式","练习模式","英雄","商店"];
+            arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","商店","登陆账号","关于游戏","设置"]; // 添加登陆账号按钮、关于游戏按钮
+            STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
          }
          else if(true)
          {
-            arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","商店"];
+            // 原本的添加菜单按钮的代码
+            // arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","商店"];
+            arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","商店","登陆账号","关于游戏","设置"]; // 添加登陆账号按钮、关于游戏按钮
          }
          btnspr = new Sprite();
          this.addChild(btnspr);
@@ -277,7 +289,8 @@ package game.view
             btn = new CommonButton(arr[i]);
             btnspr.addChild(btn);
             btn.x = (btn.width * 2 + 60) / 4 + (btn.width + 30) * i - (btn.width + 30) * iy * 2;
-            btn.y = stage.stageHeight / 2 - 50 + iy * 70;
+            // btn.y = stage.stageHeight / 2 - 50 + iy * 70;
+            btn.y = stage.stageHeight / 2 - 75 + iy * 70; // 调整按钮位置
             btn.callBack = onBtnEvent;
             btn.name == arr[i];
             if(arr[i] == "登陆账号")
@@ -303,7 +316,9 @@ package game.view
          {
             showUserState();
          }
-         GameCore.soundCore.playBGSound("main");
+         // 原本的播放背景音乐的代码
+         // GameCore.soundCore.playBGSound("main");
+         GameCore.soundCore.playBGSound(["main", "main1", "main2"][Math.floor(Math.random() * 3)]); // 随机播放背景音乐
          isHW = Starling.context.driverInfo.toLowerCase().indexOf("software") == -1;
          tispbg = new Quad(stage.stageWidth,32,0);
          tispbg.alpha = 0.7;
@@ -321,23 +336,29 @@ package game.view
          this.addChild(music);
          music.x = stage.stageWidth - music.width - 5;
          music.y = stage.stageHeight - music.height - 5;
+         _music = music; // 赋值给类成员变量
          music.addEventListener("triggered",function(e:Event):void
          {
             GameCore.soundCore.volume = GameCore.soundCore.volume == 0 ? 1 : 0;
             music.upState = DataCore.getTextureAtlas("start_main").getTexture(GameCore.soundCore.volume == 0 ? "sound_close" : "sound_open");
          });
-         if(!Phone.isPhone() && false)
+         // if(!Phone.isPhone() && false)
+         if (true) // 显示版本说明按钮
          {
             skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
-            button = new Button(skin,"解决掉帧");
+            // button = new Button(skin,"解决掉帧问题"); // 原本的按钮文本
+            button = new Button(skin, "导出存档"); // 添加导出存档按钮
             this.addChild(button);
             button.scale = 0.7;
             button.textFormat.size = 18;
-            button.x = stage.stageWidth - button.width - 2;
-            button.y = 2;
+            // button.x = stage.stageWidth - button.width - 2;
+            button.x = stage.stageWidth - button.width - 4; // 按钮调整错误的位置
+            // button.y = 2;
+            button.y = 8; // 按钮调整错误的位置
             button.addEventListener("triggered",function(e:Event):void
             {
-               SceneCore.pushView(new GameFPSTipsView());
+               // SceneCore.pushView(new GameFPSTipsView()); // 原本的按钮事件
+               exportUserData(); // 调用导出存档函数
             });
          }
          ServerUtils.updateRoleData(GameOnlineRoomListView._userName,GameOnlineRoomListView._userCode,{},function(userData:Object):void
@@ -351,6 +372,8 @@ package game.view
             Game.initData(userData.userData);
             Game.onlineData = new OnlineFightData(userData.userData.ofigth);
             updateUserData(userData);
+            Game.game4399Tools.onLogined(); //
+
          });
          SceneCore.pushView(new Communication());
          render = new Image(textures.getTexture("renders"));
@@ -374,6 +397,7 @@ package game.view
                   break;
                case 2:
                   rBtn.name = "low";
+                  break;
             }
             rBtn.alpha = rBtn.name == GameCore.currentCore.runderType ? 1 : 0.5;
             rBtn.addEventListener("triggered",runderTypeChange);
@@ -411,6 +435,7 @@ package game.view
          }
          catch(e:Error)
          {
+            trace("onLogin error",e); //
          }
          if(!ONEC_LOGIN)
          {
@@ -426,7 +451,8 @@ package game.view
                Game.vip.value = int(Game.game4399Tools.data.vip);
             }
          }
-         Starling.juggler.delayCall(Game.submitScore,3);
+         // Starling.juggler.delayCall(Game.submitScore,3);
+         Game.submitScore(); // 立即提交分数
       }
       
       private function showUserState() : void
@@ -437,6 +463,60 @@ package game.view
          _tipsText.visible = true;
          _tipsText.text = Game.game4399Tools.nickName + "(" + Game.game4399Tools.userName + ")";
       }
+
+      
+      
+      private function exportUserData() : void //导出用户数据
+      { //
+         try //
+         { //
+            if (Service.userData) //
+            { //
+               var jsonString:String = JSON.stringify(Service.userData, null, 2); //
+               var date:Date = new Date(); //
+               var fileName:String = "幻想纹章3存档.json"; //
+               if(false) // 暂时不启用文件系统方式
+               { //
+                  var file:File = new File(); //
+                  file.addEventListener(Event.SELECT, function(e:Event):void { //
+                     file.removeEventListener(Event.SELECT, arguments.callee); //
+                     try //
+                     {
+                        var selectedFile:File = file.resolvePath(fileName); //
+                        var stream:FileStream = new FileStream(); //
+                        stream.open(selectedFile, FileMode.WRITE); //
+                        stream.writeUTFBytes(jsonString); //
+                        stream.close(); //
+                        SceneCore.pushView(new GameTipsView("导出成功")); //
+                     }
+                     catch (error:Error) //
+                     { //
+                        SceneCore.pushView(new GameTipsView("导出失败：" + error.message)); //
+                        trace("export userData failed: ", error.message); //
+                     } //
+                  }); //
+                  file.browseForDirectory("创建并选择存档文件夹"); //
+               }
+               else //
+               { //
+                  var fileRef:FileReference = new FileReference(); //
+                  fileRef.save(jsonString, fileName); //
+                  SceneCore.pushView(new GameTipsView("导出成功")); //
+                  trace("export userData success,userData: ", JSON.stringify(Service.userData)); //
+               } //
+            } //
+            else 
+            { //
+               trace("export userData failed: no userData"); //
+               SceneCore.pushView(new GameTipsView("导出失败：无用户数据")); //
+            } //
+         } //
+         catch (e:Error) //
+         { //
+            SceneCore.pushView(new GameTipsView("导出失败：" + e.message)); //
+            trace("export userData failed: ", e.message); //
+         } //
+      } //
       
       private function onSelect(e:Event) : void
       {
@@ -455,7 +535,9 @@ package game.view
                SceneCore.pushView(new GameLANModeView());
                break;
             case "网络对战":
-               SceneCore.replaceScene(new GameOnlineRoomListView());
+               // 原本的连接到联机大厅的代码
+               // SceneCore.replaceScene(new GameOnlineRoomListView());
+               SceneCore.replaceScene(new GameOnlineRoomListView(GameOnlineRoomListView._ip)); // 使用预加载的ip和端口创建连接
                break;
             case "制作组":
                openSelect("左眼","老邪","巅峰","小鸟","虚伪","木姐","RS","菠萝","小研En","妹红","柠七");
@@ -524,49 +606,66 @@ package game.view
                if(Game.game4399Tools.serviceHold)
                {
                   Game.game4399Tools.getData(0);
-                  break;
                }
-               SceneCore.pushView(new GameTipsView("上下文丢失"));
+               else
+               {
+                  SceneCore.pushView(new GameTipsView("上下文丢失"));
+               }
                break;
             case "闯关模式":
                if(Phone.isPhone())
                {
-                  openSelect("英雄之迹","单人闯关模式","1V3挑战模式");
-                  break;
+                  // openSelect("英雄之迹","单人闯关模式","1V3挑战模式");
+                  openSelect("英雄之迹","单人闯关模式","双人闯关模式","1V3挑战模式","3V1BOSS模式"); //
                }
-               if(true)
+               else if(true)
                {
                   openSelect("英雄之迹","单人闯关模式","双人闯关模式","1V3挑战模式","3V1BOSS模式");
-                  break;
                }
-               openSelect("英雄之迹","单人闯关模式","双人闯关模式","1V3挑战模式","3V1BOSS模式");
+               else
+               {
+                  openSelect("英雄之迹","单人闯关模式","双人闯关模式","1V3挑战模式","3V1BOSS模式");
+               }
                break;
             case "对战模式":
                if(Phone.isPhone())
                {
-                  openSelect("网络对战","局域网对战");
-                  break;
+                  // openSelect("网络对战","局域网对战");
+                  openSelect("1PVS2P","2V2普通对战","2V2搭档对战","网络对战","局域网对战"); //
                }
-               if(true)
+               else if(true)
                {
                   openSelect("1PVS2P","2V2普通对战","2V2搭档对战","网络对战","局域网对战");
-                  break;
                }
-               openSelect("1PVS2P","2V2普通对战","2V2搭档对战");
+               else
+               {
+                  openSelect("1PVS2P","2V2普通对战","2V2搭档对战");
+               }
                break;
             case "电脑模式":
                if(Phone.isPhone())
                {
-                  openSelect("1PVS2P_com","观战模式");
-                  break;
+                  // openSelect("1PVS2P_com","观战模式");
+                  openSelect("1PVS2P_com","2V2普通对战_com","2V2搭档对战_com","观战模式");
                }
-               openSelect("1PVS2P_com","2V2普通对战_com","2V2搭档对战_com","观战模式");
+               else
+               {
+                  openSelect("1PVS2P_com","2V2普通对战_com","2V2搭档对战_com","观战模式");
+               }
                break;
             case "练习模式":
-               createSelectView(false,true,1,_1VSB,false,false,false,!Phone.isPhone());
+               // createSelectView(false,true,1,_1VSB,false,false,false,!Phone.isPhone());
+               createSelectView(true,true,1,_1VSB,false,false,false,true); // 设置练习模式为双选，手机端开启选地图
                break;
             case "英雄":
                openSelect("英雄库","制作组");
+               break;
+            case "关于游戏": // 添加关于游戏按钮的事件处理
+               SceneCore.pushView(new GameFPSTipsView()); //
+               break; //
+            case "设置": // 添加设置按钮的事件处理
+               SceneCore.pushView(new GameSettingsView()); //
+               break; //
          }
       }
       

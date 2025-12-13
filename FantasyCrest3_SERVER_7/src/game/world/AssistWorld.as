@@ -39,6 +39,23 @@ package game.world
       {
          changeRoleView = new GameChangeRoleTipsView(p1assist,p2assist);
          changeRoleView.y = 120;
+         changeRoleView.onLeftClick = function():void // 为左侧点击设置回调，触发1P换人
+         { //
+            if (p1 && p1.parent) //
+            { //
+               p1.onDown(72); //
+            } //
+         }; //
+         changeRoleView.onRightClick = function():void // 为右侧点击设置回调，触发2P换人
+         { //
+            if(isDoublePlayer) //
+            { //
+               if(p2 && p2.parent) //
+               { //
+                  p2.onDown(conversionKey(96)); //
+               } //
+            } //
+         }; //
          state.addChild(changeRoleView);
       }
       

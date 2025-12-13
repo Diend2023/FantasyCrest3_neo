@@ -4,6 +4,7 @@ package game.world
    import flash.geom.Rectangle;
    import flash.utils.ByteArray;
    import flash.utils.Dictionary;
+   import flash.media.Sound; // 用来播放背景音乐
    import game.data.FightData;
    import game.data.OverTag;
    import game.data.WorldRecordData;
@@ -35,6 +36,8 @@ package game.world
    import zygame.ui.Fade;
    import zygame.utils.GIFUtils;
    import zygame.utils.RTools;
+   import zygame.core.CoreStarup; //
+   import starling.utils.AssetManager; //
    
    public class BaseGameWorld extends World
    {
@@ -91,7 +94,8 @@ package game.world
          this.addChild(_centerSprite);
          _centerSprite.alignPivot();
          _centerSprite.visible = false;
-         ready();
+         // ready();
+         playAllEntrancesThenReady(); //
          createFrameBody();
          var tmxXML:XML = DataCore.getXml(targetName);
          if(String(tmxXML.@texture) == "<null>")
@@ -100,6 +104,99 @@ package game.world
          }
       }
       
+      // 入场动作逻辑
+      private function playAllEntrancesThenReady():void //
+      { //
+          // 使用 Vector 类型，避免类型转换错误
+          var rolesList:Vector.<BaseRole> = this.getRoleList() as Vector.<BaseRole>; //
+          var buffer:Number = 0.25; // 秒，缓冲时间
+      
+          if(!rolesList || rolesList.length == 0) //
+          { //
+              ready(); //
+              return; //
+          } //
+      
+          // 收集有入场动作的队列（顺序播放）
+          var queue:Array = []; //
+          for each(var prole:BaseRole in rolesList) //
+          { //
+              if(!prole) continue; //
+              var group:RoleFrameGroup = null; //
+              try //
+              { //
+                  group = prole.roleXmlData.getGroupAt("入场动作") as RoleFrameGroup; //
+              } //
+              catch(e:Error) //
+              { //
+                  group = null; //
+              }  //
+              if(group) //
+              { //
+                  queue.push({prole:prole, group:group}); //
+              } //
+          } //
+      
+          if(queue.length == 0) //
+          { //
+              ready(); //
+              return; //
+          } //
+          else //
+          { //
+               founcDisplay = _centerSprite; // 聚焦中心点
+          } //
+      
+          // 递归顺序播放队列
+          var playNext:Function = null; //
+          playNext = function(index:int = 0):void //
+          { //
+              if(index >= queue.length) //
+              { //
+                  ready(); //
+                  return; //
+              } //
+              var item:Object = queue[index]; //
+              var r:BaseRole = item.prole as BaseRole; //
+              var g:RoleFrameGroup = item.group as RoleFrameGroup; //
+      
+              try //
+              { //
+                  founcDisplay = r; // 聚焦当前角色 //
+                  r.playSkill("入场动作"); //
+              } //
+              catch(e2:Error) //
+              { //
+                  trace("e2 error", e2); //
+              } //
+      
+              var framesCount:int = 0; //
+              try //
+              { //
+                  framesCount = (g.frames is Vector) ? (g.frames as Vector).length : int(g.frames); //
+              } //
+              catch(e3:Error) //
+              { //
+                  trace("e3 error", e3); //
+                  framesCount = 0; //
+              } //
+              var groupFps:int = (g && g.fps) ? int(g.fps) : ((r && r.hasOwnProperty("fps")) ? int(r["fps"]) : 60); //
+              if(groupFps <= 0) groupFps = 60; //
+              var waitSeconds:Number = framesCount > 0 ? framesCount / groupFps : 0.9; //
+      
+              // 等待当前技能播放预计时长 + 缓冲，再播放下一个
+              Starling.juggler.delayCall(function():void //
+              { //
+                  playNext(index + 1); //
+              }, waitSeconds + buffer); //
+          }; //
+      
+         Starling.juggler.delayCall(function():void //
+         { //
+            playNext(0); //
+         }, buffer); // 保证先聚焦到中心点
+      } //
+
       public function createFrameBody() : void
       {
          _frameBody = new Body(BodyType.KINEMATIC);
@@ -119,6 +216,7 @@ package game.world
          _gameOver = false;
          auto = false;
          var image:Image = new Image(_textures.getTexture("READY.png"));
+         founcDisplay = _centerSprite; // 聚焦中心点
          this.parent.addChild(image);
          image.alignPivot();
          image.x = stage.stageWidth / 2;
@@ -218,6 +316,23 @@ package game.world
          mathCenterPos();
          founcDisplay = _centerSprite;
          moveMap(1);
+         DataCore.assetsMap.assets.enqueue("bgm/role/" + _2p.targetName + ".mp3"); //
+         DataCore.assetsMap.assets.enqueue("bgm/role/" + _1p.targetName + ".mp3"); //
+         DataCore.assetsMap.assets.loadQueue(function(ratio:Number):void { //
+            if (ratio != 1) return; //
+            var _2pSound:Sound = DataCore.getSound(_2p.targetName); // 尝试播放角色bgm，从2p开始，1p覆盖2p
+            var _1pSound:Sound = DataCore.getSound(_1p.targetName); //
+            if(_2pSound) //
+            { //
+               trace("playBGM：",_2p.targetName); //
+               GameCore.soundCore.playBGSound(_2p.targetName); //
+            } //
+            if(_1pSound) //
+            { //
+               trace("playBGM：",_1p.targetName); //
+               GameCore.soundCore.playBGSound(_1p.targetName); //
+            } //
+         });
       }
       
       override public function set role(r:BaseRole) : void
@@ -242,7 +357,7 @@ package game.world
       {
          super.onFrame();
          this.mathCenterPos();
-         frameCount++;
+         ++frameCount;
          if(!_gameOver)
          {
             overCheak();
@@ -314,12 +429,14 @@ package game.world
             var i:int = 0;
             var role2:BaseRole = null;
             var effs:Vector.<EffectDisplay> = getEffects();
-            for(i2 = effs.length - 1; i2 >= 0; )
+            i2 = effs.length - 1;
+            while(i2 >= 0)
             {
                effs[i2].discarded();
                i2--;
             }
-            for(i = getRoleList().length - 1; i >= 0; )
+            i = getRoleList().length - 1;
+            while(i >= 0)
             {
                role2 = getRoleList()[i];
                if(role2.attribute.hp > 0)
@@ -479,11 +596,13 @@ package game.world
                   SceneCore.removeView(pauseView);
                   pauseView.clearKey();
                   this.resume();
-                  break;
                }
-               pauseView = new GamePauseView();
-               SceneCore.pushView(pauseView);
-               this.pause();
+               else
+               {
+                  pauseView = new GamePauseView();
+                  SceneCore.pushView(pauseView);
+                  this.pause();
+               }
                break;
             case 65:
             case 68:
@@ -604,7 +723,7 @@ package game.world
                return 83;
             case 49:
             case 97:
-               break;
+               return 74;
             case 50:
             case 98:
                return 75;
@@ -629,7 +748,6 @@ package game.world
             default:
                return 0;
          }
-         return 74;
       }
       
       public function set p1(prole:BaseRole) : void
@@ -656,7 +774,8 @@ package game.world
       {
          var i:int = 0;
          var skillp:SkillPainting = null;
-         for(i = _skillPainting.length - 1; i >= 0; )
+         i = _skillPainting.length - 1;
+         while(i >= 0)
          {
             if(_skillPainting[i].parent == null)
             {

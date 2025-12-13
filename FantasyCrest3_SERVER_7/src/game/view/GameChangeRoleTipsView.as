@@ -5,6 +5,10 @@ package game.view
    import starling.textures.TextureAtlas;
    import zygame.core.DataCore;
    import zygame.display.DisplayObjectContainer;
+   import starling.events.Event; //
+   import starling.events.Touch; // 导入 Touch 类
+   import starling.events.TouchEvent; // 导入 TouchEvent 类
+   import starling.events.TouchPhase; // 导入 TouchPhase 类
    
    public class GameChangeRoleTipsView extends DisplayObjectContainer
    {
@@ -20,6 +24,10 @@ package game.view
       public var p1array:Array;
       
       public var p2array:Array;
+
+      public var onLeftClick:Function; // 添加点击事件处理
+
+      public var onRightClick:Function; // 添加点击事件处理
       
       public function GameChangeRoleTipsView(array1:Array, array2:Array)
       {
@@ -39,6 +47,14 @@ package game.view
             leftImage = new Image(textures.getTexture("change_role1.png"));
             this.addChild(leftImage);
             leftImage.scale = 0.8;
+            leftImage.addEventListener(TouchEvent.TOUCH, function(e:TouchEvent):void // 添加点击事件处理
+            { //
+               var touch:Touch = e.getTouch(leftImage, TouchPhase.ENDED); //
+               if (touch && onLeftClick != null) //
+               { //
+                  onLeftClick(); //
+               } //
+            }); //
             p1head = new Image(Game.getHeadImage(p1array[0].targetName));
             this.addChild(p1head);
             p1head.width = 28;
@@ -53,6 +69,14 @@ package game.view
             this.addChild(rightImage);
             rightImage.scale = 0.8;
             rightImage.x = stage.stageWidth - rightImage.width;
+            rightImage.addEventListener(TouchEvent.TOUCH, function(e:TouchEvent):void // 添加点击事件处理
+            { //
+               var touch:Touch = e.getTouch(rightImage, TouchPhase.ENDED); //
+               if (touch && onRightClick != null) //
+               { //
+                  onRightClick(); //
+               } //
+            }); //
             p2head = new Image(Game.getHeadImage(p2array[0].targetName));
             this.addChild(p2head);
             p2head.width = 28;

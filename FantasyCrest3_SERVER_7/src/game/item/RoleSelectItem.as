@@ -56,7 +56,16 @@ package game.item
             _new.visible = value.isNew;
             if(!_head)
             {
-               _head = new Image(DataCore.getTextureAtlas("role_head").getTextures(value.head)[0]);
+               // 原本的加载角色头像代码
+               // _head = new Image(DataCore.getTextureAtlas("role_head").getTextures(value.head)[0]);
+               try // 修复角色没有头像的情况
+               { //
+                  _head = new Image(DataCore.getTextureAtlas("role_head").getTextures(value.head)[0]); //
+               } //
+               catch(err:Error) //
+               { //
+                  _head = new Image(DataCore.getTextureAtlas("role_head").getTextures("none")[0]); // 使用空头像替代
+               } //
                this.addChildAt(_head,0);
                _head.x = 4;
                _head.y = 4;
@@ -65,7 +74,16 @@ package game.item
             }
             else
             {
-               _head.texture = DataCore.getTextureAtlas("role_head").getTextures(value.head)[0];
+               // 原本的加载角色头像代码
+               // _head.texture = DataCore.getTextureAtlas("role_head").getTextures(value.head)[0];
+               try // 修复角色没有头像的情况
+               { //
+                  _head.texture = DataCore.getTextureAtlas("role_head").getTextures(value.head)[0]; //
+               } //
+               catch(err:Error) //
+               { //
+                  _head.texture = DataCore.getTextureAtlas("role_head").getTextures("none")[0]; // 使用空头像替代
+               } //
             }
             if(value.selected)
             {

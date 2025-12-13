@@ -40,7 +40,8 @@ package game.skill
       override public function onFrame() : void
       {
          super.onFrame();
-         if(_role && !(_role as GameRole).immuneEffect(this))
+         // if(_role && !(_role as GameRole).immuneEffect(this))
+         if(_role && !(_role as GameRole).immuneEffect(this) && _role.attribute && _role.attribute.hp > 0) // 修复冰冻时死亡报错
          {
             _role.clearDebuffMove();
             _role.posx = pos.x;

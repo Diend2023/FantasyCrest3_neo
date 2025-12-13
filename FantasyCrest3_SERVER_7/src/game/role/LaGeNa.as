@@ -4,6 +4,7 @@ package game.role
    import zygame.data.RoleAttributeData;
    import zygame.display.BaseRole;
    import zygame.display.World;
+   import feathers.data.ListCollection; //
    
    public class LaGeNa extends GameRole
    {
@@ -15,6 +16,10 @@ package game.role
       public function LaGeNa(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
          super(roleTarget,xz,yz,pworld,fps,pscale,troop,roleAttr);
+         listData = new ListCollection([{ //
+         "icon":"shengcun.png", //
+         "msg":"Off" //
+         }]); //
       }
       
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
@@ -34,13 +39,23 @@ package game.role
          if(inFrame("血珂因子",12))
          {
             _isP = true;
-            _time.value = 10;
+            // _time.value = 10;
+            _time.value = 600; //
          }
          if(_time.value > 0)
          {
             _time.value--;
          }
          _isP = _time.value > 0;
+         if(_isP) //
+         { //
+            listData.getItemAt(0).msg = "On"; //
+         } //
+         else //
+         { //
+            listData.getItemAt(0).msg = "Off"; //
+         } //
+         listData.updateItemAt(0); //
       }
    }
 }

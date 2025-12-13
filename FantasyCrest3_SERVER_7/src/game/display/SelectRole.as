@@ -22,7 +22,11 @@ package game.display
    import zygame.data.RoleAttributeData;
    import zygame.display.KeyDisplayObject;
    import zygame.utils.MemoryUtils;
-   
+   import feathers.controls.ScrollText; // 使用feathers的ScrollText
+   import flash.text.TextFormat; // feathers的ScrollText使用的是flash的TextFormat
+   import game.view.GameHeroView; //
+   import game.view.GameShopView; //
+
    public class SelectRole extends KeyDisplayObject
    {
       
@@ -40,7 +44,9 @@ package game.display
       
       private var _nametext:TextField;
       
-      private var _passivetext:TextField;
+      // private var _passivetext:TextField;
+      public var _passivetext:ScrollText; // 使用feathers的ScrollText
+
       
       private var _roleIntroduce:RoleIntroduce;
       
@@ -142,6 +148,20 @@ package game.display
          _list.selectedIndex = 0;
          _list.touchable = true;
          _list.addEventListener("change",onListChange);
+         if(!(this.parent is GameHeroView || this.parent is GameShopView)) // 如果是在英雄界面或商店界面打开的选人，则不适配点击锁定角色
+         { //
+            _list.addEventListener("triggered", function(e:Event): void // 适配点击锁定角色
+            { //
+               var index:int = _list.selectedIndex; //
+               callLate(function():void //
+               { //
+                  if(_list.selectedIndex == index) //
+                  { //
+                     onDown(74); //
+                  } //
+               }); //
+            }); //
+         } //
          _attribute = new AttributeView();
          this.addChild(_attribute);
          _attribute.x = abg.x;
@@ -161,24 +181,33 @@ package game.display
          pname.x = 0;
          pname.width = bd.x;
          pname.y = abg.y + abg.height - 70;
-         var pnametext:TextField = new TextField(pname.width,pname.height,"河城荷取",new TextFormat(GameFont.FONT_NAME,18,16777215));
+         // var pnametext:TextField = new TextField(pname.width,pname.height,"河城荷取",new TextFormat(GameFont.FONT_NAME,18,16777215));
+         var pnametext:TextField = new TextField(pname.width,pname.height,"河城荷取",new starling.text.TextFormat(GameFont.FONT_NAME,18,16777215)); // 使用starling的TextField
          pnametext.x = pname.x;
          pnametext.y = pname.y;
          this.addChild(pnametext);
          this._nametext = pnametext;
-         var bdtext:TextField = new TextField(bd.width,bd.height,"每次使用技能将恢复生命最大值1%",new TextFormat(GameFont.FONT_NAME,12,16777215,"left"));
+         // var bdtext:TextField = new TextField(bd.width,bd.height,"每次使用技能将恢复生命最大值1%",new TextFormat(GameFont.FONT_NAME,12,16777215,"left"));
+         var bdtext:ScrollText = new ScrollText(); // 使用feathers的ScrollText
+         bdtext.width = bd.width; //
+         bdtext.height = bd.height - 5; //
+         bdtext.text = "每次使用技能将恢复生命最大值1%"; //
+         bdtext.textFormat = new flash.text.TextFormat(GameFont.FONT_NAME,12,16777215); // 使用flash的TextFormat
          this.addChild(bdtext);
-         bdtext.format.leading = 3;
+         // bdtext.format.leading = 3;
+         bdtext.textFormat.leading = 3; //
          bdtext.x = bd.x + 2;
          bdtext.y = bd.y;
          _passivetext = bdtext;
          _passivetext.filter = new GlowFilter(0,1,1,1);
-         var bg:Quad = new Quad(bd.x,32,0);
+         // var bg:Quad = new Quad(bd.x,32,0);
+         var bg:Quad = new Quad(bd.x - 5,32,0); //
          bg.alpha = 0.5;
          this.addChild(bg);
          bg.x = 0;
          bg.y = abg.y + abg.height - bg.height;
-         var texttips:TextField = new TextField(bg.width,bg.height,"ADSW选人 J确定 U人物详情",new TextFormat(GameFont.FONT_NAME,12,16777215));
+         // var texttips:TextField = new TextField(bg.width,bg.height,"ADSW选人 J确定 U人物详情",new TextFormat(GameFont.FONT_NAME,12,16777215));
+         var texttips:TextField = new TextField(bg.width,bg.height,"ADSW选人 J确定 U人物详情",new starling.text.TextFormat(GameFont.FONT_NAME,12,16777215)); // 使用starling的TextField
          this.addChild(texttips);
          texttips.x = bg.x;
          texttips.y = bg.y;
@@ -218,8 +247,10 @@ package game.display
          acthorBg.alpha = 0.7;
          acthorBg.y = _nametext.y + 6;
          this.addChild(acthorBg);
-         var acthor:TextField = new TextField(stage.stageWidth / 2 - 10,32,"作者：木姐",new TextFormat(GameFont.FONT_NAME,12,268431360,"left"));
+         // var acthor:TextField = new TextField(stage.stageWidth / 2 - 10,32,"作者：木姐",new TextFormat(GameFont.FONT_NAME,12,268431360,"left"));
+         var acthor:TextField = new TextField(stage.stageWidth / 2 - 10,32,"作者：木姐",new starling.text.TextFormat(GameFont.FONT_NAME,12,268431360,"left")); // 使用starling的TextField
          this.addChild(acthor);
+         this.setChildIndex(_passivetext,this.getChildIndex(acthor) + 1); //
          acthor.x = 5;
          acthor.y = acthorBg.y;
          acthorBg.width = bg.width;
@@ -236,7 +267,8 @@ package game.display
          _nametext.y -= _nametext.height;
          if(config.showOnlineRoleData)
          {
-            text = new TextField(stage.stageWidth / 2,100,"- 无战斗数据 -",new TextFormat(GameFont.FONT_NAME,12,16777215));
+            // text = new TextField(stage.stageWidth / 2,100,"- 无战斗数据 -",new TextFormat(GameFont.FONT_NAME,12,16777215));
+            text = new TextField(stage.stageWidth / 2,100,"- 无战斗数据 -",new starling.text.TextFormat(GameFont.FONT_NAME,12,16777215)); // 使用starling的TextField
             this.addChild(text);
             text.y = stage.stageHeight - 100;
             text.x = 0;
@@ -248,7 +280,8 @@ package game.display
             img = new Image(textures.getTexture("fight_frame"));
             this.addChild(img);
             img.y = 100;
-            _fightText = new TextField(img.width - 60,img.height,Game.forceData ? Game.forceData.getData(_list.selectedItem.target).toString() : "0",new TextFormat(GameFont.FONT_NAME,16,16777215));
+            // _fightText = new TextField(img.width - 60,img.height,Game.forceData ? Game.forceData.getData(_list.selectedItem.target).toString() : "0",new TextFormat(GameFont.FONT_NAME,16,16777215));
+            _fightText = new TextField(img.width - 60,img.height,Game.forceData ? Game.forceData.getData(_list.selectedItem.target).toString() : "0",new starling.text.TextFormat(GameFont.FONT_NAME,16,16777215)); // 使用starling的TextField
             this.addChild(_fightText);
             _fightText.y = 100;
             _fightText.x = 60;
@@ -276,6 +309,7 @@ package game.display
          var icon2:Image;
          var coinText:TextField;
          var coinText2:TextField;
+         this.mask = null; // 在只有一个角色列表时，取消遮罩，解决在GameSelectView中添加遮罩后角色列表不显示的问题
          _rowCount = 5;
          var textures:TextureAtlas = DataCore.getTextureAtlas("select_role");
          var frame:Texture = textures.getTexture("frame");
@@ -321,12 +355,14 @@ package game.display
             icon2.x = coinBg.x + 10 + 130;
             icon2.y = coinBg.y + 6;
             icon2.scale = 0.7;
-            coinText = new TextField(130,32,"488",new TextFormat(GameFont.FONT_NAME,15,16777215));
+            // coinText = new TextField(130,32,"488",new TextFormat(GameFont.FONT_NAME,15,16777215));
+            coinText = new TextField(130,32,"488",new starling.text.TextFormat(GameFont.FONT_NAME,15,16777215)); // 使用starling的TextField
             this.addChild(coinText);
             coinText.x = coinBg.x;
             coinText.y = coinBg.y;
             _coinText = coinText;
-            coinText2 = new TextField(130,32,"488",new TextFormat(GameFont.FONT_NAME,15,16777215));
+            // coinText2 = new TextField(130,32,"488",new TextFormat(GameFont.FONT_NAME,15,16777215));
+            coinText2 = new TextField(130,32,"488",new starling.text.TextFormat(GameFont.FONT_NAME,15,16777215)); // 使用starling的TextField
             this.addChild(coinText2);
             coinText2.x = coinBg.x + 130;
             coinText2.y = coinBg.y;
@@ -385,14 +421,20 @@ package game.display
          var unlockData:String = unlock.toString();
          if(figth)
          {
+            var version:Number = Number(figth.@version); // 提前获取版本号
             xmllist = figth.children();
-            for(var i in xmllist)
+            var len:int = xmllist.length(); //
+            // for(var i in xmllist)
+            for (var i:int = 0; i < len; i++) //
             {
                rootName = (xmllist[i] as XML).localName();
-               if(unlockData.indexOf("Role" + rootName) != -1 && rootName != "init" && String((xmllist[i] as XML).@visible) != "false" && (!config.showCoinRole || config.showCoinRole && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0)))
+               // 原本的加载角色条件
+               // if(unlockData.indexOf("Role" + rootName) != -1 && rootName != "init" && String((xmllist[i] as XML).@visible) != "false" && (!config.showCoinRole || config.showCoinRole && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0)))
+               if(rootName != "init") // 过滤默认角色
                {
-                  if(!(false && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0) && String((xmllist[i] as XML).@in4399) != "true"))
-                  {
+                  // 原本的加载角色条件
+                  // if(!(false && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0) && String((xmllist[i] as XML).@in4399) != "true"))
+                  // {
                      arr.push({
                         "passive":xmllist[i].@passive,
                         "head":String(xmllist[i].@head).replace(".png",""),
@@ -404,12 +446,13 @@ package game.display
                         "profession":xmllist[i].@profession,
                         "coin":int(xmllist[i].@coin),
                         "crystal":int(xmllist[i].@crystal),
-                        "isNew":String(xmllist[i].@version) == String(DataCore.getXml("fight").@version),
+                        // "isNew":String(xmllist[i].@version) == String(DataCore.getXml("fight").@version),
+                        "isNew":Number(xmllist[i].@version) >= version, //
                         "lock":true,
                         "xml":xmllist[i]
                      });
                      allcoin += int(xmllist[i].@coin);
-                  }
+                  // }
                }
             }
          }
@@ -457,23 +500,28 @@ package game.display
                if(_list.selectedIndex - _rowCount < 0)
                {
                   _list.selectedIndex = 0;
-                  break;
                }
-               _list.selectedIndex -= _rowCount;
+               else
+               {
+                  _list.selectedIndex -= _rowCount;
+               }
                break;
             case 40:
             case 83:
                if(_list.selectedIndex + _rowCount > _list.dataProvider.length - 1)
                {
                   _list.selectedIndex = _list.dataProvider.length - 1;
-                  break;
                }
-               _list.selectedIndex += _rowCount;
+               else
+               {
+                  _list.selectedIndex += _rowCount;
+               }
                break;
             case 49:
             case 97:
             case 74:
-               if(lockButton)
+               // if(lockButton)
+               if(lockButton && _group.maxSelectNum <= _group.array.length + 1) // 选择满才隐藏锁定按钮
                {
                   lockButton.visible = false;
                }
@@ -509,32 +557,28 @@ package game.display
                {
                   break;
                }
-               if(!_group.pushSelect(randomItem))
+               if(_group.pushSelect(randomItem))
                {
-                  break;
-               }
-               selected(indexSelect);
-               if(shareSelectRole)
-               {
-                  shareSelectRole.selected(indexSelect);
-               }
-               if(_group.isSelected)
-               {
-                  Starling.juggler.tween(_list,0.25,{"alpha":0});
-               }
-               if(call == null)
-               {
-                  break;
-               }
-               try
-               {
-                  call();
-                  break;
-               }
-               catch(e:Error)
-               {
-                  call(randomItem);
-                  break;
+                  selected(indexSelect);
+                  if(shareSelectRole)
+                  {
+                     shareSelectRole.selected(indexSelect);
+                  }
+                  if(_group.isSelected)
+                  {
+                     Starling.juggler.tween(_list,0.25,{"alpha":0});
+                  }
+                  if(call != null)
+                  {
+                     try
+                     {
+                        call();
+                     }
+                     catch(e:Error)
+                     {
+                        call(randomItem);
+                     }
+                  }
                }
                break;
             case 50:
@@ -547,9 +591,11 @@ package game.display
                if(_roleIntroduce.x == _roleIntroduce.width / 2)
                {
                   Starling.juggler.tween(_roleIntroduce,0.25,{"x":-_roleIntroduce.width});
-                  break;
                }
-               Starling.juggler.tween(_roleIntroduce,0.25,{"x":_roleIntroduce.width / 2});
+               else
+               {
+                  Starling.juggler.tween(_roleIntroduce,0.25,{"x":_roleIntroduce.width / 2});
+               }
          }
          if(key != 85)
          {
@@ -610,7 +656,8 @@ package game.display
                });
             };
          }
-         if(_list.selectedItem.passive != undefined)
+         // if(_list.selectedItem.passive != undefined)
+         if(_list.selectedItem.passive != undefined && _list.selectedItem.passive != "") // 增加被动为空的逻辑
          {
             _passivetext.text = _list.selectedItem.passive;
          }
@@ -618,7 +665,8 @@ package game.display
          {
             _passivetext.text = "左眼还没设计他的被动吧...";
          }
-         if(_list.selectedItem.introduce != undefined)
+         // if(_list.selectedItem.introduce != undefined)
+         if(_list.selectedItem.introduce != undefined && _list.selectedItem.introduce != "") // 增加介绍为空的逻辑
          {
             _roleIntroduce.data = _list.selectedItem.introduce;
          }
@@ -631,10 +679,12 @@ package game.display
             str = "";
             if(config.showActhor)
             {
-               str = _list.selectedItem.acthor != undefined ? "作者：" + _list.selectedItem.acthor : "未知作者";
+               // str = _list.selectedItem.acthor != undefined ? "作者：" + _list.selectedItem.acthor : "未知作者";
+               str = _list.selectedItem.acthor != undefined && _list.selectedItem.acthor != "" ? "作者：" + _list.selectedItem.acthor : "未知作者"; // 增加作者为空的逻辑
             }
             _acthor.text = str + "  ";
-            _acthor.text += _list.selectedItem.profession != undefined ? "擅长：" + _list.selectedItem.profession : "擅长：无";
+            // _acthor.text += _list.selectedItem.profession != undefined ? "擅长：" + _list.selectedItem.profession : "擅长：无";
+            _acthor.text += _list.selectedItem.profession != undefined && _list.selectedItem.profession != "" ? "擅长：" + _list.selectedItem.profession : "擅长：无";
          }
          this.updateFight();
       }
@@ -660,6 +710,12 @@ package game.display
             _list.dispose();
          }
          _list = null;
+         if(_passivetext && _passivetext.parent) // 尝试清除_passivetext
+         { //
+            _passivetext.parent.removeChild(_passivetext); //
+            _passivetext.dispose(); //
+         } //
+         _passivetext = null; //
          this.config = null;
          this._acthor = null;
          this._acthorBG = null;

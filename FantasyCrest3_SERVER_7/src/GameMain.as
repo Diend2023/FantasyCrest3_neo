@@ -40,7 +40,7 @@ package
          WorldInduce;
          if(!Phone.isPhone())
          {
-            EncodeAssets.COMPRESSEDS = ["effect/"];
+            // EncodeAssets.COMPRESSEDS = ["effect/"]; // 注释这句可以解决纹4布罗利部分技能特效黑底的问题
             EncodeAssets.KEEP = ["kuangzhanshi","my","my10","kuangzhanshi3","kuangzhanshi2","kuangzhanshi1","lanquan12","kuangzhanshi_nuqi2","kuangzhanshi5","kuangzhanshi6","kuangzhanshi_nu","kuangzhanshi7","you1","you2","you3","kuwu3","jh20","YSS","YSQQ","YSQ1","YSQ2","YSQ3","YSQ4","YSQ5","YSQ6","YS1","YS2","YS3","YS4","YS5","YS6","YS7","YS8","YS9","YS10","YS11","cike9","xiaomeiyandaodan","youguanche","mlsPinzi","haws5","guijianxue","guijianxue1","hamama","KO","defense","MRSI","MRWI","MRWU","Narutohesnhin","NarutoQB","Z1","xigausui","wsyy","Usopp","longquan","lock_skill","kuangzhanshi_zhan","shitou1","shitou2","longchuan"];
          }
          Starling.current.skipUnchangedFrames = false;

@@ -6,6 +6,9 @@ package game.world
    import zygame.core.DataCore;
    import zygame.core.SceneCore;
    import zygame.display.WorldState;
+   import starling.display.Quad; //
+   import starling.events.TouchEvent; //
+   import starling.events.TouchPhase; //
    
    public class _1VSB extends BaseGameWorld
    {
@@ -45,9 +48,33 @@ package game.world
             tips.x = 10;
             tips.scale = 0.8;
             tips.y = stage.stageHeight - tips.height - 10;
+            // 添加快捷键点击域
+            addQuad(pstate, "回血", 0x00FF00, 90, 95, tips.y, 70, tips.height); // 回血
+            addQuad(pstate, "满蓝", 0x0000FF, 88, 180, tips.y, 70, tips.height); // 回蓝
+            addQuad(pstate, "清理CD", 0xFFFF00, 67, 265, tips.y, 100, tips.height); // 清理CD
+            addQuad(pstate, "启用/禁用AI", 0xFF00FF, 86, 380, tips.y, 135, tips.height); // 启用/禁用AI
          }
       }
       
+      // 私有函数：添加一个Quad作为点击域
+      private function addQuad(pstate:WorldState, target:String, color:uint, key:int, x:Number, y:Number, width:Number, height:Number):void //
+      { //
+         var quad:Quad = new Quad(width, height, color); //
+         quad.y = y; //
+         quad.x = x; //
+         quad.alpha = 0; //
+         pstate.addChild(quad); //
+         // 添加触摸事件，模拟onDown
+         quad.addEventListener(TouchEvent.TOUCH, function(event:TouchEvent):void //
+         { //
+            var touch = event.getTouch(quad); //
+            if(touch && touch.phase == TouchPhase.ENDED) //
+            { //
+               onDown(key); //
+            } //
+         }); //
+      } //
+
       override public function onDown(key:int) : void
       {
          super.onDown(key);

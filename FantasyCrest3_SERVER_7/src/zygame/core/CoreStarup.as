@@ -1,3 +1,4 @@
+// 直接更新整个文件以修复无法缩放的问题
 package zygame.core
 {
    import flash.display.BitmapData;
@@ -18,6 +19,8 @@ package zygame.core
    public class CoreStarup extends Sprite
    {
       
+      public static var restoreTextureUtils:RestoreTextureUtils;
+      
       public static var testPath:String = null;
       
       public static var testRole:String = null;
@@ -25,8 +28,6 @@ package zygame.core
       public static var testRoles:Array = null;
       
       public static var testRunderType:String = null;
-      
-      public static var restoreTextureUtils:RestoreTextureUtils;
       
       private var _isPc:Boolean = false;
       
@@ -38,33 +39,102 @@ package zygame.core
       
       private var _currentValue:Number = 1;
       
+      private var _configPath:String; //
+      
+      private var _mainClass:Class; //
+      
+      private var _HDHeight:int; //
+      
+      private var _debug:Boolean; //
+      
+      private var _stage3DProfile:String; //
+      
+      private var _isMultitouch:Boolean; //
+      
+      private var _runMode:String; //
+      
+      private var _antiAliasing:int; //
+      
+      private var _loadContextImage:BitmapData; //
+      
+      private var _designWidth:int = 0; //
+      
+      private var _designHeight:int = 0; //
+      
+      private var _targetAspectRatio:Number = 0; //
+      
       public function CoreStarup()
       {
          super();
+         this.addEventListener(Event.ADDED_TO_STAGE,onAddedToStage); //
       }
-      
-      protected function initStarling(configPath:String, mainClass:Class, HDHeight:int = 480, debug:Boolean = false, isPc:Boolean = false, stage3DProfile:String = "auto", isMultitouch:Boolean = true, runMode:String = "auto", antiAliasing:int = 4, loadContextImage:BitmapData = null) : void
+
+      private function onAddedToStage(event:Event) : void //
+      { //
+         this.removeEventListener(Event.ADDED_TO_STAGE,onAddedToStage); //
+         stage.addEventListener(Event.RESIZE,onResize); //
+      } //
+
+      private function onResize(event:Event) : void //
+      { //
+         trace("窗口大小改变:",stage.stageWidth,stage.stageHeight); //
+         updateStarlingViewPort(); //
+         if(_mStarling) //
+         { //
+            _mStarling.setRequiresRedraw(); //
+         } //
+      } //
+
+      protected function initStarling(configPath:String, mainClass:Class, HDHeight:int = 960, debug:Boolean = false, isPc:Boolean = false, stage3DProfile:String = "auto", isMultitouch:Boolean = true, runMode:String = "auto", antiAliasing:int = 4, loadContextImage:BitmapData = null) : void
       {
+         var stageWidth:Number; //
+         var stageHeight:Number; //
          var viewPort:Rectangle;
          var hscale:Number;
+         var wscale:Number; //
+         var scale:Number; //
+         _configPath = configPath; //
+         _mainClass = mainClass; //
+         _HDHeight = HDHeight; //
+         _debug = debug; //
+         _stage3DProfile = stage3DProfile; //
+         _isMultitouch = isMultitouch; //
+         _runMode = runMode; //
+         _antiAliasing = antiAliasing; //
+         _loadContextImage = loadContextImage; //
          STLConstant.nativeStage = stage;
          trace("初始化高度比：",HDHeight);
          _isPc = isPc;
          Starling.multitouchEnabled = isMultitouch;
-         viewPort = _viewRect ? _viewRect : new Rectangle(0,0,isPc ? stage.stageWidth : stage.stageWidth,isPc ? stage.stageHeight : stage.stageHeight);
-         if(viewPort.width == 0)
-         {
-            viewPort.width = 800;
-         }
-         if(viewPort.height == 0)
-         {
-            viewPort.height = 550;
-         }
-         viewPort.y = _statusBarHeight;
-         viewPort.height -= _statusBarHeight;
+         // stageWidth = stage.stageWidth; //
+         // stageHeight = stage.stageHeight; //
+         // _designWidth = stageWidth; //
+         // _designHeight = stageHeight; //
+         // _targetAspectRatio = _designWidth / _designHeight; //
+         _designHeight = HDHeight; // 使用传入的 960 或其他值作为基准高度
+         _targetAspectRatio = 10 / 5.5; // 定义一个固定的目标宽高比，例如 10:5.5
+         _designWidth = Math.round(_designHeight * _targetAspectRatio); // 根据高度和比例计算宽度
+         trace("设计尺寸:",_designWidth,"x",_designHeight,"宽高比:",_targetAspectRatio); //
+         // viewPort = _viewRect ? _viewRect : new Rectangle(0,0,isPc ? stage.stageWidth : stage.stageWidth,isPc ? stage.stageHeight : stage.stageHeight);
+         // if(viewPort.width == 0)
+         // {
+         //    viewPort.width = 800;
+         // }
+         // if(viewPort.height == 0)
+         // {
+         //    viewPort.height = 550;
+         // }
+         // viewPort.y = _statusBarHeight;
+         // viewPort.height -= _statusBarHeight;
+         viewPort = calculateViewPort(); //
          hscale = viewPort.height / HDHeight;
-         STLConstant.StageWidth = (viewPort.width - viewPort.height) / hscale + HDHeight;
-         STLConstant.StageHeight = HDHeight;
+         wscale = viewPort.width / HDHeight; //
+         scale = Math.min(hscale,wscale); //
+         STLConstant.scale = scale; //
+         // STLConstant.StageWidth = (viewPort.width - viewPort.height) / hscale + HDHeight;
+         // STLConstant.StageHeight = HDHeight;
+         STLConstant.StageWidth = viewPort.width / scale; //
+         STLConstant.StageHeight = viewPort.height / scale; //
          _mStarling = new GameCore(configPath,this,STLRootClass,stage,viewPort,null,runMode,stage3DProfile);
          _mStarling.stage.stageWidth = STLConstant.StageWidth;
          _mStarling.stage.stageHeight = STLConstant.StageHeight;
@@ -104,12 +174,60 @@ package zygame.core
          this.addEventListener("deactivate",onDeactivate);
          restoreTextureUtils = new RestoreTextureUtils(stage,_mStarling,loadContextImage);
       }
+
+      public function calculateViewPort() : Rectangle //
+      { //
+         // 根据目标宽高比计算视口，实现黑边效果
+         var screenWidth:Number = stage.stageWidth; //
+         var screenHeight:Number = stage.stageHeight; //
+         var screenAspectRatio:Number = screenWidth / screenHeight; //
+
+         var viewPortWidth:Number; //
+         var viewPortHeight:Number; //
+
+         if (screenAspectRatio > _targetAspectRatio) //
+         { //
+            // 屏幕太宽，上下留黑边 (Letterboxing)
+            viewPortHeight = screenHeight; //
+            viewPortWidth = viewPortHeight * _targetAspectRatio; //
+         } //
+         else //
+         { //
+            // 屏幕太高，左右留黑边 (Pillarboxing)
+            viewPortWidth = screenWidth; //
+            viewPortHeight = viewPortWidth / _targetAspectRatio; //
+         } //
+
+         // 计算居中的位置
+         var viewPortX:Number = (screenWidth - viewPortWidth) / 2; //
+         var viewPortY:Number = (screenHeight - viewPortHeight) / 2; //
+
+         return new Rectangle(viewPortX, viewPortY, viewPortWidth, viewPortHeight); //
+      } //
+      
+      public function updateStarlingViewPort() : void //
+      { //
+         if(!_mStarling) //
+         { //
+            return; //
+         } //
+         var viewPort:Rectangle = calculateViewPort(); //
+         _mStarling.viewPort = viewPort; //
+         _mStarling.stage.stageWidth = STLConstant.StageWidth; //
+         _mStarling.stage.stageHeight = STLConstant.StageHeight; //
+         trace("updateStarlingViewPort"); //
+         // trace("自动缩放更新:"); //
+         // trace("当前窗口: " + stage.stageWidth + "x" + stage.stageHeight); //
+         // trace("新视口: " + viewPort); //
+         // trace("设计尺寸: " + STLConstant.StageWidth + "x" + STLConstant.StageHeight); //
+      } //
       
       public function onActivate(event:Event) : void
       {
          if(GameCore.currentCore)
          {
             GameCore.currentCore.start();
+            trace("onActivate"); //
          }
          if(!SystemUtil.isDesktop)
          {
@@ -122,6 +240,7 @@ package zygame.core
          if(GameCore.currentCore)
          {
             GameCore.currentCore.stop();
+            trace("onDeactivate"); //
          }
          if(!SystemUtil.isDesktop)
          {
@@ -173,4 +292,3 @@ package zygame.core
       }
    }
 }
-

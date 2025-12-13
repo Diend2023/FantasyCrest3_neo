@@ -104,7 +104,7 @@ package game.view
          close.x = stage.stageWidth - close.width / 2 - 5;
          close.y = stage.stageHeight - close.height / 2 - 17;
          close.callBack = onExit;
-         if(!Game.game4399Tools.logInfo && false)
+         if(Game.game4399Tools.logInfo)
          {
             submit = new CommonButton("submit","select_role");
             this.addChild(submit);
@@ -144,7 +144,8 @@ package game.view
             userData.ofigth = Game.onlineData.toSaveData();
             trace("用户信息：",JSON.stringify(userData.ofigth));
          }
-         if(tag == OverTag.GAME_WIN)
+         // if(tag == OverTag.GAME_WIN)
+         if(true) //无论输赢
          {
             switch(World.defalutClass)
             {
@@ -156,18 +157,19 @@ package game.view
                case _3V1:
                case _1VFB:
                   SceneCore.pushView(new GameTipsView("获得金币" + coin + "个"));
-                  if(Service.client != null && Service.client.connected == true)
-                  {
-                     Service.client.send({
-                        "type":"update_user_data",
-                        "userData":userData
-                     });
-                     Service.client.send({
-                        "type":"addCoin",
-                        "coin":coin
-                     });
-                     break;
-                  }
+                  // 原本的提交金币和用户数据的代码，由于阻止了本地更新战力和金币数据的提交，所以直接注释不使用
+                  // if(Service.client != null && Service.client.connected == true)
+                  // {
+                  //    Service.client.send({
+                  //       "type":"update_user_data",
+                  //       "userData":userData
+                  //    });
+                  //    Service.client.send({
+                  //       "type":"addCoin",
+                  //       "coin":coin
+                  //    });
+                  //    break;
+                  // }
                   ServerUtils.updateRoleData(GameOnlineRoomListView._userName,GameOnlineRoomListView._userCode,userData,function(userData:Object):void
                   {
                      ServerUtils.addCoin(GameOnlineRoomListView._userName,GameOnlineRoomListView._userCode,coin,function(userData:Object):void
@@ -176,6 +178,7 @@ package game.view
                      });
                   });
                   SceneCore.pushView(new Communication());
+                  break;
             }
          }
       }

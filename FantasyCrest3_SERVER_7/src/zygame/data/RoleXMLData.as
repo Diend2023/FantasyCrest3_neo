@@ -147,10 +147,10 @@ package zygame.data
       public function updateActionTexture(actionName:String, frame:int, image:Image = null, texture:Texture = null) : void
       {
          var roleFrame:RoleFrame = null;
-         var scaleMath:Number = NaN;
+         var scaleMath:Number = Number(NaN);
          var frameName:String = null;
          var rectFrame:Rectangle = null;
-         var vpan:Number = NaN;
+         var vpan:Number = Number(NaN);
          if(roleFrameGroupActions.actions.hasOwnProperty(actionName))
          {
             roleFrame = this.getFrameAt(actionName,frame);
@@ -180,7 +180,7 @@ package zygame.data
                   }
                   else if(!fight && interval != 0)
                   {
-                     fightInterval++;
+                     ++fightInterval;
                      if(fightInterval >= interval)
                      {
                         trace("攻击恢复");
@@ -188,7 +188,7 @@ package zygame.data
                         fightInterval = 0;
                      }
                   }
-                  live--;
+                  --live;
                   return;
                }
                scaleMath = _role.scaleX;
@@ -233,7 +233,7 @@ package zygame.data
                }
                else if(!fight && interval != 0)
                {
-                  fightInterval++;
+                  ++fightInterval;
                   if(fightInterval >= interval)
                   {
                      trace("攻击恢复");
@@ -241,7 +241,7 @@ package zygame.data
                      fightInterval = 0;
                   }
                }
-               live--;
+               --live;
             }
          }
          this.updateEffects();
@@ -267,7 +267,9 @@ package zygame.data
             {
                if(_role)
                {
-                  return actionName != _role.actionName;
+                  // return actionName != _role.actionName;
+                  var ignoreActions:Array = ["待机","行走","跳跃","降落","落地","倒落","起身","防御"]; //
+                  return actionName != _role.actionName && ignoreActions.indexOf(_role.actionName) == -1; // 只在当前动作时才允许播放
                }
                return false;
             });
@@ -289,7 +291,8 @@ package zygame.data
       {
          var i:int = 0;
          var len:int = int(this._effects.length);
-         for(i = len - 1; i >= 0; )
+         i = len - 1;
+         while(i >= 0)
          {
             if(!this._effects[i].parent || remove)
             {
@@ -420,8 +423,8 @@ package zygame.data
       
       public function getMoveSpeed(actionName:String, frame:int, fps:int) : Point
       {
-         var numX:Number = NaN;
-         var numY:Number = NaN;
+         var numX:Number = Number(NaN);
+         var numY:Number = Number(NaN);
          var roleFrame:RoleFrame = this.getFrameAt(actionName,frame);
          if(roleFrame)
          {
@@ -437,8 +440,8 @@ package zygame.data
       public function parsingEffects(arr:Array) : void
       {
          var ob:Object = null;
-         var pscaleX:Number = NaN;
-         var pscaleY:Number = NaN;
+         var pscaleX:Number = Number(NaN);
+         var pscaleY:Number = Number(NaN);
          var className:String = null;
          var pClass:Class = null;
          var skillEffect:EffectDisplay = null;

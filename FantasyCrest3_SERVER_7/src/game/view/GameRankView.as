@@ -63,6 +63,8 @@ package game.view
          _score.x = right.x;
          _score.y = right.y - right.height / 2 + 117;
          _score.alignPivot();
+         _score.text = "none"; //
+         _rank.text = "none";  //
          list = new List();
          this.addChild(list);
          list.width = 500;
@@ -75,9 +77,10 @@ package game.view
          list.alignPivot();
          list.itemRendererType = RankItem;
          _list = list;
-         Game.game4399Tools.getRankList(Game.rankid,6,_index + 1);
+         // Game.game4399Tools.getRankList(Game.rankid,6,_index + 1);
          Game.game4399Tools.onRankList = onRankList;
          Game.game4399Tools.onRankSelf = onRankSelf;
+         Game.game4399Tools.getRankList(Game.rankid,6,_index + 1); // 先传递函数，再请求数据
          Game.game4399Tools.getRankSelfData(Game.rankid);
          close = new CommonButton("关闭");
          this.addChild(close);
@@ -98,7 +101,7 @@ package game.view
             {
                return;
             }
-            _index++;
+            ++_index;
             _page.text = (_index + 1).toString();
             Game.game4399Tools.getRankList(Game.rankid,6,_index + 1);
          };
@@ -118,12 +121,13 @@ package game.view
             {
                return;
             }
-            _index--;
+            --_index;
             _page.text = (_index + 1).toString();
             Game.game4399Tools.getRankList(Game.rankid,6,_index + 1);
          };
-         _score.text = "none";
-         _rank.text = "none";
+         // 移动到getRankSelfData之前
+         // _score.text = "none";
+         // _rank.text = "none";
       }
       
       public function onRankSelf(data:Array) : void
