@@ -1,6 +1,6 @@
 # FantasyCrest3_neo
 
-幻想纹章3.0.2原版的反编译源码而来的新项目，不同于逆向版本。
+[幻想纹章3.0.2原版的反编译源码](https://github.com/Diend2023/FantasyCrest3_source)更新而来的新项目，不同于[逆向版本](https://github.com/Diend2023/FantasyCrest3_coding_history)。
 
 ## 说明
 
