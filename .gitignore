@@ -6,11 +6,6 @@ bin-release/
 
 # Other files and folders
 .settings/
-FantasyCrest3_neo/*
-!FantasyCrest3_neo/
-!FantasyCrest3_neo/application.xml
-!FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf
-!FantasyCrest3_neo/WebRuntime.swf
 
 # Executables
 *.swf
@@ -18,6 +13,12 @@ FantasyCrest3_neo/*
 *.ipa
 *.apk
 
+# project specific ignores
+FantasyCrest3_neo/*
+!FantasyCrest3_neo/
+!FantasyCrest3_neo/application.xml
+!FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf
+!FantasyCrest3_neo/WebRuntime.swf
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
