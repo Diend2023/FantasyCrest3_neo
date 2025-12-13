@@ -7,6 +7,10 @@ bin-release/
 # Other files and folders
 .settings/
 FantasyCrest3_neo/*
+!FantasyCrest3_neo/
+!FantasyCrest3_neo/application.xml
+!FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf
+!FantasyCrest3_neo/WebRuntime.swf
 
 # Executables
 *.swf
