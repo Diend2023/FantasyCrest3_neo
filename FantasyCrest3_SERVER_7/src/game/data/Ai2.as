@@ -68,14 +68,22 @@ package game.data
             return gorole;
          }
          var array:Vector.<BaseRole> = role.world.getRoleList();
-         for(var i in array)
-         {
-            if(role.troopid != array[i].troopid && Math.random() > 0.5)
-            {
-               gorole = array[i];
-               break;
-            }
-         }
+         // for(var i in array)
+         // {
+         //    if(role.troopid != array[i].troopid && Math.random() > 0.5)
+         //    {
+         //       gorole = array[i];
+         //       break;
+         //    }
+         // }
+         for each(var r:BaseRole in array) //
+         { //
+            if(role.troopid != r.troopid && Math.random() > 0.5) //
+            { //
+               gorole = r; //
+               break; //
+            } //
+         } //
          return gorole;
       }
       
@@ -114,7 +122,8 @@ package game.data
             return false;
          }
          role.stopAllKey();
-         for(var i in dict)
+         // for(var i in dict)
+         for(var i:Object in dict) //
          {
             key = String(i);
             if(key != "")

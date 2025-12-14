@@ -20,7 +20,8 @@ package game.data
             {
                dataFight = Base64.decode(dataFight as String);
                dataFight = JSON.parse(dataFight as String);
-               for(var i in dataFight)
+               // for(var i in dataFight)
+               for(var i:String in dataFight) //
                {
                   data.setValue(i as String,dataFight[i]);
                }
@@ -42,7 +43,8 @@ package game.data
       {
          var value:int = 0;
          var ob:Object = data2.data.toObject();
-         for(var i in ob)
+         // for(var i in ob)
+         for(var i:String in ob) //
          {
             value = data.getValue(i as String);
             value += int(ob[i]);
