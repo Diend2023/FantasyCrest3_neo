@@ -84,6 +84,7 @@ package game.role
          XiaoLi; // 添加李洛克
          ZhouZuo; // 添加咒印佐助
          ZhiXuBaiMian; // 添加秩序白面
+         JO; // 添加空条承太郎
          JS; // 添加嘉神慎之介
          ZhaoMei; // 添加由岐照美
       }
