@@ -86,7 +86,8 @@ package starling.display
         {
             if (sBlendModes == null) registerDefaults();
             if (modeName in sBlendModes) return sBlendModes[modeName];
-            else throw new ArgumentError("Blend mode not found: " + modeName);
+            // else throw new ArgumentError("Blend mode not found: " + modeName);
+            else return null; // 
         }
         
         /** Registers a blending mode under a certain name. */
