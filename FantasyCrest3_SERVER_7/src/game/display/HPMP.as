@@ -168,13 +168,20 @@ package game.display
                cdSprGourp.addChild(cdSpr);
                cdSpr.x = 95 + (cdSpr.width * 0.7 + 3) * k;
                cdSpr.y = 65;
-               cdSpr.scaleX *= this.scaleX;
+               // cdSpr.scaleX *= this.scaleX;
                cdSpr.scaleX *= 0.9;
                cdSpr.scaleY *= 0.9;
                _cdSprites.push(cdSpr);
                cdSpr.hpmp = this;
                k++;
             }
+            // 取消CD条翻转
+            if(this.scaleX == -1) //
+            { //
+               cdSprGourp.scaleX = 1; //
+               cdSprGourp.scaleX = this.scaleX; //
+               cdSprGourp.x += cdSpr.width * key.length * 1.5 - cdSpr.width / 2; //
+            } //
             _cdSprite = cdSprGourp;
          }
          wifi = new WifiSprite();

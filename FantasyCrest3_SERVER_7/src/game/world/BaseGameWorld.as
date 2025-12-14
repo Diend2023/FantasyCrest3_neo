@@ -36,8 +36,6 @@ package game.world
    import zygame.ui.Fade;
    import zygame.utils.GIFUtils;
    import zygame.utils.RTools;
-   import zygame.core.CoreStarup; //
-   import starling.utils.AssetManager; //
    
    public class BaseGameWorld extends World
    {
