@@ -86,10 +86,16 @@ package starling.display
         {
             if (sBlendModes == null) registerDefaults();
             if (modeName in sBlendModes) return sBlendModes[modeName];
-            // else throw new ArgumentError("Blend mode not found: " + modeName);
-            else return null; // 
+            else throw new ArgumentError("Blend mode not found: " + modeName);
         }
         
+        // 添加 has 方法，检查是否存在某个混合模式 //
+        public static function has(modeName:String):Boolean //
+        { //
+            if (sBlendModes == null) registerDefaults(); //
+            return true; //
+        } //
+
         /** Registers a blending mode under a certain name. */
         public static function register(name:String, srcFactor:String, dstFactor:String):BlendMode
         {
