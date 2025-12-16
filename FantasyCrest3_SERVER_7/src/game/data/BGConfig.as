@@ -62,7 +62,7 @@ package game.data
          "align":"bottom", //
          "move":150, //
          "moveY":150, //
-         "scale":4 //
+         "scale":2 //
       },{ //
          "name":"map7", //
          "type":"sound" //
