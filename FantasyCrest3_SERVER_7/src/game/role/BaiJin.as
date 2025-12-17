@@ -34,6 +34,19 @@ package game.role
                this.listData.updateItemAt(0);
             }
          }
+         if(this.actionName == "Cure Dot Typhoon" && this.frameAt(3, 27))
+         {
+            if(this.isKeyDown(65))
+            {
+               xMove(-this.attribute.speed);
+               this.scaleX = -1;
+            }
+            else if(this.isKeyDown(68))
+            {
+               xMove(this.attribute.speed);
+               this.scaleX = 1;
+            }
+         }
       }
       
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!-- <application xmlns="http://ns.adobe.com/air/application/51.2"> -->
  <application xmlns="http://ns.adobe.com/air/application/51.2">
-    <id>net.zygame.hxwz</id>
+    <id>net.zygame.hxwztest</id>
     <versionNumber>1.0</versionNumber>
     <filename>幻想纹章3.0.2</filename>
     <description></description>

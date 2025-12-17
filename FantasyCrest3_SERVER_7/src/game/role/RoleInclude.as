@@ -87,6 +87,8 @@ package game.role
          JO; // 添加空条承太郎
          JS; // 添加嘉神慎之介
          ZhaoMei; // 添加由岐照美
+         Nine; // 添加奈茵
+         SLK; // 添加赛莉卡
       }
    }
 }

@@ -14,7 +14,7 @@ package game.role
       override public function onSUpdate() : void
       {
          super.onSUpdate();
-         addMpPoint(1);
+         // addMpPoint(1); // 修复计算错误
          addMpPoint(1);
       }
    }
