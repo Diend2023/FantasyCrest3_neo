@@ -341,6 +341,11 @@ package zygame.display
          if(cardFrame > 0)
          {
             cardFrame--;
+            if(this.body) //时停时静止
+            { //
+               this.body.velocity.setxy(0,0); //
+               this.body.angularVel = 0; //
+            } //
             return;
          }
          super.onFrame();
@@ -398,6 +403,24 @@ package zygame.display
             yMove(_attribute.dqgoy);
          }
       }
+
+      override public function xMove(xz:Number):void //
+      { //
+         if(cardFrame > 0) //
+         { //
+            return; //
+         } //
+         super.xMove(xz); //
+      } //
+
+      override public function yMove(yz:Number):void //
+      { //
+         if(cardFrame > 0) //
+         { //
+            return; //
+         } //
+         super.yMove(yz); //
+      } //
       
       override public function set posx(i:int) : void
       {

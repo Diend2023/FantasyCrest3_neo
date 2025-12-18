@@ -11,6 +11,9 @@ package game.view
    import zygame.display.KeyDisplayObject;
    import zygame.server.Service; // 导入Service用于更新用户数据
    import flash.net.SharedObject; // 导入SharedObject用于更新缓存的用户数据
+   import starling.events.Touch; //
+   import starling.events.TouchEvent; //
+   import starling.events.TouchPhase; //
 
    
    public class GameTestView extends KeyDisplayObject
@@ -18,7 +21,9 @@ package game.view
       
       private var _title:TextField;
       
-      private var _abcd:TextField;
+      // private var _abcd:TextField;
+
+      private var _optionFields:Vector.<TextField>; // 用于存储选项文本字段
       
       private var _tips:TextField;
       
@@ -49,10 +54,22 @@ package game.view
          _title = new TextField(stage.stageWidth,64,"一键购买全角色考试(笑)，合格(80分以上)就可以一键解锁全部商店角色，是否准备好？",new TextFormat(GameFont.FONT_NAME,20,16777215)); // 用于一键购买全角色考试
          this.addChild(_title);
          _title.y = 50;
-         _abcd = new TextField(stage.stageWidth - 300,300,"【A】开始吧！",new TextFormat(GameFont.FONT_NAME,16,16777215,"left"));
-         this.addChild(_abcd);
-         _abcd.x = 150;
-         _abcd.y = 100;
+         // _abcd = new TextField(stage.stageWidth - 300,300,"【A】开始吧！",new TextFormat(GameFont.FONT_NAME,16,16777215,"left"));
+         // this.addChild(_abcd);
+         // _abcd.x = 150;
+         // _abcd.y = 100;
+         _optionFields = new Vector.<TextField>(); //修改为选项文本字段数组
+         for(i = 0; i < 4; i++) //
+         { //
+            var tf:TextField = new TextField(stage.stageWidth - 300, 20, "", new TextFormat(GameFont.FONT_NAME, 16, 16777215, "left")); //
+            tf.x = 150; //
+            tf.y = 150 + i * 60; //
+            tf.name = i.toString(); //
+            tf.addEventListener(TouchEvent.TOUCH, onTouchOption); //
+            this.addChild(tf); //
+            _optionFields.push(tf); //
+         } //
+         _optionFields[0].text = "【A】开始吧！"; // 初始选项文本
          _tips = new TextField(stage.stageWidth,64,"已回答0/24 已答错0题 剩余分100分",new TextFormat(GameFont.FONT_NAME,20,16777215));
          this.addChild(_tips);
          _tips.y = stage.stageHeight - 64;
@@ -74,6 +91,16 @@ package game.view
          }
       }
       
+      private function onTouchOption(e:TouchEvent):void //
+      { //
+         var touch:Touch = e.getTouch(e.currentTarget as TextField, TouchPhase.ENDED); //
+         if(touch) //
+         { //
+            var index:int = int((e.currentTarget as TextField).name); //
+            next(index); //
+         } //
+      } //
+
       public function next(i:int) : Boolean
       {
          var score:int = 0;
@@ -90,8 +117,10 @@ package game.view
             if(score < 80)
             {
                this._title.text = "挑战失败，3秒后自动关闭窗口";
-               this._abcd.text = "";
+               // this._abcd.text = "";
+               for each(var tf:TextField in _optionFields) tf.text = ""; //
                Starling.juggler.delayCall(removeFromParent,3);
+               this.touchable = false; // 禁用触摸交互
                this.clearKey();
                Service.userData.userData.buys = buys; // 购买所有角色
                SharedObject.getLocal("net.zygame.hxwz.air").data.userData = Service.userData; // 更新缓存的用户数据
@@ -104,8 +133,13 @@ package game.view
          {
             _isReady = false;
             _title.text = _arr[0].@title;
-            str = "[A]" + _arr[0].@a + "\n" + "[B]" + _arr[0].@b + "\n" + "[C]" + _arr[0].@c + "\n" + "[D]" + _arr[0].@d;
-            _abcd.text = str;
+            // // str = "[A]" + _arr[0].@a + "\n" + "[B]" + _arr[0].@b + "\n" + "[C]" + _arr[0].@c + "\n" + "[D]" + _arr[0].@d;
+            // str = "[A]" + _arr[0].@a + "\n\n" + "[B]" + _arr[0].@b + "\n\n" + "[C]" + _arr[0].@c + "\n\n" + "[D]" + _arr[0].@d;
+            // _abcd.text = str;
+            _optionFields[0].text = "[A]" + _arr[0].@a; //
+            _optionFields[1].text = "[B]" + _arr[0].@b; //
+            _optionFields[2].text = "[C]" + _arr[0].@c; //
+            _optionFields[3].text = "[D]" + _arr[0].@d; //
             _right = int(_arr[0].@value);
             _arr.shift();
             return true;
@@ -114,8 +148,10 @@ package game.view
          Game.vip.value = 1;
          Game.save();
          this._title.text = "挑战成功，3秒后自动关闭窗口";
-         this._abcd.text = "";
+         // this._abcd.text = "";
+         for each(var tf2:TextField in _optionFields) tf2.text = ""; //
          Starling.juggler.delayCall(removeFromParent,3);
+         this.touchable = false; // 禁用触摸交互
          this.clearKey();
          Service.userData.userData.buys = buys; // 购买所有角色
          SharedObject.getLocal("net.zygame.hxwz.air").data.userData = Service.userData; // 更新缓存的用户数据

@@ -89,6 +89,7 @@ package game.role
          ZhaoMei; // 添加由岐照美
          Nine; // 添加奈茵
          SLK; // 添加赛莉卡
+         ShuiMen; // 添加波风水门
       }
    }
 }

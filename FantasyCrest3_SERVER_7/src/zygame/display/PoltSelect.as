@@ -146,6 +146,7 @@ package zygame.display
       {
          if(world)
          {
+            this.removeFromParent(); //
             world.removeKeyDisplay(this);
          }
          super.discarded();
