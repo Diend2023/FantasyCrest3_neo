@@ -82,6 +82,10 @@
       public function MainTimeline()
       {
          super();
+         main0.addEventListener(IOErrorEvent.IO_ERROR, function(e:IOErrorEvent):void { //
+            trace("bgm加载失败"); //
+            main0 = new Sound(); // 没有加载成功则重新实例化Sound对象以防止错误
+         }); //
          addFrameScript(0,this.frame1);
       }
 
