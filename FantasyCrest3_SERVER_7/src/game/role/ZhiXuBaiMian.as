@@ -9,6 +9,7 @@ package game.role
    import game.world.BaseGameWorld;
    import zygame.display.EffectDisplay;
    import zygame.data.RoleFrameGroup;
+   import zygame.core.GameCore;
    
    public class ZhiXuBaiMian extends GameRole
    {
@@ -74,7 +75,7 @@ package game.role
             this.currentMp.value += 1;
          }
          // 防反
-         var enemy = beData.role as GameRole;
+         var enemy:GameRole = beData.role as GameRole;
          if (this.actionName == "虛空陣 悪滅" && this.frameAt(3,20))
          {
             this.clearDebuffMove();
@@ -85,6 +86,10 @@ package game.role
                enemy.straight = 180;
             }
             playSkillPainting("虛空陣 悪滅");
+            if(enemy.attribute.hp <= 5000 && this.hpmpDisplay.winNum == 1)
+            {
+               GameCore.soundCore.playBGSound("astralfinish");
+            }
          }
          if (this.actionName == "虚空阵 雪风" && this.frameAt(4,21))
          {
