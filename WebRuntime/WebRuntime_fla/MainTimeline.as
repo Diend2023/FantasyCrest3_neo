@@ -27,17 +27,21 @@
    import flash.ui.*;
    import flash.utils.*;
    import flash.xml.*;
-   import flash.media.Sound; //
-   import flash.media.SoundChannel; //
-   
+   import zygame.server.BaseSocketClient;
+   import zygame.utils.SendDataUtils;
+   import flash.net.FileReference; // 添加FileReference用于读取存档
+   import flash.events.PermissionEvent; // 添加事件
+   import flash.media.Sound; // 添加背景音乐
+   import flash.media.SoundChannel; // 添加声音通道
+
    public dynamic class MainTimeline extends MovieClip
    {
       
-      private const DESIGN_WIDTH:int = 1000;
+      private const DESIGN_WIDTH:int = 1000; //设置宽度
       
-      private const DESIGN_HEIGHT:int = 550;
+      private const DESIGN_HEIGHT:int = 550; //设置高度
       
-      private var container:Sprite;
+      private var container:Sprite; //
       
       public var loading:MovieClip;
       
@@ -70,28 +74,30 @@
       public var userData:Object;
       
       public var errorCount:int;
+
+	   public var main0:Sound = new Sound(); // 背景音乐
 	  
-	  public var main0:Sound = new Sound(); //
-	  
-      public var soundChannel:SoundChannel; //
-	  
+      public var soundChannel:SoundChannel; // 声音通道
       
       public function MainTimeline()
       {
          super();
+         addFrameScript(0,this.frame1);
       }
-      
-      private function handleStageResize(e:Event = null) : void
-      {
-         if(!stage)
-         {
-            return;
-         }
+
+      // 用于使登录界面居中显示，且支持缩放
+      private function handleStageResize(e:Event = null) : void //
+      { //
+         if(!stage) //
+         { //
+            return; //
+         } //
+         // 从比例缩放改为全屏拉伸
          container.scaleX = stage.stageWidth / DESIGN_WIDTH;
          container.scaleY = stage.stageHeight / DESIGN_HEIGHT;
          container.x = 0;
          container.y = 0;
-      }
+      } //
       
       public function zhuceFunc(param1:MouseEvent) : void
       {
@@ -102,106 +108,102 @@
       {
          this.mimaxiugai.visible = true;
       }
-      
-      public function loadFunc(param1:MouseEvent) : void
-      {
-         var file:File;
-         var fileRef:FileReference;
-         if(File.applicationDirectory.resolvePath("phone.xml").exists)
-         {
-            file = new File();
-            file.addEventListener(Event.SELECT,function(e:Event):void
-            {
-               var selectedFile:File;
-               var stream:FileStream;
-               file.removeEventListener(Event.SELECT,arguments.callee);
-               selectedFile = file;
-               stream = new FileStream();
-               stream.addEventListener(Event.COMPLETE,function(e:Event):void
-               {
-                  var jsonData:String;
-                  var importedData:Object;
-                  try
-                  {
-                     jsonData = stream.readUTFBytes(stream.bytesAvailable);
-                     importedData = JSON.parse(jsonData);
-                     if(importedData.nickName)
-                     {
-                        loading.userData = importedData;
-                        loading.pname.text = importedData.nickName;
-                        SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData;
-                        SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName;
-                        SharedObject.getLocal("net.zygame.hxwz.air").flush();
-                        trace("import UserData success:",jsonData);
-                     }
-                  }
-                  catch(error:Error)
-                  {
-                     trace("import UserData failed:",error.message);
-                  }
-                  stream.close();
-               });
-               if(!selectedFile.resolvePath("幻想纹章3存档.json").exists)
-               {
-                  stream.openAsync(selectedFile.resolvePath("幻想纹章3存档.json"),FileMode.WRITE);
-                  stream.writeUTFBytes("{}");
-                  stream.close();
-               }
-               else
-               {
-                  stream.openAsync(selectedFile.resolvePath("幻想纹章3存档.json"),FileMode.READ);
-               }
-            });
-            file.browseForDirectory("创建并选择存档文件夹");
-         }
-         else
-         {
-            fileRef = new FileReference();
-            fileRef.addEventListener(Event.SELECT,function(e:Event):void
-            {
-               fileRef.load();
-            });
-            fileRef.addEventListener(Event.COMPLETE,function(e:Event):void
-            {
-               var jsonData:String;
-               var importedData:Object;
-               try
-               {
-                  jsonData = fileRef.data.toString();
-                  importedData = JSON.parse(jsonData);
-                  if(importedData.nickName)
-                  {
-                     loading.userData = importedData;
-                     loading.pname.text = importedData.nickName;
-                     SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData;
-                     SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName;
-                     SharedObject.getLocal("net.zygame.hxwz.air").flush();
-                     trace("import UserData success:",jsonData);
-                  }
-               }
-               catch(error:Error)
-               {
-                  trace("import UserData failed:",error.message);
-               }
-            });
-            fileRef.browse([new FileFilter("幻想纹章3存档文件","*.json")]);
-         }
-      }
-      
+
+      // 新增导入存档按钮功能
+      public function loadFunc(param1:MouseEvent) : void //
+      { //
+         // Android系统下使用File类读取存档文件
+         if (File.applicationDirectory.resolvePath("phone.xml").exists) //
+         { //
+            var file:File = new File(); //
+            file.addEventListener(Event.SELECT, function(e:Event):void { //
+               file.removeEventListener(Event.SELECT, arguments.callee); //
+               var selectedFile:File = file; //
+               var stream:FileStream = new FileStream(); //
+               stream.addEventListener(Event.COMPLETE, function(e:Event):void { //
+                  try //
+                  { //
+                     var jsonData:String = stream.readUTFBytes(stream.bytesAvailable); //
+                     var importedData:Object = JSON.parse(jsonData); //
+                     if (importedData.nickName) { //
+                        loading.userData = importedData; //
+                        loading.pname.text = importedData.nickName; //
+                        SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData; //
+                        SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName; //
+                        SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
+                        trace("import UserData success:", jsonData); //
+                     } //
+                  } //
+                  catch (error:Error) //
+                  { //
+                     trace("import UserData failed:", error.message); //
+                  } //
+                  stream.close(); //
+               }); //
+               if (!selectedFile.resolvePath("幻想纹章3存档.json").exists) //
+               { //
+                  stream.openAsync(selectedFile.resolvePath("幻想纹章3存档.json"), FileMode.WRITE); //
+                  stream.writeUTFBytes("{}"); //
+                  stream.close(); //
+               } //
+               else //
+               { //
+                  stream.openAsync(selectedFile.resolvePath("幻想纹章3存档.json"), FileMode.READ); //
+               } //
+            }); //
+            file.browseForDirectory("创建并选择存档文件夹"); //
+         } //
+         else //
+         { //
+            // Window系统下使用FileReference读取存档文件
+            var fileRef:FileReference = new FileReference(); //
+            fileRef.addEventListener(Event.SELECT, function(e:Event):void { //
+               fileRef.load(); //
+            }); //
+            fileRef.addEventListener(Event.COMPLETE, function(e:Event):void { //
+               try { //
+                  var jsonData:String = fileRef.data.toString(); //
+                  var importedData:Object = JSON.parse(jsonData); //
+                  if (importedData.nickName) { //
+                     loading.userData = importedData; //
+                     loading.pname.text = importedData.nickName; //
+                     SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData; //
+                     SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName; //
+                     SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
+                     trace("import UserData success:", jsonData); //
+                  } //
+               } catch (error:Error) { //
+                  trace("import UserData failed:", error.message); //
+               } //
+            }); //
+            fileRef.browse([new FileFilter("幻想纹章3存档文件", "*.json")]); //
+         } //
+      } //
+
       public function clear(param1:MouseEvent) : void
       {
-         SharedObject.getLocal("net.zygame.hxwz.air").data.userData = {};
-         SharedObject.getLocal("net.zygame.hxwz.air").data.address = "";
-         SharedObject.getLocal("net.zygame.hxwz.air").data.userName = "";
-         SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = "";
-         SharedObject.getLocal("net.zygame.hxwz.air").flush();
-         this.loading.userData = {};
-         this.loading.address.text = "";
+         SharedObject.getLocal("net.zygame.hxwz.air").data.userData = {}; // 清除用户数据缓存
+         SharedObject.getLocal("net.zygame.hxwz.air").data.address = ""; // 清除联机地址缓存
+         SharedObject.getLocal("net.zygame.hxwz.air").data.userName = ""; // 清除用户名缓存
+         SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = ""; // 清除用户密码缓存
+         SharedObject.getLocal("net.zygame.hxwz.air").flush(); // 刷新缓存
+         this.loading.userData = {}; // 清除当前生成的用户数据
+         this.loading.address.text = ""; // 清除当前生成的联机地址
+         // 去除原本的清除缓存代码
+         // this.loading.pname.text = ""; //
+         // this.loading.pcode.text = ""; //
+
+         // if(File.applicationStorageDirectory.exists)
+         // {
+         //    File.applicationStorageDirectory.deleteDirectory(true);
+         // }
+         // this.loading.clear.visible = false;
+         // this.loading.start.visible = false;
+         // this.cheakUpdate();
       }
       
       public function cheakUpdate() : void
       {
-         var _loc1_:URLLoader;
          var _loc2_:File = null;
          var _loc3_:FileStream = null;
          var _loc4_:String = null;
@@ -224,7 +226,7 @@
          catch(e:Error)
          {
          }
-         _loc1_ = new URLLoader(new URLRequest(this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
+         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
          _loc1_.addEventListener(Event.COMPLETE,this.onMD5Complete);
          _loc1_.addEventListener(IOErrorEvent.IO_ERROR,this.onMD5Error);
          trace("MD5 Start ",this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random());
@@ -238,14 +240,15 @@
       public function getMD5s(param1:String) : Array
       {
          var _loc4_:Object = null;
+         var _loc5_:Array = null;
          var _loc2_:Array = [];
          var _loc3_:Array = param1.split(",");
          for(_loc4_ in _loc3_)
          {
             if(_loc3_[_loc4_] != "")
             {
-               var _loc5_:Array = _loc3_[_loc4_].split(":");
-               _loc2_.push(null[0] + ":" + null[1]);
+               _loc5_ = _loc3_[_loc4_].split(":");
+               _loc2_.push(_loc5_[0] + ":" + _loc5_[1]);
             }
          }
          return _loc2_;
@@ -253,7 +256,6 @@
       
       public function onMD5Complete(param1:Event) : void
       {
-         var _loc3_:Array;
          var _loc4_:Object = null;
          var _loc5_:Array = null;
          var _loc6_:Array = null;
@@ -263,7 +265,7 @@
          trace(_loc2_);
          _loc2_ = _loc2_.substr(0,_loc2_.length - 1);
          this.md5Data = _loc2_;
-         _loc3_ = _loc2_.split(",");
+         var _loc3_:Array = _loc2_.split(",");
          for(_loc4_ in _loc3_)
          {
             if(_loc3_[_loc4_] != "")
@@ -283,7 +285,7 @@
             trace("清理缓存");
             _loc6_ = File.applicationStorageDirectory.getDirectoryListing();
             _loc7_ = 0;
-            while(_loc7_ < _loc6_.length)
+            for(; _loc7_ < _loc6_.length; _loc7_++)
             {
                _loc8_ = _loc6_[_loc7_];
                if(!_loc8_.isDirectory)
@@ -295,18 +297,15 @@
                   catch(e:Error)
                   {
                   }
+                  continue;
                }
-               else
+               try
                {
-                  try
-                  {
-                     _loc8_.deleteDirectory(true);
-                  }
-                  catch(e:Error)
-                  {
-                  }
+                  _loc8_.deleteDirectory(true);
                }
-               _loc7_++;
+               catch(e:Error)
+               {
+               }
             }
             SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear = true;
             SharedObject.getLocal("net.zygame.hxwz.air.301").flush();
@@ -377,6 +376,11 @@
                this.loading.start.visible = true;
                this.loading.clear.visible = true;
                md5File = File.applicationStorageDirectory.resolvePath("md5.data");
+               // 去除原本的md5保存代码
+               // fileSave = new FileStream();
+               // fileSave.open(md5File,FileMode.WRITE);
+               // fileSave.writeUTFBytes(this.md5Data);
+               // fileSave.close();
                trace("错误信息\r",this.errorLog);
             }
             catch(e:Error)
@@ -392,47 +396,92 @@
       
       public function login(param1:MouseEvent) : void
       {
-         if(this.loading.pname.text == "")
-         {
-            this.loginError();
-            return;
-         }
-         if(this.loading.pname.text.indexOf("#") <= -1)
-         {
-            this.loading.pname.text = this.loading.pname.text + "#" + String(Math.round(Math.random() * 10000));
-         }
-         if(!this.loading.userData.nickName)
-         {
-            this.loading.userData = {
-               "nickName":this.loading.pname.text,
-               "coin":0,
-               "crystal":0,
-               "fight":"",
-               "ofigth":"",
-               "fbs":"",
-               "userData":{
-                  "buys":[],
-                  "fight":"",
-                  "allFight":0,
-                  "ofigth":"",
-                  "vip":0,
-                  "version":"",
-                  "fbs":""
-               },
-               "_4399userData":this.loading._4399userData[0]
-            };
-         }
-         else if(this.loading.userData.nickName != this.loading.pname.text)
-         {
-            this.loading.userData.nickName = this.loading.pname.text;
-         }
-         trace("userData2",JSON.stringify(this.loading.userData));
-         this.loading.address.text = this.loading.pcode.text;
-         this.loading.userData._4399userData = this.loading._4399userData;
-         this.loading.userData._4399userData[0].nickName = this.loading.pname.text;
-         this.loading.userData._4399userData[0].name = this.loading.pname.text;
-         trace("登录");
-         startGame();
+         if(this.loading.pname.text == "") // 不允许用户名为空
+         { //
+               this.loginError(); //
+               return; //
+         } //
+         if(this.loading.pname.text.indexOf("#") > -1) // 给用户名自动添加后缀防止重复
+         { //
+         } //
+         else //
+         { //
+            this.loading.pname.text = this.loading.pname.text + "#" + String(Math.round(Math.random() * 10000)); //
+         } //
+         if(!this.loading.userData.nickName) // 如果没有用户名则创建
+         { //
+            this.loading.userData = { //
+               nickName: this.loading.pname.text, //
+               coin: 0, //
+               crystal: 0, //
+               fight: "", //
+               ofigth: "", //
+               fbs: "", //
+               userData: { //
+                  buys: [], //
+                  fight: "", //
+                  allFight: 0, //
+                  ofigth: "", //
+                  vip: 0, //
+                  version: "", //
+                  fbs: "" //
+               }, //
+               _4399userData: this.loading._4399userData[0] //
+            }; //
+         } //
+         else if(this.loading.userData.nickName != this.loading.pname.text) // 更新用户名
+         { //
+            this.loading.userData.nickName = this.loading.pname.text; //
+         } //
+         trace("userData2",JSON.stringify(this.loading.userData)); //
+         this.loading.address.text = this.loading.pcode.text; // 存入联机地址
+         this.loading.userData._4399userData = this.loading._4399userData; // 存入4399用户数据
+         this.loading.userData._4399userData[0].nickName = this.loading.pname.text; // 存入昵称
+         this.loading.userData._4399userData[0].name = this.loading.pname.text; // 存入用户名
+         trace("登录"); //
+         startGame(); // 开始游戏
+         // 下面的代码是原本的登录代码，已被注释掉
+        //  var clinet:BaseSocketClient = null;
+        //  var e:MouseEvent = param1;
+        //  var socket:Socket = new Socket("120.220.73.176",24888); //
+        // //  var socket:Socket = new Socket("120.79.155.18",4888);
+        //  clinet = new BaseSocketClient(socket);
+        //  clinet.handFunc = function():void
+        //  {
+        //     trace("握手");
+        //     clinet.send(SendDataUtils.handData(loading.pname.text,loading.pcode.text));
+        //  };
+        //  clinet.ioerrorFunc = function():void
+        //  {
+        //     trace("登录失败");
+        //     loginError();
+        //  };
+        //  clinet.closeFunc = function():void
+        //  {
+        //     trace("登录失败");
+        //     loginError();
+        //  };
+        //  clinet.dataFunc = function(param1:Object):void
+        //  {
+        //     trace(JSON.stringify(param1));
+        //     if(param1.type == "handed")
+        //     {
+        //        clinet.close();
+        //        if(param1.userData)
+        //        {
+        //           trace("登录成功");
+        //           userData = param1.userData;
+        //           startGame();
+        //           clinet.closeFunc = null;
+        //           clinet.close();
+        //        }
+        //        else
+        //        {
+        //           trace("登录失败");
+        //           loginError();
+        //        }
+        //     }
+        //  };
       }
       
       public function loginError() : void
@@ -447,9 +496,11 @@
       public function startGame() : void
       {
          SharedObject.getLocal("net.zygame.hxwz.air").data.userName = this.loading.pname.text;
-         SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = this.loading.pname.text;
-         SharedObject.getLocal("net.zygame.hxwz.air").data.userData = this.loading.userData;
-         SharedObject.getLocal("net.zygame.hxwz.air").data.address = this.loading.address.text;
+         // 原本的缓存密码代码
+         // SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = this.loading.pcode.text;
+         SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = this.loading.pname.text; // 缓存用户名并且作为密码
+         SharedObject.getLocal("net.zygame.hxwz.air").data.userData = this.loading.userData; //缓存用户数据
+         SharedObject.getLocal("net.zygame.hxwz.air").data.address = this.loading.address.text; //缓存地址
          SharedObject.getLocal("net.zygame.hxwz.air").flush();
          trace("startGame");
          var _loc1_:URLLoader = new URLLoader();
@@ -475,25 +526,23 @@
       public function onComplete(param1:Event) : void
       {
          var con:LoaderContext;
-         var ip:String;
-         var port:String;
          var loader:Loader = null;
          var e:Event = param1;
-         if(this.loading.address.text.indexOf(":") > -1)
-         {
-            ip = this.loading.address.text.split(":")[0];
-            port = this.loading.address.text.split(":")[1];
-         }
-         else if(this.loading.address.text.indexOf("：") > -1)
-         {
-            ip = this.loading.address.text.split("：")[0];
-            port = this.loading.address.text.split("：")[1];
-         }
-         else
-         {
-            ip = "";
-            port = "";
-         }
+         if (this.loading.address.text.indexOf(":") > -1) // 检查地址是否包含端口
+         { //
+            var ip:String = this.loading.address.text.split(":")[0]; //获取ip
+            var port:String = this.loading.address.text.split(":")[1]; //获取端口
+         } //
+         else if (this.loading.address.text.indexOf("：") > -1) // 兼容中文冒号
+         { //
+            var ip:String = this.loading.address.text.split("：")[0]; //获取ip
+            var port:String = this.loading.address.text.split("：")[1]; //获取端口
+         } //
+         else //
+         { //
+            var ip:String = ""; //
+            var port:String = ""; //
+         } //
          trace("加载完成");
          loader = new Loader();
          this.addChild(loader);
@@ -503,13 +552,15 @@
          loader.contentLoaderInfo.addEventListener(Event.COMPLETE,function(param1:Event):void
          {
             loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_userName"] = loading.pname.text;
-            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_userCode"] = loading.pname.text;
-            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_ip"] = ip;
-            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_port"] = port;
-            loader.contentLoaderInfo.applicationDomain.getDefinition("zygame.server.Service")["userData"] = loading.userData;
+            // 这是原本的预加载用户密码的代码
+            // loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_userCode"] = loading.pcode.text;
+            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_userCode"] = loading.pname.text; // 使用用户名作为密码
+            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_ip"] = ip; // 预加载联机地址ip
+            loader.contentLoaderInfo.applicationDomain.getDefinition("game.view.GameOnlineRoomListView")["_port"] = port; // 预加载联机地址端口
+            loader.contentLoaderInfo.applicationDomain.getDefinition("zygame.server.Service")["userData"] = loading.userData; // 预加载用户数据
          });
          this.loading.visible = false;
-		 soundChannel.stop(); //
+         SoundChannel.stopAll(); // 停止所有正在播放的声音
       }
       
       public function onError(param1:IOErrorEvent) : void
@@ -558,6 +609,93 @@
          }
          return _loc3_;
       }
+      
+      // internal function frame1() : *
+      // {
+      //    container = new Sprite(); //
+      //    while(this.numChildren > 0) //
+      //    { //
+      //       container.addChild(this.getChildAt(0)); //
+      //    } //
+      //    this.addChild(container); //
+      //    stage.scaleMode = StageScaleMode.NO_SCALE;
+      //    stage.align = StageAlign.TOP_LEFT;
+      //    stage.addEventListener(Event.RESIZE,handleStageResize); //
+      //    handleStageResize(); //
+      //    this.loadName = "FantasyCrest3_SERVER_7";
+      //    this.loading.start.addEventListener(MouseEvent.CLICK,this.login);
+      //    this.loading.zhuce.addEventListener(MouseEvent.CLICK,this.zhuceFunc);
+      //    this.loading.mimaxiug.addEventListener(MouseEvent.CLICK,this.mimaFunc);
+      //    this.loading.load.addEventListener(MouseEvent.CLICK,this.loadFunc); // 新增导入存档按钮功能
+      //    this.loading.clear.addEventListener(MouseEvent.CLICK,this.clear);
+      //    this.path2 = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
+      //    this.path = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
+      //    this.files = [];
+      //    this.oldFiles = [];
+      //    this.maxCount = 0;
+      //    this.loadCount = 0;
+      //    this.batch = 100;
+      //    this.errorCount = 0;
+      //    this.nextLoad(); //
+      //   //  this.cheakUpdate();
+      //    loading._4399userData = [ // 初始化4399用户数据
+      //       { //
+      //          nickName: "", //
+      //          name: "", //
+      //          uid: 0, //
+      //          allFight: 0, //
+      //          fight: "", //
+      //          ofigth: "", //
+      //          vip: 0, //
+      //          version: "", //
+      //          fbs: ""}]; //
+      //    loading.userData = { // 初始化用户数据
+      //       nickName: "???", //
+      //       coin: 0, //
+      //       crystal: 0, //
+      //       fight: "", //
+      //       ofigth: "", //
+      //       fbs: "", //
+      //       userData: { //
+      //          buys: [], //
+      //          fight: "", //
+      //          allFight: 0, //
+      //          ofigth: "", //
+      //          vip: 0, //
+      //          version: "", //
+      //          fbs: "" //
+      //       }, //
+      //       _4399userData: loading._4399userData //
+      //    }; //
+      //    loading.address = {text:""}; // 初始化联机地址
+      //    trace("userData1",JSON.stringify(loading.userData)); //
+      //    setTimeout(function():void
+      //    {
+      //       try
+      //       {
+      //          loading.pname.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userName;
+      //          // 原本的读取密码缓存代码
+      //          // loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userCode;
+      //          loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
+      //          loading.userData = SharedObject.getLocal("net.zygame.hxwz.air").data.userData; // 读取用户数据缓存
+      //          loading.address.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
+      //       }
+      //       catch(e:Error)
+      //       {
+      //          trace("123",e.message);
+      //       }
+      //    },300);
+      //    try
+      //    {
+      //       if(this.stage)
+      //       {
+      //          this.stage.nativeWindow.x = this.stage.fullScreenWidth / 2 - this.stage.nativeWindow.width / 2;
+      //          this.stage.nativeWindow.y = this.stage.fullScreenHeight / 2 - this.stage.nativeWindow.height / 2;
+      //       }
+      //    }
+      //    catch(e:Error)
+      //    {
+      //    }
+      // }
    }
 }
-
