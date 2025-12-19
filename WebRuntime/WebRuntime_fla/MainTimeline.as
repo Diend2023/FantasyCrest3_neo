@@ -560,7 +560,7 @@
             loader.contentLoaderInfo.applicationDomain.getDefinition("zygame.server.Service")["userData"] = loading.userData; // 预加载用户数据
          });
          this.loading.visible = false;
-         SoundChannel.stopAll(); // 停止所有正在播放的声音
+         soundChannel.stop(); // 停止所有正在播放的声音
       }
       
       public function onError(param1:IOErrorEvent) : void

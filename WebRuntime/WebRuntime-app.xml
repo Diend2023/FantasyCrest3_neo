@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <application xmlns="http://ns.adobe.com/air/application/51.2">
     <id>net.zygame.hxwz</id>
-    <versionNumber>0.9</versionNumber>
+    <versionNumber>1.0</versionNumber>
     <filename>幻想纹章3.0.2</filename>
     <description/>
     
+
+  
 
   
 
@@ -56,6 +58,8 @@
 
   
 
+  
+
   <!-- To localize the name, use the following format for the name element.
     <name>
         <text xml:lang="en">English App name goes here</text>
@@ -65,6 +69,8 @@
     -->
     <copyright/>
     
+
+  
 
   
 
@@ -102,6 +108,8 @@
     </initialWindow> -->
 
     
+
+  
 
   
 
