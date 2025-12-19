@@ -12,6 +12,8 @@ bin-release/
 *.air
 *.ipa
 *.apk
+*.p12
+*.pfx
 
 # project specific ignores
 FantasyCrest3_neo/*
@@ -19,6 +21,15 @@ FantasyCrest3_neo/*
 !FantasyCrest3_neo/application.xml
 !FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf
 !FantasyCrest3_neo/WebRuntime.swf
+
+WebRuntime/*
+!WebRuntime/WebRuntime.fla
+!WebRuntime/WebRuntime.swf
+!WebRuntime/WebRuntime-app.xml
+!WebRuntime/AppIconsForPublish/
+!WebRuntime/WebRuntime_fla/
+!WebRuntime/zygame/
+
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
