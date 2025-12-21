@@ -38,12 +38,12 @@ package game.role
          {
             if(this.isKeyDown(65))
             {
-               xMove(-this.attribute.speed);
+               xMove(-this.attribute.speed * 0.8);
                this.scaleX = -1;
             }
             else if(this.isKeyDown(68))
             {
-               xMove(this.attribute.speed);
+               xMove(this.attribute.speed * 0.8);
                this.scaleX = 1;
             }
          }

@@ -10,6 +10,8 @@ package game.role
    import game.world.BaseGameWorld;
    import game.view.GameStateView;
    import feathers.data.ListCollection;
+   import game.world._FBBaseWorld;
+   import flash.geom.Rectangle;
    
    public class ShuiMen extends GameRole
    {
@@ -32,11 +34,14 @@ package game.role
             var effectKuwu1:EffectDisplay = roleKuwu1Dic[enemy];
             if(effectKuwu1 && enemy && enemy.attribute)
             {
-            effectKuwu1.posx = (world.state as GameStateView)._tips[enemy.pid - 1].x - effectKuwu1.width / 1.75;
-            effectKuwu1.posy = enemy.y + enemy.display.y * (enemy.getRawScaleY() * (enemy.contentScale + (1 - enemy.contentScale)));
-            var listObj:Object = {"icon":"sudu.png","msg":String(enemy.pid) + "P"};
-            this.listData.addItem(listObj);
-            this.listData.updateItemAt(i);
+            effectKuwu1.posx = enemy.x - effectKuwu1.width / 1.75;
+            effectKuwu1.posy = enemy.y;
+            if(!(this.world is _FBBaseWorld))
+            {
+               var listObj:Object = {"icon":"sudu.png","msg":String(enemy.pid) + "P"};
+               this.listData.addItem(listObj);
+               this.listData.updateItemAt(i);
+            }
             i++;
             }
             else
@@ -98,6 +103,55 @@ package game.role
          }
       }
 
+      override public function runLockAction(str:String, canBreak:Boolean = false):void
+      {
+         super.runLockAction(str,canBreak);
+         if(str == "神速")
+         {
+            var rect:Rectangle = this.body.bounds.toRect();
+            rect.width = 800;
+            rect.height = 400;
+            rect.x = this.x - rect.width / 2;
+            rect.y = this.y - 300;
+            showDebugRect(rect);
+            var role:BaseRole = this.findRole(rect);
+            for(var roleKuwu1DicLength:int = 0 in roleKuwu1Dic)
+            {
+               roleKuwu1DicLength++;
+            }
+            if(role)
+            {
+               this.scaleX = this.x < role.x ? 1 : -1;
+               this.posx = role.x + 150 * (this.scaleX > 0 ? -1 : 1);
+               this.posy = role.y;
+            }
+            else if(roleKuwu1DicLength > 0)
+            {
+               tpRole(150, 0, false);
+            }
+            else
+            {
+               this.playSkill("我tm跑路");
+            }
+         }
+      }
+
+      private function showDebugRect(rect:Rectangle):void
+      {
+         import starling.display.Quad;
+         import starling.core.Starling;
+
+         var debugQuad:Quad = new Quad(rect.width, rect.height, 0xff0000);
+         debugQuad.x = rect.x;
+         debugQuad.y = rect.y;
+         debugQuad.alpha = 0.3;
+         debugQuad.touchable = false;
+         this.world.addChild(debugQuad);
+
+         // 1秒后自动移除
+         Starling.juggler.delayCall(debugQuad.removeFromParent, 1, true);
+      }
+
       private function tpRole(toX:Number, toY:Number, isBehind:Boolean):void
       {
          for(var enemy:Object in roleKuwu1Dic)
@@ -110,7 +164,7 @@ package game.role
                var directionMultiplier:int = isBehind ? -1 : 1;
                this.posx = targetEnemy.x + (toX * directionMultiplier * enemyDir);
                this.posy = targetEnemy.y - toY;
-               this.scaleX = (isBehind ? enemyDir : -enemyDir);
+               this.scaleX = this.x < targetEnemy.x ? 1 : -1;
                effectKuwu1.discarded();
                effectKuwu1.dispose();
                delete roleKuwu1Dic[targetEnemy];
