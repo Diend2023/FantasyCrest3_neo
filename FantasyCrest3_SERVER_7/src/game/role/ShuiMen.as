@@ -53,23 +53,11 @@ package game.role
          }
          if(this.inFrame("飞雷神2",9))
          {
-            tpRole(0, 0, false);
+            tpRole(0, 0, false, false);
          }
          else if(this.inFrame("WJ",7))
          {
-            tpRole(-150, 0, false);
-         }
-         else if(this.inFrame("飞雷神WU",1))
-         {
-            tpRole(150, 0, true);
-         }
-         else if(this.inFrame("飞雷神U",1))
-         {
-            tpRole(-150, 0, false);
-         }
-         else if(this.inFrame("丸子",1))
-         {
-            tpRole(150, 50, true);
+            tpRole(-150, 0, false, true);
          }
       }
 
@@ -113,7 +101,6 @@ package game.role
             rect.height = 400;
             rect.x = this.x - rect.width / 2;
             rect.y = this.y - 300;
-            showDebugRect(rect);
             var role:BaseRole = this.findRole(rect);
             for(var roleKuwu1DicLength:int = 0 in roleKuwu1Dic)
             {
@@ -127,32 +114,40 @@ package game.role
             }
             else if(roleKuwu1DicLength > 0)
             {
-               tpRole(150, 0, false);
+               tpRole(150, 0, false, false);
             }
             else
             {
                this.playSkill("我tm跑路");
             }
          }
+         else if(str == "飞雷神WU")
+         {
+            tpRole(150, 0, true, false);
+         }
+         else if(str == "飞雷神U")
+         {
+            tpRole(-150, 0, false, false);
+         }
+         else if(str == "丸子")
+         {
+            tpRole(150, 50, true, false);
+         }
+         else if(str == "飞雷神WI")
+         {
+            tpRole(150, 100, true, false);
+         }
+         else if(str == "飞雷神I")
+         {
+            tpRole(100, 0, true, false);
+         }
+         else if(str == "斩")
+         {
+            tpRole(150, 100, true, false);
+         }
       }
 
-      private function showDebugRect(rect:Rectangle):void
-      {
-         import starling.display.Quad;
-         import starling.core.Starling;
-
-         var debugQuad:Quad = new Quad(rect.width, rect.height, 0xff0000);
-         debugQuad.x = rect.x;
-         debugQuad.y = rect.y;
-         debugQuad.alpha = 0.3;
-         debugQuad.touchable = false;
-         this.world.addChild(debugQuad);
-
-         // 1秒后自动移除
-         Starling.juggler.delayCall(debugQuad.removeFromParent, 1, true);
-      }
-
-      private function tpRole(toX:Number, toY:Number, isBehind:Boolean):void
+      private function tpRole(toX:Number, toY:Number, isBehind:Boolean, reverse:Boolean):void
       {
          for(var enemy:Object in roleKuwu1Dic)
          {
@@ -164,7 +159,7 @@ package game.role
                var directionMultiplier:int = isBehind ? -1 : 1;
                this.posx = targetEnemy.x + (toX * directionMultiplier * enemyDir);
                this.posy = targetEnemy.y - toY;
-               this.scaleX = this.x < targetEnemy.x ? 1 : -1;
+               this.scaleX = (this.x < targetEnemy.x ? 1 : -1) * ((reverse && enemyDir) ? -1 : 1);
                effectKuwu1.discarded();
                effectKuwu1.dispose();
                delete roleKuwu1Dic[targetEnemy];

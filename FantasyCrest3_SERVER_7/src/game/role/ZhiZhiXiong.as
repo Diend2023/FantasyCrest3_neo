@@ -10,9 +10,9 @@ package game.role
    public class ZhiZhiXiong extends GameRole
    {
 
-      private var _bdTimeer:int = 0;
+      private var _bdTimeer:int = 0; // 自爆计时器
 
-      private var _addAttactBuffTimer:int = 0;
+      private var _addAttactBuffTimer:int = 0; // 增加攻击力buff计时器
       
       public function ZhiZhiXiong(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -79,7 +79,7 @@ package game.role
          {
             this.listData.removeItemAt(1);
          }
-         this.listData.getItemAt(0).msg = int(_bdTimeer / 60); // 显示剩余时间，约每秒更新一次
+         this.listData.getItemAt(0).msg = int(_bdTimeer / 60); // 显示剩余时间
          this.listData.updateItemAt(0);
          this.listData.updateItemAt(1);
       }

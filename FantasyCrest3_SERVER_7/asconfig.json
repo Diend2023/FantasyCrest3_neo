@@ -8,6 +8,7 @@
 			"libs"
 		],
 		"output": "../FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf",
+		"debug": true,
 		"default-background-color": "#ffffff",
 		"default-frame-rate": 24,
 		"default-size": {
