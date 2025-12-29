@@ -51,6 +51,15 @@ package game.role
                delete roleKuwu1Dic[enemy];
             }
          }
+         var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
+         if(landKuWu1 && landKuWu1.name == "kuwu1")
+         {
+            this.attribute.updateCD("飞雷神·闪",999)
+         }
+         else
+         {
+            this.attribute.updateCD("飞雷神·闪",0);
+         }
          if(this.inFrame("飞雷神2",9))
          {
             tpRole(0, 0, false, false);
@@ -58,6 +67,14 @@ package game.role
          else if(this.inFrame("WJ",7))
          {
             tpRole(-150, 0, false, true);
+         }
+         else if(this.inFrame("时空间·螺旋丸",33))
+         {
+            tpRole(175, 175, true, false);
+         }
+         else if(this.inFrame("疾风连段·神速真空斩！",9) || this.inFrame("疾风连段·神速真空斩！",38))
+         {
+            tpRole(0, 0, false, false);
          }
       }
 
@@ -85,6 +102,11 @@ package game.role
             effect8.discarded();
          }
          else if((this.actionName == "SI" || this.actionName == "飞雷神WI") && effectC)
+         {
+            createKuwu1(enemy);
+            effectC.discarded();
+         }
+         else if(this.actionName == "疾风连段·神速真空斩！" && effectC)
          {
             createKuwu1(enemy);
             effectC.discarded();
@@ -121,6 +143,10 @@ package game.role
                this.playSkill("我tm跑路");
             }
          }
+         else if(str == "龙椎闪")
+         {
+            tpRole(150, 200, true, false);
+         }
          else if(str == "飞雷神WU")
          {
             tpRole(150, 0, true, false);
@@ -144,6 +170,45 @@ package game.role
          else if(str == "斩")
          {
             tpRole(150, 100, true, false);
+
+         }
+         else if(str == "战略性认怂")
+         {
+            var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
+            if(landKuWu1 && landKuWu1.name == "kuwu1")
+            {
+               this.posx = landKuWu1.posx;
+               this.posy = landKuWu1.posy;
+               landKuWu1.discarded();
+            }
+            else
+            {
+               tpRole(-150, 0, false, false);
+            }
+            this.attribute.updateCD("战略性鲁莽",6);
+         }
+         else if(str == "战略性鲁莽")
+         {
+            var i:int = 0;
+            for(var enemy:Object in roleKuwu1Dic)
+            {
+               i++;
+            }
+            if(i)
+            {
+               tpRole(0, 0, false, false);
+            }
+            else
+            {
+               var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
+               if(landKuWu1 && landKuWu1.name == "kuwu1")
+               {
+                  this.posx = landKuWu1.posx;
+                  this.posy = landKuWu1.posy;
+                  landKuWu1.discarded();
+               }
+            }
+            this.attribute.updateCD("战略性认怂",6);
          }
       }
 
