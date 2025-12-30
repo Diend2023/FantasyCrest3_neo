@@ -51,14 +51,14 @@ package game.role
                delete roleKuwu1Dic[enemy];
             }
          }
-         var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
-         if(landKuWu1 && landKuWu1.name == "kuwu1")
+         var j:int = 0;
+         for each(var effect:EffectDisplay in this.world.getEffects())
          {
-            this.attribute.updateCD("飞雷神·闪",999)
-         }
-         else
-         {
-            this.attribute.updateCD("飞雷神·闪",0);
+            if(effect.name && effect.name == "kuwu1_land" && effect.role == this)
+            {
+               this.attribute.updateCD("飞雷神·闪",999);
+               j++;
+            }
          }
          if(this.inFrame("飞雷神2",9))
          {
@@ -70,7 +70,7 @@ package game.role
          }
          else if(this.inFrame("时空间·螺旋丸",33))
          {
-            tpRole(175, 175, true, false);
+            tpRole(200, 250, true, false);
          }
          else if(this.inFrame("疾风连段·神速真空斩！",9) || this.inFrame("疾风连段·神速真空斩！",38))
          {
@@ -99,7 +99,6 @@ package game.role
          else if(this.actionName == "飞雷神" && effect8)
          {
             createKuwu1(enemy);
-            effect8.discarded();
          }
          else if((this.actionName == "SI" || this.actionName == "飞雷神WI") && effectC)
          {
@@ -174,20 +173,18 @@ package game.role
          }
          else if(str == "战略性认怂")
          {
-            var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
-            if(landKuWu1 && landKuWu1.name == "kuwu1")
+            for each(var effect:EffectDisplay in this.world.getEffects())
             {
-               this.posx = landKuWu1.posx;
-               this.posy = landKuWu1.posy;
-               landKuWu1.discarded();
+               if(effect.name && effect.name == "kuwu1_land" && effect.role == this)
+               {
+                  tpKuwu1(effect);
+                  return;
+               }
             }
-            else
-            {
-               tpRole(-150, 0, false, false);
-            }
-            this.attribute.updateCD("战略性鲁莽",6);
+            tpRole(-150, 0, false, false);
+            this.attribute.updateCD("战略性勇敢",6);
          }
-         else if(str == "战略性鲁莽")
+         else if(str == "战略性勇敢")
          {
             var i:int = 0;
             for(var enemy:Object in roleKuwu1Dic)
@@ -196,16 +193,16 @@ package game.role
             }
             if(i)
             {
-               tpRole(0, 0, false, false);
+               tpRole(-150, 0, false, false);
             }
             else
             {
-               var landKuWu1:EffectDisplay = this.world.getEffectFormName("kuwu1",this);
-               if(landKuWu1 && landKuWu1.name == "kuwu1")
+               for each(var effect:EffectDisplay in this.world.getEffects())
                {
-                  this.posx = landKuWu1.posx;
-                  this.posy = landKuWu1.posy;
-                  landKuWu1.discarded();
+                  if(effect.name && effect.name == "kuwu1_land" && effect.role == this)
+                  {
+                     tpKuwu1(effect);
+                  }
                }
             }
             this.attribute.updateCD("战略性认怂",6);
@@ -250,6 +247,16 @@ package game.role
          effectKuwu1.scaleX = 1;
          effectKuwu1.scaleY = 1;
          (world as BaseGameWorld).addChild(effectKuwu1);
+      }
+
+      private function tpKuwu1(kuwu1Effect:EffectDisplay):void
+      {
+         this.posx = kuwu1Effect.posx;
+         this.posy = kuwu1Effect.posy;
+         kuwu1Effect.discarded();
+         this.attribute.updateCD("飞雷神·闪",3);
+         this.attribute.updateCD("战略性勇敢",6);
+         this.attribute.updateCD("战略性认怂",6);
       }
 
    }
