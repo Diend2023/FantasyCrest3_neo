@@ -19,7 +19,8 @@ package game.world
       
       public var p2change:Boolean = false;
       
-      private var tween:Array = [];
+      // private var tween:Array = [];
+      protected var tween:Array = []; // 将 tween 设为 protected
       
       public var changeRoleView:GameChangeRoleTipsView;
       

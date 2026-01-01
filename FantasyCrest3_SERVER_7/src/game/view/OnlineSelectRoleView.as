@@ -13,6 +13,7 @@ package game.view
    import zygame.core.SceneCore;
    import zygame.display.World;
    import zygame.server.Service;
+   import game.world._2V2ASSISTOnline; //
    
    public class OnlineSelectRoleView extends OnlineView
    {
@@ -51,6 +52,10 @@ package game.view
                break;
             case "高端模式":
                IS_HIGH_GAME = true;
+               break; //
+            case "搭档模式": //
+               IS_HIGH_GAME = false; //
+               World.defalutClass = _2V2ASSISTOnline; //
          }
       }
       
@@ -121,6 +126,10 @@ package game.view
          bg2.x = stage.stageWidth / 2;
          config = new SelectGroupConfig();
          config.selectCount = 1;
+         if(World.defalutClass == _2V2ASSISTOnline) //
+         { //
+            config.selectCount = 2; //
+         } //
          config.isShowAll = true;
          config.showOnlineRoleData = true;
          if(IS_HIGH_GAME)
@@ -193,20 +202,44 @@ package game.view
       {
          var arr1:Array = null;
          var arr2:Array = null;
-         if(_select.isSelected && _otherArray.length > 0)
+         var i:int = 0; //
+         var len:int = 0; //
+         var needed:int = 1; //
+         if(World.defalutClass == _2V2ASSISTOnline) //
+         { //
+            needed = 2; //
+         } //
+         // if(_select.isSelected && _otherArray.length > 0)
+         if(_select.isSelected && _otherArray.length >= needed)
          {
             arr1 = [];
             arr2 = [];
             if(Service.client.type == "master")
             {
-               arr1[0] = {
-                  "name":Service.client.roomPlayerList[0].nickName,
-                  "target":_select.group.array[0]
-               };
-               arr2[0] = {
-                  "name":get2PName(),
-                  "target":_otherArray[0]
-               };
+               // arr1[0] = {
+               //    "name":Service.client.roomPlayerList[0].nickName,
+               //    "target":_select.group.array[0]
+               // };
+               // arr2[0] = {
+               //    "name":get2PName(),
+               //    "target":_otherArray[0]
+               // };
+               len = _select.group.array.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr1.push({ //
+                     "name":Service.client.roomPlayerList[0].nickName, //
+                     "target":_select.group.array[i] //
+                  }); //
+               } //
+               len = _otherArray.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr2.push({ //
+                     "name":get2PName(), //
+                     "target":_otherArray[i] //
+                  }); //
+               }
                if(World.defalutClass == _2VFBOnline)
                {
                   SceneCore.replaceScene(new GameVSView(_mapTarget,arr1.concat(arr2),Game.getFBRoleData(_mapTarget),true,true));
@@ -218,14 +251,32 @@ package game.view
             }
             else
             {
-               arr2[0] = {
-                  "name":Service.client.roomPlayerList[0].nickName,
-                  "target":_otherArray[0]
-               };
-               arr1[0] = {
-                  "name":get2PName(),
-                  "target":_select.group.array[0]
-               };
+               // arr2[0] = {
+               //    "name":Service.client.roomPlayerList[0].nickName,
+               //    "target":_otherArray[0]
+               // };
+               // arr1[0] = {
+               //    "name":get2PName(),
+               //    "target":_select.group.array[0]
+               // };
+               // 填充房主数据(P1)
+               len = _otherArray.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr2.push({ //
+                     "name":Service.client.roomPlayerList[0].nickName, //
+                     "target":_otherArray[i] //
+                  }); //
+               } //
+               // 填充己方数据(P2)
+               len = _select.group.array.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr1.push({ //
+                     "name":get2PName(), //
+                     "target":_select.group.array[i] //
+                  }); //
+               } //
                if(World.defalutClass == _2VFBOnline)
                {
                   SceneCore.replaceScene(new GameVSView(_mapTarget,arr2.concat(arr1),Game.getFBRoleData(_mapTarget),true,true));

@@ -31,6 +31,7 @@ package game.view
          var mode1:CommonButton;
          var mode2:CommonButton;
          var mode3:CommonButton;
+         var mode4:CommonButton; //
          var countText:TextField;
          var count1:CommonButton;
          var count2:CommonButton;
@@ -70,20 +71,31 @@ package game.view
          mode3.callBack = onSelectMode;
          mode3.name = "英雄之迹";
          mode3.alpha = 0.5;
+         mode4 = new CommonButton("btn_style_1","start_main","搭档模式"); //
+         this.addChild(mode4); //
+         mode4.x = 200; //
+         mode4.y = 128; //
+         mode4.alignPivot("left","top"); //
+         mode4.callBack = onSelectMode; //
+         mode4.name = "搭档模式"; //
+         mode4.alpha = 0.5; //
          countText = new TextField(200,64,"房间人数",new TextFormat(GameFont.FONT_NAME,24,16777215));
          this.addChild(countText);
-         countText.y = 128;
+         // countText.y = 128;
+         countText.y = 202; //
          count1 = new CommonButton("btn_style_1","start_main","2人");
          this.addChild(count1);
          count1.x = 200;
-         count1.y = 138;
+         // count1.y = 138;
+         count1.y = 212; //
          count1.alignPivot("left","top");
          count1.callBack = onSelectCount;
          count1.name = "2人";
          count2 = new CommonButton("btn_style_1","start_main","4人");
          this.addChild(count2);
          count2.x = 400;
-         count2.y = 138;
+         // count2.y = 138;
+         count2.y = 212; //
          count2.alignPivot("left","top");
          count2.callBack = onSelectCount;
          count2.name = "4人";
@@ -91,20 +103,23 @@ package game.view
          count3 = new CommonButton("btn_style_1","start_main","6人");
          this.addChild(count3);
          count3.x = 600;
-         count3.y = 138;
+         // count3.y = 138;
+         count3.y = 212; //
          count3.alignPivot("left","top");
          count3.callBack = onSelectCount;
          count3.name = "6人";
          count3.alpha = 0.5;
          codeText = new TextField(200,64,"密码设置",new TextFormat(GameFont.FONT_NAME,24,16777215));
          this.addChild(codeText);
-         codeText.y = 192;
+         // codeText.y = 192;
+         codeText.y = 266; //
          codeInput = new TextInput();
          codeInput.width = 600;
          codeInput.height = 64;
          codeInput.fontStyles = new TextFormat(GameFont.FONT_NAME,32,16777215,"left");
          this.addChild(codeInput);
-         codeInput.y = 192;
+         // codeInput.y = 192;
+         codeInput.y = 266; //
          codeInput.x = 200;
          codeInput.restrict = "0-9a-zA-Z";
          codeInput.maxChars = 10;
@@ -112,7 +127,8 @@ package game.view
          ok = new CommonButton("btn_style_1","start_main","完成");
          this.addChild(ok);
          ok.x = 32;
-         ok.y = 266;
+         // ok.y = 266;
+         ok.y = 340; //
          ok.alignPivot("left","top");
          ok.callBack = function():void
          {
@@ -129,7 +145,8 @@ package game.view
          c = new CommonButton("btn_style_1","start_main","取消");
          this.addChild(c);
          c.x = 232;
-         c.y = 266;
+         // c.y = 266;
+         c.y = 340; //
          c.alignPivot("left","top");
          c.callBack = function():void
          {
@@ -148,6 +165,7 @@ package game.view
          this.getChildByName("普通模式").alpha = 0.5;
          this.getChildByName("高端模式").alpha = 0.5;
          this.getChildByName("英雄之迹").alpha = 0.5;
+         this.getChildByName("搭档模式").alpha = 0.5; //
          this.getChildByName(str).alpha = 1;
       }
       
