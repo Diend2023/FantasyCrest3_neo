@@ -187,9 +187,11 @@ package game.server
             else
             {
                i2 = 0;
-               while(true)
+               // while(true)
+               while(i2 < _roomDatas.length) //
                {
-                  if(i2 < _roomDatas.length)
+                  // if(i2 < _roomDatas.length)
+                  if(_roomDatas[i2].frame + 1 == data.frame) //
                   {
                      if(_roomDatas[i2].frame + 1 != data.frame)
                      {
@@ -198,14 +200,16 @@ package game.server
                      switch(data.target)
                      {
                         case "role":
-                           _roomDatas.splice(i2,0,{
+                           // _roomDatas.splice(i2,0,{
+                           _roomDatas.splice(i2 + 1,0,{ //
                               "frame":data.frame,
                               "roles":[data.data],
                               "skills":[]
                            });
                            break;
                         case "skill":
-                           _roomDatas.splice(i2,0,{
+                           // _roomDatas.splice(i2,0,{
+                           _roomDatas.splice(i2 + 1,0,{ //
                               "frame":data.frame,
                               "roles":[],
                               "skills":[data.data]

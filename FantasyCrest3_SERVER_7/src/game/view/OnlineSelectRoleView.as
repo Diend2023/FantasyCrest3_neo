@@ -64,9 +64,12 @@ package game.view
          switch(data.action)
          {
             case "select_role":
+               if(IS_HIGH_GAME) //
+               { //
                data.data.selected = false;
                _select.group.pushSelect(data.data);
                _canSelect = !_canSelect;
+               } //
                break;
             case "selected":
                if(Service.client.type == "watching")
@@ -189,8 +192,11 @@ package game.view
          }
          else
          {
+            if(IS_HIGH_GAME) //
+            { //
             _canSelect = !_canSelect;
             action("select_role",{"data":data});
+            } //
          }
          if(_tips3)
          {
