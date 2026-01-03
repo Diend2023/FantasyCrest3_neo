@@ -10,6 +10,8 @@ package zygame.server
    public class Service extends BaseSocketClient
    {
       
+      public static var userData:Object;
+      
       public static var client:Service;
       
       private var _type:String = "tourists";
@@ -58,12 +60,9 @@ package zygame.server
       
       private var _errorCount:int = 0;
       
-      public function Service(param1:String, param2:int, param3:Boolean = false)
+      public function Service(ip:String, post:int, autoFind:Boolean = false)
       {
          var psocket:Socket;
-         var ip:String = param1;
-         var post:int = param2;
-         var autoFind:Boolean = param3;
          _delays = new Vector.<int>();
          trace("Service ip:",ip,post,autoFind);
          _findSockets = new Vector.<Socket>();
@@ -75,66 +74,70 @@ package zygame.server
          Security.loadPolicyFile("http://" + ip + ":4999/crossdomain.xml");
          psocket.connect(ip,post);
          super(psocket);
-         this.dataFunc = function(param1:Object):void
+         this.dataFunc = function(data:Object):void
          {
-            var _loc3_:int = 0;
+            var i:int = 0;
+            var newtime:int = 0;
             try
             {
-               switch(param1.type)
+               switch(data.type)
                {
+                  case "push_udp":
+                     break;
                   case "bind_udp":
-                     _loc3_ = 0;
-                     while(_loc3_ < 15)
+                     for(i = 0; i < 15; )
                      {
-                        hitUDP(param1.ip,param1.port + _loc3_);
-                        _loc3_++;
+                        hitUDP(data.ip,data.port + i);
+                        i++;
                      }
-                     pushUDP(param1.ip,param1.port);
+                     pushUDP(data.ip,data.port);
                      break;
                   case "handed":
-                     userData = param1.userData;
+                     userData = data.userData;
                      if(userDataFunc != null)
                      {
-                        userDataFunc(param1.userData);
+                        userDataFunc(data.userData);
                      }
                      break;
                   case "room_manages":
                      _type = "master";
                      if(createRoom != null)
                      {
-                        createRoom(param1);
+                        createRoom(data);
                      }
                      break;
                   case "room_accept":
                      _type = "player";
                      if(createRoom != null)
                      {
-                        createRoom(param1);
+                        createRoom(data);
                      }
+                     break;
+                  case "room_refused":
                      break;
                   case "join_room":
                      if(joinFunc != null)
                      {
-                        joinFunc(param1);
+                        joinFunc(data);
                      }
                      break;
                   case "exit_room":
                      if(exitFunc != null)
                      {
-                        exitFunc(param1);
+                        exitFunc(data);
                      }
                      break;
                   case "room_message":
                   case "room_message_all":
                      if(messageFunc != null)
                      {
-                        messageFunc(param1);
+                        messageFunc(data);
                      }
                      break;
                   case "heart":
                      _heartbeat = false;
-                     var _loc2_:int = new Date().time;
-                     _delays.push(0 - _oldtime);
+                     newtime = new Date().time;
+                     _delays.push(newtime - _oldtime);
                      if(_delays.length > 10)
                      {
                         _delays.shift();
@@ -148,31 +151,36 @@ package zygame.server
                   case "room_list":
                      if(roomlistFunc != null)
                      {
-                        roomlistFunc(param1);
+                        roomlistFunc(data);
                      }
                      break;
                   case "room_player_list":
-                     roomPlayerList = param1.list;
+                     Service.client.type = "player";
+                     for(var t in data.list)
+                     {
+                        if(data.list[t].name == userName)
+                        {
+                           Service.client.type = data.list[t].type;
+                        }
+                     }
+                     roomPlayerList = data.list;
                      if(rolelistFunc != null)
                      {
-                        rolelistFunc(param1);
+                        rolelistFunc(data);
                      }
                      break;
                   case "get_room_player_data":
                      if(getroledataFunc != null)
                      {
-                        getroledataFunc(param1);
+                        getroledataFunc(data);
                      }
                      break;
                   case "user_data":
-                     userData = param1.userData;
+                     userData = data;
                      if(userDataFunc != null)
                      {
-                        userDataFunc(param1.data);
+                        userDataFunc(data.data);
                      }
-                     break;
-                  case "push_udp":
-                  case "room_refused":
                }
             }
             catch(e:Error)
@@ -183,70 +191,61 @@ package zygame.server
          client = this;
       }
       
-      public static function startService(param1:String, param2:int, param3:Function, param4:Boolean = false) : void
+      public static function startService(ip:String, post:int, ioFunc:Function, autoFind:Boolean = false) : void
       {
-         var _loc5_:Service = null;
+         var ser:Service = null;
          if(!client || !client.connected)
          {
-            _loc5_ = new Service(param1,param2,param4);
-            _loc5_.ioerrorFunc = param3;
+            ser = new Service(ip,post,autoFind);
+            ser.ioerrorFunc = ioFunc;
          }
       }
       
-      public static function createRoom(param1:String, param2:String, param3:String) : void
+      public static function createRoom(userName:String, userId:String, code:String, mode:String = "none", count:int = 4) : void
       {
-         var userName:String = param1;
-         var userId:String = param2;
-         var code:String = param3;
          client.handFunc = function():void
          {
             client.send(SendDataUtils.handData(userName,userId));
+            client.send(SendDataUtils.createRoom(mode,count,code));
          };
       }
       
-      public static function joinRoom(param1:String, param2:String, param3:int, param4:String) : void
+      public static function joinRoom(userName:String, userId:String, roomid:int, code:String) : void
       {
-         var userName:String = param1;
-         var userId:String = param2;
-         var roomid:int = param3;
-         var code:String = param4;
          client.handFunc = function():void
          {
             trace("登场成功");
-            client.send(SendDataUtils.handData(userName,userName));
+            client.send(SendDataUtils.handData(userName,userId));
             client.send(SendDataUtils.joinRoom(roomid,code));
          };
       }
       
-      public static function send(param1:Object) : void
+      public static function send(data:Object) : void
       {
          if(client && client.connected)
          {
-            client.send(param1);
+            client.send(data);
          }
       }
       
-      public static function sendUDP(param1:Object) : void
+      public static function sendUDP(data:Object) : void
       {
          if(client && client.connected)
          {
-            client.sendUDPAll(param1);
+            client.sendUDPAll(data);
          }
       }
       
-      public static function radioUDP(param1:Object) : void
+      public static function radioUDP(data:Object) : void
       {
-         param1.userName = client.userName;
-         param1.id = client.userId;
-         Service.client.sendUDP(param1,Service.client.socket.remoteAddress,Service.client.socket.remotePort);
+         data.userName = client.userName;
+         Service.client.sendUDP(data,Service.client.socket.remoteAddress,Service.client.socket.remotePort);
       }
       
-      public function hitUDP(param1:String, param2:int) : void
+      public function hitUDP(ip:String, port:int) : void
       {
-         var ip:String = param1;
-         var port:int = param2;
-         var i:int = 0;
-         while(i < 3)
+         var i:int;
+         for(i = 0; i < 3; )
          {
             setTimeout(function():void
             {
@@ -256,44 +255,42 @@ package zygame.server
          }
       }
       
-      override protected function onError(param1:IOErrorEvent) : void
+      override protected function onError(e:IOErrorEvent) : void
       {
          var i:int;
          var psocket:Socket;
-         var e:IOErrorEvent = param1;
          if(_autoFind && _findip < 255)
          {
             _findip = 255;
-            i = 1;
-            while(i <= 255)
+            for(i = 1; i <= 255; )
             {
                psocket = new Socket();
                psocket.timeout = _timeout;
                psocket.connect(_autoip + "." + i,_port);
-               psocket.addEventListener("ioError",function(param1:IOErrorEvent):void
+               psocket.addEventListener("ioError",function(e:IOErrorEvent):void
                {
-                  _errorCount = _errorCount + 1;
+                  _errorCount++;
                   if(progressFunc != null)
                   {
                      progressFunc(_errorCount / 255);
                   }
                   if(_errorCount == 255)
                   {
-                     onError(param1);
+                     onError(e);
                      _findSockets.splice(0,_findSockets.length);
                      _errorCount = 0;
                   }
                });
-               psocket.addEventListener("connect",function(param1:Event):void
+               psocket.addEventListener("connect",function(e:Event):void
                {
-                  socket = param1.target as Socket;
-                  for(var _loc2_ in _findSockets)
+                  socket = e.target as Socket;
+                  for(var o in _findSockets)
                   {
                      try
                      {
-                        if(_findSockets[_loc2_] != socket)
+                        if(_findSockets[o] != socket)
                         {
-                           _findSockets[_loc2_].close();
+                           _findSockets[o].close();
                         }
                      }
                      catch(e:Error)
@@ -301,7 +298,7 @@ package zygame.server
                      }
                   }
                   _findSockets.splice(0,_findSockets.length);
-                  onConnect(param1);
+                  onConnect(e);
                });
                _findSockets.push(psocket);
                i = i + 1;
@@ -321,9 +318,9 @@ package zygame.server
          }
       }
       
-      override protected function onConnect(param1:Event) : void
+      override protected function onConnect(e:Event) : void
       {
-         super.onConnect(param1);
+         super.onConnect(e);
          _oldtime = new Date().time;
          heartbeat();
          if(progressFunc != null)
@@ -337,19 +334,19 @@ package zygame.server
          return _type;
       }
       
-      public function set type(param1:String) : void
+      public function set type(str:String) : void
       {
-         _type = param1;
+         _type = str;
       }
       
       public function get delay() : int
       {
-         var _loc1_:int = 0;
-         for(var _loc2_ in _delays)
+         var num:int = 0;
+         for(var i in _delays)
          {
-            _loc1_ += _delays[_loc2_];
+            num += _delays[i];
          }
-         return _loc1_ / _delays.length;
+         return num / _delays.length;
       }
       
       public function heartbeat() : void
@@ -370,11 +367,11 @@ package zygame.server
          return socket.bytesAvailable;
       }
       
-      public function sendUDPAll(param1:Object) : void
+      public function sendUDPAll(data:Object) : void
       {
-         for(var _loc2_ in udps)
+         for(var i in udps)
          {
-            sendUDP(param1,udps[_loc2_].ip,udps[_loc2_].port);
+            sendUDP(data,udps[i].ip,udps[i].port);
          }
       }
    }

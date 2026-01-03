@@ -7,6 +7,7 @@ package zygame.server
    import flash.net.DatagramSocket;
    import flash.net.Socket;
    import flash.utils.ByteArray;
+   import zygame.utils.Base64;
    
    public class BaseSocketClient
    {
@@ -35,28 +36,26 @@ package zygame.server
       
       public var logFunc:Function;
       
-      public var userId:String;
-      
       public var udps:Array = [];
       
       private var _alldata:String = "";
       
       private var _cache:ByteArray;
       
-      public function BaseSocketClient(param1:Socket)
+      public function BaseSocketClient(psocket:Socket)
       {
          super();
-         socket = param1;
+         socket = psocket;
       }
       
-      public static function code(param1:String) : String
+      public static function code(str:String) : String
       {
-         return param1;
+         return str;
       }
       
-      public static function uncode(param1:*) : String
+      public static function uncode(str:*) : String
       {
-         return param1;
+         return str;
       }
       
       public function get udp() : DatagramSocket
@@ -64,51 +63,51 @@ package zygame.server
          return _udp;
       }
       
-      public function pushUDP(param1:String, param2:int) : void
+      public function pushUDP(ip:String, port:int) : void
       {
-         for(var _loc3_ in udps)
+         for(var i in udps)
          {
-            if(udps[_loc3_].ip == param1 && udps[_loc3_].port == param2)
+            if(udps[i].ip == ip && udps[i].port == port)
             {
                return;
             }
          }
          udps.push({
-            "ip":param1,
-            "port":param2
+            "ip":ip,
+            "port":port
          });
       }
       
-      public function onUDPData(param1:DatagramSocketDataEvent) : void
+      public function onUDPData(e:DatagramSocketDataEvent) : void
       {
-         var _loc2_:Object = toObject(param1.data);
-         if(!_loc2_)
+         var ob:Object = toObject(e.data);
+         if(!ob)
          {
             return;
          }
          if(logFunc != null)
          {
-            logFunc("接收到数据UDP",userName,JSON.stringify(_loc2_),param1.data.length,"drc",param1.dstAddress,param1.dstPort,"src",param1.srcAddress,param1.srcPort);
+            logFunc("接收到数据UDP",userName,JSON.stringify(ob),e.data.length,"drc",e.dstAddress,e.dstPort,"src",e.srcAddress,e.srcPort);
          }
-         switch(_loc2_.type)
+         switch(ob.type)
          {
             case "back":
                return;
             case "acceated":
                return;
             case "acceat":
-               Service.client.sendUDP({"type":"acceated"},param1.srcAddress,param1.srcPort);
+               Service.client.sendUDP({"type":"acceated"},e.srcAddress,e.srcPort);
                return;
             default:
                if(Boolean(udpFunc))
                {
-                  udpFunc(_loc2_);
+                  udpFunc(ob);
                }
                return;
          }
       }
       
-      public function set socket(param1:Socket) : void
+      public function set socket(s:Socket) : void
       {
          if(_socket)
          {
@@ -117,8 +116,8 @@ package zygame.server
             _socket.removeEventListener("connect",onConnect);
             _socket.removeEventListener("ioError",onError);
          }
-         _socket = param1;
-         if(!param1)
+         _socket = s;
+         if(!s)
          {
             return;
          }
@@ -133,74 +132,75 @@ package zygame.server
          return _socket;
       }
       
-      protected function onError(param1:IOErrorEvent) : void
+      protected function onError(e:IOErrorEvent) : void
       {
+         trace("失败：",e.errorID,e.text);
          if(ioerrorFunc != null)
          {
             ioerrorFunc();
          }
       }
       
-      protected function onSocketData(param1:ProgressEvent) : void
+      protected function onSocketData(e:ProgressEvent) : void
       {
          if(socket.bytesAvailable == 0)
          {
             return;
          }
-         var _loc2_:ByteArray = new ByteArray();
-         socket.readBytes(_loc2_,0,param1.bytesTotal);
-         pushCache(_loc2_);
+         var byte:ByteArray = new ByteArray();
+         socket.readBytes(byte,0,e.bytesTotal);
+         pushCache(byte);
          parsingCache();
       }
       
-      public function pushCache(param1:ByteArray) : void
+      public function pushCache(byte:ByteArray) : void
       {
          if(_cache == null)
          {
-            _cache = param1;
+            _cache = byte;
          }
          else
          {
             _cache.position = _cache.length;
-            _cache.writeBytes(param1);
-            param1.clear();
+            _cache.writeBytes(byte);
+            byte.clear();
          }
       }
       
       public function parsingCache() : void
       {
-         var _loc4_:* = 0;
-         var _loc3_:ByteArray = null;
-         var _loc2_:ByteArray = null;
+         var len:* = 0;
+         var data:ByteArray = null;
+         var newbyte:ByteArray = null;
          if(!_cache)
          {
             return;
          }
-         var _loc1_:int = 0;
-         _cache.position = _loc1_;
+         var par:int = 0;
+         _cache.position = par;
          while(_cache.bytesAvailable > 2)
          {
-            _loc4_ = uint(_cache.readShort());
-            if(_cache.bytesAvailable < _loc4_)
+            len = uint(_cache.readShort());
+            if(_cache.bytesAvailable < len)
             {
                break;
             }
-            _cache.position = _loc1_ + 2;
-            _loc3_ = new ByteArray();
-            _cache.readBytes(_loc3_,0,_loc4_);
-            backData(_loc3_);
-            _loc1_ += 2 + _loc4_;
-            _cache.position = _loc1_;
+            _cache.position = par + 2;
+            data = new ByteArray();
+            _cache.readBytes(data,0,len);
+            backData(data);
+            par += 2 + len;
+            _cache.position = par;
          }
-         if(_loc1_ != 0)
+         if(par != 0)
          {
             if(_cache.bytesAvailable > 0)
             {
-               _loc2_ = new ByteArray();
-               _cache.position = _loc1_;
-               _cache.readBytes(_loc2_,0,_cache.bytesAvailable);
+               newbyte = new ByteArray();
+               _cache.position = par;
+               _cache.readBytes(newbyte,0,_cache.bytesAvailable);
                _cache.clear();
-               _cache = _loc2_;
+               _cache = newbyte;
             }
             else
             {
@@ -210,28 +210,28 @@ package zygame.server
          }
       }
       
-      private function backData(param1:ByteArray) : void
+      private function backData(data:ByteArray) : void
       {
-         var _loc2_:Object = null;
+         var ob:Object = null;
          try
          {
-            param1.position = 0;
-            _loc2_ = param1.readObject();
-            if(_loc2_)
+            data.position = 0;
+            ob = data.readObject();
+            if(ob)
             {
                if(dataFunc != null)
                {
-                  dataFunc(_loc2_);
+                  dataFunc(ob);
                }
             }
          }
          catch(e:Error)
          {
-            trace("解析出现异常",param1,e.message);
+            trace("解析出现异常",data,e.message,e.errorID,e.getStackTrace());
          }
       }
       
-      protected function onSocketClose(param1:Event) : void
+      protected function onSocketClose(e:Event) : void
       {
          if(closeFunc != null)
          {
@@ -241,12 +241,11 @@ package zygame.server
          socket.removeEventListener("socketData",onSocketData);
       }
       
-      public function sendUDP(param1:Object, param2:String = null, param3:int = 0) : void
+      public function sendUDP(data:Object, ip:String = null, port:int = 0) : void
       {
-         trace("UDP发送：",param2,param3);
          try
          {
-            _udp.send(toByte(param1),0,0,param2,param3);
+            _udp.send(toByte(data),0,0,ip,port);
          }
          catch(e:Error)
          {
@@ -254,35 +253,35 @@ package zygame.server
          }
       }
       
-      public function toByte(param1:Object) : ByteArray
+      public function toByte(ob:Object) : ByteArray
       {
-         var _loc2_:ByteArray = new ByteArray();
-         _loc2_.writeObject(param1);
-         return _loc2_;
+         var byte:ByteArray = new ByteArray();
+         byte.writeObject(ob);
+         return byte;
       }
       
-      public function toObject(param1:ByteArray) : Object
+      public function toObject(byte:ByteArray) : Object
       {
-         return param1.readObject();
+         return byte.readObject();
       }
       
-      public function send(param1:Object) : void
+      public function send(data:Object) : void
       {
          if(!socket || !socket.connected)
          {
             return;
          }
-         var _loc4_:* = param1.type;
+         var _loc4_:* = data.type;
          if("hand" === _loc4_)
          {
-            userName = param1.name;
-            userId = param1.userid;
+            userName = data.userName;
+            userCode = data.userCode;
          }
-         var _loc2_:ByteArray = toByte(param1);
-         socket.writeShort(_loc2_.length);
-         socket.writeBytes(_loc2_);
-         var _loc3_:int = String(_loc2_.length).length + _loc2_.length;
-         allSendPkgSize += _loc3_ + _loc2_.length;
+         var byte:ByteArray = toByte(data);
+         socket.writeShort(byte.length);
+         socket.writeBytes(byte);
+         var len:int = String(byte.length).length + byte.length;
+         allSendPkgSize += len + byte.length;
          socket.flush();
       }
       
@@ -300,17 +299,17 @@ package zygame.server
          }),0,0,socket.remoteAddress,socket.remotePort);
       }
       
-      public function bindUDP(param1:String, param2:int) : void
+      public function bindUDP(ip:String, port:int) : void
       {
          if(_udp)
          {
-            trace("开始绑定",param1,param2);
-            _udp.bind(param2,param1);
+            trace("开始绑定",ip,port);
+            _udp.bind(port,ip);
             _udp.receive();
          }
       }
       
-      protected function onConnect(param1:Event) : void
+      protected function onConnect(e:Event) : void
       {
          _udp = new DatagramSocket();
          bindUDP(socket.localAddress,socket.localPort);

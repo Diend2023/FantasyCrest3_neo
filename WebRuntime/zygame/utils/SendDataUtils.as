@@ -10,72 +10,72 @@ package zygame.utils
          super();
       }
       
-      public static function handData(param1:String, param2:String) : Object
+      public static function handData(name:String, code:String) : Object
       {
          return {
             "type":"hand",
-            "userName":param1,
-            "userCode":param2
+            "userName":name,
+            "userCode":code
          };
       }
       
-      public static function userData(param1:Object) : Object
+      public static function userData(data:Object) : Object
       {
          return {
             "type":"user_data",
-            "data":param1
+            "data":data
          };
       }
       
-      public static function messageData(param1:String, param2:String) : Object
+      public static function messageData(msg:String, target:String) : Object
       {
          return {
             "type":"message",
-            "msg":param1,
-            "target":param2
+            "msg":msg,
+            "target":target
          };
       }
       
-      public static function roomList(param1:Array) : Object
+      public static function roomList(list:Array) : Object
       {
          return {
             "type":"room_list",
-            "list":param1
+            "list":list
          };
       }
       
-      public static function createRoom(param1:String, param2:int, param3:String) : Object
+      public static function createRoom(mode:String, count:int, code:String) : Object
       {
          return {
             "type":"create_room",
-            "mode":param1,
-            "count":param2,
-            "code":param3
+            "mode":mode,
+            "count":count,
+            "code":code
          };
       }
       
-      public static function joinRoom(param1:int, param2:String) : Object
+      public static function joinRoom(roomid:int, code:String) : Object
       {
          return {
             "type":"join_room",
-            "id":param1,
-            "code":param2
+            "id":roomid,
+            "code":code
          };
       }
       
-      public static function exitRoom(param1:int) : Object
+      public static function exitRoom(roomid:int) : Object
       {
          return {
             "type":"exit_room",
-            "id":param1
+            "id":roomid
          };
       }
       
-      public static function setRoleData(param1:Object) : Object
+      public static function setRoleData(data:Object) : Object
       {
          return {
             "type":"set_room_player_data",
-            "data":param1
+            "data":data
          };
       }
       
@@ -84,12 +84,12 @@ package zygame.utils
          return {"type":"get_room_player_data"};
       }
       
-      public static function changeRole(param1:String) : Object
+      public static function changeRole(target:String) : Object
       {
-         Service.client.type = param1;
+         Service.client.type = target;
          return {
             "type":"change_role",
-            "change":param1
+            "change":target
          };
       }
    }
