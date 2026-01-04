@@ -80,12 +80,138 @@ package game.world
             });
          }
          
+         // 为客机设置换人同步消息处理
+         setupReplaceRoleSync();
+         
          this.startInitCD();
+      }
+      
+      // 设置换人同步处理
+      private function setupReplaceRoleSync():void
+      {
+         if(Service.client.type == "player" || Service.client.type == "watching")
+         {
+            var self:_2V2ASSISTOnline = this;
+            var originalUdpFunc:Function = Service.client.udpFunc;
+            
+            Service.client.udpFunc = function(data:Object):void
+            {
+               if(data.target == "replaceRole")
+               {
+                  // 客机收到换人同步消息，执行换人
+                  // 使用 troopId 确定需要换人的队伍
+                  var troopId:int = int(data.troopId);
+                  var currentRole:GameRole = (troopId == 0 ? self.p1 : self.p2) as GameRole;
+                  if(currentRole)
+                  {
+                     self.executeReplaceRole(currentRole);
+                  }
+               }
+               else
+               {
+                  // 调用原始处理器
+                  if(originalUdpFunc != null)
+                  {
+                     originalUdpFunc(data);
+                  }
+               }
+            };
+         }
+      }
+      
+      // 执行换人逻辑（不发送网络消息，用于客机同步）
+      public function executeReplaceRole(prole:GameRole):void
+      {
+         var arr:Array = this["p" + (prole.troopid + 1) + "assist"];
+         // 检查前置条件：角色未锁定、有足够MP、不在换人动画中、有可用替补角色
+         if(!prole.isLock && prole.currentMp.value > 0 && tween.indexOf(prole) == -1 && arr && arr.length > 0)
+         {
+            arr[0].scaleX = prole.currentScaleX > 0 ? 1 : -1;
+            (arr[0] as BaseRole).clearDebuffMove();
+            enterRole(arr[0]);
+            arr.shift();
+            outRole(prole);
+            prole.move("wait");
+            prole.usePoint(1);
+            if(changeRoleView)
+            {
+               changeRoleView.update();
+            }
+         }
+      }
+      
+      // 客机端只使用1P按键（WASD、HJKLUIOP），忽略2P按键（方向键、小键盘数字）
+      // 这与 _1V1Online 的行为一致
+      override public function onDown(key:int) : void
+      {
+         if(Service.client.type == "player")
+         {
+            // 客机：只允许1P按键，忽略2P按键
+            if(is2PKey(key))
+            {
+               return; // 忽略2P按键
+            }
+         }
+         super.onDown(key);
+      }
+      
+      override public function onUp(key:int) : void
+      {
+         if(Service.client.type == "player")
+         {
+            // 客机：只允许1P按键，忽略2P按键
+            if(is2PKey(key))
+            {
+               return; // 忽略2P按键
+            }
+         }
+         super.onUp(key);
+      }
+      
+      // 判断是否为2P按键（方向键、小键盘数字）
+      private function is2PKey(key:int):Boolean
+      {
+         switch(key)
+         {
+            case 37: // 左
+            case 39: // 右
+            case 38: // 上
+            case 40: // 下
+            case 49: case 97:  // 1
+            case 50: case 98:  // 2
+            case 51: case 99:  // 3
+            case 52: case 100: // 4
+            case 53: case 101: // 5
+            case 54: case 102: // 6
+            case 55: case 103: // 7
+            case 57: case 105: // 9
+            case 48: case 96:  // 0
+               return true;
+            default:
+               return false;
+         }
       }
       
       override public function createChangeTipsView() : void
       {
-         changeRoleView = new GameChangeRoleTipsView(p1assist,p2assist);
+         var self:_2V2ASSISTOnline = this;
+         
+         // 各端只显示自己控制的角色的切换按钮，隐藏对方的
+         if(Service.client.type == "player")
+         {
+            // 客机：p2队伍显示在左边（自己），右边传空数组隐藏
+            changeRoleView = new GameChangeRoleTipsView(p2assist, []);
+         }
+         else if(Service.client.type == "master")
+         {
+            // 房主：p1队伍显示在左边，右边传空数组隐藏
+            changeRoleView = new GameChangeRoleTipsView(p1assist, []);
+         }
+         else
+         {
+            // 观战：正常显示双方
+            changeRoleView = new GameChangeRoleTipsView(p1assist, p2assist);
+         }
          changeRoleView.y = 120;
          
          // 根据客户端类型设置点击回调
@@ -97,21 +223,25 @@ package game.world
                if(p1 && p1.parent)
                {
                   p1.onDown(72);
+                  p1.onUp(72); // 释放按键
                }
             };
             changeRoleView.onRightClick = null;
          }
          else if(Service.client.type == "player")
          {
-            // 客机只能点击右侧换人（控制p2队伍）
-            changeRoleView.onLeftClick = null;
-            changeRoleView.onRightClick = function():void
+            // 客机：左侧显示自己控制的角色（p2队伍）
+            // 点击左侧换人（实际控制p2队伍）
+            changeRoleView.onLeftClick = function():void
             {
                if(p2 && p2.parent)
                {
-                  p2.onDown(conversionKey(96));
+                  // 直接使用H键(72)触发网络发送
+                  self.onDown(72);
+                  self.onUp(72);
                }
             };
+            changeRoleView.onRightClick = null; // 客机不能控制对方换人
          }
          else
          {
@@ -179,7 +309,7 @@ package game.world
          if(prole.troopid == _myTroopId)
          {
             role = prole;
-            founcDisplay = prole;
+            // 注意：不设置 founcDisplay = prole，保持聚焦在 _centerSprite
             // 更新 runModel 的 target
             if(runModel is KeyRunModel)
             {
@@ -190,13 +320,32 @@ package game.world
       
       override public function replaceRole(prole:GameRole) : void
       {
-         // 联机模式下只允许控制自己一方的换人
-         if(prole.troopid != _myTroopId)
+         // 观战模式阻止所有操作
+         if(Service.client.type == "watching")
          {
             return;
          }
          
+         // 客机不直接执行换人，等待房主同步
+         if(Service.client.type == "player")
+         {
+            return;
+         }
+         
+         // 保存 troopId（super.replaceRole 会调用 enterRole 交换 name）
+         var troopId:int = prole.troopid;
+         
+         // 房主执行换人
          super.replaceRole(prole);
+         
+         // 发送换人同步消息给客机（使用 troopId 而不是 name，因为 name 已被交换）
+         Service.radioUDP({
+            "type":"radio",
+            "data":{
+               "target":"replaceRole",
+               "troopId":troopId
+            }
+         });
       }
       
       override public function over() : void
