@@ -10,6 +10,8 @@ package game.role
    import zygame.data.RoleAttributeData;
    import zygame.display.World;
    import zygame.display.EffectDisplay;
+   import game.server.AccessRun3Model;
+   import game.server.HostRun2Model;
    
    public class JO extends GameRole
    {
@@ -119,11 +121,15 @@ package game.role
          this.theWorldTimer = 345; // 5秒钟
          GameCore.soundCore.bgvolume = 0.0;
          GameCore.soundCore.playEffect("ctl39");
-         startTheWorldVisualEffect();
          Starling.juggler.delayCall(function():void
          {
             GameCore.soundCore.bgvolume = baseBgVolume;
          },5);
+         if(world.runModel is AccessRun3Model)
+         {
+            return;
+         }
+         startTheWorldVisualEffect();
       }
 
       public function passiveTheWorld(enemy:BaseRole):void
@@ -162,7 +168,7 @@ package game.role
          var j:int = 0;
          var effect:EffectDisplay = null;
          var num:int = this.world.map.roleLayer.numChildren;
-         for(var j = 0; j < num; j++)
+         for(j = 0; j < num; j++)
          {
             effect = this.world.map.roleLayer.getChildAt(j) as EffectDisplay;
             if(effect == null || (effect.role == this as BaseRole && effect.objectData.unhit == true))
@@ -247,8 +253,11 @@ package game.role
                }
             }
          };
-         
          Starling.juggler.add(tw);
+         if(world.runModel is HostRun2Model)
+         {
+            (world.runModel as HostRun2Model).doFunc(this.name,"startTheWorldVisualEffect");
+         }
       }
 
       // 结束时停视觉效果
@@ -266,15 +275,17 @@ package game.role
                this.world.map.getChildAt(0).filter = null;
             }
          }
-         
          // 2. 移除背景精灵的滤镜
          if (this.world.backgroundContent && this.world.backgroundContent.filter == _backgroundFilter)
          {
             this.world.backgroundContent.filter = null;
          }
-         
          _worldFilter = null;
          _backgroundFilter = null;
+         if(world.runModel is HostRun2Model)
+         {
+            (world.runModel as HostRun2Model).doFunc(this.name,"stopTheWorldVisualEffect");
+         }
       }
    }
 }

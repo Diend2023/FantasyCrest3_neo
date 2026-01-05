@@ -170,8 +170,8 @@ package zygame.core
          log("WindowViewPort:" + viewPort);
          log("Starling.multitouchEnabled auto open");
          log("IsPc:" + _isPc);
-         // this.addEventListener("activate",onActivate);
-         // this.addEventListener("deactivate",onDeactivate);
+         this.addEventListener("activate",onActivate);
+         this.addEventListener("deactivate",onDeactivate);
          restoreTextureUtils = new RestoreTextureUtils(stage,_mStarling,loadContextImage);
       }
 

@@ -25,6 +25,8 @@ package game.view
       private var _select:SelectRole;
       
       private var _otherArray:Array = [];
+
+      private var _watchingP2Array:Array = []; // 观战端存储客机完整选择数据
       
       private var _log:TextField;
       
@@ -76,8 +78,15 @@ package game.view
                {
                   if(data.id == 1)
                   {
+                     if(IS_HIGH_GAME && data.data) //
+                     { //
                      data.data.selected = false;
                      _select.group.pushSelect(data.data);
+                     } //
+                     else if(data.list) //
+                     { //
+                        _watchingP2Array = _watchingP2Array.concat(data.list); // 普通/搭档模式：存储完整列表
+                     } //
                      cheakIsStart();
                      break;
                   }
@@ -215,6 +224,46 @@ package game.view
          { //
             needed = 2; //
          } //
+
+         // 观战端特殊处理
+         if(Service.client.type == "watching") //
+         { //
+            var p2ArrayLength:int = IS_HIGH_GAME ? _select.group.array.length : _watchingP2Array.length; //
+            if(p2ArrayLength >= needed && _otherArray.length >= needed) //
+            { //
+               arr1 = []; //
+               arr2 = []; //
+               // 房主角色（P1）
+               len = _otherArray.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr1.push({ //
+                     "name":Service.client.roomPlayerList[0].nickName, //
+                     "target":_otherArray[i] //
+                  }); //
+               } //
+               // 客机角色（P2）
+               var p2Array:Array = IS_HIGH_GAME ? _select.group.array : _watchingP2Array; //
+               len = p2Array.length; //
+               for(i = 0; i < len; i++) //
+               { //
+                  arr2.push({ //
+                     "name":get2PName(), //
+                     "target":p2Array[i] //
+                  }); //
+               } //
+               if(World.defalutClass == _2VFBOnline) //
+               { //
+                  SceneCore.replaceScene(new GameVSView(_mapTarget,arr1.concat(arr2),Game.getFBRoleData(_mapTarget),true,true)); //
+               } //
+               else //
+               { //
+                  SceneCore.replaceScene(new GameVSView(_mapTarget,arr1,arr2,true)); //
+               } //
+            } //
+            return; //
+         } //
+
          // if(_select.isSelected && _otherArray.length > 0)
          if(_select.isSelected && _otherArray.length >= needed)
          {
