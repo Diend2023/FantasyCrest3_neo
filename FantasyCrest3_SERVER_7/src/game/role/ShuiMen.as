@@ -34,15 +34,23 @@ package game.role
             var effectKuwu1:EffectDisplay = roleKuwu1Dic[enemy];
             if(effectKuwu1 && enemy && enemy.attribute)
             {
-            effectKuwu1.posx = enemy.x - effectKuwu1.width / 1.75;
-            effectKuwu1.posy = enemy.y;
-            if(!(this.world is _FBBaseWorld))
-            {
-               var listObj:Object = {"icon":"sudu.png","msg":String(enemy.pid) + "P"};
-               this.listData.addItem(listObj);
-               this.listData.updateItemAt(i);
-            }
-            i++;
+               effectKuwu1.posx = enemy.x - effectKuwu1.width / 1.75;
+               effectKuwu1.posy = enemy.y;
+               if(!(this.world is _FBBaseWorld) && this.world.roles.indexOf(enemy) != -1)
+               {
+                  var listObj:Object = {"icon":"sudu.png","msg":String(enemy.pid) + "P"};
+                  this.listData.addItem(listObj);
+                  this.listData.updateItemAt(i);
+               }
+               if(this.world.roles.indexOf(enemy) != -1)
+               {
+                  effectKuwu1.visible = true;
+               }
+               else
+               {
+                  effectKuwu1.visible = false;
+               }
+               i++;
             }
             else
             {
@@ -215,7 +223,7 @@ package game.role
          {
             var targetEnemy:BaseRole = enemy as BaseRole;
             var effectKuwu1:EffectDisplay = roleKuwu1Dic[targetEnemy];
-            if(effectKuwu1 && targetEnemy)
+            if(effectKuwu1 && targetEnemy && this.world.roles.indexOf(targetEnemy) != -1)
             {
                var enemyDir:int = targetEnemy.scaleX > 0 ? 1 : -1;
                var directionMultiplier:int = isBehind ? -1 : 1;
@@ -242,7 +250,7 @@ package game.role
             delete roleKuwu1Dic[enemy];
          }
          roleKuwu1Dic[enemy] = effectKuwu1;
-         effectKuwu1.posx = (world.state as GameStateView)._tips[enemy.pid - 1].x - effectKuwu1.width / 1.75;
+         effectKuwu1.posx = enemy.x - effectKuwu1.width / 1.75;
          effectKuwu1.posy = enemy.y - enemy.height;
          effectKuwu1.scaleX = 1;
          effectKuwu1.scaleY = 1;
