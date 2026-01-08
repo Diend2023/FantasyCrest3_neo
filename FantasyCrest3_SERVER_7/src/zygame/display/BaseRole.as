@@ -179,6 +179,8 @@ package zygame.display
       public var hitMapPoint:Point = new Point();
       
       public var abody:Vector.<Body> = new Vector.<Body>();
+
+      public var isOut:Boolean = false; // 搭档模式被切换
       
       public function BaseRole(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {

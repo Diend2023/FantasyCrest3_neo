@@ -8,7 +8,6 @@ package game.role
    import zygame.display.BaseRole;
    import flash.utils.Dictionary;
    import game.world.BaseGameWorld;
-   import game.view.GameStateView;
    import feathers.data.ListCollection;
    import game.world._FBBaseWorld;
    import flash.geom.Rectangle;
@@ -36,20 +35,13 @@ package game.role
             {
                effectKuwu1.posx = enemy.x - effectKuwu1.width / 1.75;
                effectKuwu1.posy = enemy.y;
-               if(!(this.world is _FBBaseWorld) && this.world.roles.indexOf(enemy) != -1)
+               if(!(this.world is _FBBaseWorld) && !enemy.isOut)
                {
                   var listObj:Object = {"icon":"sudu.png","msg":String(enemy.pid) + "P"};
                   this.listData.addItem(listObj);
                   this.listData.updateItemAt(i);
                }
-               if(this.world.roles.indexOf(enemy) != -1)
-               {
-                  effectKuwu1.visible = true;
-               }
-               else
-               {
-                  effectKuwu1.visible = false;
-               }
+               effectKuwu1.visible = !enemy.isOut;
                i++;
             }
             else
@@ -223,7 +215,7 @@ package game.role
          {
             var targetEnemy:BaseRole = enemy as BaseRole;
             var effectKuwu1:EffectDisplay = roleKuwu1Dic[targetEnemy];
-            if(effectKuwu1 && targetEnemy && this.world.roles.indexOf(targetEnemy) != -1)
+            if(effectKuwu1 && targetEnemy && !targetEnemy.isOut)
             {
                var enemyDir:int = targetEnemy.scaleX > 0 ? 1 : -1;
                var directionMultiplier:int = isBehind ? -1 : 1;

@@ -32,7 +32,7 @@ package game.role
       override public function onFrame() : void
       {
          super.onFrame();
-         if(_bdTimeer > 0 && this.cardFrame <= 0)
+         if(_bdTimeer > 0 && this.cardFrame <= 0 && !this.isOut)
          {
             _bdTimeer--;
          }

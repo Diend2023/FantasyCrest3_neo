@@ -77,6 +77,7 @@ package game.world
          prole.hitBody.space = null;
          this["p" + (prole.troopid + 1) + "assist"].push(prole);
          this.roles.removeAt(this.roles.indexOf(prole));
+         prole.isOut = true; // 标记该角色已被切换出场
       }
       
       public function enterRole(prole:BaseRole) : void
@@ -122,6 +123,7 @@ package game.world
          {
             role = prole;
          }
+         prole.isOut = false; // 标记该角色已重新入场
       }
       
       override public function overCheak() : void
@@ -167,6 +169,7 @@ package game.world
                arr[0].scaleX = prole.currentScaleX > 0 ? 1 : -1;
                (arr[0] as BaseRole).clearDebuffMove();
                enterRole(arr[0]);
+               arr[0].usePoint(1); //
                arr.shift();
                outRole(prole);
                prole.move("wait");
