@@ -79,6 +79,7 @@ package
       
       private function onInit(e:Event) : void
       {
+         this.uesRole = ""; // 测试使用角色
          Game.game4399Tools.main = this.stage;
          if(true)
          {
@@ -118,6 +119,7 @@ package
          Skills;
          stage.color = 0;
          PrivateTest.isPrivate = false;
+         // PrivateTest.isPrivate = true; // 启用私有测试模式
          this.initStarling("project.xml",GameMain,480,true,true ? true : !SystemUtil.isAIR,"auto",true,"auto");
          SuperTextureAtlas.support = true;
          Debug.UNAI = true;

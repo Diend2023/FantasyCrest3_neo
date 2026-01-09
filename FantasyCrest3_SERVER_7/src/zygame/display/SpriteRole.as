@@ -32,11 +32,13 @@ package zygame.display
          draw(true);
          try
          {
-            aiTag = String(this.roleXmlData.xml.@ai);
+            // aiTag = String(this.roleXmlData.xml.@ai);
+            aiTag = String(XML(this.roleXmlData.xml).@ai); //
             aiTag = aiTag.substr(0,aiTag.indexOf("."));
             if(DataCore.getXml(aiTag))
             {
                this.setAi(new AiHeart(this,DataCore.getXml(aiTag)));
+               trace("加载AI：",aiTag); //
             }
             else
             {
