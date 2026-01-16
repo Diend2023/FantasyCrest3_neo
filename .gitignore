@@ -18,8 +18,10 @@ bin-release/
 # project specific ignores
 FantasyCrest3_neo/*
 !FantasyCrest3_neo/
-!FantasyCrest3_neo/application.xml
+!FantasyCrest3_neo/FantasyCrest3_SERVER_7-app.xml
 !FantasyCrest3_neo/FantasyCrest3_SERVER_7.swf
+!FantasyCrest3_neo/FantasyCrest3-app.xml
+!FantasyCrest3_neo/FantasyCrest3.swf
 !FantasyCrest3_neo/WebRuntime.swf
 
 WebRuntime/*

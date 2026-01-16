@@ -15,8 +15,8 @@
 			"width": 1000,
 			"height": 550
 		},
-		"swf-version": 32
+		"swf-version": 51
 	},
-	"application": "../FantasyCrest3_neo/application.xml",
+	"application": "../FantasyCrest3_neo/FantasyCrest3_SERVER_7-app.xml",
 	"mainClass": "FantasyCrest3"
 }

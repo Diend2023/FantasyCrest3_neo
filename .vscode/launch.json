@@ -5,8 +5,15 @@
             "type": "swf",
             "request": "launch",
             "name": "Launch AIR Application",
-            "program": "${workspaceFolder}/FantasyCrest3_neo/application.xml",
+            "program": "${workspaceFolder}/FantasyCrest3_neo/FantasyCrest3_SERVER_7-app.xml",
             "profile": "desktop",
+        },
+        {
+            "type": "swf",
+            "request": "launch",
+            "name": "Launch SWF",
+            "program": "${workspaceFolder}/FantasyCrest3_neo/FantasyCrest3-app.xml",
+            "profile": "web",
         }
     ]
 }
