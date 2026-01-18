@@ -169,18 +169,26 @@ package game.role
          // KSU重砸抓取
          if (actionName == "[抓取]重砸")
          {
-            if (currentFrame == 20)
+            if (currentFrame == 22)
             {
-               isHand = hand(200, 300, 200, 300, 100, 50);
-               if (!isHand)
-               {
-                  breakAction();
-               }
+               this.breakAction();
             }
-            else if (frameAt(23, 31))
+            if (frameAt(6, 14))
             {
                hand(200, 200, 200, 200, 100, 0);
             }
+            // if (currentFrame == 20)
+            // {
+            //    isHand = hand(200, 300, 200, 300, 100, 50);
+            //    if (!isHand)
+            //    {
+            //       breakAction();
+            //    }
+            // }
+            // else if (frameAt(23, 31))
+            // {
+            //    hand(200, 200, 200, 200, 100, 0);
+            // }
          }
 
          // SL消失移动实现
@@ -213,11 +221,11 @@ package game.role
          {
             if (currentFrame == 1)
             {
-               for(var i in this.world.getRoleList())
+               for each(var i:BaseRole in this.world.getRoleList())
                {
-                  if (this.world.getRoleList()[i] != this)
+                  if (i != this)
                   {
-                     shiting(90, this.world.getRoleList()[i]);
+                     shiting(90, i);
                   }
                }
                (world as BaseGameWorld).founcDisplay = this;
@@ -302,19 +310,19 @@ package game.role
          {
             if (currentFrame == 0)
             {
-               for(var j in this.world.getRoleList())
+               for each(var j:BaseRole in this.world.getRoleList())
                {
-                  if (this.world.getRoleList()[j] != this && this.world.getRoleList()[j].isJump())
+                  if (j != this && j.isJump())
                   {
-                     shiting(30, this.world.getRoleList()[j]);
+                     shiting(30, j);
                   }
                }
             }
             if (currentFrame == 4)
             {
-               for(var k in this.world.getRoleList())
+               for each(var k:BaseRole in this.world.getRoleList())
                {
-                  shiting(150, this.world.getRoleList()[k]);
+                  shiting(150, k);
                }
                currentFrame = 5;
             }
@@ -491,61 +499,61 @@ package game.role
 
       public function hand(topRange:int = 200, bottomRange:int = 200, backRange:int = 100, frontRange:int = 200,  toX:int = 0, toY:int = 0):Boolean
       {
-          var rect:Rectangle = this.body.bounds.toRect();
-          // 横向判定
-          if(this.scaleX > 0)
-          {
-              rect.width += frontRange;
-              rect.x -= backRange;
-              rect.width += backRange;
-          }
-          else
-          {
-              rect.x -= frontRange;
-              rect.width += frontRange;
-              rect.width += backRange;
-          }
-          // 纵向判定
-          rect.y -= topRange;
-          rect.height += topRange;
-          rect.height += bottomRange;
-      
-          // 修正左边界
-          if(rect.x < 0)
-          {
-              rect.width += rect.x; // 把溢出的部分减掉
-              rect.x = 0;
-              toX = 0;
-          }
-          // 修正右边界
-          if(rect.x + rect.width > world.map.getWidth())
-          {
-              rect.width = world.map.getWidth() - rect.x;
-              toX = 0;
-          }
-      
-          if(rect.width > 0 && rect.height > 0)
-          {
-              var role:BaseRole = findRole(rect);
-              if(role)
-              {
-                  role.clearDebuffMove();
-                  role.straight = 30;
-                  role.setX(this.x + toX * this.scaleX);
-                  role.setY(this.y - toY);
-                  return true;
-              }
-          }
-          return false;
+         var rect:Rectangle = this.body.bounds.toRect();
+         // 横向判定
+         if(this.scaleX > 0)
+         {
+            rect.width += frontRange;
+            rect.x -= backRange;
+            rect.width += backRange;
+         }
+         else
+         {
+            rect.x -= frontRange;
+            rect.width += frontRange;
+            rect.width += backRange;
+         }
+         // 纵向判定
+         rect.y -= topRange;
+         rect.height += topRange;
+         rect.height += bottomRange;
+
+         // 修正左边界
+         if(rect.x < 0)
+         {
+            rect.width += rect.x; // 把溢出的部分减掉
+            rect.x = 0;
+            toX = 0;
+         }
+         // 修正右边界
+         if(rect.x + rect.width > world.map.getWidth())
+         {
+            rect.width = world.map.getWidth() - rect.x;
+            toX = 0;
+         }
+
+         if(rect.width > 0 && rect.height > 0)
+         {
+            var role:BaseRole = findRole(rect);
+            if(role)
+            {
+               role.clearDebuffMove();
+               role.straight = 30;
+               role.setX(this.x + toX * this.scaleX);
+               role.setY(this.y - toY);
+               return true;
+            }
+         }
+         return false;
       }
 
       public function shiting(cardFrame:int, role:BaseRole):void
       {
-         for(var i in this.world.getRoleList())
+         for each(var i:BaseRole in this.world.getRoleList())
          {
-            if(this.world.getRoleList()[i] == role)
+            if(i == role)
             {
-               this.world.getRoleList()[i].cardFrame = cardFrame;
+               i.cardFrame = cardFrame;
             }
          }
       }
