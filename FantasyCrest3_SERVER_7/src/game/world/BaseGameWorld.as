@@ -95,6 +95,7 @@ package game.world
          // ready();
          playAllEntrancesThenReady(); //
          createFrameBody();
+         this.record(); //
          var tmxXML:XML = DataCore.getXml(targetName);
          if(String(tmxXML.@texture) == "<null>")
          {
@@ -351,9 +352,36 @@ package game.world
          }
       }
       
+      public function playRecordFromPath(path:String):void //
+      { //
+         var file:File = new File(path); //
+         if(!file.exists) //
+         { //
+            trace("回放文件不存在：", path); //
+            return; //
+         } //
+         var bytes:ByteArray = RTools.readByteArray(file); //
+         if(!bytes) //
+         { //
+            trace("回放文件读取失败：", path); //
+            return; //
+         } //
+         worldData = new WorldRecordData(bytes); //
+         frameCount = 0; //
+         _gameOver = false; //
+         auto = false; //
+      } //
+
       override public function onFrame() : void
       {
          super.onFrame();
+         if(worldData && worldData.isPlayback) //
+         { //
+            worldData.playWorld(this); //
+            this.mathCenterPos(); //
+            ++frameCount; //
+            return; //
+         } //
          this.mathCenterPos();
          ++frameCount;
          if(!_gameOver)

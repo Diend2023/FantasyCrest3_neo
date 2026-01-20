@@ -7,6 +7,10 @@ package game.view
    import zygame.display.KeyDisplayObject;
    import game.world._1VSB; //
    import game.world.BaseGameWorld; //
+
+   import flash.events.Event; //
+   import flash.filesystem.File; //
+   import zygame.utils.RTools; //
    
    public class GamePauseView extends KeyDisplayObject
    {
@@ -30,6 +34,7 @@ package game.view
          if (GameCore.currentWorld is _1VSB) //
          { //
             createBtn("重置练习",stage.stageHeight / 2 - -126,8); // 添加重置练习按钮
+            createBtn("播放录制",stage.stageHeight / 2 - -168,80); // 添加播放录制按钮
          } //
          this.openKey();
       }
@@ -85,6 +90,21 @@ package game.view
                this.clearKey(); //
                GameCore.currentWorld.onDown(13); //
                (GameCore.currentWorld as BaseGameWorld).reset(); //
+               break; //
+            case 80: // 播放录制按钮功能
+               this.clearKey(); //
+               GameCore.currentWorld.onDown(13); //
+               RTools.openFile(function(ev:Event):void //
+               { //
+                  var file:File = ev.currentTarget as File; //
+                  if(!file) return; //
+
+                  var world:BaseGameWorld = GameCore.currentWorld as BaseGameWorld; //
+                  if(world) //
+                  { //
+                     world.playRecordFromPath(file.nativePath); //
+                  } //
+               }, "选择回放文件", ["zyvideo"]); //
          }
       }
    }
