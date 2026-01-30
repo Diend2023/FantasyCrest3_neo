@@ -504,7 +504,17 @@ package zygame.display
             liveRect = event.bounds.clone();
          }
       }
-      
+
+      public function set left(b:Boolean) : void // 补充left的获取方法用于重写
+      { //
+         _left = b; //
+      } //
+
+      public function set right(b:Boolean) : void // 补充right的获取方法用于重写
+      { //
+         _right = b; //
+      } //
+
       public function move(tag:String) : void
       {
          _left = false;

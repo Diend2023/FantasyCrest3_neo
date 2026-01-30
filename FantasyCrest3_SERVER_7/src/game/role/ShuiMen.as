@@ -88,26 +88,31 @@ package game.role
          if(this.actionName == "飞雷神2" && effectZhan && effectMy6)
          {
             createKuwu1(enemy);
+            beData.lockHurt = 4;
             effectZhan.discarded();
             effectMy6.discarded();
          }
          else if((this.actionName == "WJ" || this.actionName == "WU" || this.actionName == "龙椎闪") && effectZhan)
          {
             createKuwu1(enemy);
+            beData.lockHurt = 4;
             effectZhan.discarded();
          }
          else if(this.actionName == "飞雷神" && effect8)
          {
             createKuwu1(enemy);
+            beData.lockHurt = 4;
          }
          else if((this.actionName == "SI" || this.actionName == "飞雷神WI") && effectC)
          {
             createKuwu1(enemy);
+            beData.lockHurt = 4;
             effectC.discarded();
          }
          else if(this.actionName == "疾风连段·神速真空斩！" && effectC)
          {
             createKuwu1(enemy);
+            beData.lockHurt = 4;
             effectC.discarded();
          }
       }

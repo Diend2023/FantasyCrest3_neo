@@ -91,6 +91,7 @@ package game.role
          SLK; // 添加赛莉卡
          ShuiMen; // 添加波风水门
          LianLian; // 添加古明地恋
+         G3X; // 添加G3X
       }
    }
 }
