@@ -11,7 +11,6 @@ package zygame.utils
    import flash.net.URLLoader;
    import flash.net.URLRequest;
    import flash.utils.ByteArray;
-   import flash.net.FileFilter; //
    
    public class RTools
    {
@@ -145,26 +144,9 @@ package zygame.utils
             file.browseForDirectory(tips);
          }
          else
-         // {
-         //    file.browseForOpen(tips,types);
-         // }
-         { //
-            var filters:Array = []; //
-            if(types && types.length > 0) //
-            { //
-               var exts:Array = []; //
-               for each(var t:String in types) //
-               { //
-                  if(t == "dic") continue; //
-                  exts.push("*." + t); //
-               } //
-               if(exts.length > 0) //
-               { //
-                  filters.push(new FileFilter("文件(" + exts.join(",") + ")", exts.join(";"))); //
-               } //
-            } //
-            file.browseForOpen(tips,filters); //
-         } //
+         {
+            file.browseForOpen(tips,types);
+         }
          file.addEventListener("select",call);
       }
       
