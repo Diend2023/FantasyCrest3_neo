@@ -6,6 +6,7 @@ package game.role
    import zygame.ai.AiHeart;
    import zygame.core.DataCore;
    import zygame.data.BeHitData;
+   import zygame.display.BaseRole;
    
    public class G3X extends GameRole
    {
@@ -26,7 +27,6 @@ package game.role
       {
          if(this.isKeyDown(65) || this.isKeyDown(68) || this.isKeyDown(87) || this.isKeyDown(83))
          {
-            trace("isKeyDown");
             this.ai = false;
          }
          else
@@ -49,6 +49,27 @@ package game.role
                this.currentMp.value -= 1;
             }
          }
+      }
+
+      override public function onHitEnemy(beData:BeHitData, enemy:BaseRole):void
+      {
+         if (this.ai)
+         {
+            if(beData.armorScale == 0)
+            {
+               beData.armorScale = 1;
+            }
+            beData.armorScale += 0.3; // 增加30%伤害
+         }
+         else
+         {
+            if(beData.armorScale == 0)
+            {
+               beData.armorScale = 1;
+            }
+            beData.armorScale -= 0.3; // 减少30%伤害
+         }
+         super.onHitEnemy(beData, enemy);
       }
 
       override public function move(tag:String) : void
