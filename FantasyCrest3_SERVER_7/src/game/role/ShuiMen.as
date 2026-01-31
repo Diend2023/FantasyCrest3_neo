@@ -80,7 +80,6 @@ package game.role
 
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole):void
       {
-         super.onHitEnemy(beData,enemy);
          var effect8:EffectDisplay = this.world.getEffectFormName("8",this);
          var effectZhan:EffectDisplay = this.world.getEffectFormName("zhan",this);
          var effectMy6:EffectDisplay = this.world.getEffectFormName("my6",this);
@@ -115,6 +114,11 @@ package game.role
             beData.lockHurt = 4;
             effectC.discarded();
          }
+         else
+         {
+            beData.lockHurt = 0;
+         }
+         super.onHitEnemy(beData,enemy);
       }
 
       override public function runLockAction(str:String, canBreak:Boolean = false):void
