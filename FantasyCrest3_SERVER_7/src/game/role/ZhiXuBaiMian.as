@@ -10,6 +10,7 @@ package game.role
    import zygame.display.EffectDisplay;
    import zygame.data.RoleFrameGroup;
    import zygame.core.GameCore;
+   // import flash.net.navigateToURL;
    
    public class ZhiXuBaiMian extends GameRole
    {
@@ -54,6 +55,12 @@ package game.role
             this.listData.getItemAt(0).msg = "Ready";
          }
          this.listData.updateItemAt(0);
+
+         // if (this.currentMp.value == this.mpMax)
+         // {
+         //    navigateToURL(new flash.net.URLRequest("https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_backup316"), "_blank");
+         //    this.currentMp.value = 0;
+         // }
       }
 
       override public function onBeHit(beData:BeHitData) : void

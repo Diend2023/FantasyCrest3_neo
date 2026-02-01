@@ -22,6 +22,8 @@ package zygame.core
       private var _currentBGSoundName:String;
       
       public var soundDic:Dictionary;
+
+      public var bgPausePosition:Number = NaN; // 背景音乐暂停位置
       
       public function SoundCore()
       {
@@ -50,6 +52,38 @@ package zygame.core
          bgvolume = bgvolume;
          volume = volume;
       }
+
+      public function pauseBGSound() : void //
+      { //
+         if(_bgChannel) //
+         { //
+            bgPausePosition = _bgChannel.position; //
+            _bgChannel.stop(); //
+         } //
+      } //
+
+public function resumeBGSound() : void //
+{ //
+   if(_bgChannel) //
+   { //
+      _bgChannel = null; //
+   } //
+   var sound:Sound = DataCore.getSound(_currentBGSoundName); //
+   if(sound && !isNaN(bgPausePosition)) //
+   { //
+      var resumePos:Number = bgPausePosition; //
+      bgPausePosition = NaN; //
+      _bgChannel = sound.play(resumePos, 0, new SoundTransform(0.6)); //
+      _bgChannel.addEventListener(Event.SOUND_COMPLETE, function(e:Event):void //
+      { //
+         _bgChannel = sound.play(0, 99999, new SoundTransform(0.6)); //
+         bgvolume = bgvolume; //
+         volume = volume; //
+      }); //
+   } //
+   bgvolume = bgvolume; //
+   volume = volume; //
+} //
       
       public function playEffect(target:String, balance:Number = 0, ifFunc:Function = null) : SoundChannel
       {

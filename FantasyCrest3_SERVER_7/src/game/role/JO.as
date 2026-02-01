@@ -36,6 +36,15 @@ package game.role
          GameCore.soundCore.bgvolume = this.baseBgVolume;
       }
 
+      override public function onInit():void
+      {
+         super.onInit();
+         if(theWorldTimer <= 0 && !isNaN(GameCore.soundCore.bgPausePosition))
+         {
+            GameCore.soundCore.resumeBGSound();
+         }
+      }
+
 	   override public function onFrame():void
       {
          super.onFrame();
@@ -59,7 +68,8 @@ package game.role
                {
                   this.attribute.hp = 0;
                   this.theWorldTimer = 0;
-                  GameCore.soundCore.bgvolume = this.baseBgVolume;
+                  // GameCore.soundCore.bgvolume = this.baseBgVolume;
+                  GameCore.soundCore.resumeBGSound();
                   stopTheWorldVisualEffect();
                   return;
                }
@@ -69,7 +79,8 @@ package game.role
             // 计时结束，移除效果
             if(this.theWorldTimer <= 0)
             {
-               GameCore.soundCore.bgvolume = this.baseBgVolume;
+               // GameCore.soundCore.bgvolume = this.baseBgVolume;
+               GameCore.soundCore.resumeBGSound();
                stopTheWorldVisualEffect();
             }
          }
@@ -119,12 +130,13 @@ package game.role
       public function theWorld():void
       {
          this.theWorldTimer = 345; // 5秒钟
-         GameCore.soundCore.bgvolume = 0.0;
+         // GameCore.soundCore.bgvolume = 0.0;
+         GameCore.soundCore.pauseBGSound();
          GameCore.soundCore.playEffect("ctl39");
-         Starling.juggler.delayCall(function():void
-         {
-            GameCore.soundCore.bgvolume = baseBgVolume;
-         },5);
+         // Starling.juggler.delayCall(function():void
+         // {
+         //    GameCore.soundCore.bgvolume = baseBgVolume;
+         // },5);
          if(world.runModel is AccessRun3Model)
          {
             return;
