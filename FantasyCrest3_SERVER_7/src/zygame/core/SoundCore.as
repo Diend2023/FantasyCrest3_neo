@@ -48,6 +48,7 @@ package zygame.core
          if(sound)
          {
             _bgChannel = sound.play(0,99999,new SoundTransform(0.6));
+            bgPausePosition = NaN; //
          }
          bgvolume = bgvolume;
          volume = volume;
