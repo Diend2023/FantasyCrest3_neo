@@ -20,6 +20,7 @@ package game.role
       private var _beHitNum:int = 0;
       private var _hitNum:int = 0;
       private var _groundY:int;
+      private var _cameraTimer:int = 0; // 镜头缩放计时器
 
       public function BLL(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -63,6 +64,18 @@ package game.role
          _timecount++;
          var isHand:Boolean = false;
          var role:BaseRole = null;
+         // 镜头缩放效果实现
+         if(_cameraTimer > 0)
+         {
+            (this.world as BaseGameWorld).founcDisplay = this;
+            (this.world as BaseGameWorld).cameraScale = 1.015;
+            _cameraTimer--;
+            if(_cameraTimer == 0)
+            {
+               (this.world as BaseGameWorld).founcDisplay = (this.world as BaseGameWorld).centerSprite;
+               (this.world as BaseGameWorld).cameraScale = 1;
+            }
+         }
          // 普通攻击后续
          if (actionName == "普通攻击" && frameAt(8,14))
          {
@@ -113,6 +126,7 @@ package game.role
          if (actionName == "[隐藏][抓取]抓取后续" && frameAt(-1, 9))
          {
             hand(150, 150, 150, 150, 100, 25);
+            _cameraTimer = 2;
          }
 
          // KI浩瀚重击取后续
@@ -228,11 +242,11 @@ package game.role
                      shiting(90, i);
                   }
                }
-               (world as BaseGameWorld).founcDisplay = this;
+               (this.world as BaseGameWorld).founcDisplay = this;
             }
             if (currentFrame == 31)
             {
-               (world as BaseGameWorld).founcDisplay = (world as BaseGameWorld).centerSprite;
+               (this.world as BaseGameWorld).founcDisplay = (this.world as BaseGameWorld).centerSprite;
             }
             // O命中后续实现
             var effectW:EffectDisplay = this.world.getEffectFormName("W",this);

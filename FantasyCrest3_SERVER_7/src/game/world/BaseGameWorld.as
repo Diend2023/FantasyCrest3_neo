@@ -69,6 +69,8 @@ package game.world
       private var _gif:GIFUtils;
       
       private var _skillPainting:Array = [];
+
+      public var cameraScale:Number = 1; // 摄像机缩放比例，1为不变
       
       public function BaseGameWorld(mapName:String, toName:String)
       {
@@ -542,15 +544,31 @@ package game.world
          }
          _centerSprite.x = (minx + maxx) / 2;
          _centerSprite.y = (miny + maxy) / 2;
-         worldScale = 600 / Math.abs(minx - maxx);
-         if(worldScale > 1)
-         {
-            worldScale = 1;
-         }
-         else if(worldScale < 0.5)
-         {
-            worldScale = 0.5;
-         }
+         // worldScale = 600 / Math.abs(minx - maxx);
+         // if(worldScale > 1)
+         // {
+         //    worldScale = 1;
+         // }
+         // else if(worldScale < 0.5)
+         // {
+         //    worldScale = 0.5;
+         // }
+         if (cameraScale != 1 && cameraScale > 0) // 设置cameraScale用于缩放镜头
+         { //
+            worldScale *= cameraScale; //
+         } //
+         else //
+         { //
+            worldScale = 600 / Math.abs(minx - maxx); //
+            if(worldScale > 1) //
+            { //
+               worldScale = 1; //
+            } //
+            else if(worldScale < 0.5) //
+            { //
+               worldScale = 0.5; //
+            } //
+         } //
          if(_frameBody)
          {
             _frameBody.position.x = _centerSprite.x;
