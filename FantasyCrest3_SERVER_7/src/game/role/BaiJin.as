@@ -27,11 +27,12 @@ package game.role
          // 连击数为0时，重置敌人魔防
          for(var enemy:BaseRole in enemyBaseMagicDefense)
          {
-            if(enemy && enemy.attribute && enemy.beHitCount == 0)
+            if(enemy && enemy.attribute && enemy.beHitCount == 0 && enemyBaseMagicDefense[enemy] != undefined)
             {
                enemy.attribute.magicDefense = enemyBaseMagicDefense[enemy];
                this.listData.getItemAt(0).msg = enemy.attribute.magicDefense;
                this.listData.updateItemAt(0);
+               delete enemyBaseMagicDefense[enemy];
             }
          }
          if(this.actionName == "Cure Dot Typhoon" && this.frameAt(3, 27))

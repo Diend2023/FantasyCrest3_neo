@@ -92,6 +92,7 @@ package game.role
          ShuiMen; // 添加波风水门
          LianLian; // 添加古明地恋
          G3X; // 添加G3X
+         DevilMan; // 添加恶魔人
       }
    }
 }

@@ -11,6 +11,7 @@ package game.role
    import zygame.data.RoleFrameGroup;
    import zygame.core.GameCore;
    // import flash.net.navigateToURL;
+   import zygame.buff.BuffRef;
    
    public class ZhiXuBaiMian extends GameRole
    {
@@ -61,21 +62,31 @@ package game.role
          //    navigateToURL(new flash.net.URLRequest("https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_backup316"), "_blank");
          //    this.currentMp.value = 0;
          // }
+
+         for each(var role:BaseRole in this.world.getRoleList())
+         {
+            if(role.troopid != this.troopid && role.attribute && role.attribute.hasBuff(BuffRef, "debuff_speedScale") && role.beHitCount == 0)
+            {
+               role.attribute.hasBuff(BuffRef, "debuff_speedScale").currentTime = 0;
+               role.speedScale = 1;
+               trace("remove speed debuff");
+            }
+         }
       }
 
       override public function onBeHit(beData:BeHitData) : void
       {
-         super.onBeHit(beData);
          // 被破防时获得1s霸体
          if (this.breakDamTimer <= 0)
          {
-            if(beData.isBreakDam || (this.actionName == "防御" && !this.isRightInFront(beData.role)))
+            if(beData.isBreakDam || (this.isDefense() && !this.isRightInFront(beData.role)))
                {
                   this.clearDebuffMove();
                   this.golden = 60;
                   this.breakDamTimer = 900;
                }
          }
+         super.onBeHit(beData);
          // 每次被攻击时，增加1点水晶
          if (this.currentMp.value < this.mpMax)
          {
@@ -128,6 +139,12 @@ package game.role
                enemy.breakAction();
                enemy.straight = 120;
             }
+         }
+         if(this.currentMp.value == this.mpMax && !enemy.attribute.hasBuff(BuffRef, "debuff_speedScale"))
+         {
+            enemy.addBuff(new BuffRef("debuff_speedScale",enemy,-1), 1, false);
+            enemy.speedScale *= 0.5;
+            trace("add speed debuff");
          }
       }
 
