@@ -49,7 +49,8 @@ package game.role
          _isP = _time.value > 0;
          if(_isP) //
          { //
-            listData.getItemAt(0).msg = "On"; //
+            // listData.getItemAt(0).msg = "On"; //
+            listData.getItemAt(0).msg = int(_time.value / 60).toString(); //
          } //
          else //
          { //

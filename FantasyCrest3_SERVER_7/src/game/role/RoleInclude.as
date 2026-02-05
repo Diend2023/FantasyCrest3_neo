@@ -93,6 +93,7 @@ package game.role
          LianLian; // 添加古明地恋
          G3X; // 添加G3X
          DevilMan; // 添加恶魔人
+         HaZaMa; // 添加哈扎马
       }
    }
 }

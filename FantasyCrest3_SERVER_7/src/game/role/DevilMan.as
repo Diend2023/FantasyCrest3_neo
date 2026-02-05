@@ -5,7 +5,6 @@ package game.role
    import zygame.display.World;
    import game.buff.AttributeChangeBuff;
    import zygame.data.BeHitData;
-   import zygame.data.BeHitData;
    import feathers.data.ListCollection;
 
    

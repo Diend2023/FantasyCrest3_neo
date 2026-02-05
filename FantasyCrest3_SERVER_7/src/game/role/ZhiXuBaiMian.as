@@ -63,13 +63,12 @@ package game.role
          //    this.currentMp.value = 0;
          // }
 
-         for each(var role:BaseRole in this.world.getRoleList())
+         for each(var enemy:BaseRole in this.world.getRoleList())
          {
-            if(role.troopid != this.troopid && role.attribute && role.attribute.hasBuff(BuffRef, "debuff_speedScale") && role.beHitCount == 0)
+            if(enemy.troopid != this.troopid && enemy.attribute && enemy.attribute.hasBuff(BuffRef, "debuff_speedScale") && enemy.beHitCount == 0)
             {
-               role.attribute.hasBuff(BuffRef, "debuff_speedScale").currentTime = 0;
-               role.speedScale = 1;
-               trace("remove speed debuff");
+               enemy.attribute.hasBuff(BuffRef, "debuff_speedScale").currentTime = 0;
+               enemy.speedScale = 1;
             }
          }
       }
