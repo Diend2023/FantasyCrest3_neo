@@ -37,7 +37,6 @@ package game.role
                {
                   enemy.attribute.hp -= enemy.attribute.hpmax * 0.02;
                   this.attribute.hp += enemy.attribute.hpmax * 0.02;
-                  trace("drain HP per second");
                   if(this.attribute.hp > this.attribute.hpmax)
                   {
                      this.attribute.hp = this.attribute.hpmax;
@@ -89,7 +88,6 @@ package game.role
                      if (enemy.attribute && !enemy.attribute.hasBuff(BuffRef, "debuff_LX10"))
                      {
                         enemy.addBuff(new BuffRef("debuff_LX10",enemy,-1), 1, false);
-                        trace("add LX10 debuff");
                      }
                   }
                   else if (Math.abs(enemy.x - _effectLX10Quad.x) >= _effectLX10Quad.width || Math.abs(enemy.y - _effectLX10Quad.y) >= _effectLX10Quad.height)
@@ -97,7 +95,6 @@ package game.role
                      if (enemy.attribute && enemy.attribute.hasBuff(BuffRef, "debuff_LX10"))
                      {
                         enemy.attribute.hasBuff(BuffRef, "debuff_LX10").currentTime = 0;
-                        trace("remove LX10 debuff");
                      }
                   }
                }
@@ -117,7 +114,6 @@ package game.role
                   if (enemy2.attribute && enemy2.attribute.hasBuff(BuffRef, "debuff_LX10"))
                   {
                      enemy2.attribute.hasBuff(BuffRef, "debuff_LX10").currentTime = 0;
-                     trace("remove LX10 debuff");
                   }
                }
             }
@@ -126,22 +122,35 @@ package game.role
 
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
       {
-         // 10%概率破防
+         // 命中时吸血20%
          if(enemy && enemy.attribute && enemy.attribute.hasBuff(BuffRef, "debuff_LX10"))
          {
-            if(Math.random() < 0.1)
-            {
-               beData.isBreakDam = true;
-               trace("break defense!");
-            }
             this.attribute.hp += beData.getHurt(this.attribute) * 0.2;
-            trace("drain HP from hit");
             if(this.attribute.hp > this.attribute.hpmax)
             {
                this.attribute.hp = this.attribute.hpmax;
             }
          }
          super.onHitEnemy(beData,enemy);
+      }
+
+      override public function hitDataBuff(beData:BeHitData):void
+      {
+         super.hitDataBuff(beData);
+         // 10%概率破防
+         for each (var enemy:BaseRole in this.world.getRoleList())
+         {
+            if (enemy != this && enemy.troopid != this.troopid)
+            {
+               if (enemy.attribute && enemy.attribute.hasBuff(BuffRef, "debuff_LX10"))
+               {
+                  if (Math.random() < 0.1)
+                  {
+                     beData.isBreakDam = true;
+                  }
+               }
+            }
+         }
       }
 
    }
