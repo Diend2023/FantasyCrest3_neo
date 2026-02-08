@@ -94,6 +94,7 @@ package game.role
          G3X; // 添加G3X
          DevilMan; // 添加恶魔人
          HaZaMa; // 添加哈扎马
+         BaiZai; // 添加朽木白哉
       }
    }
 }
