@@ -148,6 +148,10 @@ package game.role
                   {
                      beData.isBreakDam = true;
                   }
+                  else
+                  {
+                     beData.isBreakDam = false;
+                  }
                }
             }
          }

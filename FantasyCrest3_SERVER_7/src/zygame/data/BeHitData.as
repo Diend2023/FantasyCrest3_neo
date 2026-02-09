@@ -31,6 +31,8 @@ package zygame.data
       public var hitRect:Rectangle;
       
       public var isCrit:Boolean = false;
+
+      public var addCrit:Number = 0; // 增加暴击率，百分比
       
       public var hitEffect:String = null;
       
@@ -83,7 +85,8 @@ package zygame.data
          {
             hurt = 1;
          }
-         var num:Number = 1 - role.attribute.crit / 100;
+         // var num:Number = 1 - role.attribute.crit / 100;
+         var num:Number = 1 - (role.attribute.crit + addCrit) / 100; // 考虑增加暴击率
          isCrit = Math.random() > num;
          if(isCrit)
          {

@@ -95,6 +95,7 @@ package game.role
          DevilMan; // 添加恶魔人
          HaZaMa; // 添加哈扎马
          BaiZai; // 添加朽木白哉
+         SYRY; // 添加双月让叶
       }
    }
 }

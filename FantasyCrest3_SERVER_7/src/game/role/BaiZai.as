@@ -18,7 +18,7 @@ package game.role
          super.onFrame();
          if(this.inFrame("卍解         千 本 樱            景严",18))
          {
-            this.addBuff(new BuffRef("buff_Yinghua",this,10,"yinghua"), 1, false);
+            this.addBuff(new BuffRef("buff_Yinghua",this,10), 1, false);
          }
       }
    }
