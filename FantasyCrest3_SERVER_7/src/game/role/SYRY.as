@@ -6,6 +6,7 @@ package game.role
    import zygame.data.BeHitData;
    import zygame.display.BaseRole;
    import feathers.data.ListCollection;
+   import game.world.BaseGameWorld;
    
    public class SYRY extends GameRole
    {
@@ -13,6 +14,7 @@ package game.role
       private static var _baDao:Array = ["居合斩·上段", "居合斩·中段", "居合斩·下段", "拔刀斩·笑 下段", "拔刀斩·笑 中段", "拔刀斩·笑 上段", "空中拔刀术·下段", "空中拔刀术·中段", "空中拔刀术·上段", "空中居合斩·下段", "空中居合斩·中段", "空中居合斩·上段"];
       private var _baDaoHitCount:int = 0;
       private var _baoFaCount:int = 0;
+      private var _cameraTimer:int = 0; // 镜头缩放计时器
       
       public function SYRY(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -27,6 +29,26 @@ package game.role
       {
          super.onInit();
          _baDaoHitCount = 0;
+      }
+
+      override public function onFrame() : void
+      {
+         super.onFrame();
+         if(_cameraTimer > 0)
+         {
+            (this.world as BaseGameWorld).founcDisplay = this;
+            (this.world as BaseGameWorld).cameraScale = 1.015;
+            _cameraTimer--;
+            if(_cameraTimer == 0)
+            {
+               (this.world as BaseGameWorld).founcDisplay = (this.world as BaseGameWorld).centerSprite;
+               (this.world as BaseGameWorld).cameraScale = 1;
+            }
+         }
+         if(this.actionName == "双月一刀流         华   生" && this.currentFrame <= 28)
+         {
+            _cameraTimer = 2; // 设置镜头缩放持续时间，单位为帧
+         }
       }
 
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole):void
@@ -119,6 +141,21 @@ package game.role
          }
       }
       
+      override public function copyData() : Object
+      {
+         var ob:Object = super.copyData();
+         ob._baoFaCount = _baoFaCount;
+         return ob;
+      }
+
+      override public function setData(value:Object) : void
+      {
+         super.setData(value);
+         _baoFaCount = value._baoFaCount || 0;
+         this.listData.getItemAt(0).msg = _baoFaCount;
+         this.listData.updateItemAt(0);
+      }
+
    }
 }
 

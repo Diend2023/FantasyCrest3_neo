@@ -36,6 +36,7 @@ package game.world
    import zygame.ui.Fade;
    import zygame.utils.GIFUtils;
    import zygame.utils.RTools;
+   import flash.trace.Trace;
    
    public class BaseGameWorld extends World
    {
@@ -555,7 +556,10 @@ package game.world
          // }
          if (cameraScale != 1 && cameraScale > 0) // 设置cameraScale用于缩放镜头
          { //
-            worldScale *= cameraScale; //
+            if (worldScale <= 1.60) //
+            { //
+               worldScale *= cameraScale; //
+            } //
          } //
          else //
          { //
