@@ -338,6 +338,14 @@ package zygame.display
          {
             return;
          }
+         if(speedScale == 0) //speedScale为0时静止
+         { //
+            if(this.body) //时停时静止
+            {
+               this.body.velocity.setxy(0,0); //
+               this.body.angularVel = 0; //
+            } //
+         } //
          if(cardFrame > 0)
          {
             cardFrame--;
@@ -406,7 +414,7 @@ package zygame.display
 
       override public function xMove(xz:Number):void //
       { //
-         if(cardFrame > 0) //
+         if(cardFrame > 0 || speedScale == 0) //
          { //
             return; //
          } //
@@ -415,7 +423,7 @@ package zygame.display
 
       override public function yMove(yz:Number):void //
       { //
-         if(cardFrame > 0) //
+         if(cardFrame > 0 || speedScale == 0) //
          { //
             return; //
          } //

@@ -419,9 +419,18 @@ package game.role
 
          // WP霸体实现
          var effectTxjs107:EffectDisplay = this.world.getEffectFormName("txjs107",this);
+         var effectBLL5:EffectDisplay = this.world.getEffectFormName("BLL5",this);
          if (effectTxjs107)
          {
-            this.golden = 10;
+            this.golden = 2;
+            if (effectTxjs107.currentFrame == 19)
+            {
+               effectTxjs107.go(0);
+            }
+         }
+         if (effectBLL5 && effectBLL5.currentFrame == 11)
+         {
+            effectBLL5.go(0);
          }
       }
 
