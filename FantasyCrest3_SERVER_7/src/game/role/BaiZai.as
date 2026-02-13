@@ -3,13 +3,13 @@ package game.role
 {
    import zygame.data.RoleAttributeData;
    import zygame.display.World;
-   import zygame.buff.BuffRef;
    import zygame.display.EffectDisplay;
 
    
    public class BaiZai extends GameRole
    {
 
+      private static var _yinghuaSkills:Array = ["樱汇", "千本樱", "千痕"];
       private var _effectQiangTimer:int = 0; // P断空墙持续时间计时器
       
       public function BaiZai(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
@@ -20,9 +20,12 @@ package game.role
       override public function onFrame():void
       {
          super.onFrame();
-         if(this.inFrame("卍解         千 本 樱            景严",18))
+         if(this.inFrame("卍解         千 本 樱            景严",28))
          {
-            this.addBuff(new BuffRef("buff_Yinghua",this,10), 1, false);
+            for each(var skillName:String in _yinghuaSkills)
+            {
+               this.attribute.updateCD(skillName, 0);
+            }
          }
          var effectYinghua:EffectDisplay = this.world.getEffectFormName("yinghua",this)
          if(effectYinghua)
@@ -61,6 +64,16 @@ package game.role
                effect.speedScale = 1;
             }
          }
+      }
+
+      override public function runLockAction(str:String, canBreak:Boolean = false):void
+      {
+         var effectYinghua:EffectDisplay = this.world.getEffectFormName("yinghua",this)
+         if(_yinghuaSkills.indexOf(str) != -1 && effectYinghua)
+         {
+            this.attribute.updateCD(str, 3);
+         }
+         super.runLockAction(str, canBreak);
       }
    }
 }
