@@ -4,6 +4,9 @@ package game.role
    import zygame.data.RoleAttributeData;
    import zygame.display.World;
    import zygame.display.EffectDisplay;
+   import zygame.display.BaseRole;
+   import zygame.data.BeHitData;
+   import feathers.data.ListCollection;
 
    
    public class BaiZai extends GameRole
@@ -11,20 +14,37 @@ package game.role
 
       private static var _yinghuaSkills:Array = ["樱汇", "千本樱", "千痕"];
       private var _effectQiangTimer:int = 0; // P断空墙持续时间计时器
+      private var _willLockRole:BaseRole = null; // 即将被锁定的角色
+      private var _yinghuaTimer:int = 0; // 樱花持续时间计时器
       
       public function BaiZai(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
          super(roleTarget,xz,yz,pworld,fps,pscale,troop,roleAttr);
+         this.listData = new ListCollection([{
+            "icon":"mofa.png",
+            "msg":"Off"
+         }]);
       }
 
       override public function onFrame():void
       {
          super.onFrame();
+         if(_yinghuaTimer > 0)
+         {
+            _yinghuaTimer -= 1;
+            this.listData.getItemAt(0).msg = Number(_yinghuaTimer / 60).toFixed(1).toString(); // 显示樱花持续时间，单位为秒
+         }
+         else
+         {
+            this.listData.getItemAt(0).msg = "Off";
+         }
+         this.listData.updateItemAt(0);
          if(this.inFrame("卍解         千 本 樱            景严",28))
          {
             for each(var skillName:String in _yinghuaSkills)
             {
                this.attribute.updateCD(skillName, 0);
+               _yinghuaTimer = 600; // 樱花持续时间
             }
          }
          var effectYinghua:EffectDisplay = this.world.getEffectFormName("yinghua",this)
@@ -64,6 +84,27 @@ package game.role
                effect.speedScale = 1;
             }
          }
+         var effectMlsXing:EffectDisplay = this.world.getEffectFormName("mlsXing",this);
+         if(effectMlsXing && this.actionName == "六杖光牢" && _willLockRole && _willLockRole.attribute)
+         {
+            effectMlsXing.cardFrame = 180; // 锁定持续时间
+            effectMlsXing.posx = _willLockRole.x;
+            effectMlsXing.posy = _willLockRole.y - 100;
+            _willLockRole.breakAction();
+            _willLockRole.clearDebuffMove();
+            _willLockRole.straight = 180;
+            _willLockRole = null;
+         }
+      }
+
+      override public function onHitEnemy(beData:BeHitData, enemy:BaseRole):void
+      {
+         var effectXbao:EffectDisplay = this.world.getEffectFormName("Xbao",this);
+         if(this.actionName == "六杖光牢" && effectXbao)
+         {
+            _willLockRole = enemy;
+         }
+         super.onHitEnemy(beData, enemy);
       }
 
       override public function runLockAction(str:String, canBreak:Boolean = false):void

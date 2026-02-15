@@ -16,6 +16,7 @@ package game.view
    import game.uilts.Phone; // 导入Phone用于判断是否为手机版
    import zygame.server.Service; // 导入Service用于更新用户数据
    import flash.net.SharedObject; // 导入SharedObject用于更新缓存的用户数据
+   import flash.net.navigateToURL; // 导入navigateToURL用于打开链接
 
    public class GameFPSTipsView extends DisplayObjectContainer
    {
@@ -33,8 +34,11 @@ package game.view
          var text:ScrollText; // 使用feathers的ScrollText
          var skin:Texture;
          var button:Button;
-         var button1:Button; // 一键购买所有角色按钮
-         var button2:Button; // 版本介绍按钮
+         var button1:Button; // 版本介绍按钮
+         var button2:Button; // 一键购买所有角色按钮
+         var button3:Button; // 加入交流群按钮
+         var button4:Button; // 官方网站按钮
+
          super.onInit();
          bg = new Quad(stage.stageWidth,stage.stageHeight,0);
          this.addChild(bg);
@@ -47,7 +51,7 @@ package game.view
          text.height = stage.stageHeight - 200; // 调整高度
          // 原本的提示文本
          // text.text = "关于游戏会卡的解决方案：\n掉帧的原因：\n游戏没有启动硬件加速，因此导致掉帧，只要开启硬件加速或者使用默认启动硬件加速的浏览器进行游戏即可得到流畅体验。\n\n方案1：\n1、选择Internet Explorer浏览器或者其他浏览器进行游戏。\n\n方案2：\n1、右键游戏窗口，点击设置。\n2、弹出小窗口后，选择最左边的选项，开启硬件加速。\n3、刷新页面重启游戏。\n4、如果失败，请转试用方案1。";
-         text.text = "幻想纹章3本地版1.0\n\n这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本\n\n感谢@IS 和@碎风 的指路，感谢@风吟棠华落 提供数据解密方法，感谢@忆雪 提供的角色指导，感谢@正义永无止境 提供真幻想纹章3本地版，感谢@桐 提供的最终更新缓存，感谢开源项目JPEXS对反编译工作的支持\n\n再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报\n\n幻想纹章3交流群：1055702064"; // 修改为版本介绍
+         text.text = "幻想纹章3本地版1.1\n\n这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本\n\n感谢@IS 和@碎风 的指路，感谢@风吟棠华落 提供数据解密方法，感谢@忆雪 提供的角色指导，感谢@正义永无止境 提供真幻想纹章3本地版，感谢@桐 提供的最终更新缓存，感谢开源项目JPEXS对反编译工作的支持\n\n再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报\n\n幻想纹章3交流群：1055702064\n\n幻想纹章Club：hxwz3.cn"; // 修改为版本介绍
          this.addChild(text);
          text.y = 50; // 调整文本位置
          text.x = 50;
@@ -61,12 +65,21 @@ package game.view
          {
             removeFromParent(true);
          });
-         button1 = new Button(skin,"一键购买所有角色"); // 添加一键购买所有角色按钮
+         button1 = new Button(skin,"版本介绍"); // 添加版本介绍按钮
          this.addChild(button1); //
          button1.textFormat.size = 18; //
-         button1.x = button.x - button1.width - 16; //
+         button1.x = button.x + button1.width + 16; //
          button1.y = stage.stageHeight - button1.height * 2 - 16; //
          button1.addEventListener("triggered",function(e:Event):void //
+         { //
+            text.text = "幻想纹章3本地版1.1更新内容：\n\n1、添加角色：假面骑士G3X，朽木白哉\n\n2、修复角色：纹4布罗利 KSU不再砸两次，抓取范围调整，SU抓取镜头缩放实现；水门 插标伤害固定为4；空条承太郎 时停时暂停背景音乐而不是修改音量为0；秩序白面 第三被动实现；白金 被动判定优化；恶魔人 被动实现；汤姆 被动实现逻辑优化；哈扎马 被动实现，攻击力削弱；拉格纳 被动时间显示优化；双月让叶 被动实现，攻击力削弱，O镜头拉近效果；花京院典明 被动实现\n\n3、修复问题：搭档模式水门飞雷神错误，搭档模式纹4志志雄被换下后自爆错误，秩序白面被破防判定不准确，纹4布罗利护盾特效不循环"; //
+         }); //
+         button2 = new Button(skin,"一键购买所有角色"); // 添加一键购买所有角色按钮
+         this.addChild(button2); //
+         button2.textFormat.size = 18; //
+         button2.x = button1.x + button2.width + 16; //
+         button2.y = stage.stageHeight - button2.height * 2 - 16; //
+         button2.addEventListener("triggered",function(e:Event):void //
          { //
             // if(Phone.isPhone()) //
             // { //
@@ -83,14 +96,23 @@ package game.view
                SceneCore.pushView(new GameTestView()); // 弹出一键购买所有角色测试视图
             // } //
          }); //
-         button2 = new Button(skin,"版本介绍"); // 添加版本介绍按钮
-         this.addChild(button2); //
-         button2.textFormat.size = 18; //
-         button2.x = button.x + button2.width + 16; //
-         button2.y = stage.stageHeight - button2.height * 2 - 16; //
-         button2.addEventListener("triggered",function(e:Event):void //
+         button3 = new Button(skin,"加入交流群"); // 添加加入交流群按钮
+         this.addChild(button3); //
+         button3.textFormat.size = 18; //
+         button3.x = button.x - button3.width - 16; //
+         button3.y = stage.stageHeight - button3.height * 2 - 16; //
+         button3.addEventListener("triggered",function(e:Event):void //
          { //
-            text.text = "幻想纹章3本地版1.0更新内容：\n\n1、添加角色：波风水门\n\n2、修复角色：白金 技能U和技能WU互换 释放SO后可移动，Es 被动计算错误，奈茵 被动，赛莉卡 被动，古明地恋 被动，疾风传佐助 技能CD共享，志志雄（纹4） 被动显示 U完美防反实现 特效音效修复，空条承太郎 联机模式时停失效，波风水门 头像 立绘 BGM\n\n3、添加功能：2P的CD条取消翻转，解锁全角色答题支持触屏，启动登录界面BGM（替换音频bgm/main0.mp3），搭档对战联机模式\n\n4、修复问题：部分特效无法被时停，剧情模式选择事件界面无法关闭"; //
+            navigateToURL(new flash.net.URLRequest("https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NKKmX64I09HS90RrF-0lABHCy_Pbk-ZG&authKey=KcyDbNw%2F17UKTfofV1dm4KRyvuIz7r3KF3OfZk50SFjEYvgfk5RWAhLEHBMHEsT8&noverify=0&group_code=1055702064"), "_blank");
+         }); //
+         button4 = new Button(skin,"官方网站"); // 添加官方网站按钮
+         this.addChild(button4); //
+         button4.textFormat.size = 18; //
+         button4.x = button3.x - button4.width - 16; //
+         button4.y = stage.stageHeight - button4.height * 2 - 16; //
+         button4.addEventListener("triggered",function(e:Event):void //
+         { //
+            navigateToURL(new flash.net.URLRequest("https://hxwz3.cn"), "_blank");
          }); //
       }
    }
