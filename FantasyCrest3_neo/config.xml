@@ -1,1 +1,6 @@
-<code data="PGJta2JkYTcCFxYxVVZmWl9dLPcMCwoJCAciTlhITwFOQEtCGf3Aj2C/Vmy6g4a3aYXw7TUvB+s1N+j0As3i4eDf3t34JC4eJdckFiEY79OXVS+TWU2PZWKMLluTXyr6z+2NWSW9ugL81LgDA/a0wM6Zrq3Iuuvs/PD188KNvrDj7uzj5eK4"/>
+<config>
+  <action>
+      <item name="消耗水晶" id="mp"/>
+      <item name="禁止强制（Y/N）" id="noc"/>
+  </action>
+</config>
