@@ -1,1 +1,50 @@
-<code data="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"/>
+<Role type="sprite" scale="1" fps="12" hitEffectName="">
+  <content>
+    <xml path="npc/hongjiangshi.xml"/>
+    <image path="npc/hongjiangshi.png"/>
+  </content>
+  <loads/>
+  <action>
+    <act name="待机">
+      <SubTexture name="hongjiangshi0000" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="hongjiangshi0008" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0009" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0010" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0011" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0013" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0014" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0011" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0010" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0009" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0008" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="hongjiangshi0016" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落">
+      <SubTexture name="hongjiangshi0017" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="12">
+      <SubTexture name="hongjiangshi0018" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0018" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0018" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0018" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0019" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="hongjiangshi0015" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击">
+      <SubTexture name="hongjiangshi0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0004" gox="0" goy="0" effects="[]" hitPoint="12,-90 17,-38 80,-29 70,-94" hitEffect="2" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" hitX="2" straight="60"/>
+      <SubTexture name="hongjiangshi0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="hongjiangshi0006" gox="0" goy="0" effects="[]"/>
+    </act>
+  </action>
+</Role>

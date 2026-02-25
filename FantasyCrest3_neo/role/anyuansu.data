@@ -1,1 +1,45 @@
-<code data="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"/>
+<Role type="sprite">
+  <content>
+    <xml path="npc/anyuansu.xml"/>
+    <image path="npc/anyuansu.png"/>
+  </content>
+  <loads>
+    <sprites path="effect/haws12"/>
+  </loads>
+  <action>
+    <act name="待机" fps="12">
+      <SubTexture name="anyuansu0000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0004" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="anyuansu0000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0004" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤" fps="12">
+      <SubTexture name="anyuansu0024" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0025" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0026" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="12">
+      <SubTexture name="anyuansu0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0008" gox="0" goy="0" effects="[&quot;{\&quot;stiff\&quot;:30,\&quot;isABlow\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;name\&quot;:\&quot;haws12\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;x\&quot;:-55,\&quot;y\&quot;:-252,\&quot;fadeOut\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;hitVibrationSize\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;blow\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;intensity\&quot;:null,\&quot;hitX\&quot;:2,\&quot;gox\&quot;:0,\&quot;color\&quot;:[],\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;white\&quot;,\&quot;isLockActionShow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;wFight\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;hitY\&quot;:10,\&quot;findName\&quot;:\&quot;\&quot;}&quot;]"/>
+      <SubTexture name="anyuansu0009" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0010" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0011" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="anyuansu0004" gox="0" goy="0" effects="[]"/>
+    </act>
+  </action>
+</Role>

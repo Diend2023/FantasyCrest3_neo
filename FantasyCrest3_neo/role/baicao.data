@@ -1,1 +1,81 @@
-<code data="PFFtaWEbbnJoXDMXZ2NkWmRUEA1fTktVTSQIFRIbBAFGT1Ea/g0O+/g/P0kZOTg2M0McLjkwB+vqBdDl5P8lMC4zIysw+cTZ2NfW8SwgHtEgECIV6c0YGQvWCAYNBgMQzhcLCb7K2KO4t7a10Pz/8vf0rv3t//LGqvX26LPl4+rj4O2r7Onhm6e1gJWUr6HU393i0trfqHOIh6LR08TG1I+daH18l7u8zMDFw5JdcnFwb4qur79qt6m0q4JmKADGJtv4X1yhqqx1WWdtVnE8UVBPTk1MZ32einuLnZiYlIZAjX+KgVg8/p2a+tDKM0NBQD8+LyxyeYFFKTYnJGpxej0hLh8cYGBfXVpqaDEVTU4SHiz3DAsKCQgHIjhZRTZGWFNTT0H7SDpFPBP3uVhVtYuF7v78+/r76uctNDwA5PHi3yUsNfjc6drXGxsaGBUlI+zQCAnN2eeyx8bFxMPC3fMUAPEBEw4OCvy2A/UA986ydBMQcEZAqbm3trW3paLo7/e7n6ydmuDn8LOXpJWS1tbV09Dg3qeLw8SIlKJtgoGAf359mK7Pu6y8zsnJxbdxvrC7soltL87LKwH7ZHRycXBzYF2jqrJ2WmdYVZuiq25SX1BNkZGQjoubmWJGfn9DT10oPTw7Ojk4U2mKdmd3iYSEgHIseWt2bUQo6omG5ry2Hy8tLCsvGxheZW0xFSITEFZdZikNGgsITExLSUZWVB0BOTr+Chjj+Pf29fTzDiRFMSIyRD8/Oy3nNCYxKP/jpURBoXdx2uro5+br1tMZICjs0N3OyxEYIeTI1cbDBwcGBAERD9i89PW5xdOes7KxsK+uyd8A7N3t//r69uii7+Hs47qeYP/8XDIslaWjoqGnkY7U2+Oni5iJhszT3J+DkIF+wsLBv7zMypN3r7B0gI5Zbm1sa2pphJq7p5iourW1saNdqpynnnVZG7q3F+3nUGBeXVxjTEmPlp5iRlNEQYeOl1o+Szw5fX18eneHhU4yamsvO0kUKSgnJiUkP1V2YlNjdXBwbF4YZVdiWTAU1nVy0qiiCxsZGBcfBwRKUVkdAQ7//EJJUhX5Bvf0ODg3NTJCQAntJSbq9gTP5OPi4eDf+hAxHQ4eMCsrJxnTIBIdFOvPkTAtjWNdxtbU09LRwr8FDBTYvMm6t/0EDdC0wbKv8/Py8O39+8So4OGlsb+Kn56dnLep2tvrtH+Uk5KRrNDR4YzZy9bNpIhNBe9KFhCBfsPMzpd7iYl4k15zcnFwb26Jn8Csna2/urq2qGKvoayjel4gv7wc8uxVZWNiZGNRTpSbo2dLWElGjJOcX0NQQT6CgoF/fIyKUzdvcDRAThkuLSwrKilEWntnWGh6dXVxYx1qXGdeNRnbenfXracQIB4dHx8MCU9WXiIGEwQBR05XGv4L/Pk9PTw6N0dFDvIqK+/7CdTp6Ofm5eT/FTYiEyM1MDAsHtglFyIZ8NSWNTKSaGLL29nY2tvHxAoRGd3Bzr+8AgkS1bnGt7T4+Pf18gIAya3l5qq2xI+ko6KhoJ+60PHdzt7w6+vn2ZPg0t3Uq49R8O1NIx2GlpSTlZeCf8XM1Jh8iXp3vcTNkHSBcm+zs7Kwrb27hGigoWVxf0pfXl1cW1p1i6yYiZmrpqailE6bjZiPZkoMq6gI3thBUU9OUFM9OoCHj1M3RDUyeH+ISy88LSpubm1raHh2PyNbXCAsOgUaGRgXMiRVVmYv+g8ODQwnS0xcB1RGUUgfA8iWkcWTXvwX4vf29fTz8g0jRDAhMUM+Pjos5jMlMCf+4qRDQKB2cNnp5+bm5NXSGB8n68/czcoQFyDjx9TFwgYGBQMAEA7Xu/P0uMTSnbKxsK/KvO3u/seSp6alpL/j5PSf7N7p4LebYRADXQQwlK96j46NjIuKpbvcyLnJ29bW0sR+y73Iv5Z6PNvYOA4IcYF/fn59bWqwt7+DZ3RlYqivuHtfbF1anp6dm5iopm9Ti4xQXGo1SklIR2JUhYaWXyo/Pj08V3t8jDeEdoF4TzP4n8vyqLssRxInJiUkIyI9U3RgUWFzbm5qXBZjVWBXLhLUc3DQpqAJGRcWFhYFAkhPVxv/DP36QEdQE/cE9fI2NjUzMEA+B+sjJOj0As3i4eDf+uwdHi73wtfW1dTvExQkzxwOGRDny44wOY5HQcTfqr++vby7utXrDPjp+QsGBgL0rvvt+O/GqmwLCGg+OKGxr7C1sp2a4Ofvs5eklZLY3+irj5yNis7OzcvI2Nafg7u8gIyaZXp5eHeShLW2xo9ab25tbIerrLxntKaxqH9jJb/QJcz4XHdCV1ZVVFNSbYOkkIGRo56emoxGk4WQh15CBKOgANbQOUlHSE1LNTJ4f4dLLzwtKnB3gEMnNCUiZmZlY2BwbjcbU1QYJDL9EhEQDyocTU5eJ/IHBgUEH0NEVP9MPklAF/vAjI29jn708TY/QQru/ALrBtHm5eTj4uH8EjMfECAyLS0pG9UiFB8W7dGTMi+PZV/I2NbX3NvEwQcOFtq+y7y5/wYP0rbDtLH19fTy7//9xqri46ezwYyhoJ+enZy3ze7ay9vt6Ojk1pDdz9rRqIxO7epKIBqDk5GSl5Z/fMLJ0ZV5hnd0usHKjXF+b2ywsK+tqrq4gWWdnmJufEdcW1pZWFdyiKmVhpaoo6OfkUuYipWMY0cJqKUF29U+TkxNUlE6N32EjFA0QTIvdXyFSCw5Kidra2poZXVzPCBYWR0pNwIXFhUUExItQ2RQQVFjXl5aTAZTRVBHHgLEY2DAlpD5CQcIDQ318jg/Rwvv/O3qMDdAA+f05eImJiUjIDAu99sTFNjk8r3S0dDPzs3o/h8L/AweGRkVB8EOAAsC2b1/Hht7UUu0xMLDyMiwrfP6Asaqt6il6/L7vqKvoJ3h4eDe2+vpspbOz5OfrXiNjIuKiYijudrGt8fZ1NTQwnzJu8a9lHg62dY2DAZvf31+g4NraK61vYFlcmNgpq22eV1qW1icnJuZlqakbVGJik5aaDNIR0ZFYFKDhJRdKD08OzpVeXqKNYJ0f3ZNMfOco+/GrSpFECUkIyIhIDtRcl5PX3FsbGhaFGFTXlUsENJxbs6kngcXFRYbFwMARk1VGf0K+/g+RU4R9QLz8DQ0MzEuPjwF6SEi5vIAy+Df3t346hscLPXA1dTT0u0REiLNGgwXDuXJjz1WiGBCwt2ovby7urm40+kK9uf3CQQEAPKs+ev27cSoagkGZjw2n6+trK+sm5je5e2xlaKTkNbd5qmNmouIzMzLycbW1J2Bubp+iphjeHd2dZCCs7TEjVhtbGtqhamqumWypK+mfWEk1uokutMey/Eau+5UUZafoWpOXVpLZjFGRURDQkFccpN/cICSjY2JezWCdH92TTHzko/vxb8oODY1OTYkIWdudjoeKxwZX2ZvMhYjFBFVVVRST19dJgpCQwcTIewBAP/+/fwXLU46KztNSEhENvA9LzoxCOyuTUqqgHrj8/Hw9PHf3CIpMfXZ5tfUGiEq7dHez8wQEA8NChoY4cX9/sLO3Ke8u7q5uLfS6An15vYIAwP/8av46vXsw6dpCAVlOzWerqyrr6yal93k7LCUoZKP1dzlqIyZiofLy8rIxdXTnIC4uX2Jl2J3dnV0c3KNo8SwobHDvr66rGazpbCnfmIkw8Ag9vBZaWdmamhVUpifp2tPXE1KkJegY0dURUKGhoWDgJCOVztzdDg1fYZaeoRcb31Tell3RSlsZnB2ZyMgcm1yal9IWmVcMxcWE2VlX18rD2FZXV1XVwgFS1JORUVNG/8M/fpNTUlEEvYD9PE4OEISMjEvLDwVJzIpAOTj7/3I3dzb2tnY8wkqFgcXKSQkIBLMGQsWDeTIiikmhlxWv8/NzNDOu7j+BQ3RtcKzsPb9Bsmtuquo7Ozr6eb29L2h2dqeqriDmJeWlZSTrsTl0cLS5N/f282H1MbRyJ+DReThQRcReoqIh4uJdnO5wMiMcH1ua7G4wYRodWZjq7SIqLKKnauBqIelc1ealJ6klVFOoJugmI12iJOKYUVEQZOTjY1ZPY2Nh4c4NXuCfnV1fUsvPC0qfX15dEImMyQhaGhyQmJhX1xsRVdiWTAUExBUVFNRTl5cJQlBQgYSIOsA//79/PsWLE05KjpMR0dDNe88LjkwB+utTEmpf3ni8vDv8/Pe2yEoMPTY5dbTGSAp7NDdzssPDw4MCRkX4MT8/cHN26a7urm4t7bR5wj05fUHAgL+8Kr36fTrwqZoBwRkOjSdrauqrq+Zltzj66+ToJGO1Nvkp4uYiYbKysnHxNTSm3+3uHyIlmF2dXRzcnGMosOvoLDCvb25q2WypK+mfWEjwr8f9e9YaGZlaWtUUZeepmpOW0xJj5afYkZTREGFhYSCf4+NVjpyczdDURwxMC8uLSxHXX5qW2t9eHh0ZiBtX2phOBzefXrasKoTIyEgJCcPDFJZYSUJFgcESlFaHQEO//xAQD89OkpIEfUtLvL+DNfs6+rp6OcCGDklFiY4MzMvIdsoGiUc89eZODWVa2XO3tzb4NzKxw0UHODE0cK/BQwV2LzJurf7+/r49QUDzLDo6a2q8vvP7/nR5PLI787sup7h2+Xr3JiV5+Ln39S9z9rRqIyLiNra1NSghNTUzs5/fMLJxby8xJJ2g3RxxMTAu4ltemtor6+5iamopqOzjJ6poHdbWmZ0P1RTUlFQT2qAoY1+jqCbm5eJQ5CCjYRbPwGgnf3TzTZGRENIRTIvdXyESCw5KidtdH1AJDEiH2NjYmBdbWs0GFBRFSEv+g8ODQwLCiU7XEg5SVtWVlJE/ks9SD8W+rxbWLiOiPEB//4DAO3qMDc/A+f05eIoLzj73+zd2h4eHRsYKCbv0wsM0NzqtcrJyMfGxeD2FwP0BBYREQ3/uQb4A/rRtXcWE3NJQ6y8urm+vKil6/L6vqKvoJ3j6vO2mqeYldnZ2NbT4+GqjsbHi5elcIWEg4KBgJux0r6vv9HMzMi6dMGzvrWMcDLRzi4E/md3dXR5d2Ngpq21eV1qW1iepa5xVWJTUJSUk5GOnpxlSYGCRlJgK0A/Pj08O1ZsjXlqeoyHh4N1L3xueXBHK+2Miem/uSIyMC80Mx4bYWhwNBglFhNZYGksEB0OC09PTkxJWVcgBDw9Af5GTyNDTSU4RhxDIkAO8jUvOT8w7Ok7NjszKBEjLiX84N/cLi4oKPTYKCgiItPQFh0ZEBAY5srXyMUYGBQP3cHOv7wDAw3d/fz69wfg8v30y6+uusiTqKempaSjvtT14dLi9O/v692X5Nbh2K+TVfTxUSchipqYl52VhoPJ0NicgI1+e8HI0ZR4hXZzt7e2tLHBv4hspKVpdYNOY2JhYF9eeY+wnI2dr6qqpphSn5Gck2pOEK+sDOLcRVVTUlhRQT6Ei5NXO0g5NnyDjE8zQDEucnJxb2x8ekMnX2AkMD4JHh0cGxoZNEprV0hYamVlYVMNWkxXTiUJy2pnx52XABAODRMN/Pk/Rk4S9gP08Tc+Rwru++zpLS0sKic3Nf7iGhvf6/nE2djX1tXU7wUmEgMTJSAgHA7IFQcSCeDEhiUiglhSu8vJyM7It7T6AQnNsb6vrPL5AsWptqek6Ojn5eLy8Lmd1daaprR/lJOSkZCPqsDhzb7O4Nvb18mD0MLNxJt/QeDdPRMNdoaEg4mDcm+1vMSIbHlqZ620vYBkcWJfo6OioJ2tq3RYkJFVYW86T05NTGdZioubZC9EQ0JBXICBkTyJe4Z9VDj8vc32yb31osjxksUrN0UQJSQ/MWJjc2dsajkENSdJZWFZMQ=="/>
+<Role type="sprite" scale="0.8" fps="24" hitEffectName="">
+  <content>
+    <xml path="npc/baicao.xml"/>
+    <image path="npc/baicao.png"/>
+  </content>
+  <loads/>
+  <action>
+    <act name="待机" fps="18">
+      <SubTexture name="元件 10000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10008" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10009" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10000" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="元件 10033" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10034" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10035" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10036" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10037" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃">
+      <SubTexture name="元件 10010" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落">
+      <SubTexture name="元件 10011" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地">
+      <SubTexture name="元件 10012" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="元件 10286" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落">
+      <SubTexture name="元件 10287" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="18">
+      <SubTexture name="元件 10288" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10288" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10288" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10289" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10289" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10289" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="元件 10285" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御">
+      <SubTexture name="元件 10042" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="20">
+      <SubTexture name="元件 10053" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10053" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10053" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10054" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10054" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10054" gox="0" goy="0" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName="" effects="[]"/>
+      <SubTexture name="元件 10056" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10057" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10058" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10059" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10063" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10065" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10065" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10066" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10070" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10071" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10072" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10072" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10072" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="空中攻击"/>
+  </action>
+</Role>

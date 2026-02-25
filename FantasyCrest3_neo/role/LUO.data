@@ -1,1 +1,30 @@
-<code data="PFFtaWEbbnJoXDMXZ2NkWmRUECv2CwolS1ZUWUlRVh/q//79/BdSRkT3RjZIOw/zPj8x/DhAOfdANDLn8wHM4eDf3vklKBsgHdcmFigb79MeHxHcGCAZ1xgVDcfT4azBwNvNAAsJDv4GC9SftLPO/f/w8gC7yZSpqMPn6Pjs8e++iZ6dnJu22tvrluPV4NeuklQs8lIHJIuIzdbYoYWTlIKdaH18e3p5eJOpyrant8nExMCybLmrtq2EaCrJxib89l9vbWxrbltYnqWtcVViU1CWnaZpTVpLSIyMi4mGlpRdQXl6PkpYIzg3NjU0M05khXFicoR/f3ttJ3RmcWg/I+WEgeG3sRoqKCcmKhYTWWBoLBAdDgtRWGEkCBUGA0dHRkRBUU8Y/DQ1+QUT3vPy8fDv7gkfQCwdLT86OjYo4i8hLCP63qA/PJxybNXl4+Lh5tHOFBsj58vYycYMExzfw9DBvgICAf/8DArTt+/wtMDOma6trKuqqcTa++fY6Pr19fHjnerc5961mVv691ctJ5Cgnp2cooyJz9beooaThIHHzteafot8eb29vLq3x8WOcqqrb3uJVGloZ2ZlZH+VtqKTo7WwsKyeWKWXoplwVBa1shLo4ktbWVhXXEdEipGZXUFOPzyCiZJVOUY3NHh4d3VygoBJLWVmKjZEDyQjIiEgHzpQcV1OXnBra2dZE2BSXVQrD9Fwbc2jnQYWFBMSFgL/RUxUGPwJ+vc9RE0Q9AHy7zMzMjAtPTsE6CAh5fH/yt/e3dzb2vULLBgJGSsmJiIUzhsNGA/myowrKIheWMHRz87N0L26AAcP07fEtbL4/wjLr7ytqu7u7evo+Pa/o9vcoKy6hZqZmJeWlbDG59PE1Obh4d3PidbI08qhhUfm40MZE3yMiomIi3h1u8LKjnJ/cG2zusOGandoZampqKajs7F6XpaXW2d1QFVUU1JtX5CRoWo1SklIR2KGh5dCj4GMg1o+A7ulAMzGN0NRHDEwLy5JbW5+KXZoc2pBJeq4s+e1gB4qOAMYFxYVMFRVZRBdT1pRKAzSgXTOdaEFER/q//79/Bc7PEz3RDZBOA/zuF+Lsmh77PgG0ebl5OP+IiMz3isdKB/22p0/SJ1WUNPf7bjNzMvK5QkKGsUSBA8G3cGDHS6DKla6xtSftLOysczw8QGs+ev27cSobTk6ajsroa27hpuamZiz19jok+DS3dSrj1H6AU0kC4iUom2CgYB/mr6/z3rHucS7knY86gM1De9ve4lUaWhnZoGlprZhrqCronldINLmILbPGsftFrfqUFxqNUpJSEdihoeXQo+BjINaPgLD0/zPw/uozveYyzE9SxYrKkU3aGl5bXJwPwo7LU9rZ183"/>
+<Role type="sprite">
+  <content>
+    <xml path="npc/luo.xml"/>
+    <image path="npc/luo.png"/>
+  </content>
+  <loads/>
+  <action>
+    <act name="待机" fps="13">
+      <SubTexture name="元件 10004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10004" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走"/>
+    <act name="跳跃"/>
+    <act name="降落"/>
+    <act name="落地"/>
+    <act name="打飞"/>
+    <act name="倒落"/>
+    <act name="起身"/>
+    <act name="受伤"/>
+    <act name="防御"/>
+    <act name="普通攻击"/>
+    <act name="空中攻击"/>
+  </action>
+</Role>

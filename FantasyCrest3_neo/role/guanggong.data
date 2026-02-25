@@ -1,1 +1,57 @@
-<code data="PFFtaWEbbnJoXDMXZ2NkWmRUECv2CwolS1ZUWUlRVh/q//79/BdSRkT3RjZIOw/zPj8x/DNAKzcvLjUzK/E6Lizh7fvG29rZ2PMfIhUaF9EgECIV6c0YGQvWDRoFEQkIDw0FywwJAbvH1aC1tM/B9P/9AvL6/8iTqKfC8fPk5vS+iZ6dnJu27Ojp3+nZ5pLh0ePWqo7Q0M/NytqUysjLy8nAzI9+iphjeHeShMDCs7XDjVhtbIerrLywtbOCTWJhYF96np+vWqeZpJtyVhjwthbL6E9MkZqcZUlXV0ZhLEFAPz49PFdtjnpre42IiIR2MH1venFILHB9aHRsa3JwaDAvLi0eG2FocDQYJRYTWWBpLBAdDgtPT05MSVlXIAQ8PQENG+b7+vn49/YRJ0g0JTVHQkI+MOo3KTQrAuYqNyIuJiUsKiLq6ejo2NUbIiru0t/QzRMaI+bK18jFCQkIBgMTEdq+9ve7x9WgtbSzsrGwy+EC7t/vAfz8+Oqk8ePu5byg5PHc6ODf5uTcpKOio5KP1dzkqIyZiofN1N2ghJGCf8PDwsC9zcuUeLCxdYGPWm9ubWxraoWbvKiZqbu2trKkXqudqJ92Wp6rlqKamaCell5dXF5MSY+WnmJGU0RBh46XWj5LPDl9fXx6d4eFTjJqay87SRQpKCcmQTNkZXU+CR4dHBs2WltrFmNVYFcuEtePedSgmgsITVZYIQUTEwId6P38+/r5+BMpSjYnN0lEREAy7DkrNi0E6Cw5JDAoJy4sJOzr6una1x0kLPDU4dLPFRwl6MzZyscLCwoIBRUT3MD4+b3J16K3trW0s7LN4wTw4fED/v767Kbz5fDnvqLm897q4uHo5t6mpaSklJHX3uaqjpuMic/W36KGk4SBxcXEwr/PzZZ6srN3g5FccXBvbm1sh52+qpurvbi4tKZgrZ+qoXhcoK2YpJyboqCYYF9eX05LkZigZEhVRkOJkJlcQE0+O39/fnx5iYdQNGxtMT1LFisqKSgnJkFXeGRVZXdycm5gGmdZZFsyFlpnUl5WVVxaUhoZGBoIBUtSWh4CDwD9Q0pTFvoH+PU5OTg2M0NBCu4mJ+v3BdDl5OPi/e8gITH6xdrZ2NfyFhcn0h8RHBPqzpAqO5A3Y8fircLBwL++vdjuD/vs/A4JCQX3sf7w+/LJrfH+6fXt7PPx6bGwr7KfnOLp8bWZppeU2uHqrZGej4zQ0M/NytrYoYW9voKOnGd8e3p5eHeSqMm1prbIw8O/sWu4qrWsg2eruKOvp6atq6NramltWVaco6tvU2BRTpSbpGdLWElGioqJh4SUkls/d3g8SFYhNjU0MzIxTGKDb2Bwgn19eWslcmRvZj0hZXJdaWFgZ2VdJSQjKBMQVl1lKQ0aCwhOVV4hBRIDAEREQ0E+TkwV+TEy9gIQ2/Dv7u3s6wYcPSkaKjw3NzMl3yweKSD32x8sFyMbGiEfF9/e3ePNyhAXH+PH1MXCCA8Y27/Mvbr+/v37+AgGz7Pr7LC8ypWqqainpqXA1vfj1OT28fHt35nm2OPasZXZ5tHd1dTb2dGZmJeeh4TK0dmdgY5/fMLJ0pV5hnd0uLi3tbLCwIltpaZqdoRPZGNiYXxun6CweURZWFdWcZWWplGekJuSaU0S3t8P4NBGQ4iRk1xATk49WCM4NzY1NDNOZIVxYnKEf397bSd0ZnFoPyNndF9rY2JpZ18nJiUsFRJYX2crDxwNClBXYCMHFAUCRkZFQ0BQThf7MzT4BBLd8vHw7+7tCB4/KxwsPjk5NSfhLiArIvndIS4ZJR0cIyEZ4eDf5s/MEhkh5cnWx8QKERrdwc6/vAAA//36CgjRte3usr7Ml6yrqqmop8LY+eXW5vjz8+/hm+ja5dyzl9vo09/X1t3b05uamZ+JhszT25+DkIF+xMvUl3uIeXa6urm3tMTCi2+nqGx4hlFmZWRjYmF8krOfkKCyra2pm1WilJ+WbVGVoo2ZkZCXlY1VVFNYQ0CGjZVZPUo7OH6FjlE1QjMwdHRzcW5+fEUpYWImMkALIB8eHRwbNkxtWUpabGdnY1UPXE5ZUCcLT1xHU0tKUU9HDw4NEf36QEdPE/cE9fI4P0gL7/zt6i4uLSsoODb/4xsc4Oz6xdrZ2NfW1fAGJxMEFCYhIR0PyRYIEwrhxQkWAQ0FBAsJAcnIx8q3tPoBCc2xvq+s8vkCxam2p6To6Ofl4vLwuZ3V1pqmtH+Uk5KRkI+qwOHNvs7g29vXyYPQws3Em3/D0LvHv77Fw7uDgoGDcW60u8OHa3hpZqyzvH9jcGFeoqKhn5ysqnNXj5BUYG45Tk1MS0pJZHqbh3iImpWVkYM9inyHflU5fYp1gXl4f311PTw7PSsobnV9QSUyIyBmbXY5HSobGFxcW1lWZmQtEUlKDhoo8wgHBgUgEkNEVB3o/fz7+hU5Okr1QjQ/Ng3xs1xjr4Zt6ucsNTcA5PLy4fzH3Nva2djX8ggpFQYWKCMjHxHLGAoVDOPHCxgDDwcGDQsDy8rJzLm2/AMLz7PAsa70+wTHq7ippurq6efk9PK7n9fYnKi2gZaVlJOSkazC48/A0OLd3dnLhdLEz8adgcXSvcnBwMfFvYWEg4dzcLa9xYltemtorrW+gWVyY2CkpKOhnq6sdVmRklZicDtQT05NTEtmfJ2Jeoqcl5eThT+MfomAVzt/jHeDe3qBf3c/Pj1BLSpwd39DJzQlImhveDsfLB0aXl5dW1hoZi8TS0wQHCr1CgkIByIURUZWH+r//v38Fzs8TPdENkE4D/O2aHy2TGWwXYOsTYDm4ygxM/zg7u7d2hwc9Njq1tMdFins0M/MHyMZDeTIEQURBsPADhIFAQ3Xu/MSvAYJAgbMBvD6AvGx+/73+8G/qvT38PS6pO7x6u60pJ3n6uPnrdrUld/i29+lo47Y29TYns/RhtDTzNCW14XTfcfKw8eNx7G7w7JyvL+4vIKAa7W4sbV7Za+yq691ZV6oq6SobpuVVqCjnKBmZE+ZnJWZX5GRhEaQk4yQVpd2OjeDiHtQNDNOGS4tLCsqKURae2dYaHp1dXFjHWpcZ141GV1qVWFZWF9dVR0cGyMLCE5VXSEFEgMARk1WGf0K+/g8PDs5NkZEDfEpKu76CNPo5+bl5OP+FDUhEiI0Ly8rHdckFiEY79MXJA8bExIZFw/X1tbUxcIIDxfbv8y9ugAHENO3xLWy9vb18/AA/ser4+SotMKNoqGgn56duM7v28zc7unp5deR3tDb0qmN0d7J1c3M09HJkZCQj398wsnRlXmGd3S6wcqNcX5vbLCwr62quriBZZ2eYm58R1xbWllYV3KIqZWGlqijo5+RS5iKlYxjR4uYg4+Hho2Lg0tKSko5NnyDi08zQDEudHuERys4KSZqamlnZHRyOx9XWBwoNgEWFRQTEhEsQmNPQFBiXV1ZSwVSRE9GHQFFUj1JQUBHRT0FBAQF8/A2PUUJ7frr6C41PgHl8uPgJCQjIR4uLPXZEdslKCEl6yoK0x0gGR3jCgcT7AwW/cYQEwwQ1tT/+QMJ+sDvuAIF/gLI8uzu7tf8+uGq9Pfw9Lq4493n7d6k05zm6eLmrNLb3eTIkdve19uhn8rEztTFi7qDzdDJzZO/v8mhtMKtdsDDvMCGhK+ps7mqcJ9osrWusnivnpulnY+SW6WooaVraV9ZiFGbnpebYYaYhZGVlI6LeUKMj4iMUlB7dX+FdjxrNH6Ben5EfG94dHlqal0mcHNscDY0X1ljaVogTxhiZV5iKE9aVlhaQwxWWVJWHBo6Owk4AUtOR0sRQho8OTlEK/Q+QTo+BAL38iHqNDcwNPonKzAgKCwhKy8R2iQnICTq6N3YB9AaHRYa4AYPBw8E7A0BAffACg0GCtDO77gCBf4CyP/u/O7t9eKr9fjx9bur2qPt8Onts9ja2bfi3uDiy5Te4drepKKXksGK1NfQ1JrGxtCxw7vKuMq+w8Glusq0qnO9wLm9g4F2caBps7avs3m0gqShoayTXKapoqZsal9aiVKcn5icYpmXh2aRjY+RekONkImNU1FDRkBvOIKFfoJIf25rdW1gYit1eHF1OzkvKVgha25nazFYVWVWN2JQW1JIEVteV1shHxQPPgdRVE1RF0NDTTEz/EZJQkYMCgL++SjxOz43OwEuNwU0JiEqGuMtMCkt8/EcFiAmF90M1R8iGx/lHhYPDxkAyRMWDxPZ1wL8Bgz9w/K7BQgBBcv97/rx57D6/fb6wL7fqPL17vK44uDj4+HY5KfQmePm3+OpmciR297X26HNzdenx8bEwdGqvMe+tH3HysPHjYusdb/Cu7+FpW64u7S4fm6dZrCzrLB2o6yEppmgdZammp+dgZWbooZPmZyVmV9diIKMkoNJeEGLjoeLUY1wOYOGf4NJRzk9PDVkLXd6c3c9anNLbWBnPF1tYWZkURpkZ2BkKihTTVddThRDDFZZUlYcSVIqPlFJPUE0/UdKQ0cNCzYwOkAx9ybvOTw1Of88HucxNC0x9/Xn6unv4hHaJCcgJOoXIO3tFhgfA8wWGRIW3NoF/wkPAMb1vggLBAjO+Pr+89zu+fDmr/n89fm/vd6n8fTt8bfXoOrt5uqwoM+Y4uXe4qje2t7K3NDV08CJ09bP05mXjIe2f8nMxcmPxsa6trWqc73Aub2DgXd1dG+eZ7G0rbF3oqmxlF2nqqOnbWtmX1qJUpyfmJxijZSdf0iSlY6SWFZLRnU+iIuEiE57hFZ+enl7gmYveXx1eT89aGJscmMpWCFrbmdrMWldYFdNFmBjXGAmJB8YE0ILVVhRVRtOVEJOTUM9PRpCNkdGLvdBRD1BBwUm7zk8NTn/H+gyNS4y+OgX4CotJirwGhQWFvkdCtMdIBkd4+EMBhAWB838xQ8SCw/VAQEL7vG6BAcABMrIvsEIsPr99vrA4aWxv4qfnp2cm5q1y+zYydnr5ubi1I7bzdjPporO28bSysnQzsaOjY2PfHm/xs6SdoN0cbe+x4pue2xpra2sqqe3tX5imptfa3lEWVhXVlVUb4WmkoOTpaCgnI5IlYeSiWBEiJWAjISDioiASEdHSjYzeYCITDA9LitxeIFEKDUmI2dnZmRhcW84HFRVGSUz/hMSERAPDik/YEw9TV9aWlZIAk9BTEMa/kJPOkY+PURCOgIBAQXw7TM6Qgbq9+jlKzI7/uLv4N0hISAeGysp8tYOD9Pf7bjNzMvKycjj+RoG9wcZFBQQArwJ+wb91Lj8CfQA+Pf+/PS8u7vAqqft9PzApLGin+Xs9bicqZqX29va2NXl46yQyMmNmadyh4aFhIOCnbPUwLHB087Oyrx2w7XAt45ytsOuurKxuLaudnV1e2Rhp662el5rXFmfpq9yVmNUUZWVlJKPn51mSoKDR1NhLEFAPz5ZS3x9jVYhNjVQQnN0hHh9e0oVRjhadnJqQg=="/>
+<Role type="sprite">
+  <content>
+    <xml path="npc/guanggong.xml"/>
+    <image path="npc/guanggong.png"/>
+  </content>
+  <loads>
+    <sprites path="effect/feijian2"/>
+  </loads>
+  <action>
+    <act name="待机" fps="12">
+      <SubTexture name="guanggong0000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0003" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="guanggong0000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0003" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落">
+      <SubTexture name="guanggong0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0008" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="12">
+      <SubTexture name="guanggong0008" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0008" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0003" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤" fps="12">
+      <SubTexture name="guanggong0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0005" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="12" cd="5" key="" type="land" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" msg="">
+      <SubTexture name="guanggong0009" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0010" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0011" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0012" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0013" gox="0" goy="0" effects="[&quot;{\&quot;canHit\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;through\&quot;:false,\&quot;color\&quot;:[],\&quot;mFight\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;wFight\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;scaleY\&quot;:1,\&quot;cardFrame\&quot;:0,\&quot;hitY\&quot;:30,\&quot;isBreak\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;feijian2\&quot;,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;isLockActionShow\&quot;:false,\&quot;x\&quot;:-22,\&quot;isLockAction\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;y\&quot;:-118,\&quot;isABlow\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;stiff\&quot;:100,\&quot;gox\&quot;:60,\&quot;goy\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;time\&quot;:60,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;fadeIn\&quot;:false,\&quot;hitX\&quot;:15}&quot;]"/>
+      <SubTexture name="guanggong0014" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0015" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0016" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0017" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="guanggong0018" gox="0" goy="0" effects="[]"/>
+    </act>
+  </action>
+</Role>
