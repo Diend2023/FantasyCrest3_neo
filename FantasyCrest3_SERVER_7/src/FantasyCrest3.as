@@ -53,7 +53,12 @@ package
             {
                return xml;
             }
-            return DecodeFightXML.decode(xml);
+            // return DecodeFightXML.decode(xml);
+            if((xml.localName() == "root" || xml.localName() == "code") && xml.@data != undefined && String(xml.@data).length > 0) // 兼容未加密数据
+            { //
+               return DecodeFightXML.decode(xml); //
+            } //
+            return xml; //
          };
          if(true)
          {
