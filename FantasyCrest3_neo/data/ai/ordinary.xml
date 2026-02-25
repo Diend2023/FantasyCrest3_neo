@@ -1,1 +1,16 @@
-<code data="PGBnOwYENlpmWxZeWDAU14Sq03SnDQpSVltLV1pETh4CEA7/GuXj4hQ4OUk9QkDxOTML7w0U+C42LDM+7DUxLSXr8PPs5+vv6ODx1+PxvLq56w8QIBQZF8gQCuLG5OvTzhIJBggHwgsHA/u+z7XBz5qYyrzt+e7HkpDC5vLnourkvKBlOzhfADOZlt7i59fj5tDaqo6cmoumcW9uoMTF1cnOzH3Fv5d7maCEvbXHt3nCvrqydYZseIZRT06ApKW1qa6sXaWfd1t5gGSYnJSlllihnZmRVGVLV2UwLmBSg4+EXSgmWHyIfTiAelI2/KrD9c2vLyx0eH1teXxmcEAkOTAhPAcFBDZaW2tfZGITW1UtES82HhlOTk5MVFhJC1RQTEQHGP4KGOPhEwU2QjcQ29kLLzsw6zMtBemrfGWsQnzi3ycrMCAsLxkj89fq49Tvuri36Q0OHhIXFcYOCODE4unRzAoLEf/BCgYC+r3OtMDOmZfJu+z47caRwrTl7MA="/>
+<ai>
+	<and id="攻击" interval="10">
+		<action id="AI.enemy(role,260,160);"/>
+		<action id="AI2.skill(role);"/>
+	</and>
+	<and id="追击" interval="10">
+		<action id="AI.hate(role);"/>
+		<action id="AI.chase(role);"/>
+	</and>
+	<and id="防御" interval="80">
+		<action id="AI2.defense(role);"/>
+	</and>
+	<and id="巡逻" interval="60">
+		<action id="AI2.move(role);"/>
+	</and>
+</ai>

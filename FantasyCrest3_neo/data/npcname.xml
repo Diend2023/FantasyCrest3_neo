@@ -1,1 +1,18 @@
-<code data="PG1uYGpcZ142Af8xYmNVEV5QW1IpDc+ZjNBtdgYDVkJSRkNRGf1TSE1BP0P28zM/RDc9PwntsH52q4Bx5vIA4crI+issHtonGSQb8tacXm2UakfPzB8LGw8MGuLGChcKGAj/C767+wcM/wUH0bV3NTd1JSSuusipkpDC8/Tmou/h7OO6nmAp+14OFlokC5SR5NDg1NHfp4vS0N3ax8vHz4J/v8vQw8nLlXk7+fs56ehyfoxtVlSGt7iqZrOlsKd+YiTtvyLS2iDPzFhVqJSkmJWja0+WlKGekIyUR0SEkJWIjpBaPgC+wP6urTdDUTIbGUt8fW8reGp1bEMnT3FrZ2UhHnFdbWFebDQYYGJcWFYcWVdiTkxJVk1QSkZTBQJCTlNGTE4Y/MCWZbuMebhaUfL+DO3W1AY3OCrmMyUwJ/7iEwXf3C8bKx8cKvLWJxnT0BAcIRQaHObKjT84jV4zw8/dvqel1wgJ+7cE9gH4z7N4RDJ0EDysqfzo+Ozp97+j4+fn9t3pnJnZ5erd4+Wvk1UTFVMDAoyYpodwbqDR0sSAzb/KwZh8P+4QPQjqdXLFscG1ssCIbK+pta25pbGpY2CgrLGkqqx2Wh3M7hvmyFNfbU43NWeYmYtHlIaRiF9DBau1A7LU/8mnANGmNjOGcoJ2c4FJLWxucW1nc2slMT8KCDprbF4aZ1lkWzIW2Hih1aGIDwxfS1tPTFoiBkVLT0dLP0v++ztHTD9FRxH1t1eAtIBn7voI09EDNDUn4zAiLST73/0nMCIm2dYpFSUZFiTs0A4YIRMXytbkr63fEBEDvwz+CQDXu35KTbe0B/MD9/QCyq73+ffvqabm8vfq8PK8oGQCJ18pEJmls358rt/g0o7bzdjPpopP7x9L9emDgNO/z8PAzpZ6y8vItcG/tr62u7K6smxpqbW6rbO1f2Mn2tAi6ctcaHZBP3Gio5VRnpCbkmlND83EDMrBRkOWgpKGg5FZPZN+kXw4NXWBhnl/gUsv8ZOh7rCjKDRCDQs9bm9hHWpcZ141GTlnVW1rETJbT1BXDQpdSVlNSlggBFNTAf4+Sk9CSEoU+Ccn9QEP2tgKOzwu6jcpNCsC5qppUqZuUqJsSqJSY9nWKRUlGRYk7NAfGw4VCAwQBxPGwwMPFAcND9m9gTQqfEMltsLQm8y+/P3v+ev27cU="/>
+<npcname>
+	<npc name="尤金" target="youjin" anthor="浮京"/> 
+	<npc name="鬼仙" target="guixian" anthor="大旗"/> 
+	<npc name="寂无尘" target="jiwuchen" anthor="大旗"/> 
+	<npc name="寂无痕" target="jiwuhen" anthor="大旗"/> 
+	<npc name="Knife" target="knife,jiuba_meidao" anthor="美工刀"/> 
+	<npc name="TG" target="tg" anthor="晓黑"/> 
+	<npc name="赤焱" target="chiyan" anthor="大旗"/> 
+	<npc name="方糖" target="fangtang" anthor="方糖"/> 
+	<npc name="北方小黑" target="beifang"/>
+	<npc name="冰岚" target="binglan" anthor="冰岚"/>
+	<npc name="Alvin" target="alvin"/>
+	<npc name="泷" target="long" anthor="熬尘"/>
+	<npc name="艺璇" target="tusanmengmeng" anthor="盒子"/>
+	<npc name="夜夜" target="yeye" anthor="列娜"/>
+	<npc name="Crazy Black" target="rs" anthor="RS"/>
+	<npc name="科比小虫" target="rock_dian" anthor="盒子"/>
+</npcname>
