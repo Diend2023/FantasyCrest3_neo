@@ -32,41 +32,31 @@ package game.view
       
       // 原本的IP地址定义
       // private var _ip:String;
-      public static var _ip:String // 预加载的联机ip
+      public static var _ip:String // 联机ip
 
-      public static var _port:String = "4888"; // 预加载的联机端口
+      public static var _port:int = 4888; // 联机端口
 
-      public static var ip:String // 实际使用的联机ip
+      public var ip:String // 实际使用的联机ip
 
-      public static var port:int = 4888; // 实际使用的联机端口
+      public var port:int = 4888; // 实际使用的联机端口
 
 
       private var _msg:TextField;
       
       // 原本的联机大厅构造函数
       // public function GameOnlineRoomListView(ip:String = "120.79.155.18")
-      public function GameOnlineRoomListView(inIp:String = "") // 取消原本的默认联机ip
+      public function GameOnlineRoomListView(inIp:String = "", inPort:int = 4888, isOnline:Boolean = true) // 取消原本的默认联机ip
       {
          super();
-         if(inIp == "127.0.0.1") // 使用本地ip和端口创建连接
+         if(!isOnline) //
          { //
             ip = inIp; //
-            port = 4888; //
+            port = inPort; //
          } //
-         else if(inIp == _ip) // 使用传入的ip和端口创建连接
+         else //
          { //
-            ip = _ip; //
-            port = int(_port); //
-         } //
-         else if(!inIp && !port) // 如果没有传入ip和端口，默认创建本地连接服务器连接
-         { //
-            ip = "127.0.0.1"; //
-            port = 4888; //
-         } //
-         else // 使用预加载的ip和端口创建连接
-         { //
-            ip = _ip; //
-            port = int(_port); //
+            ip = _ip; // 如果为在线模式，优先使用预加载的ip地址
+            port = _port; // 如果为在线模式，优先使用预加载的端口
          } //
          // _ip = ip;
       }
@@ -124,10 +114,6 @@ package game.view
          this.addChild(onlineAddress); //
          onlineAddress.x = 5; //
          onlineAddress.y = msg.y + 15; //
-         if(ip == "127.0.0.1") // 连接到本地联机服务器时清除端口，用于标记该链接是本地联机服务器连接
-         { //
-            port = null; //
-         } //
       }
       
       private function onUserData(data:Object) : void

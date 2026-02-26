@@ -537,7 +537,7 @@ package game.view
             case "网络对战":
                // 原本的连接到联机大厅的代码
                // SceneCore.replaceScene(new GameOnlineRoomListView());
-               SceneCore.replaceScene(new GameOnlineRoomListView(GameOnlineRoomListView._ip)); // 使用预加载的ip和端口创建连接
+               SceneCore.replaceScene(new GameOnlineRoomListView(GameOnlineRoomListView._ip, GameOnlineRoomListView._port, true)); // 使用预加载的ip和端口创建连接
                break;
             case "制作组":
                openSelect("左眼","老邪","巅峰","小鸟","虚伪","木姐","RS","菠萝","小研En","妹红","柠七");
