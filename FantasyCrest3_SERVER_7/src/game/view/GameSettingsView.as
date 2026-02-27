@@ -1,3 +1,4 @@
+// 添加设置界面
 package game.view
 {
    import feathers.controls.Button;
@@ -5,6 +6,7 @@ package game.view
    import feathers.controls.LayoutGroup;
    import feathers.layout.HorizontalLayout;
    import feathers.layout.VerticalLayout;
+   import feathers.layout.VerticalAlign;
    import game.uilts.GameFont;
    import starling.display.Button;
    import starling.display.Quad;
@@ -23,9 +25,16 @@ package game.view
    public class GameSettingsView extends DisplayObjectContainer
    {
       
+      public static var self:GameSettingsView;
+      
+      private var _fullScreenCheck:Check;
+      private var _soundCheck:Check;
+      private var _bgmCheck:Check;
+
       public function GameSettingsView()
       {
          super();
+         self = this;
       }
       
       override public function onInit() : void
@@ -53,28 +62,26 @@ package game.view
          mainContainer.x = (stage.stageWidth - mainContainer.width) / 2;
          mainContainer.y = (stage.stageHeight - mainContainer.height) / 2;
 
-         mainContainer.addChild(createSettingItem("开启全屏", "toggle", (STLConstant.nativeStage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE), function(value:Boolean):void{
-            if(value)
-               STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
-            else
-               STLConstant.nativeStage.displayState = StageDisplayState.NORMAL;
-         }));
+         // 开启全屏
+         var fullScreenItem:LayoutGroup = createSettingItem("开启全屏（F11）", "toggle", (STLConstant.nativeStage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE), function(value:Boolean):void{
+            GameSettingsView.setFullScreen(value);
+         });
+         _fullScreenCheck = fullScreenItem.getChildAt(1) as Check;
+         mainContainer.addChild(fullScreenItem);
 
-         mainContainer.addChild(createSettingItem("关闭声音", "toggle", (GameCore.soundCore.volume == 0), function(value:Boolean):void{
-            if(value)
-               GameCore.soundCore.volume = 0;
-            else
-               GameCore.soundCore.volume = 1;
-            if(GameStartMain.self && GameStartMain.self._music)
-               GameStartMain.self._music.upState = DataCore.getTextureAtlas("start_main").getTexture(GameCore.soundCore.volume == 0 ? "sound_close" : "sound_open");
-         }));
+         // 关闭声音 (注意：UI勾选代表关闭，所以传入 !value)
+         var soundItem:LayoutGroup = createSettingItem("关闭声音（F1）", "toggle", (GameCore.soundCore.volume == 0), function(value:Boolean):void{
+            GameSettingsView.setSoundEnable(!value);
+         });
+         _soundCheck = soundItem.getChildAt(1) as Check;
+         mainContainer.addChild(soundItem);
 
-         mainContainer.addChild(createSettingItem("关闭BGM", "toggle", (GameCore.soundCore.bgvolume == 0), function(value:Boolean):void{
-            if(value)
-               GameCore.soundCore.bgvolume = 0;
-            else
-               GameCore.soundCore.bgvolume = 0.4;
-         }));
+         // 关闭BGM (同理)
+         var bgmItem:LayoutGroup = createSettingItem("关闭BGM（F5）", "toggle", (GameCore.soundCore.bgvolume == 0), function(value:Boolean):void{
+            GameSettingsView.setBGMEnable(!value);
+         });
+         _bgmCheck = bgmItem.getChildAt(1) as Check;
+         mainContainer.addChild(bgmItem);
 
          skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
          buttonExit = new starling.display.Button(skin,"完成");
@@ -88,17 +95,82 @@ package game.view
          });
       }
 
+      // 1. 全屏控制
+      public static function setFullScreen(isFull:Boolean):void {
+         STLConstant.nativeStage.displayState = isFull ? StageDisplayState.FULL_SCREEN_INTERACTIVE : StageDisplayState.NORMAL;
+         if(self && self._fullScreenCheck) {
+            self._fullScreenCheck.isSelected = isFull;
+         }
+         if(isFull) 
+         {
+            SceneCore.pushView(new GameTipsView("开启全屏"));
+         }
+         else 
+         {
+            SceneCore.pushView(new GameTipsView("关闭全屏"));
+         }
+      }
+      public static function toggleFullScreen():void {
+         setFullScreen(STLConstant.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE);
+      }
+
+      // 2. 音效控制
+      public static function setSoundEnable(enable:Boolean):void {
+         GameCore.soundCore.volume = enable ? 1 : 0;
+         // 同步更新主界面的喇叭图标（如果存在）
+         if(GameStartMain.self && GameStartMain.self._music) {
+            GameStartMain.self._music.upState = DataCore.getTextureAtlas("start_main").getTexture(enable ? "sound_open" : "sound_close");
+         }
+         if(self && self._soundCheck) {
+            self._soundCheck.isSelected = !enable;
+         }
+         if(enable) 
+         {
+            SceneCore.pushView(new GameTipsView("开启声音"));
+         }
+         else 
+         {
+            SceneCore.pushView(new GameTipsView("关闭声音"));
+         }
+      }
+      public static function toggleSound():void {
+         setSoundEnable(GameCore.soundCore.volume == 0);
+      }
+
+      // 3. BGM控制
+      public static function setBGMEnable(enable:Boolean):void {
+         GameCore.soundCore.bgvolume = enable ? 0.4 : 0;
+         if(self && self._bgmCheck) {
+            self._bgmCheck.isSelected = !enable;
+         }
+         if(enable) 
+         {
+            SceneCore.pushView(new GameTipsView("开启BGM"));
+         }
+         else 
+         {
+            SceneCore.pushView(new GameTipsView("关闭BGM"));
+         }
+      }
+      public static function toggleBGM():void {
+         setBGMEnable(GameCore.soundCore.bgvolume == 0);
+      }
+
       private function createSettingItem(label:String, type:String, initialValue:*, action:Function):LayoutGroup
       {
          var container:LayoutGroup = new LayoutGroup();
          var hLayout:HorizontalLayout = new HorizontalLayout();
          hLayout.gap = 20;
-         hLayout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+         hLayout.verticalAlign = VerticalAlign.MIDDLE;
+         hLayout.paddingLeft = 20;
          container.layout = hLayout;
          container.height = 50;
 
-         var labelField:TextField = new TextField(150, 30, label, new TextFormat(GameFont.FONT_NAME, 20, 0xFFFFFF));
+         var textFormat:TextFormat = new TextFormat(GameFont.FONT_NAME, 20, 0xFFFFFF);
+         textFormat.horizontalAlign = "left";
+         var labelField:TextField = new TextField(150, 30, label, textFormat);
          labelField.touchable = false;
+         labelField.width = 200;
          container.addChild(labelField);
 
          if (type == "toggle")
@@ -108,7 +180,10 @@ package game.view
             check.defaultSelectedSkin = createCheckboxSkin(20, true);
             check.isSelected = initialValue;
             check.addEventListener(Event.CHANGE, function():void {
-               action(check.isSelected);
+               // 避免在代码修改 isSelected 时触发循环调用
+               if(check.touchable) {
+                  action(check.isSelected);
+               }
             });
             container.addChild(check);
          }

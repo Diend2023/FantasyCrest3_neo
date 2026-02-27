@@ -193,6 +193,7 @@ package game.display
          bdtext.height = bd.height - 5; //
          bdtext.text = "每次使用技能将恢复生命最大值1%"; //
          bdtext.textFormat = new flash.text.TextFormat(GameFont.FONT_NAME,12,16777215); // 使用flash的TextFormat
+         bdtext.fontStyles = new starling.text.TextFormat(GameFont.FONT_NAME,12,16777215,"left"); // 设置feathers的ScrollText的文本格式
          this.addChild(bdtext);
          // bdtext.format.leading = 3;
          bdtext.textFormat.leading = 3; //

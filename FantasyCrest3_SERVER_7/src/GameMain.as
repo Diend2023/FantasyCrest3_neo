@@ -28,6 +28,9 @@ package
    import zygame.display.DisplayObjectContainer;
    import zygame.display.World;
    import zygame.tmx.Map;
+   import game.view.GameSettingsView; // 导入设置界面类
+   import starling.events.KeyboardEvent; //
+   import flash.ui.Keyboard; //
    
    public class GameMain extends DisplayObjectContainer
    {
@@ -104,6 +107,7 @@ package
          _pro = new TextField(stage.stageWidth,32,"正在载入 0%",new TextFormat(GameFont.FONT_NAME,12,16777215));
          this.addChild(_pro);
          _pro.y = stage.stageHeight / 2 - 16;
+         stage.addEventListener(KeyboardEvent.KEY_DOWN, onGlobalKeyDown); // 添加全局键盘事件监听
       }
       
       private function onRoleDataLoaded(n:Number) : void
@@ -143,6 +147,22 @@ package
          trace("Map Loaded!");
          GameCore.currentCore.createWorld("zl0",null,[CoreStarup.testRole ? CoreStarup.testRole : "jianxin"]);
       }
+
+      private function onGlobalKeyDown(e:KeyboardEvent) : void // 全局键盘事件处理函数
+      { //
+         switch(e.keyCode) //
+         { //
+            case Keyboard.F11: // 按 F11 切换全屏
+                  GameSettingsView.toggleFullScreen(); //
+                  break; //
+            case Keyboard.F5: // 按F5关闭BGM
+                  GameSettingsView.toggleBGM(); //
+                  break; //
+            case Keyboard.F1: // 按F1关闭声音
+                  GameSettingsView.toggleSound(); //
+         } //
+      } //
+
    }
 }
 
