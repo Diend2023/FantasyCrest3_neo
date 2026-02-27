@@ -35,6 +35,8 @@ package game.view
       private var gameMode:String;
       
       private var _mapTarget:String = "";
+
+      public var clientType:String = Service.client.type; // 当前客户端类型（master/player/watching）
       
       public function OnlineSelectRoleView(mode:String, mapTarget:String)
       {
@@ -174,7 +176,8 @@ package game.view
          }
          if(Service.client.type == "watching")
          {
-            this.touchable = false;
+            _canSelect = false; // 观战端默认不可选
+            // this.touchable = false; // 允许鼠标操作
          }
          this.openKey();
       }
@@ -182,7 +185,8 @@ package game.view
       override public function onDown(key:int) : void
       {
          super.onDown(key);
-         if(_canSelect)
+         // if(_canSelect)
+         if(_canSelect || (!_canSelect && key != 74)) //
          {
             _select.onDown(key);
          }
@@ -190,6 +194,7 @@ package game.view
       
       public function onSelect(data:Object) : void
       {
+         if(Service.client.type == "watching") return; // 观战端不处理选择事件
          if(_select.isSelected)
          {
             action("selected",{

@@ -49,6 +49,7 @@ package game.view
          text.textFormat = new TextFormat(GameFont.FONT_NAME,18,16777215); // feathers的ScrollText使用的是flash的TextFormat
          text.width = stage.stageWidth - 100; // 调整宽度
          text.height = stage.stageHeight - 200; // 调整高度
+         text.verticalScrollPolicy = "on"; // 强制允许垂直滚动
          // 原本的提示文本
          // text.text = "关于游戏会卡的解决方案：\n掉帧的原因：\n游戏没有启动硬件加速，因此导致掉帧，只要开启硬件加速或者使用默认启动硬件加速的浏览器进行游戏即可得到流畅体验。\n\n方案1：\n1、选择Internet Explorer浏览器或者其他浏览器进行游戏。\n\n方案2：\n1、右键游戏窗口，点击设置。\n2、弹出小窗口后，选择最左边的选项，开启硬件加速。\n3、刷新页面重启游戏。\n4、如果失败，请转试用方案1。";
          text.text = "幻想纹章3本地版1.1\n\n这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本\n\n感谢@IS 和@碎风 的指路，感谢@风吟棠华落 提供数据解密方法，感谢@忆雪 提供的角色指导，感谢@正义永无止境 提供真幻想纹章3本地版，感谢@桐 提供的最终更新缓存，感谢开源项目JPEXS对反编译工作的支持\n\n再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报\n\n幻想纹章3交流群：1055702064\n\n幻想纹章Club：hxwz3.cn"; // 修改为版本介绍

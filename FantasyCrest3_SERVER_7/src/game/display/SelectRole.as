@@ -26,6 +26,7 @@ package game.display
    import flash.text.TextFormat; // feathers的ScrollText使用的是flash的TextFormat
    import game.view.GameHeroView; //
    import game.view.GameShopView; //
+   import game.view.OnlineSelectRoleView; // 导入在线选人界面
 
    public class SelectRole extends KeyDisplayObject
    {
@@ -148,7 +149,7 @@ package game.display
          _list.selectedIndex = 0;
          _list.touchable = true;
          _list.addEventListener("change",onListChange);
-         if(!(this.parent is GameHeroView || this.parent is GameShopView)) // 如果是在英雄界面或商店界面打开的选人，则不适配点击锁定角色
+         if(!(this.parent is GameHeroView || this.parent is GameShopView) && !((this.parent is OnlineSelectRoleView) && (this.parent as OnlineSelectRoleView).clientType == "watching")) // 如果是在英雄界面或商店界面或者联机模式观战打开的选人，则不适配点击锁定角色
          { //
             _list.addEventListener("triggered", function(e:Event): void // 适配点击锁定角色
             { //
@@ -194,6 +195,8 @@ package game.display
          bdtext.text = "每次使用技能将恢复生命最大值1%"; //
          bdtext.textFormat = new flash.text.TextFormat(GameFont.FONT_NAME,12,16777215); // 使用flash的TextFormat
          bdtext.fontStyles = new starling.text.TextFormat(GameFont.FONT_NAME,12,16777215,"left"); // 设置feathers的ScrollText的文本格式
+         bdtext.verticalScrollPolicy = "on"; // 强制允许垂直滚动
+         bdtext.horizontalScrollPolicy = "on"; // 强制允许水平滚动
          this.addChild(bdtext);
          // bdtext.format.leading = 3;
          bdtext.textFormat.leading = 3; //
