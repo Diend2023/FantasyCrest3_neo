@@ -4,6 +4,13 @@
         {
             "type": "swf",
             "request": "launch",
+            "name": "Launch Editor (AIR)",
+            "program": "${workspaceFolder}/FantasyCrest3_neo/tools/FantasyCrest3_Editor/FantasyCrest3_Editor-app.xml",
+            "profile": "desktop"
+        },
+        {
+            "type": "swf",
+            "request": "launch",
             "name": "Launch AIR Application",
             "program": "${workspaceFolder}/FantasyCrest3_neo/FantasyCrest3_SERVER_7-app.xml",
             "profile": "desktop",
