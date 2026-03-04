@@ -1,6 +1,6 @@
 # FantasyCrest3 Viewer
 
-这是一个基于 `customtkinter` 的角色查看器项目（非单文件脚本），用于查看 FantasyCrest3 的角色数据与帧图。
+这是一个基于 `customtkinter` 的角色查看器项目，用于查看 FantasyCrest3 的角色数据与帧图。
 
 ## 功能
 
@@ -36,6 +36,34 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+
+## EXE 打包（不打包资源）
+
+当前工具发布目录约定为：
+
+```text
+<游戏根目录>/tools/FantasyCrest3_Viewer/
+```
+
+程序会自动从 `exe` 所在目录向上回溯，找到包含 `data/fight.xml` 与 `role/` 的游戏根目录，因此不需要把资源打进 exe。
+
+可选：若需要手动指定游戏根目录，可设置环境变量 `FC3_GAME_ROOT`。
+
+### 打包命令（推荐 onedir）
+
+```bash
+pyinstaller --noconfirm --clean --windowed --icon ..\..\AppIconsForPublish\48.ico --name FantasyCrest3_Viewer app.py
+```
+
+生成后将 `dist/FantasyCrest3_Viewer/` 整个目录放到 `tools/FantasyCrest3_Viewer/` 即可。
+
+### 打包命令（onefile）
+
+```bash
+pyinstaller --noconfirm --clean --windowed --onefile --icon ..\..\AppIconsForPublish\48.ico --name FantasyCrest3_Viewer app.py
+```
+
+生成后将 `dist/FantasyCrest3_Viewer.exe` 放到 `tools/FantasyCrest3_Viewer/`。
 
 ## 使用说明
 

@@ -1,16 +1,31 @@
 import html
 import json
+import os
 from pathlib import Path
+import sys
 import xml.etree.ElementTree as ET
 
 from .models import ActionData, AtlasFrame, FrameData, InitStat, RoleData, RoleIndexItem
 
 
-def find_game_root(start: Path) -> Path:
-    for parent in [start, *start.parents]:
+def runtime_base_dir() -> Path:
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
+def find_game_root(start: Path | None = None) -> Path:
+    env_root = os.getenv("FC3_GAME_ROOT", "").strip()
+    if env_root:
+        candidate = Path(env_root)
+        if (candidate / "data" / "fight.xml").exists() and (candidate / "role").exists():
+            return candidate
+
+    probe = start if start is not None else runtime_base_dir()
+    for parent in [probe, *probe.parents]:
         if (parent / "data" / "fight.xml").exists() and (parent / "role").exists():
             return parent
-    return start
+    return probe
 
 
 def safe_parse_xml(file_path: Path):

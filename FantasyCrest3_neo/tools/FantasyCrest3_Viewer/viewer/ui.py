@@ -19,7 +19,7 @@ class RoleViewerApp(ctk.CTk):
         self.title("FantasyCrest3 角色查看器")
         self.geometry("1700x930")
 
-        self.root_path = find_game_root(Path(__file__).resolve().parent)
+        self.root_path = find_game_root()
         self.fight_path = self.root_path / "data" / "fight.xml"
         self.role_dir = self.root_path / "role"
 
