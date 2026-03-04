@@ -303,6 +303,11 @@ package zygame.display
       {
          return _roleXmlData;
       }
+
+      public function set roleXmlData(data:RoleXMLData) : void //
+      { //
+         _roleXmlData = data; //
+      } //
       
       public function set id(i:int) : void
       {
