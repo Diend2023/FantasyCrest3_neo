@@ -1,9 +1,7 @@
 // 添加由岐照美被动
 package game.role
 {
-   import flash.utils.Dictionary;
    import feathers.data.ListCollection;
-   import game.buff.AttributeChangeBuff;
    import zygame.display.BaseRole;
    import zygame.data.BeHitData;
    import zygame.data.RoleAttributeData;
@@ -20,7 +18,7 @@ package game.role
       private var _skillCanCountObj:Object = {"我不知道":false,"叫什么":false,"技能":false,"蛇缚封焉尘":false,"神帰来・大蛇斩头烈封饿":false,"???":false,"轰牙双天刃·滅":false,"SI":false,"boom":false,"蛇麟炼翔牙":false,"蛇境灭闪牙":false,"SJ":false,"轰牙双天刃":false,"永生蛇·拆尼斯冲冲冲":false};
 
       // 大招表以及水晶消耗数量
-      private var _oSkillCrystalObj:Object = {"蛇缚封焉尘":3,"神帰来・大蛇斩头烈封饿":3,"蛇麟炼翔牙":3,"蛇境灭闪牙":3,"轰牙双天刃":2,"永生蛇·拆尼斯冲冲冲":2};
+      private const _oSkillCrystalObj:Object = {"蛇缚封焉尘":3,"神帰来・大蛇斩头烈封饿":3,"蛇麟炼翔牙":3,"蛇境灭闪牙":3,"轰牙双天刃":2,"永生蛇·拆尼斯冲冲冲":2};
 
       // 攻击计数
       private var _Count:int = 0;

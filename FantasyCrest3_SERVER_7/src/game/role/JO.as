@@ -22,7 +22,7 @@ package game.role
 
       private var _backgroundFilter:ColorMatrixFilter;  // 用于背景
 
-      private var baseBgVolume:Number = 0.4;
+      // private var baseBgVolume:Number = 0.4;
 
       public var hasPassive:Boolean = false;
       
@@ -33,7 +33,7 @@ package game.role
          super(roleTarget,xz,yz,pworld,fps,pscale,troop,roleAttr);
          startTheWorldVisualEffect();
          stopTheWorldVisualEffect();
-         GameCore.soundCore.bgvolume = this.baseBgVolume;
+         // GameCore.soundCore.bgvolume = this.baseBgVolume;
       }
 
       override public function onInit():void

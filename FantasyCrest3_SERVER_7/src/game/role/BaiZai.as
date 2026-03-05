@@ -12,7 +12,7 @@ package game.role
    public class BaiZai extends GameRole
    {
 
-      private static var _yinghuaSkills:Array = ["樱汇", "千本樱", "千痕"];
+      private const _yinghuaSkills:Array = ["樱汇", "千本樱", "千痕"];
       private var _effectQiangTimer:int = 0; // P断空墙持续时间计时器
       private var _willLockRole:BaseRole = null; // 即将被锁定的角色
       private var _yinghuaTimer:int = 0; // 樱花持续时间计时器

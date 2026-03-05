@@ -63,6 +63,38 @@
     <sprites path="effect/zhan"/>
   </loads>
   <action>
+    <!-- 添加入场动作 -->
+    <act name="入场动作" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="15">
+      <SubTexture name="元件 10318" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10319" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10320" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="D1" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10321" gox="0" goy="0" effects="[&quot;{\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;scaleX\&quot;:-0.8,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:8,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:16711680,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;hitX\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;name\&quot;:\&quot;suolongKU\&quot;,\&quot;isLockActionShow\&quot;:false,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:180,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;scaleY\&quot;:1,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:true,\&quot;isFollow\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;x\&quot;:44,\&quot;y\&quot;:102,\&quot;rotation\&quot;:123,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 10322" gox="0" goy="0" hitEffect="1" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" effects="[]"/>
+      <SubTexture name="元件 10323" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10324" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10325" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="D2" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10326" gox="0" goy="0" effects="[&quot;{\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;scaleX\&quot;:0.8,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:8,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:16711680,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;hitX\&quot;:-1,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:6,\&quot;isBreak\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;name\&quot;:\&quot;suolongj3\&quot;,\&quot;isLockActionShow\&quot;:false,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:180,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;scaleY\&quot;:-1,\&quot;stiff\&quot;:80,\&quot;atbottom\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;x\&quot;:-191,\&quot;y\&quot;:122,\&quot;rotation\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 10327" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10328" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10329" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10332" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10333" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="Naruto/SI2" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="元件 10334" gox="0" goy="0" effects="[&quot;{\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;scaleX\&quot;:6,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:15,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:16711680,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;hitX\&quot;:3,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:13,\&quot;isBreak\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;name\&quot;:\&quot;shanxingzhan\&quot;,\&quot;isLockActionShow\&quot;:false,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:180,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;scaleY\&quot;:1.3,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;x\&quot;:16,\&quot;y\&quot;:-111,\&quot;rotation\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 10335" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10336" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10337" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10152" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10153" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10154" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10155" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10156" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10157" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10158" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10159" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10160" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10161" gox="0" goy="0" effects="[]"/>
+    </act>
+
     <act name="待机" fps="14">
       <SubTexture name="元件 10000" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10001" gox="0" goy="0" effects="[]"/>

@@ -7,7 +7,7 @@ package game.role
    public class LianLian extends GameRole
    {
 
-      private var skillObj:Object = {"Shoot Back":"U","Reflex Radar":"SU","Fidgety Snatcher":"WU","Catch and Rose":"I","Shoot the Heart":"SI","Stingting Mind":"WJ","Push Upside Donw":"KSI","HELLO":"SJ","Bingo":"WI","LOVE":"KSU"};
+      private const skillObj:Object = {"Shoot Back":"U","Reflex Radar":"SU","Fidgety Snatcher":"WU","Catch and Rose":"I","Shoot the Heart":"SI","Stingting Mind":"WJ","Push Upside Donw":"KSI","HELLO":"SJ","Bingo":"WI","LOVE":"KSU"};
 
       private var lastSkill:String = "";
 

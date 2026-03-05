@@ -11,7 +11,7 @@ package game.role
    public class SYRY extends GameRole
    {
 
-      private static var _baDao:Array = ["居合斩·上段", "居合斩·中段", "居合斩·下段", "拔刀斩·笑 下段", "拔刀斩·笑 中段", "拔刀斩·笑 上段", "空中拔刀术·下段", "空中拔刀术·中段", "空中拔刀术·上段", "空中居合斩·下段", "空中居合斩·中段", "空中居合斩·上段"];
+      private const _baDao:Array = ["居合斩·上段", "居合斩·中段", "居合斩·下段", "拔刀斩·笑 下段", "拔刀斩·笑 中段", "拔刀斩·笑 上段", "空中拔刀术·下段", "空中拔刀术·中段", "空中拔刀术·上段", "空中居合斩·下段", "空中居合斩·中段", "空中居合斩·上段"];
       private var _baDaoHitCount:int = 0;
       private var _baoFaCount:int = 0;
       private var _cameraTimer:int = 0; // 镜头缩放计时器

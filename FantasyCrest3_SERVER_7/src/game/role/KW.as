@@ -11,7 +11,7 @@ package game.role
    
    public class KW extends GameRole
    {
-      private var forms:Array = ["Dragon","Pegasus","Titan"]; // 形态数组
+      private const forms:Array = ["Dragon","Pegasus","Titan"]; // 形态数组
       private var currentForm:String; // 当前形态
       private var formTimer:int; // 形态计时器
       private var formMightyUI:Object = {"icon":"liliang.png","msg":"Mighty"}; // 全能形态UI显示
@@ -22,7 +22,7 @@ package game.role
       private var baseJumpTimeMax:int; // 基础跳跃次数最大值
       private var haveShiting:Boolean; // 是否拥有一次时停
       // 可以触发时停的技能
-      private var shitingSkills:Array = ["瞬步","猛力连打","急速突击","旋空上踢","抓取膝顶","极限冲撞","勇士连击","骑士炎踢","天马I","天马SI","天马WI","形态更换"];
+      private const shitingSkills:Array = ["瞬步","猛力连打","急速突击","旋空上踢","抓取膝顶","极限冲撞","勇士连击","骑士炎踢","天马I","天马SI","天马WI","形态更换"];
       private var shitingSkill:String; // 已触发时停的技能
       private var hurtMultipleAdd:Number; // 伤害倍数增加
       private var _prevActionName:String = null;

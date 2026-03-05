@@ -4,7 +4,6 @@ package game.role
    import zygame.data.RoleAttributeData;
    import feathers.data.ListCollection;
    import zygame.display.World;
-   import starling.core.Starling;
    import zygame.data.BeHitData;
    import flash.geom.Point;
    import game.buff.AttributeChangeBuff;
