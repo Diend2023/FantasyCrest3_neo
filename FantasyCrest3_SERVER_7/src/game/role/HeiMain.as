@@ -46,12 +46,20 @@ package game.role
          this.listData.updateAll();
       }
       
+      override public function onSUpdate():void // 测试用
+      { //
+         super.onSUpdate(); //
+         trace("当前EX状态：", _exs); //
+         trace("是否使用_EXO:", _isExO); //
+      } //
+
       override public function playSkillFormKey(key:String) : void
       {
          var data:int = 0;
          var group2:RoleFrameGroup = null;
          var group:RoleFrameGroup = roleXmlData.getFrameGroupFromKey(key);
-         if(key == "P")
+         // if(key == "P")
+         if(key == "P" && this.attribute.getCD("武神") <= 0 && !_isExO) // 只能在未使用过ExO的情况下解锁EX
          {
             if(group && cheakCanPlay(key) && mandatorySkill > 0)
             {
@@ -78,6 +86,9 @@ package game.role
                if(key == "O2")
                {
                   _isExO = true;
+                  _exs = []; // 使用EX O后清除EX状态
+                  this.listData.getItemAt(0).msg = data + (_exs.indexOf(data) == -1 ? "off" : "on"); //
+                  this.listData.updateAll(); //
                }
             }
          }
@@ -94,7 +105,10 @@ package game.role
       
       override public function setData(value:Object) : void
       {
-         this._exs = value._exs;
+         if(!value._isExO) // 已使用过ExO后不再保留EX状态
+         { //
+            this._exs = value._exs;
+         } //
          this._isExO = value._isExO;
          super.setData(value);
       }
