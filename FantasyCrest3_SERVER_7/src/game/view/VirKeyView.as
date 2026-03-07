@@ -18,6 +18,10 @@ package game.view
       private var _moveBottom:Image;
       
       private var _touchTime:int = 0;
+
+      private var _touchStartY:Number = 0; //
+
+      private var _slideType:int = 0; // 0: 无滑动, 1: 上滑, 2: 下滑
       
       public function VirKeyView()
       {
@@ -97,6 +101,9 @@ package game.view
       
       public function onTag(target:String) : void
       {
+         
+         if(_slideType != 0) return;// 如果有滑动状态，忽略自动回调，交由 onTouchEnd 处理
+         
          switch(target)
          {
             case "j_key.png":
@@ -139,6 +146,11 @@ package game.view
             }
             _touchTime = 12;
          }
+         else //
+         { //
+            _touchStartY = touch.globalY; //
+            _slideType = 0; // 重置滑动状态
+         } //
       }
       
       override public function onTouchMove(touch:Touch) : void
@@ -156,6 +168,25 @@ package game.view
             moveKey();
             _moveKey.visible = true;
          }
+         else if(touchName == "u" || touchName == "i" || touchName == "o" || touchName == "p" || touchName == "j" || touchName == "k") //
+         { //
+            var diffY:Number = touch.globalY - _touchStartY; //
+            if(Math.abs(diffY) > 30) //
+            { //
+               if(diffY < 0) //
+               { //
+                  _slideType = 1; // 标记为上滑，暂不触发 world.onDown
+               } //
+               else //
+               { //
+                  _slideType = 2; // 标记为下滑，暂不触发 world.onDown
+               } //
+            } //
+            else // 回到中心范围
+            { //
+               _slideType = 0; //
+            } //
+         } //
       }
       
       override public function onTouchEnd(touch:Touch) : void
@@ -165,6 +196,29 @@ package game.view
             return;
          }
          var touchName:String = touch.target.name;
+         
+         if(_slideType == 1) // 如果有滑动状态，在松手时先触发方向键按下
+         { //
+            world.onDown(87); // 先按住 W
+         } //
+         else if(_slideType == 2) //
+         { //
+            world.onDown(83); // 先按住 S
+         } //
+
+         if(_slideType != 0)// 如果有滑动，手动模拟技能按下逻辑（因为 onTag 被我们跳过了）
+         { //
+             switch(touchName) //
+             { //
+                case "j": world.onDown(74); break; //
+                case "k": world.onDown(75); break; //
+                case "u": world.onDown(85); break; //
+                case "i": world.onDown(73); break; //
+                case "o": world.onDown(79); break; //
+                case "p": world.onDown(80); break; //
+             } //
+         } //
+
          switch(touchName)
          {
             case "move":
@@ -193,6 +247,13 @@ package game.view
             case "p":
                world.onUp(80);
          }
+
+         if(_slideType != 0)// 技能按键弹起后，如果是滑动操作，立即释放方向键
+         { //
+            world.onUp(87); //
+            world.onUp(83); //
+            _slideType = 0; //
+         } //
       }
       
       public function moveKey() : void
