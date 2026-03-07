@@ -158,6 +158,16 @@ package game.role
                super.onDown(key);
                break;
             case 4:
+               if(isKeyDown(87)) // 添加WL、SL技能支持
+               { //
+                  this.playSkillFormKey("WL"); //
+                  break; //
+               } //
+               if(isKeyDown(83)) //
+               { //
+                  this.playSkillFormKey("SL"); //
+                  break; //
+               } //
                if(this.isJump() && this.roleXmlData.airActions["瞬步"])
                {
                   this.playSkill("瞬步");

@@ -135,11 +135,11 @@ package game.role
             hand(150, 150, 150, 150, 75, 50);
          }
 
-         // WL超级冲击实现
-         if (isKeyDown(87) && isKeyDown(76))
-         {
-            playSkill("超级冲击");
-         }
+         // // WL超级冲击实现
+         // if (isKeyDown(87) && isKeyDown(76))
+         // {
+         //    playSkill("超级冲击");
+         // }
 
          // SJ龙冲击抓取以及跳转实现
          if (actionName == "[无十二刀]龙冲击" && frameAt(3, 9))
@@ -205,11 +205,11 @@ package game.role
             // }
          }
 
-         // SL消失移动实现
-         if (isKeyDown(83) && isKeyDown(76))
-         {
-            playSkill("消失移动");
-         }
+         // // SL消失移动实现
+         // if (isKeyDown(83) && isKeyDown(76))
+         // {
+         //    playSkill("消失移动");
+         // }
 
          // 消失移动时停瞬移实现
          if (actionName == "消失移动")

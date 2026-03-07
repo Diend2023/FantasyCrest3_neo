@@ -89,6 +89,12 @@ package game.view
          P.name = "p";
          world.addUpdateList(this);
          isTouch = true;
+         var L:CommonButton = new CommonButton("l_key.png","hpmp"); //添加虚拟按键L
+         this.addChild(L); //
+         L.x = stage.stageWidth - 55; //
+         L.y = stage.stageHeight - 75; //
+         L.callBack = onTag; //
+         L.name = "l"; //
       }
       
       override public function onFrame() : void
@@ -123,6 +129,9 @@ package game.view
                break;
             case "p_key.png":
                world.onDown(80);
+               break; //
+            case "l_key.png": //
+               world.onDown(76); //
          }
       }
       
@@ -168,7 +177,7 @@ package game.view
             moveKey();
             _moveKey.visible = true;
          }
-         else if(touchName == "u" || touchName == "i" || touchName == "o" || touchName == "p" || touchName == "j" || touchName == "k") //
+         else if(touchName == "u" || touchName == "i" || touchName == "o" || touchName == "p" || touchName == "j" || touchName == "k" || touchName == "l") //
          { //
             var diffY:Number = touch.globalY - _touchStartY; //
             if(Math.abs(diffY) > 30) //
@@ -216,6 +225,7 @@ package game.view
                 case "i": world.onDown(73); break; //
                 case "o": world.onDown(79); break; //
                 case "p": world.onDown(80); break; //
+                case "l": world.onDown(76); break; //
              } //
          } //
 
@@ -246,6 +256,9 @@ package game.view
                break;
             case "p":
                world.onUp(80);
+               break; //
+            case "l": //
+               world.onUp(76); //
          }
 
          if(_slideType != 0)// 技能按键弹起后，如果是滑动操作，立即释放方向键
