@@ -98,6 +98,7 @@ package game.role
          SYRY; // 添加双月让叶
          HuaJy; // 添加花京院典明
          MaYi; // 添加夏目麻衣
+         ZhanShen; // 添加斩神白面
       }
    }
 }

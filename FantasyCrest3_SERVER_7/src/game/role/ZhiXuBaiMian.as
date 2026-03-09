@@ -71,6 +71,14 @@ package game.role
                enemy.speedScale = 1;
             }
          }
+         if (this.frameAt(11, 23) && this.actionName == "聚能")
+         {
+            if (breakDamTimer >= 600 && this.currentMp.value >= 4 && isKeyDown(80))
+            {
+               this.playSkill("虚空阵 疾风");
+               this.currentMp.value -= 4;
+            }
+         }
       }
 
       override public function onBeHit(beData:BeHitData) : void
@@ -129,21 +137,10 @@ package game.role
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
       {
          super.onHitEnemy(beData,enemy);
-         if (this.actionName == "聚能")
-         {
-            if (breakDamTimer >= 720 && this.currentMp.value >= 3 && isKeyDown(80))
-            {
-               this.playSkill("虚空阵 疾风");
-               this.currentMp.value -= 3;
-               enemy.breakAction();
-               enemy.straight = 120;
-            }
-         }
          if(this.currentMp.value == this.mpMax && !enemy.attribute.hasBuff(BuffRef, "debuff_speedScale"))
          {
             enemy.addBuff(new BuffRef("debuff_speedScale",enemy,-1), 1, false);
             enemy.speedScale *= 0.5;
-            trace("add speed debuff");
          }
       }
 

@@ -1,4 +1,6 @@
 <Role type="sprite" scale="0.8" fps="24" hitEffectName="">
+  <!-- 添加角色类 -->
+  <class src="game.role.ZhanShen"/>
   <content>
     <xml path="npc/zhanshen.xml"/>
     <image path="npc/zhanshen.png"/>
@@ -42,8 +44,36 @@
     <sprites path="effect/haws15"/>
     <sprites path="effect/zhan"/>
     <file path="sound/zhan.mp3"/>
+    <!-- 补充特效 -->
+    <file path="sound/zsyinxiao/ha404b.mp3"/>
   </loads>
   <action>
+    <!-- 添加入场动作 -->
+    <act name="入场动作" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="12">
+      <SubTexture name="元件 10229" gox="0" goy="0" effects="[]" soundName="zsyinxiao/ha404b.mp3"/>
+      <SubTexture name="元件 10230" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10231" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10232" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10233" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10234" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10235" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10236" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10237" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10239" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10240" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10242" gox="0" goy="0" effects="[]"/>
+    </act>
+    <!-- 添加瞬步 -->
+    <act name="瞬步" key="" type="all" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="16">
+      <SubTexture name="元件 10399" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10400" gox="87" goy="0" effects="[]"/>
+      <SubTexture name="元件 10401" gox="174" goy="0" effects="[]"/>
+      <SubTexture name="元件 10402" gox="261" goy="0" effects="[]"/>
+      <SubTexture name="元件 10403" gox="350" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10400" gox="430" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10399" gox="500" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
     <act name="待机" fps="15">
       <SubTexture name="元件 10609" gox="0" goy="0" effects="[&quot;{\&quot;atbottom\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;name\&quot;:\&quot;ningjujuju\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;scaleY\&quot;:2,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;time\&quot;:0,\&quot;through\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;color\&quot;:[],\&quot;fadeOut\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:0,\&quot;scaleX\&quot;:2,\&quot;hitX\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:0,\&quot;x\&quot;:-185,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:0,\&quot;y\&quot;:-280,\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;rotation\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:30}&quot;]"/>
       <SubTexture name="元件 10610" gox="0" goy="0" effects="[]"/>
@@ -223,7 +253,8 @@
       <SubTexture name="元件 10149" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10150" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="刻杀·雪风" key="SO" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
+    <!-- <act name="刻杀·雪风" key="SO" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30"> -->
+    <act name="刻杀·雪风" key="SO" type="land" cd="" other="[{&quot;value&quot;:&quot;4&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
       <SubTexture name="元件 10138" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10139" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10140" gox="0" goy="0" effects="[&quot;{\&quot;atbottom\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;name\&quot;:\&quot;yidao\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;scaleY\&quot;:6,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;time\&quot;:0,\&quot;through\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;color\&quot;:[],\&quot;fadeOut\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:16777215,\&quot;scaleX\&quot;:4,\&quot;hitX\&quot;:3,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:15,\&quot;x\&quot;:-27,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:0,\&quot;y\&quot;:-335,\&quot;isLockActionShow\&quot;:true,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;rotation\&quot;:274,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:25,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:800}&quot;]"/>
@@ -322,7 +353,8 @@
       <SubTexture name="元件 10265" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10266" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="刻杀·悪滅" key="O" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="26">
+    <!-- <act name="刻杀·悪滅" key="O" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="26"> -->
+    <act name="刻杀·悪滅" key="O" type="land" cd="" other="[{&quot;value&quot;:&quot;8&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="26">
       <SubTexture name="元件 10526" gox="0" goy="0" effects="[&quot;{\&quot;atbottom\&quot;:true,\&quot;isFollow\&quot;:false,\&quot;name\&quot;:\&quot;YuanQiDan\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;scaleY\&quot;:100,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;time\&quot;:300,\&quot;through\&quot;:false,\&quot;fadeIn\&quot;:true,\&quot;color\&quot;:[],\&quot;fadeOut\&quot;:true,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:16777215,\&quot;scaleX\&quot;:100,\&quot;hitX\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:0,\&quot;x\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:0,\&quot;y\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;rotation\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:30}&quot;]" isHitMapGoOn="false" soundName="zbyinxiao/zbyinxiaoa22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="元件 10527" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10528" gox="0" goy="0" effects="[]"/>
@@ -385,6 +417,17 @@
       <SubTexture name="元件 10554" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10555" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10556" gox="0" goy="0" effects="[]"/>
+      <!-- 补全动作 -->
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
     </act>
     <act name="虚空阵 鸣" key="U" type="air" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]">
       <SubTexture name="元件 10199" gox="0" goy="0" effects="[]"/>

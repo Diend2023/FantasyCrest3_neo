@@ -2553,4 +2553,23 @@
 
 	</baizai>
 
+    <zhanshen visible="true" head="zhanshen.png" acthor="" coin="999999" crystal="999999" name="斩神·白面" profession="" passive="" introduce="我は空、我は钢、我は刃……我は一振りの剣にて全ての罪を刈り取り悪を灭する!!">
+
+    	<data name="移动速度" value="1"/>
+
+        <!-- <data name="力量" value="0.8"/> -->
+		<data name="力量" value="0.5"/>
+
+        <data name="魔力" value="0"/>
+
+        <data name="物理防御" value="0.6"/>
+
+        <data name="魔法防御" value="0.6"/>
+
+        <data name="体力" value="0.8"/>
+
+        <data name="水晶" value= "8"/>
+
+    </zhanshen>
+
 </fightdata>
