@@ -42,6 +42,10 @@ package game.display
       override public function onTouchBegin(touch:Touch) : void
       {
          Starling.juggler.tween(this,0.1,{"alpha":0.5});
+         if(callBack != null && callBack.length >= 2) // 只有明确支持双参数的（虚拟按键）才触发按下
+         { //
+            callBack(textBind ? textBind.text : imageTarget, true); //
+         } //
       }
       
       override public function onTouchEnd(touch:Touch) : void
@@ -49,18 +53,30 @@ package game.display
          Starling.juggler.tween(this,0.1,{"alpha":1});
          if(Boolean(callBack))
          {
-            try
-            {
-               callBack();
-            }
-            catch(e:Error)
-            {
-               trace(e.message);
-               if(Boolean(callBack))
-               {
-                  callBack(textBind ? textBind.text : imageTarget);
-               }
-            }
+            // try
+            // {
+            //    callBack();
+            // }
+            // catch(e:Error)
+            // {
+            //    trace(e.message);
+            //    if(Boolean(callBack))
+            //    {
+            //       callBack(textBind ? textBind.text : imageTarget);
+            //    }
+            // }
+            if(callBack.length >= 2) //
+            { //
+               callBack(textBind ? textBind.text : imageTarget, false); //
+            } //
+            else if(callBack.length == 1) //
+            { //
+               callBack(textBind ? textBind.text : imageTarget); //
+            } //
+            else //
+            { //
+               callBack(); // 主菜单、暂停界面等无参按钮，只走这一行，且只走一次
+            } //
          }
       }
       

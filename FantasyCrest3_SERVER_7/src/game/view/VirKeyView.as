@@ -105,34 +105,50 @@ package game.view
          }
       }
       
-      public function onTag(target:String) : void
+      // public function onTag(target:String) : void
+         public function onTag(target:String, isDown:Boolean = true) : void //
       {
-         
+
          if(_slideType != 0) return;// 如果有滑动状态，忽略自动回调，交由 onTouchEnd 处理
          
+         var keyCode:int = 0; //
+
          switch(target)
          {
-            case "j_key.png":
-               world.onDown(74);
-               break;
-            case "k_key.png":
-               world.onDown(75);
-               break;
-            case "u_key.png":
-               world.onDown(85);
-               break;
-            case "i_key.png":
-               world.onDown(73);
-               break;
-            case "o_key.png":
-               world.onDown(79);
-               break;
-            case "p_key.png":
-               world.onDown(80);
-               break; //
-            case "l_key.png": //
-               world.onDown(76); //
+            // case "j_key.png":
+            //    world.onDown(74);
+            //    break;
+            // case "k_key.png":
+            //    world.onDown(75);
+            //    break;
+            // case "u_key.png":
+            //    world.onDown(85);
+            //    break;
+            // case "i_key.png":
+            //    world.onDown(73);
+            //    break;
+            // case "o_key.png":
+            //    world.onDown(79);
+            //    break;
+            // case "p_key.png":
+            //    world.onDown(80);
+            //    break; //
+            // case "l_key.png": //
+            //    world.onDown(76); //
+            case "j_key.png": case "j": keyCode = 74; break; //
+            case "k_key.png": case "k": keyCode = 75; break; //
+            case "u_key.png": case "u": keyCode = 85; break; //
+            case "i_key.png": case "i": keyCode = 73; break; //
+            case "o_key.png": case "o": keyCode = 79; break; //
+            case "p_key.png": case "p": keyCode = 80; break; //
+            case "l_key.png": case "l": keyCode = 76; break; //
          }
+
+         if(keyCode != 0) //
+         { //
+            if(isDown) world.onDown(keyCode); //
+            else world.onUp(keyCode); //
+         } //
       }
       
       override public function onTouchBegin(touch:Touch) : void
