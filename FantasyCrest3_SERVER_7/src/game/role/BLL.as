@@ -212,7 +212,7 @@ package game.role
          // }
 
          // 消失移动时停瞬移实现
-         if (actionName == "消失移动")
+         if (actionName == "消失移动" || actionName == "消失移动（空）")
          {
             role = this.findRole(new Rectangle(0,0,world.map.getWidth(),world.map.getHeight()));
             if(role)
@@ -487,6 +487,24 @@ package game.role
          listData.getItemAt(1).msg = this.attribute.magic;
          listData.updateItemAt(1);
          super.onBeHit(beData);
+      }
+
+      override public function runLockAction(str:String, canBreak:Boolean = false) : void
+      {
+         super.runLockAction(str, canBreak);
+         // 检查CD
+         if (str == "消失移动（空）") {
+            this.attribute.updateCD("消失移动", 20);
+         }
+         if (str == "消失移动") {
+            this.attribute.updateCD("消失移动（空）", 20);
+         }
+         if (str == "力量护盾（空）") {
+            this.attribute.updateCD("力量护盾", 25);
+         }
+         if (str == "力量护盾") {
+            this.attribute.updateCD("力量护盾（空）", 25);
+         }
       }
 
       override public function copyData() : Object

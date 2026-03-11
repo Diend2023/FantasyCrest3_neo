@@ -99,6 +99,7 @@ package game.role
          HuaJy; // 添加花京院典明
          MaYi; // 添加夏目麻衣
          ZhanShen; // 添加斩神白面
+         ZZX; // 添加志志雄
       }
    }
 }

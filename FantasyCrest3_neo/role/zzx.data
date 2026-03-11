@@ -1,4 +1,6 @@
 <Role type="sprite" scale="1.1" fps="24" hitEffectName="">
+  <!-- 添加角色类 -->
+  <class src="game.role.ZZX"/>
   <content>
     <xml path="npc/zzx.xml"/>
     <image path="npc/zzx.png"/>
