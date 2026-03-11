@@ -25,8 +25,6 @@ package game.role
       private const shitingSkills:Array = ["瞬步","猛力连打","急速突击","旋空上踢","抓取膝顶","极限冲撞","勇士连击","骑士炎踢","天马I","天马SI","天马WI","形态更换"];
       private var shitingSkill:String; // 已触发时停的技能
       private var hurtMultipleAdd:Number; // 伤害倍数增加
-      private var _prevActionName:String = null;
-      private var _playedFrameSounds:Object = {};
 
       public function KW(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -55,7 +53,6 @@ package game.role
 	   override public function onFrame():void
       {
          super.onFrame();
-
          // 调试用
          // if (actionName == "普通攻击")
          // {
@@ -65,33 +62,8 @@ package game.role
          //    trace("hurtMultipleAdd: " + hurtMultipleAdd);
          //    trace("this.attribute.crit: " + this.attribute.crit);
          // }
-
-         // 去除重复帧需要播放的音效
-         if(_prevActionName != actionName)
-         {
-            _prevActionName = actionName;
-            try
-            {
-               _playedFrameSounds[actionName] = {};
-            }
-            catch(e:Error)
-            {
-
-            }
-         }
          if(actionName == "形态更换")
          {
-            // 形态更换音效强制播放
-            if (currentFrame == 1)
-            {
-               var playedMap:Object = _playedFrameSounds[actionName] || (_playedFrameSounds[actionName] = {});
-               if(!playedMap[currentFrame])
-               {
-                  GameCore.soundCore.playEffect("jmqsKW45");
-                  playedMap[currentFrame] = true;
-               }
-            }
-
             // 形态更换逻辑实现
             if (currentFrame == 5)
             {
@@ -206,6 +178,11 @@ package game.role
 
 	   override public function runLockAction(str:String, canBreak:Boolean = false) : void
       {
+         // 形态更换音效强制播放
+         if(actionName == "形态更换")
+         {
+            GameCore.soundCore.playEffect("jmqsKW45");
+         }
          super.runLockAction(str, canBreak);
          // 生命值低于30%时SO替换为EX技能逻辑实现
          if (str == "Ultimate Smash" && this.attribute.hp <= this.attribute.hpmax * 0.3)
