@@ -119,6 +119,10 @@ package game.view
       
       public function ask() : void
       {
+         if(!_select) //
+         { //
+            return; //
+         } //
          var path:String;
          var url:URLLoader;
          var str:String = _select.currentSelectItem.target;
@@ -264,6 +268,8 @@ package game.view
       override public function dispose() : void
       {
          this.clearKey();
+         _select = null; //
+         _list = null; //
          super.dispose();
       }
    }
