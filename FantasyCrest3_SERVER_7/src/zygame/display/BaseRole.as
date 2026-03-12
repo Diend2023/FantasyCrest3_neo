@@ -181,6 +181,8 @@ package zygame.display
       public var abody:Vector.<Body> = new Vector.<Body>();
 
       public var isOut:Boolean = false; // 搭档模式被切换
+
+      private var _hitUpdate:int = 0; // hit数更新的倒计时，单位为帧
       
       public function BaseRole(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -391,6 +393,14 @@ package zygame.display
          attribute.updateAllCD();
          this.aiFunc();
          this.mandatoryAction();
+         if (_hit > 0) //
+         { //
+            _hitUpdate--; //
+            if (_hitUpdate < 0) //
+            { //
+               this.hit = 0; // 倒计时结束，清空连击
+            } //
+         } //
          super.onFrame();
          this.onMoved();
          this.onKillRole();
@@ -1790,6 +1800,10 @@ package zygame.display
       public function set hit(i:int) : void
       {
          _hit = i;
+         if(_hit > 0) // 每次hit增加时，重置倒计时为 60 帧（与原来 HitNumer 中一致）
+         { //
+            _hitUpdate = 60; //
+         } //
       }
       
       public function get hit() : int

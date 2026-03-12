@@ -42,7 +42,8 @@ package zygame.display
                _text.scale = 1.3;
                _hitUpdate = 60;
             }
-            if(_hitUpdate > 0)
+            // if(_hitUpdate > 0)
+            if(_hitUpdate > 0 || role.hit > 0) //
             {
                _text.text = role.hit.toString() + "h";
                targetAlpha = role.hit == 0 ? 0 : 1;
@@ -52,16 +53,19 @@ package zygame.display
             _hitUpdate--;
             if(_hitUpdate < 0)
             {
+               if(role.hit == 0) //
+               { //
                if(_text.alpha > 0)
                {
                   _text.alpha -= 0.1;
                }
                else
                {
-                  role.hit = 0;
+                  // role.hit = 0;
                   _hit = 0;
                   _text.alpha = 0;
                }
+               } //
             }
          }
       }

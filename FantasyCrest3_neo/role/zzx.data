@@ -60,6 +60,8 @@
     <file path="sound/zzx (19).mp3"/>
     <file path="sound/zzx (6).mp3"/>
     <file path="sound/zzx (28).mp3"/>
+    <!-- 补充特效 -->
+    <sprites path="effect/mh17"/>
   </loads>
   <action>
     <act name="待机" fps="12">
@@ -435,7 +437,8 @@
       <SubTexture name="元件 10022" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10022" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="无限刃·炎鬼（终极秘剑·火产灵神）" key="O" type="land" cd="30" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
+    <!-- <act name="无限刃·炎鬼（终极秘剑·火产灵神）" key="O" type="land" cd="30" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg=""> -->
+    <act name="无限刃·炎鬼（终极秘剑·火产灵神）" key="O" type="land" cd="30" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
       <SubTexture name="元件 10054" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10054" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10055" gox="0" goy="0" effects="[]"/>
@@ -501,7 +504,8 @@
       <SubTexture name="元件 10081" gox="310" goy="0" effects="[]" mapVibrationTime="10" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" vibrationSize="30" mapVibrationSize="20"/>
       <SubTexture name="元件 10081" gox="310" goy="0" effects="[]"/>
     </act>
-    <act name="无限刃·旋空（无限刃·灼鬼旋空）" key="WO" type="all" cd="35" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
+    <!-- <act name="无限刃·旋空（无限刃·灼鬼旋空）" key="WO" type="all" cd="35" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg=""> -->
+    <act name="无限刃·旋空（无限刃·灼鬼旋空）" key="WO" type="all" cd="35" other="[{&quot;value&quot;:&quot;4&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
       <SubTexture name="元件 10068" gox="16" goy="-16" effects="[]"/>
       <SubTexture name="元件 10068" gox="32" goy="-32" effects="[]"/>
       <SubTexture name="元件 10069" gox="48" goy="-48" effects="[&quot;{\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;mFight\&quot;:0,\&quot;canHit\&quot;:false,\&quot;name\&quot;:\&quot;meihong6\&quot;,\&quot;hitMap\&quot;:false,\&quot;through\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;scaleY\&quot;:2,\&quot;rotation\&quot;:0,\&quot;fadeOut\&quot;:false,\&quot;blow\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;gox\&quot;:0,\&quot;intensity\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;time\&quot;:0,\&quot;hitX\&quot;:1,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;isLockAction\&quot;:true,\&quot;hitVibrationSize\&quot;:30,\&quot;isABlow\&quot;:false,\&quot;x\&quot;:26,\&quot;wFight\&quot;:200,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;y\&quot;:-214,\&quot;hitY\&quot;:18,\&quot;stiff\&quot;:30,\&quot;cardFrame\&quot;:15,\&quot;isFollow\&quot;:true,\&quot;atbottom\&quot;:false}&quot;,&quot;{\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;mFight\&quot;:0,\&quot;canHit\&quot;:false,\&quot;name\&quot;:\&quot;caotijing5\&quot;,\&quot;hitMap\&quot;:false,\&quot;through\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;scaleX\&quot;:2,\&quot;scaleY\&quot;:2,\&quot;rotation\&quot;:0,\&quot;fadeOut\&quot;:false,\&quot;blow\&quot;:false,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:13395456,\&quot;gox\&quot;:0,\&quot;intensity\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;time\&quot;:0,\&quot;hitX\&quot;:1,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;isLockAction\&quot;:true,\&quot;hitVibrationSize\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;x\&quot;:90,\&quot;wFight\&quot;:150,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;y\&quot;:-1,\&quot;hitY\&quot;:15,\&quot;stiff\&quot;:30,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:true,\&quot;atbottom\&quot;:false}&quot;]" isHitMapGoOn="false" soundName="zzx (19)" stop="unstop" golden="0" turn="0" hitEffectName=""/>
