@@ -6,6 +6,7 @@ package game.role
    import zygame.display.World;
    import feathers.data.ListCollection;
    import zygame.data.RoleFrameGroup;
+   import zygame.data.BeHitData;
    
    public class MaYi extends GameRole
    {
@@ -49,7 +50,12 @@ package game.role
             listData.getItemAt(0).msg = "Ready";
          }
          listData.updateItemAt(0);
-         trace(this.attribute.getCD("高机动 U 横穿") / 60);
+      }
+
+      override public function hitDataBuff(beData:BeHitData) : void
+      {
+         super.hitDataBuff(beData);
+         beData.invincibleGod = !_isPowerMode; // 高机动模式下无视无敌
       }
 
 	   override public function runLockAction(str:String, canBreak:Boolean = false) : void

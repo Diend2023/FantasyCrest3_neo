@@ -39,6 +39,8 @@ package zygame.data
       public var hitVibrationSize:int = 0;
       
       private var _cardFrame:int = 0;
+
+      public var invincibleGod:Boolean = false; // 是否无视无敌
       
       public function BeHitData(pParent:DisplayObjectContainer, mx:int = 0, my:int = 0, s:int = 60)
       {

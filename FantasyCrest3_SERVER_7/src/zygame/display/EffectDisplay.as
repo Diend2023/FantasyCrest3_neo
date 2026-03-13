@@ -534,9 +534,12 @@ package zygame.display
                         {
                            _beHitData.hitEffect = objectData.hitEffectName;
                         }
-                        if(!prole.isGod() && prole.troopid != role.troopid)
+                        // if(!prole.isGod() && prole.troopid != role.troopid)
+                        if(prole.troopid != role.troopid) //
                         {
                            role.hitDataBuff(_beHitData);
+                           if(!prole.isGod() || _beHitData.invincibleGod) //
+                           { //
                            body2.userData.ref.onBeHit(_beHitData);
                            if(_beHitData.lastIsHit)
                            {
@@ -544,6 +547,7 @@ package zygame.display
                               role.cardFrame = cardFrame;
                               onHitRole(body2.userData.ref as BaseRole);
                            }
+                           } //
                         }
                      }
                   }

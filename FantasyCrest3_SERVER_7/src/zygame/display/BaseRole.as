@@ -1887,7 +1887,8 @@ package zygame.display
          {
             return;
          }
-         if(isGod())
+         // if(isGod())
+         if(isGod() && !beData.invincibleGod) //
          {
             return;
          }
@@ -1895,7 +1896,10 @@ package zygame.display
          if(!beData.isNoRole && !beData.isHit(this.attribute))
          {
             onMiss(beData);
+            if(!beData.invincibleGod) //
+            { //
             return;
+            } //
          }
          beData.role.cardFrame = beData.cardFrame;
          if(beData.hitVibrationSize > 6)
@@ -2031,7 +2035,8 @@ package zygame.display
       
       public function hurtNumber(beHurt:int, beData:BeHitData, pos:Point) : void
       {
-         if(isGod())
+         // if(isGod())
+         if(isGod() && !beData.invincibleGod) //
          {
             return;
          }
