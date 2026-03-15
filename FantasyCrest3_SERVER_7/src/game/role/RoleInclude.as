@@ -100,6 +100,7 @@ package game.role
          MaYi; // 添加夏目麻衣
          ZhanShen; // 添加斩神白面
          ZZX; // 添加志志雄
+         Weiss; // 添加Weiss
       }
    }
 }

@@ -2050,7 +2050,8 @@
 
         <data name="力量" value="0"/>
 
-        <data name="魔力" value="0.8"/>
+        <!-- <data name="魔力" value="0.8"/> -->
+        <data name="魔力" value="0.5"/>
 
         <data name="物理防御" value="0.45"/>
 
