@@ -19,7 +19,7 @@ package game.role
          super.onFrame();
          if (this.actionName == "Yellow Glyphs")
          {
-            if(_suFrameCunter == 0 || (_suFrameCunter >= 9 && _suFrameCunter % 9 != 0) && _suFrameCunter <= 100)
+            if(_suFrameCunter == 1 || (_suFrameCunter >= 9 && _suFrameCunter % 9 != 0) && _suFrameCunter <= 100)
             {
                declareSpeed(); // 每9帧降低一次敌方速度
             }
@@ -28,6 +28,18 @@ package game.role
          else
          {
             _suFrameCunter = 0; // 重置计数器
+         }
+         if(this.inFrame("白银骑士", 20))
+         {
+            var roles:Vector.<BaseRole> = this.world.getRoleList()
+            for each (var role:BaseRole in roles)
+            {
+               if (role != this && role.troopid != this.troopid && role.attribute && Math.abs(this.x - role.x) < 300)
+               {
+                  this.posx = role.x;
+                  break;
+               }
+            }
          }
       }
 

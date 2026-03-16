@@ -227,7 +227,6 @@ package zygame.core
          if(GameCore.currentCore)
          {
             GameCore.currentCore.start();
-            trace("onActivate"); //
          }
          if(!SystemUtil.isDesktop)
          {
@@ -240,7 +239,6 @@ package zygame.core
          if(GameCore.currentCore)
          {
             GameCore.currentCore.stop();
-            trace("onDeactivate"); //
          }
          if(!SystemUtil.isDesktop)
          {

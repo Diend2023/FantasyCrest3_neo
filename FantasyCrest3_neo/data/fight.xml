@@ -2044,7 +2044,7 @@
 
     </JIN>
 
-     <Weiss visible="true" head="Weiss.png" acthor="柠七" coin="800" crystal="5" name="Weiss" profession="颜值" passive="(未实现)在SU释放过程中，对方所有动作放慢90%" introduce="">
+     <Weiss visible="true" head="Weiss.png" acthor="柠七" coin="800" crystal="5" name="Weiss" profession="颜值" passive="(已实现)在SU释放过程中，对方所有动作放慢90%" introduce="">
 
     	<data name="移动速度" value="1"/>
 
