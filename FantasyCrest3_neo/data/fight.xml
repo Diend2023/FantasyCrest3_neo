@@ -1376,7 +1376,7 @@
 
 	</guanggong>
 
-	<DCR visible="true" head="DCR.png" acthor="小邪" coin="1420" crystal="7" name="邪神仆从·汉尼拔" profession="死神之力/收割" passive="(未实现)每击伤害，会附加1(非镰刀)/2(镰刀)%敌人最大生命值的真实伤害。（副本模式最大伤害仅造成300伤害）" introduce="">
+	<DCR visible="true" head="DCR.png" acthor="小邪" coin="1420" crystal="7" name="邪神仆从·汉尼拔" profession="死神之力/收割" passive="每击伤害，会附加1(非镰刀)/2(镰刀)%敌人最大生命值的真实伤害。（副本模式最大伤害仅造成300伤害）" introduce="">
 
 		<data name="移动速度" value="0.5"/>
 
@@ -2254,7 +2254,8 @@
 
     	<data name="移动速度" value="1"/>
 
-        <data name="力量" value="0.8"/>
+        <!-- <data name="力量" value="0.8"/> -->
+        <data name="力量" value="0.5"/>
 
         <data name="魔力" value="0"/>
 
