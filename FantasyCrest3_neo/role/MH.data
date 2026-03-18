@@ -1,4 +1,6 @@
 <Role type="sprite" scale="1.1" fps="24" hitEffectName="">
+  <!-- 添加角色类 -->
+  <class src="game.role.FBDH"/>
   <content>
     <xml path="npc/MH.xml"/>
     <image path="npc/MH.png"/>
@@ -114,7 +116,24 @@
       <SubTexture name="元件 2 实例 10212" gox="66" goy="76" effects="[]"/>
       <SubTexture name="元件 2 实例 10213" gox="80" goy="100" isApplyGoPoint="true" effects="[]"/>
     </act>
-    <act name="卧龙藏虎" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" msg="" fps="19">
+    <!-- 添加瞬步 -->
+    <act name="瞬步" key="" type="all" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="20">
+      <SubTexture name="元件 2 实例 10100" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10101" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10102" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10103" gox="130" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10104" gox="210" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10105" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10106" gox="340" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10106" gox="370" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10107" gox="390" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10107" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10107" gox="410" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10107" gox="420" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10108" gox="430" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <!-- <act name="卧龙藏虎" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" msg="" fps="19"> -->
+    <act name="卧龙藏虎" key="SJ" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" msg="" fps="19">
       <SubTexture name="元件 2 实例 10064" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10065" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10066" gox="0" goy="0" effects="[&quot;{\&quot;isLockActionShow\&quot;:false,\&quot;hitY\&quot;:25,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;T\&quot;,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0,\&quot;scaleY\&quot;:0.8,\&quot;isFollow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;canHit\&quot;:false,\&quot;color\&quot;:[],\&quot;fadeIn\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:25,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:0,\&quot;x\&quot;:-39,\&quot;rotation\&quot;:6,\&quot;scaleX\&quot;:0.8,\&quot;hitX\&quot;:3,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:20,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:0,\&quot;time\&quot;:0,\&quot;y\&quot;:-64,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false}&quot;]"/>
@@ -206,7 +225,8 @@
       <SubTexture name="元件 2 实例 10037" gox="0" goy="0" effects="[&quot;{\&quot;isLockActionShow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LingDian\&quot;,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;isFollow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;canHit\&quot;:false,\&quot;color\&quot;:[],\&quot;fadeIn\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:5,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:0,\&quot;x\&quot;:102,\&quot;rotation\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitX\&quot;:-1,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:2,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:null,\&quot;time\&quot;:0,\&quot;y\&quot;:-71,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false}&quot;]" isHitMapGoOn="false" soundName="100" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="元件 2 实例 10034" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="U" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
+    <!-- <act name="U" key="" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg=""> -->
+    <act name="U" key="U" type="land" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
       <SubTexture name="元件 2 实例 10246" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10246" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10247" gox="0" goy="0" effects="[]"/>
@@ -215,7 +235,8 @@
       <SubTexture name="元件 2 实例 10248" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10249" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="SU" key="U" type="land" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="13" msg="">
+    <!-- <act name="SU" key="U" type="land" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="13" msg=""> -->
+    <act name="SU" key="SU" type="land" cd="8" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="13" msg="">
       <SubTexture name="元件 2 实例 10080" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10081" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 2 实例 10082" gox="0" goy="0" effects="[&quot;{\&quot;isLockActionShow\&quot;:false,\&quot;hitY\&quot;:15,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:450,\&quot;scaleY\&quot;:0.5,\&quot;isFollow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;unhit\&quot;:false,\&quot;goy\&quot;:0,\&quot;through\&quot;:false,\&quot;canHit\&quot;:false,\&quot;color\&quot;:[],\&quot;fadeIn\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;hitVibrationSize\&quot;:10,\&quot;gox\&quot;:0,\&quot;addColor\&quot;:0,\&quot;x\&quot;:54,\&quot;rotation\&quot;:0,\&quot;scaleX\&quot;:0.5,\&quot;hitX\&quot;:4,\&quot;srcColor\&quot;:-1,\&quot;cardFrame\&quot;:10,\&quot;isBreak\&quot;:false,\&quot;intensity\&quot;:null,\&quot;time\&quot;:0,\&quot;y\&quot;:-96,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isLaunch\&quot;:false,\&quot;isABlow\&quot;:false}&quot;]"/>

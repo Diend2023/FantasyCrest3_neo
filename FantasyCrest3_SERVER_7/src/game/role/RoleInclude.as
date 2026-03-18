@@ -101,6 +101,7 @@ package game.role
          ZhanShen; // 添加斩神白面
          ZZX; // 添加志志雄
          Weiss; // 添加Weiss
+         FBDH; // 添加逢坂大河
       }
    }
 }

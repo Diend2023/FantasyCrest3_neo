@@ -36,7 +36,6 @@ package game.role
             {
                if (enemy.attribute && enemy.attribute.hasBuff(BuffRef, "debuff_LX10"))
                {
-                  // enemy.attribute.hp -= enemy.attribute.hpmax * 0.02;
                   enemy.hurtNumber(enemy.attribute.hpmax * 0.02,null,new Point(enemy.x,enemy.y));
                   this.attribute.hp += enemy.attribute.hpmax * 0.02;
                   if(this.attribute.hp > this.attribute.hpmax)
