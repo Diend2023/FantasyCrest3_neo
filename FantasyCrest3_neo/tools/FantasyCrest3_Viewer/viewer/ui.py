@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 
 import customtkinter as ctk
 from PIL import Image
@@ -17,7 +17,7 @@ class RoleViewerApp(ctk.CTk):
         ctk.set_default_color_theme("blue")
 
         self.title("FantasyCrest3 角色查看器")
-        self.geometry("1700x930")
+        self.geometry("1400x930")
 
         self.root_path = find_game_root()
         self.fight_path = self.root_path / "data" / "fight.xml"
@@ -32,6 +32,8 @@ class RoleViewerApp(ctk.CTk):
         self.atlas_cache: dict[str, list[AtlasFrame]] = {}
         self.atlas_map_cache: dict[str, dict[str, AtlasFrame]] = {}
         self.image_cache: dict[str, Image.Image] = {}
+        self.role_head_map: dict[str, AtlasFrame] = {}
+        self.role_head_image: Image.Image | None = None
 
         self.current_role: RoleIndexItem | None = None
         self.current_role_data: RoleData | None = None
@@ -41,6 +43,8 @@ class RoleViewerApp(ctk.CTk):
         self.play_index = 0
 
         self.preview_ctk_image = None
+        self.role_draw_ctk_image = None
+        self.role_head_ctk_image = None
 
         self._build_ui()
         self.reload_data()
@@ -52,24 +56,27 @@ class RoleViewerApp(ctk.CTk):
         body = ctk.CTkFrame(self)
         body.grid(row=0, column=0, sticky="nsew", padx=10, pady=(10, 8))
         body.grid_columnconfigure(0, weight=2)
-        body.grid_columnconfigure(1, weight=3)
-        body.grid_columnconfigure(2, weight=5)
+        body.grid_columnconfigure(1, weight=8)
         body.grid_rowconfigure(0, weight=1)
 
         left = ctk.CTkFrame(body)
-        mid = ctk.CTkFrame(body)
-        right = ctk.CTkFrame(body)
+        main_panel = ctk.CTkFrame(body)
         left.grid(row=0, column=0, sticky="nsew", padx=(8, 4), pady=8)
-        mid.grid(row=0, column=1, sticky="nsew", padx=4, pady=8)
-        right.grid(row=0, column=2, sticky="nsew", padx=(4, 8), pady=8)
+        main_panel.grid(row=0, column=1, sticky="nsew", padx=4, pady=8)
 
         self._build_left(left)
-        self._build_mid(mid)
-        self._build_right(right)
+        self._build_main(main_panel)
+
+        footer = ctk.CTkFrame(self, fg_color="transparent")
+        footer.grid(row=1, column=0, sticky="ew", padx=10, pady=(0, 8))
+        footer.grid_columnconfigure(0, weight=1)
 
         self.status_var = tk.StringVar(value="准备就绪")
-        ctk.CTkLabel(self, textvariable=self.status_var, anchor="w").grid(
-            row=1, column=0, sticky="ew", padx=14, pady=(0, 8)
+        ctk.CTkLabel(footer, textvariable=self.status_var, anchor="w").grid(
+            row=0, column=0, sticky="ew", padx=4
+        )
+        ctk.CTkButton(footer, text="重新加载数据", width=100, command=self.reload_data).grid(
+            row=0, column=1, padx=4
         )
 
     def _build_left(self, parent: ctk.CTkFrame):
@@ -86,66 +93,145 @@ class RoleViewerApp(ctk.CTk):
             row=1, column=0, sticky="ew", padx=10, pady=(0, 8)
         )
 
-        self.role_listbox = tk.Listbox(parent, activestyle="dotbox", exportselection=False)
+        self.role_listbox = tk.Listbox(
+            parent, activestyle="dotbox", exportselection=False,
+            bg="#2b2b2b", fg="white", selectbackground="#1f538d",
+            highlightthickness=0, borderwidth=1
+        )
         self.role_listbox.grid(row=2, column=0, sticky="nsew", padx=10, pady=(0, 10))
         self.role_listbox.bind("<<ListboxSelect>>", self.on_role_select)
 
-    def _build_mid(self, parent: ctk.CTkFrame):
-        parent.grid_rowconfigure(3, weight=1)
-        parent.grid_columnconfigure(0, weight=1)
+    def on_action_hover(self, event):
+        if not hasattr(self, 'current_role_data') or not self.current_role_data:
+            return
+        index = self.action_listbox.nearest(event.y)
+        if index < 0 or index >= len(self.current_role_data.actions):
+            self._hide_tooltip()
+            return
 
+        bbox = self.action_listbox.bbox(index)
+        if not bbox:
+            self._hide_tooltip()
+            return
+        x, y, w, h = bbox
+        if not (y <= event.y <= y + h):
+            self._hide_tooltip()
+            return
+
+        action = self.current_role_data.actions[index]
+        msg = action.attrs.get("msg", "")
+        if not msg:
+            self._hide_tooltip()
+            return
+
+        if self.tooltip_window and getattr(self.tooltip_window, "_current_index", None) == index:
+            return
+
+        self._hide_tooltip()
+        tx = x + self.action_listbox.winfo_rootx() + 20
+        ty = y + self.action_listbox.winfo_rooty() + h + 2
+
+        self.tooltip_window = tk.Toplevel(self.action_listbox)
+        self.tooltip_window.wm_overrideredirect(True)
+        self.tooltip_window.wm_geometry(f"+{tx}+{ty}")
+        self.tooltip_window._current_index = index
+
+        label = tk.Label(
+            self.tooltip_window, text=msg, justify="left",
+            background="#2b2b2b", foreground="white", relief="solid", borderwidth=1,
+            font=("System", 10, "normal")
+        )
+        label.pack(ipadx=4, ipady=4)
+
+    def on_action_leave(self, event):
+        self._hide_tooltip()
+
+    def _hide_tooltip(self):
+        if hasattr(self, 'tooltip_window') and self.tooltip_window:
+            self.tooltip_window.destroy()
+            self.tooltip_window = None
+
+    def _build_main(self, parent: ctk.CTkFrame):
+        parent.grid_columnconfigure(0, weight=4)
+        parent.grid_columnconfigure(1, weight=1)
+        parent.grid_columnconfigure(2, weight=8)
+        parent.grid_rowconfigure(1, weight=1)
+        parent.grid_rowconfigure(4, weight=1)
+
+        # 1. 角色信息 (原中间列)
         ctk.CTkLabel(parent, text="角色信息", font=ctk.CTkFont(size=16, weight="bold")).grid(
             row=0, column=0, sticky="w", padx=10, pady=(10, 6)
         )
-        self.role_info = ctk.CTkTextbox(parent, wrap="word", height=260)
-        self.role_info.grid(row=1, column=0, sticky="ew", padx=10, pady=(0, 10))
+        self.role_info = ctk.CTkScrollableFrame(parent)
+        self.role_info.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
+        self.role_info.grid_columnconfigure(0, weight=1)
+
+        self.role_draw_label = ctk.CTkLabel(self.role_info, text="(无立绘)")
+        self.role_head_label = ctk.CTkLabel(self.role_info, text="(无头像)")
 
         ctk.CTkLabel(parent, text="技能动作列表", font=ctk.CTkFont(size=15, weight="bold")).grid(
             row=2, column=0, sticky="w", padx=10, pady=(0, 6)
         )
-        self.action_listbox = tk.Listbox(parent, activestyle="dotbox", exportselection=False)
-        self.action_listbox.grid(row=3, column=0, sticky="nsew", padx=10, pady=(0, 10))
-        self.action_listbox.bind("<<ListboxSelect>>", self.on_action_select)
-
-    def _build_right(self, parent: ctk.CTkFrame):
-        parent.grid_columnconfigure(0, weight=1)
-        parent.grid_rowconfigure(6, weight=1)
-
-        ctk.CTkLabel(parent, text="角色全部帧列表（Atlas）", font=ctk.CTkFont(size=15, weight="bold")).grid(
-            row=0, column=0, sticky="w", padx=10, pady=(10, 6)
+        self.action_listbox = tk.Listbox(
+            parent, activestyle="dotbox", exportselection=False,
+            bg="#2b2b2b", fg="white", selectbackground="#1f538d",
+            highlightthickness=0, borderwidth=1
         )
-        self.all_frames_listbox = tk.Listbox(parent, activestyle="dotbox", exportselection=False, height=6)
-        self.all_frames_listbox.grid(row=1, column=0, sticky="ew", padx=10, pady=(0, 10))
+        # 通过跨越3、4行，让它在底部与右侧完美平齐对齐
+        self.action_listbox.grid(row=3, column=0, rowspan=2, sticky="nsew", padx=10, pady=(0, 10))
+        self.action_listbox.bind("<<ListboxSelect>>", self.on_action_select)
+        self.action_listbox.bind("<Motion>", self.on_action_hover)
+        self.action_listbox.bind("<Leave>", self.on_action_leave)
+        self.tooltip_window = None
+
+        # 2. 全部帧与选中帧 (原右侧左列)
+        ctk.CTkLabel(parent, text="角色全部帧列表（Atlas）", font=ctk.CTkFont(size=15, weight="bold")).grid(
+            row=0, column=1, sticky="w", padx=10, pady=(10, 6)
+        )
+        self.all_frames_listbox = tk.Listbox(
+            parent, activestyle="dotbox", exportselection=False, height=6, width=15,
+            bg="#2b2b2b", fg="white", selectbackground="#1f538d",
+            highlightthickness=0, borderwidth=1
+        )
+        self.all_frames_listbox.grid(row=1, column=1, sticky="nsew", padx=10, pady=(0, 10))
         self.all_frames_listbox.bind("<<ListboxSelect>>", self.on_all_frame_select)
 
-        ctk.CTkLabel(parent, text="选中技能的帧序列", font=ctk.CTkFont(size=15, weight="bold")).grid(
-            row=2, column=0, sticky="w", padx=10, pady=(0, 6)
-        )
-        self.action_frames_listbox = tk.Listbox(parent, activestyle="dotbox", exportselection=False, height=8)
-        self.action_frames_listbox.grid(row=3, column=0, sticky="ew", padx=10, pady=(0, 10))
-        self.action_frames_listbox.bind("<<ListboxSelect>>", self.on_action_frame_select)
+        title_frame = ctk.CTkFrame(parent, fg_color="transparent")
+        title_frame.grid(row=2, column=1, sticky="ew", padx=10, pady=(0, 6))
+        ctk.CTkLabel(title_frame, text="选中技能的帧序列", font=ctk.CTkFont(size=15, weight="bold")).pack(side="left")
 
         controls = ctk.CTkFrame(parent)
-        controls.grid(row=4, column=0, sticky="ew", padx=10, pady=(0, 8))
+        controls.grid(row=3, column=1, sticky="nsew", padx=10, pady=(0, 8))
         controls.grid_columnconfigure(4, weight=1)
-        ctk.CTkButton(controls, text="播放", width=80, command=self.play_action).grid(row=0, column=0, padx=(8, 4), pady=8)
-        ctk.CTkButton(controls, text="暂停", width=80, command=self.pause_action).grid(row=0, column=1, padx=4, pady=8)
-        ctk.CTkButton(controls, text="停止", width=80, command=self.stop_action).grid(row=0, column=2, padx=4, pady=8)
-        self.play_state_var = tk.StringVar(value="状态: 停止")
-        ctk.CTkLabel(controls, textvariable=self.play_state_var).grid(row=0, column=4, sticky="e", padx=(4, 10), pady=8)
+        ctk.CTkButton(controls, text="播放", width=36, command=self.play_action).grid(row=0, column=0, padx=2, pady=4)
+        ctk.CTkButton(controls, text="暂停", width=36, command=self.pause_action).grid(row=0, column=1, padx=2, pady=4)
+        ctk.CTkButton(controls, text="停止", width=36, command=self.stop_action).grid(row=0, column=2, padx=2, pady=4)
+        ctk.CTkButton(controls, text="导出", width=36, command=self.export_action_gif).grid(row=0, column=3, padx=2, pady=4)
+        self.play_state_var = tk.StringVar(value="停止")
+        ctk.CTkLabel(controls, textvariable=self.play_state_var).grid(row=0, column=4, sticky="e", padx=4, pady=4)
 
+        self.action_frames_listbox = tk.Listbox(
+            parent, activestyle="dotbox", exportselection=False, height=8, width=15,
+            bg="#2b2b2b", fg="white", selectbackground="#1f538d",
+            highlightthickness=0, borderwidth=1
+        )
+        self.action_frames_listbox.grid(row=4, column=1, sticky="nsew", padx=10, pady=(0, 10))
+        self.action_frames_listbox.bind("<<ListboxSelect>>", self.on_action_frame_select)
+
+        # 3. 预览区域 (原右侧大图列)
         self.preview_title_var = tk.StringVar(value="预览区域")
         ctk.CTkLabel(parent, textvariable=self.preview_title_var, font=ctk.CTkFont(size=15, weight="bold")).grid(
-            row=5, column=0, sticky="w", padx=10, pady=(0, 6)
+            row=0, column=2, sticky="w", padx=4, pady=(10, 6)
         )
 
         preview_wrap = ctk.CTkFrame(parent)
-        preview_wrap.grid(row=6, column=0, sticky="nsew", padx=10, pady=(0, 10))
+        preview_wrap.grid_propagate(False)  # 核心修复点：禁止内部图片过大时撑大容器，强制由外部 grid 的 weight 分配空间
+        preview_wrap.grid(row=1, column=2, rowspan=4, sticky="nsew", padx=(4, 10), pady=(0, 10))
         preview_wrap.grid_columnconfigure(0, weight=1)
         preview_wrap.grid_rowconfigure(0, weight=2)
         preview_wrap.grid_rowconfigure(1, weight=1)
 
-        self.preview_image_label = ctk.CTkLabel(preview_wrap, text="(未选择帧)", width=520, height=420)
+        self.preview_image_label = ctk.CTkLabel(preview_wrap, text="(未选择帧)", width=400, height=420)
         self.preview_image_label.grid(row=0, column=0, sticky="nsew", padx=8, pady=(8, 6))
 
         self.preview_meta = ctk.CTkTextbox(preview_wrap, wrap="word")
@@ -162,6 +248,8 @@ class RoleViewerApp(ctk.CTk):
         self.atlas_cache.clear()
         self.atlas_map_cache.clear()
         self.image_cache.clear()
+        self.role_head_map.clear()
+        self.role_head_image = None
 
         if not self.fight_path.exists():
             messagebox.showerror("错误", f"找不到 fight.xml:\n{self.fight_path}")
@@ -174,6 +262,8 @@ class RoleViewerApp(ctk.CTk):
             messagebox.showerror("错误", f"fight.xml 解析失败:\n{exc}")
             self.status_var.set("加载失败：fight.xml 解析异常")
             return
+
+        self.load_role_head_assets()
 
         self.refresh_role_list()
         self.clear_detail_views()
@@ -196,16 +286,41 @@ class RoleViewerApp(ctk.CTk):
             self.filtered_roles.append(item)
             self.role_listbox.insert(tk.END, text)
 
+    def _get_empty_img(self):
+        if not hasattr(self, "_empty_img"):
+            self._empty_img = ctk.CTkImage(Image.new("RGBA", (1, 1), (0, 0, 0, 0)), size=(1, 1))
+        return self._empty_img
+
+    def _safe_update_label(self, label: ctk.CTkLabel, text: str, image: ctk.CTkImage | None):
+        """安全地更新 CTkLabel，使用 1x1 透明图替代 None 彻底规避 TclError GC 销毁 bug"""
+        img_to_set = image if image is not None else self._get_empty_img()
+        try:
+            label.configure(image=img_to_set)
+        except Exception:
+            pass
+        try:
+            label.configure(text=text)
+        except Exception:
+            pass
+
     def clear_detail_views(self):
         self.stop_action()
-        self.role_info.delete("1.0", tk.END)
+        for w in self.role_info.winfo_children():
+            if w not in (self.role_draw_label, self.role_head_label):
+                w.destroy()
+        self.role_draw_label.pack_forget()
+        self.role_head_label.pack_forget()
         self.action_listbox.delete(0, tk.END)
         self.all_frames_listbox.delete(0, tk.END)
         self.action_frames_listbox.delete(0, tk.END)
         self.preview_meta.delete("1.0", tk.END)
         self.preview_title_var.set("预览区域")
-        self.preview_image_label.configure(text="(未选择帧)", image=None)
+        self._safe_update_label(self.preview_image_label, "(未选择帧)", None)
         self.preview_ctk_image = None
+        self._safe_update_label(self.role_draw_label, "(无立绘)", None)
+        self._safe_update_label(self.role_head_label, "(无头像)", None)
+        self.role_draw_ctk_image = None
+        self.role_head_ctk_image = None
         self.current_role = None
         self.current_role_data = None
         self.current_action = None
@@ -224,34 +339,131 @@ class RoleViewerApp(ctk.CTk):
         self.load_and_render_role_assets(self.current_role)
 
     def render_role_info(self, role_item: RoleIndexItem):
+        for w in self.role_info.winfo_children():
+            if w not in (self.role_draw_label, self.role_head_label):
+                w.destroy()
+        self.role_draw_label.pack_forget()
+        self.role_head_label.pack_forget()
+        
         attrs = role_item.attrs
-        lines = [
-            f"ID: {role_item.role_id}",
-            f"名称: {attrs.get('name', '')}",
-            f"定位: {attrs.get('profession', '')}",
-            f"作者: {attrs.get('acthor', '')}",
-            f"头像: {attrs.get('head', '')}",
-            f"可见: {attrs.get('visible', 'true')}",
-            f"金币: {attrs.get('coin', '')}",
-            f"水晶: {attrs.get('crystal', '')}",
-            f"被动: {attrs.get('passive', '')}",
-            f"简介: {attrs.get('introduce', '')}",
-            "",
-            "=== 角色倍率（fight.xml）===",
-        ]
+        
+        ctk.CTkLabel(self.role_info, text=f"ID: {role_item.role_id}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"名称: {attrs.get('name', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        self.role_draw_label.pack(fill="x", padx=4, pady=4)
+        
+        ctk.CTkLabel(self.role_info, text=f"定位: {attrs.get('profession', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"作者: {attrs.get('acthor', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"头像: {attrs.get('head', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        self.role_head_label.pack(anchor="w", padx=4, pady=4)
+        
+        ctk.CTkLabel(self.role_info, text=f"可见: {attrs.get('visible', 'true')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"金币: {attrs.get('coin', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"水晶: {attrs.get('crystal', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"被动: {attrs.get('passive', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"简介: {attrs.get('introduce', '')}", anchor="w", wraplength=350, justify="left").pack(fill="x", padx=4, pady=2)
+
+        ctk.CTkLabel(self.role_info, text="\n=== 角色倍率（fight.xml）===", anchor="w", font=ctk.CTkFont(weight="bold")).pack(fill="x", padx=4, pady=2)
+        
         for name, value in role_item.ratios.items():
             base = self.fight_init.get(name)
             if base:
-                lines.append(f"- {name} ({base.id}) : {value}  [默认 {base.value}]")
+                txt = f"- {name} ({base.id}) : {value}  [默认 {base.value}]"
             else:
-                lines.append(f"- {name} : {value}")
+                txt = f"- {name} : {value}"
+            ctk.CTkLabel(self.role_info, text=txt, anchor="w").pack(fill="x", padx=4, pady=1)
 
-        lines.append("")
-        lines.append(f"角色文件: {role_item.role_file}")
-        lines.append(f"存在: {'是' if role_item.exists else '否'}")
+        ctk.CTkLabel(self.role_info, text=f"\n角色文件: {role_item.role_file}", anchor="w").pack(fill="x", padx=4, pady=2)
+        ctk.CTkLabel(self.role_info, text=f"存在: {'是' if role_item.exists else '否'}", anchor="w").pack(fill="x", padx=4, pady=2)
 
-        self.role_info.delete("1.0", tk.END)
-        self.role_info.insert("1.0", "\n".join(lines))
+        self.render_role_visuals(role_item)
+
+    def load_role_head_assets(self):
+        atlas_xml = self.root_path / "ui" / "role_head.xml"
+        atlas_png = self.root_path / "ui" / "role_head.png"
+        if not atlas_xml.exists() or not atlas_png.exists():
+            return
+
+        try:
+            frames = parse_atlas_xml(atlas_xml)
+            self.role_head_image = Image.open(atlas_png)
+        except Exception:
+            self.role_head_map.clear()
+            self.role_head_image = None
+            return
+
+        mapped: dict[str, AtlasFrame] = {}
+        for frame in frames:
+            name = frame.name
+            mapped[name] = frame
+            mapped[name.lower()] = frame
+            if "." in name:
+                stem = Path(name).stem
+                mapped[stem] = frame
+                mapped[stem.lower()] = frame
+        self.role_head_map = mapped
+
+    def get_head_frame(self, role_item: RoleIndexItem) -> AtlasFrame | None:
+        head_attr = role_item.attrs.get("head", "")
+        head_stem = Path(head_attr).stem if head_attr else ""
+        candidates = [
+            role_item.role_id,
+            role_item.role_id.lower(),
+            head_attr,
+            head_attr.lower(),
+            head_stem,
+            head_stem.lower(),
+            "weizhi",
+        ]
+        for key in candidates:
+            if key and key in self.role_head_map:
+                return self.role_head_map[key]
+        return None
+
+    def render_role_visuals(self, role_item: RoleIndexItem):
+        role_draw_path = self.root_path / "role_image" / f"{role_item.role_id}.png"
+        if not role_draw_path.exists():
+            role_draw_path = self.root_path / "role_image" / "none.png"
+
+        if role_draw_path.exists():
+            try:
+                draw_img = Image.open(role_draw_path)
+                scale = min(300 / draw_img.width, 400 / draw_img.height, 1)
+                size = (max(1, int(draw_img.width * scale)), max(1, int(draw_img.height * scale)))
+                new_img = ctk.CTkImage(light_image=draw_img, dark_image=draw_img, size=size)
+                self._safe_update_label(self.role_draw_label, "", new_img)
+                self.role_draw_ctk_image = new_img
+            except Exception:
+                self.role_draw_ctk_image = None
+                self._safe_update_label(self.role_draw_label, "(立绘加载失败)", None)
+        else:
+            self.role_draw_ctk_image = None
+            self._safe_update_label(self.role_draw_label, "(无立绘)", None)
+
+        frame = self.get_head_frame(role_item)
+        if frame is None or self.role_head_image is None:
+            self.role_head_ctk_image = None
+            self._safe_update_label(self.role_head_label, "(无头像)", None)
+            return
+
+        x1 = max(0, frame.x)
+        y1 = max(0, frame.y)
+        x2 = min(self.role_head_image.width, frame.x + frame.width)
+        y2 = min(self.role_head_image.height, frame.y + frame.height)
+        if x2 <= x1 or y2 <= y1:
+            self.role_head_ctk_image = None
+            self._safe_update_label(self.role_head_label, "(无头像)", None)
+            return
+
+        try:
+            head_img = self.role_head_image.crop((x1, y1, x2, y2))
+            scale = min(72 / head_img.width, 72 / head_img.height, 1)
+            size = (max(1, int(head_img.width * scale)), max(1, int(head_img.height * scale)))
+            new_img = ctk.CTkImage(light_image=head_img, dark_image=head_img, size=size)
+            self._safe_update_label(self.role_head_label, "", new_img)
+            self.role_head_ctk_image = new_img
+        except Exception:
+            self.role_head_ctk_image = None
+            self._safe_update_label(self.role_head_label, "(头像加载失败)", None)
 
     def load_and_render_role_assets(self, role_item: RoleIndexItem):
         self.action_listbox.delete(0, tk.END)
@@ -283,10 +495,41 @@ class RoleViewerApp(ctk.CTk):
         for action in role_data.actions:
             fps = action.attrs.get("fps", role_data.root_attrs.get("fps", ""))
             key = action.attrs.get("key", "")
+            action_type = action.attrs.get("type", "")
             cd = action.attrs.get("cd", "")
-            self.action_listbox.insert(
-                tk.END, f"{action.name} | 帧:{len(action.frames)} | fps:{fps} | key:{key} | cd:{cd}"
-            )
+            
+            other_str = action.attrs.get("other", "[]")
+            mp = None
+            noc = None
+            try:
+                if other_str and other_str.strip():
+                    import json
+                    other_data = json.loads(other_str)
+                    for item in other_data:
+                        if item.get("id") == "mp":
+                            mp = item.get("value", "")
+                        elif item.get("id") == "noc":
+                            noc = item.get("value", "")
+            except Exception:
+                pass
+
+            parts = [f"{action.name}"]
+            if len(action.frames) > 0:
+                parts.append(f"帧:{len(action.frames)}")
+            if key:
+                parts.append(f"key:{key}")
+            if action_type:
+                parts.append(f"type:{action_type}")
+            if cd:
+                parts.append(f"cd:{cd}")
+            if mp is not None:
+                parts.append(f"mp:{mp}")
+            if noc is not None:
+                parts.append(f"noc:{noc}")
+            if fps:
+                parts.append(f"fps:{fps}")
+
+            self.action_listbox.insert(tk.END, " | ".join(parts))
 
         atlas_xml_path = self.root_path / role_data.content_xml if role_data.content_xml else None
         atlas_image_path = self.root_path / role_data.content_image if role_data.content_image else None
@@ -368,7 +611,7 @@ class RoleViewerApp(ctk.CTk):
         if self.is_playing:
             return
         self.is_playing = True
-        self.play_state_var.set("状态: 播放中")
+        self.play_state_var.set("播放中")
 
         sel = self.action_frames_listbox.curselection()
         self.play_index = sel[0] if sel else 0
@@ -381,17 +624,114 @@ class RoleViewerApp(ctk.CTk):
         if self.play_after_id:
             self.after_cancel(self.play_after_id)
             self.play_after_id = None
-        self.play_state_var.set("状态: 暂停")
+        self.play_state_var.set("暂停")
 
     def stop_action(self, reset_selection: bool = True):
         self.is_playing = False
         if self.play_after_id:
             self.after_cancel(self.play_after_id)
             self.play_after_id = None
-        self.play_state_var.set("状态: 停止")
+        self.play_state_var.set("停止")
         self.play_index = 0
         if reset_selection and self.action_frames_listbox.size() > 0:
             self.action_frames_listbox.selection_clear(0, tk.END)
+
+    def export_action_gif(self):
+        if not self.current_role or not self.current_action or not self.current_action.frames:
+            messagebox.showinfo("提示", "请先选择一个包含帧的技能动作")
+            return
+            
+        role_id = self.current_role.role_id
+        image = self.image_cache.get(role_id)
+        if image is None:
+            messagebox.showwarning("警告", "当前角色缺少贴图数据，无法导出")
+            return
+
+        filepath = filedialog.asksaveasfilename(
+            defaultextension=".gif",
+            filetypes=[("GIF 图像", "*.gif")],
+            initialfile=f"{role_id}_{self.current_action.name}.gif",
+            title="导出技能 GIF"
+        )
+        if not filepath:
+            return
+            
+        atlas_map = self.atlas_map_cache.get(role_id, {})
+        valid_frames = []
+        max_w = max_h = 0
+        
+        for frame in self.current_action.frames:
+            frame_name = frame.name
+            atlas_frame = atlas_map.get(frame_name)
+            if not atlas_frame:
+                continue
+            
+            x1 = max(0, atlas_frame.x)
+            y1 = max(0, atlas_frame.y)
+            x2 = min(image.width, atlas_frame.x + atlas_frame.width)
+            y2 = min(image.height, atlas_frame.y + atlas_frame.height)
+            
+            if x2 <= x1 or y2 <= y1:
+                continue
+                
+            crop = image.crop((x1, y1, x2, y2))
+            valid_frames.append(crop)
+            
+            max_w = max(max_w, crop.width)
+            max_h = max(max_h, crop.height)
+                
+        if not valid_frames:
+            messagebox.showwarning("警告", "该动作没有可导出的有效帧")
+            return
+            
+        canvas_w = max_w
+        canvas_h = max_h
+        if canvas_w <= 0 or canvas_h <= 0:
+            messagebox.showwarning("警告", "包含的帧截取信息无效，无法导出")
+            return
+            
+        # 强制设置一个保底的方形大画布并让它居中（防止极端长宽比紧贴画面边缘的情况导致显示在左上角）
+        # 强行让画布大小为1比1
+        side_len = max(canvas_w, canvas_h)
+        scale = 2  # 大小放大一倍
+        target_w = max(side_len + 120, 300) * scale
+        target_h = max(side_len + 120, 300) * scale
+            
+        gif_frames = []
+        for crop in valid_frames:
+            try:
+                resample = Image.Resampling.NEAREST
+            except AttributeError:
+                resample = Image.NEAREST
+            crop_scaled = crop.resize((crop.width * scale, crop.height * scale), resample)
+            
+            # Python PIL 保存动态透明GIF最好是背景色全透明，且带上遮罩
+            canvas = Image.new("RGBA", (int(target_w), int(target_h)), (255, 255, 255, 0))
+            pos_x = (target_w - crop_scaled.width) / 2
+            pos_y = (target_h - crop_scaled.height) / 2
+            
+            # 确保图像有透明通道才能作为mask
+            crop_rgba = crop_scaled.convert("RGBA")
+            canvas.paste(crop_rgba, (int(pos_x), int(pos_y)), crop_rgba)
+            gif_frames.append(canvas)
+            
+        duration = int(2000 / self.get_action_fps())
+        
+        try:
+            gif_frames[0].save(
+                filepath,
+                format="GIF",
+                save_all=True,
+                append_images=gif_frames[1:],
+                duration=duration,
+                loop=0,
+                disposal=2,  # 使用透明背景背景清除防重叠
+                transparency=0
+            )
+            self.status_var.set(f"导出成功: {filepath}")
+            messagebox.showinfo("成功", f"成功导出 GIF 到:\n{filepath}")
+        except Exception as e:
+            messagebox.showerror("导出失败", f"导出 GIF 时发生错误：\n{e}")
 
     def _schedule_next_frame(self, delay_ms: int):
         self.play_after_id = self.after(delay_ms, self._play_tick)
@@ -448,7 +788,7 @@ class RoleViewerApp(ctk.CTk):
         atlas_frame = atlas_map.get(frame_name)
         if not atlas_frame:
             self.preview_title_var.set(f"预览（技能帧）: {frame_name}")
-            self.preview_image_label.configure(text="图集中未找到同名帧", image=None)
+            self._safe_update_label(self.preview_image_label, "图集中未找到同名帧", None)
             self.preview_ctk_image = None
             self.preview_meta.delete("1.0", tk.END)
             self.preview_meta.insert(
@@ -482,7 +822,7 @@ class RoleViewerApp(ctk.CTk):
     def render_frame_preview(self, role_id: str, atlas_frame: AtlasFrame, extra_meta: dict):
         image = self.image_cache.get(role_id)
         if image is None:
-            self.preview_image_label.configure(text="未加载到贴图图片", image=None)
+            self._safe_update_label(self.preview_image_label, "未加载到贴图图片", None)
             self.preview_ctk_image = None
         else:
             x1 = max(0, atlas_frame.x)
@@ -491,16 +831,22 @@ class RoleViewerApp(ctk.CTk):
             y2 = min(image.height, atlas_frame.y + atlas_frame.height)
 
             if x2 <= x1 or y2 <= y1:
-                self.preview_image_label.configure(text="帧裁剪区域无效", image=None)
+                self._safe_update_label(self.preview_image_label, "帧裁剪区域无效", None)
                 self.preview_ctk_image = None
             else:
                 crop = image.crop((x1, y1, x2, y2))
-                max_w = 640
-                max_h = 460
+                
+                # 动态获取当前图片 Label 实际被分配到的宽高，如果尚未渲染出来给个默认的兜底大小
+                lbl_w = self.preview_image_label.winfo_width()
+                lbl_h = self.preview_image_label.winfo_height()
+                max_w = lbl_w - 4 if lbl_w > 50 else 500
+                max_h = lbl_h - 4 if lbl_h > 50 else 400
+                
                 scale = min(max_w / crop.width, max_h / crop.height, 1)
                 show_size = (max(1, int(crop.width * scale)), max(1, int(crop.height * scale)))
-                self.preview_ctk_image = ctk.CTkImage(light_image=crop, dark_image=crop, size=show_size)
-                self.preview_image_label.configure(text="", image=self.preview_ctk_image)
+                new_img = ctk.CTkImage(light_image=crop, dark_image=crop, size=show_size)
+                self._safe_update_label(self.preview_image_label, "", new_img)
+                self.preview_ctk_image = new_img
 
         meta = {
             "atlas_name": atlas_frame.name,
