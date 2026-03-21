@@ -55,8 +55,8 @@ class RoleViewerApp(ctk.CTk):
 
         body = ctk.CTkFrame(self)
         body.grid(row=0, column=0, sticky="nsew", padx=10, pady=(10, 8))
-        body.grid_columnconfigure(0, weight=2)
-        body.grid_columnconfigure(1, weight=8)
+        body.grid_columnconfigure(0, weight=15, uniform="body_col")
+        body.grid_columnconfigure(1, weight=85, uniform="body_col")
         body.grid_rowconfigure(0, weight=1)
 
         left = ctk.CTkFrame(body)
@@ -152,9 +152,14 @@ class RoleViewerApp(ctk.CTk):
             self.tooltip_window = None
 
     def _build_main(self, parent: ctk.CTkFrame):
-        parent.grid_columnconfigure(0, weight=4)
-        parent.grid_columnconfigure(1, weight=1)
-        parent.grid_columnconfigure(2, weight=8)
+        # Disable propagation on the main parent too to strictly enforce weight ratios
+        parent.grid_propagate(False)
+        
+        # Enforce uniform weights. Note that 'minsize' guarantees they won't shrink to 0 
+        parent.grid_columnconfigure(0, weight=35, uniform="col") # Role Info
+        parent.grid_columnconfigure(1, weight=25, uniform="col") # Frames & Controls
+        parent.grid_columnconfigure(2, weight=40, uniform="col") # Preview Area
+        
         parent.grid_rowconfigure(1, weight=1)
         parent.grid_rowconfigure(4, weight=1)
 
@@ -165,6 +170,25 @@ class RoleViewerApp(ctk.CTk):
         self.role_info = ctk.CTkScrollableFrame(parent)
         self.role_info.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
         self.role_info.grid_columnconfigure(0, weight=1)
+
+        self.long_text_labels = []
+        
+        def update_wraplength(event=None):
+            if event and hasattr(event, "width") and event.width > 50:
+                current_w = event.width
+            else:
+                current_w = self.role_info.winfo_width()
+                
+            # 提供更大的边距（扣除120像素）确保彻底避开由 CustomTkinter 引入的隐藏内部滚动条和内边距遮挡
+            w = max(100, current_w - 120)
+            for lbl in self.long_text_labels:
+                try:
+                    if lbl.winfo_exists() and lbl.cget("wraplength") != w:
+                        lbl.configure(wraplength=w)
+                except Exception:
+                    pass
+
+        self.role_info.bind("<Configure>", update_wraplength, add="+")
 
         self.role_draw_label = ctk.CTkLabel(self.role_info, text="(无立绘)")
         self.role_head_label = ctk.CTkLabel(self.role_info, text="(无头像)")
@@ -305,6 +329,7 @@ class RoleViewerApp(ctk.CTk):
 
     def clear_detail_views(self):
         self.stop_action()
+        self.long_text_labels.clear()
         for w in self.role_info.winfo_children():
             if w not in (self.role_draw_label, self.role_head_label):
                 w.destroy()
@@ -359,8 +384,14 @@ class RoleViewerApp(ctk.CTk):
         ctk.CTkLabel(self.role_info, text=f"可见: {attrs.get('visible', 'true')}", anchor="w").pack(fill="x", padx=4, pady=2)
         ctk.CTkLabel(self.role_info, text=f"金币: {attrs.get('coin', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
         ctk.CTkLabel(self.role_info, text=f"水晶: {attrs.get('crystal', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
-        ctk.CTkLabel(self.role_info, text=f"被动: {attrs.get('passive', '')}", anchor="w").pack(fill="x", padx=4, pady=2)
-        ctk.CTkLabel(self.role_info, text=f"简介: {attrs.get('introduce', '')}", anchor="w", wraplength=350, justify="left").pack(fill="x", padx=4, pady=2)
+        
+        w_len = max(100, self.role_info.winfo_width() - 120)
+        passive_label = ctk.CTkLabel(self.role_info, text=f"被动: {attrs.get('passive', '')}", anchor="w", justify="left", wraplength=w_len)
+        passive_label.pack(fill="x", padx=4, pady=2)
+        intro_label = ctk.CTkLabel(self.role_info, text=f"简介: {attrs.get('introduce', '')}", anchor="w", justify="left", wraplength=w_len)
+        intro_label.pack(fill="x", padx=4, pady=2)
+
+        self.long_text_labels.extend([passive_label, intro_label])
 
         ctk.CTkLabel(self.role_info, text="\n=== 角色倍率（fight.xml）===", anchor="w", font=ctk.CTkFont(weight="bold")).pack(fill="x", padx=4, pady=2)
         
@@ -372,7 +403,10 @@ class RoleViewerApp(ctk.CTk):
                 txt = f"- {name} : {value}"
             ctk.CTkLabel(self.role_info, text=txt, anchor="w").pack(fill="x", padx=4, pady=1)
 
-        ctk.CTkLabel(self.role_info, text=f"\n角色文件: {role_item.role_file}", anchor="w").pack(fill="x", padx=4, pady=2)
+        file_label = ctk.CTkLabel(self.role_info, text=f"\n角色文件: {role_item.role_file}", anchor="w", justify="left", wraplength=w_len)
+        file_label.pack(fill="x", padx=4, pady=2)
+        self.long_text_labels.append(file_label)
+        
         ctk.CTkLabel(self.role_info, text=f"存在: {'是' if role_item.exists else '否'}", anchor="w").pack(fill="x", padx=4, pady=2)
 
         self.render_role_visuals(role_item)
@@ -691,29 +725,30 @@ class RoleViewerApp(ctk.CTk):
             return
             
         # 强制设置一个保底的方形大画布并让它居中（防止极端长宽比紧贴画面边缘的情况导致显示在左上角）
-        # 强行让画布大小为1比1
+        # 强行让画布大小为1比1，并将最后的图形缩放至 400x400
+        # 去除所有留白，让角色完全填满并紧贴最大边缘
         side_len = max(canvas_w, canvas_h)
-        scale = 2  # 大小放大一倍
-        target_w = max(side_len + 120, 300) * scale
-        target_h = max(side_len + 120, 300) * scale
+        base_size = max(side_len, 2)  # 兜底防0
             
         gif_frames = []
         for crop in valid_frames:
+            # Python PIL 保存动态透明GIF最好是背景色全透明，且带上遮罩
+            canvas = Image.new("RGBA", (int(base_size), int(base_size)), (255, 255, 255, 0))
+            pos_x = (base_size - crop.width) // 2
+            pos_y = (base_size - crop.height) // 2
+            
+            # 确保图像有透明通道才能作为mask
+            crop_rgba = crop.convert("RGBA")
+            canvas.paste(crop_rgba, (int(pos_x), int(pos_y)), crop_rgba)
+            
+            # 缩放至固定的 400x400 大小
             try:
                 resample = Image.Resampling.NEAREST
             except AttributeError:
                 resample = Image.NEAREST
-            crop_scaled = crop.resize((crop.width * scale, crop.height * scale), resample)
+            canvas_scaled = canvas.resize((400, 400), resample)
             
-            # Python PIL 保存动态透明GIF最好是背景色全透明，且带上遮罩
-            canvas = Image.new("RGBA", (int(target_w), int(target_h)), (255, 255, 255, 0))
-            pos_x = (target_w - crop_scaled.width) / 2
-            pos_y = (target_h - crop_scaled.height) / 2
-            
-            # 确保图像有透明通道才能作为mask
-            crop_rgba = crop_scaled.convert("RGBA")
-            canvas.paste(crop_rgba, (int(pos_x), int(pos_y)), crop_rgba)
-            gif_frames.append(canvas)
+            gif_frames.append(canvas_scaled)
             
         duration = int(2000 / self.get_action_fps())
         
