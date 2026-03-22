@@ -31,6 +31,9 @@ package
    import game.view.GameSettingsView; // 导入设置界面类
    import starling.events.KeyboardEvent; //
    import flash.ui.Keyboard; //
+   import flash.net.SharedObject; //
+   import lzm.starling.STLConstant; //导入STLConstant用于手机端自动全屏
+   import flash.display.StageDisplayState; //导入StageDisplayState用于手机端自动全屏
    
    public class GameMain extends DisplayObjectContainer
    {
@@ -99,6 +102,8 @@ package
             GameCore.currentCore.runderType = "low";
          }
          onRoleDataLoaded(1);
+         STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE; // 手机端自动全屏
+         setSettings(); // 加载并应用之前保存的设置
       }
       
       override public function onInit() : void
@@ -163,6 +168,22 @@ package
          } //
       } //
 
+      private function setSettings():void //
+      { //
+         var settings:Object = SharedObject.getLocal("net.zygame.hxwz.air").data.settings || {}; //
+         if(settings.isFullScreen !== undefined) //
+         { //
+            GameSettingsView.setFullScreen(settings.isFullScreen); //
+         } //
+         if(settings.isSoundEnable !== undefined) //
+         { //
+            GameSettingsView.setSoundEnable(settings.isSoundEnable); //
+         } //
+         if(settings.isBGMEnable !== undefined) //
+         { //
+            GameSettingsView.setBGMEnable(settings.isBGMEnable); //
+         } //
+      } //
    }
 }
 

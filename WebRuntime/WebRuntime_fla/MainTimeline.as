@@ -129,11 +129,14 @@
                   { //
                      var jsonData:String = stream.readUTFBytes(stream.bytesAvailable); //
                      var importedData:Object = JSON.parse(jsonData); //
-                     if (importedData.nickName) { //
+                     if (importedData.userData.nickName) { //
                         loading.userData = importedData; //
-                        loading.pname.text = importedData.nickName; //
-                        SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData; //
-                        SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName; //
+                        loading.pname.text = importedData.userData.nickName; //
+                        loading.pcode.text = importedData.address; // 加载联机地址
+                        loading.settings = importedData.settings; // 加载设置
+                        SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData.userData; //
+                        SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.userData.nickName; //
+                        SharedObject.getLocal("net.zygame.hxwz.air").data.settings = importedData.settings; // 同时导入设置
                         SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
                         trace("import UserData success:", jsonData); //
                      } //
@@ -168,11 +171,14 @@
                try { //
                   var jsonData:String = fileRef.data.toString(); //
                   var importedData:Object = JSON.parse(jsonData); //
-                  if (importedData.nickName) { //
-                     loading.userData = importedData; //
-                     loading.pname.text = importedData.nickName; //
-                     SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData; //
-                     SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.nickName; //
+                  if (importedData.userData.nickName) { //
+                     loading.userData = importedData.userData; //
+                     loading.pname.text = importedData.userData.nickName; //
+                     loading.pcode.text = importedData.address; // 加载联机地址
+                     loading.settings = importedData.settings; // 加载设置
+                     SharedObject.getLocal("net.zygame.hxwz.air").data.userData = importedData.userData; //
+                     SharedObject.getLocal("net.zygame.hxwz.air").data.userName = importedData.userData.nickName; //
+                     SharedObject.getLocal("net.zygame.hxwz.air").data.settings = importedData.settings; // 同时导入设置
                      SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
                      trace("import UserData success:", jsonData); //
                   } //
@@ -190,6 +196,7 @@
          SharedObject.getLocal("net.zygame.hxwz.air").data.address = ""; // 清除联机地址缓存
          SharedObject.getLocal("net.zygame.hxwz.air").data.userName = ""; // 清除用户名缓存
          SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = ""; // 清除用户密码缓存
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings = {}; // 清除设置缓存
          SharedObject.getLocal("net.zygame.hxwz.air").flush(); // 刷新缓存
          this.loading.userData = {}; // 清除当前生成的用户数据
          this.loading.address.text = ""; // 清除当前生成的联机地址
@@ -505,6 +512,7 @@
          SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = this.loading.pname.text; // 缓存用户名并且作为密码
          SharedObject.getLocal("net.zygame.hxwz.air").data.userData = this.loading.userData; //缓存用户数据
          SharedObject.getLocal("net.zygame.hxwz.air").data.address = this.loading.address.text; //缓存地址
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings = this.loading.settings; // 缓存设置
          SharedObject.getLocal("net.zygame.hxwz.air").flush();
          trace("startGame");
          var _loc1_:URLLoader = new URLLoader();
@@ -532,20 +540,17 @@
          var con:LoaderContext;
          var loader:Loader = null;
          var e:Event = param1;
+		   var ip:String = ""; //
+		   var port:String = "" //
          if (this.loading.address.text.indexOf(":") > -1) // 检查地址是否包含端口
          { //
-            var ip:String = this.loading.address.text.split(":")[0]; //获取ip
-            var port:String = this.loading.address.text.split(":")[1]; //获取端口
+            ip = this.loading.address.text.split(":")[0]; //获取ip
+            port = this.loading.address.text.split(":")[1]; //获取端口
          } //
          else if (this.loading.address.text.indexOf("：") > -1) // 兼容中文冒号
          { //
-            var ip:String = this.loading.address.text.split("：")[0]; //获取ip
-            var port:String = this.loading.address.text.split("：")[1]; //获取端口
-         } //
-         else //
-         { //
-            var ip:String = ""; //
-            var port:String = ""; //
+            ip = this.loading.address.text.split("：")[0]; //获取ip
+            port = this.loading.address.text.split("：")[1]; //获取端口
          } //
          trace("加载完成");
          loader = new Loader();
@@ -672,6 +677,7 @@
       //       _4399userData: loading._4399userData //
       //    }; //
       //    loading.address = {text:""}; // 初始化联机地址
+      //    loading.settings = {}; // 初始化设置
       //    trace("userData1",JSON.stringify(loading.userData)); //
       //    setTimeout(function():void
       //    {
@@ -683,6 +689,7 @@
       //          loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
       //          loading.userData = SharedObject.getLocal("net.zygame.hxwz.air").data.userData; // 读取用户数据缓存
       //          loading.address.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
+      //          loading.settings = SharedObject.getLocal("net.zygame.hxwz.air").data.settings || {}; // 读取设置缓存
       //       }
       //       catch(e:Error)
       //       {

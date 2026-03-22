@@ -54,7 +54,7 @@ package game.data
          "scale":1.5
       },{
          // "name":"map",
-         "name": new Date().getTime() >= 1771084800000 && new Date().getTime() <= 1772553600000 ? "map_NY" : "map",
+         "name": new Date().getTime() >= 1801238400000 && new Date().getTime() <= 1803139200000 ? "map_NY" : "map",
          "type":"sound"
       }];
 

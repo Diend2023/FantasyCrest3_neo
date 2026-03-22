@@ -47,8 +47,7 @@ package game.view
    import flash.filesystem.File; // 导入File用于文件操作
    import flash.filesystem.FileMode; // 导入FileMode用于文件读写模式
    import flash.filesystem.FileStream; // 导入FileStream用于文件流操作
-   import lzm.starling.STLConstant; //导入STLConstant用于手机端自动全屏
-   import flash.display.StageDisplayState; //导入StageDisplayState用于手机端自动全屏
+   import flash.net.SharedObject; // 导入SharedObject用于本地存储设置
 
    public class GameStartMain extends TouchDisplayObject
    {
@@ -273,7 +272,6 @@ package game.view
          {
             // arr = ["闯关模式","对战模式","练习模式","英雄","商店"];
             arr = ["闯关模式","对战模式","电脑模式","练习模式","英雄","商店","登陆账号","关于游戏","设置"]; // 添加登陆账号按钮、关于游戏按钮
-            STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
          }
          else if(true)
          {
@@ -340,6 +338,8 @@ package game.view
          music.addEventListener("triggered",function(e:Event):void
          {
             GameCore.soundCore.volume = GameCore.soundCore.volume == 0 ? 1 : 0;
+            SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isSoundEnable = GameCore.soundCore.volume > 0; // 缓存设置
+            SharedObject.getLocal("net.zygame.hxwz.air").flush();
             music.upState = DataCore.getTextureAtlas("start_main").getTexture(GameCore.soundCore.volume == 0 ? "sound_close" : "sound_open");
          });
          // if(!Phone.isPhone() && false)
@@ -470,9 +470,9 @@ package game.view
       { //
          try //
          { //
-            if (Service.userData) //
+            if(Service.userData) //
             { //
-               var jsonString:String = JSON.stringify(Service.userData, null, 2); //
+               var jsonString:String = JSON.stringify(SharedObject.getLocal("net.zygame.hxwz.air").data, null, 2); //
                var date:Date = new Date(); //
                var fileName:String = "幻想纹章3存档.json"; //
                if(false) // 暂时不启用文件系统方式

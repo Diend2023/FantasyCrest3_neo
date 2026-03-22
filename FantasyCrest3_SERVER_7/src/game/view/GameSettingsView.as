@@ -21,6 +21,7 @@ package game.view
    import zygame.display.DisplayObjectContainer;
    import lzm.starling.STLConstant;
    import flash.display.StageDisplayState;
+   import flash.net.SharedObject;
 
    public class GameSettingsView extends DisplayObjectContainer
    {
@@ -91,40 +92,58 @@ package game.view
          buttonExit.y = stage.stageHeight - buttonExit.height * 2 - 16;
          buttonExit.addEventListener("triggered",function(e:Event):void
          {
+            saveBGMSetting(isBGMEnable()); // 保存当前设置
+            saveSoundSetting(isSoundEnable());
+            saveFullScreenSetting(isFullScreen());
             removeFromParent(true);
          });
       }
 
       // 1. 全屏控制
-      public static function setFullScreen(isFull:Boolean):void {
+      public static function setFullScreen(isFull:Boolean):void
+      {
          STLConstant.nativeStage.displayState = isFull ? StageDisplayState.FULL_SCREEN_INTERACTIVE : StageDisplayState.NORMAL;
-         if(self && self._fullScreenCheck) {
+         saveFullScreenSetting(isFull); // 保存设置到本地
+         if(self && self._fullScreenCheck)
+         {
             self._fullScreenCheck.isSelected = isFull;
          }
-         if(isFull) 
+         if(isFull)
          {
             SceneCore.pushView(new GameTipsView("开启全屏"));
          }
-         else 
+         else
          {
             SceneCore.pushView(new GameTipsView("关闭全屏"));
          }
       }
-      public static function toggleFullScreen():void {
+      public static function isFullScreen():Boolean
+      {
+         return STLConstant.nativeStage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE;
+      }
+      public static function toggleFullScreen():void
+      {
          setFullScreen(STLConstant.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE);
       }
+      public static function saveFullScreenSetting(isFull:Boolean):void
+      {
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isFullScreen = isFull; // 缓存设置
+         SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
 
-      // 2. 音效控制
+      // 2. 声音控制
       public static function setSoundEnable(enable:Boolean):void {
          GameCore.soundCore.volume = enable ? 1 : 0;
          // 同步更新主界面的喇叭图标（如果存在）
-         if(GameStartMain.self && GameStartMain.self._music) {
+         if(GameStartMain.self && GameStartMain.self._music)
+         {
             GameStartMain.self._music.upState = DataCore.getTextureAtlas("start_main").getTexture(enable ? "sound_open" : "sound_close");
          }
+         saveSoundSetting(enable); // 保存设置到本地
          if(self && self._soundCheck) {
             self._soundCheck.isSelected = !enable;
          }
-         if(enable) 
+         if(enable)
          {
             SceneCore.pushView(new GameTipsView("开启声音"));
          }
@@ -133,17 +152,30 @@ package game.view
             SceneCore.pushView(new GameTipsView("关闭声音"));
          }
       }
-      public static function toggleSound():void {
+      public static function isSoundEnable():Boolean
+      {
+         return GameCore.soundCore.volume > 0;
+      }
+      public static function toggleSound():void
+      {
          setSoundEnable(GameCore.soundCore.volume == 0);
+      }
+      public static function saveSoundSetting(enable:Boolean):void
+      {
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isSoundEnable = enable; // 缓存设置
+         SharedObject.getLocal("net.zygame.hxwz.air").flush();
       }
 
       // 3. BGM控制
-      public static function setBGMEnable(enable:Boolean):void {
+      public static function setBGMEnable(enable:Boolean):void
+      {
          GameCore.soundCore.bgvolume = enable ? 0.4 : 0;
-         if(self && self._bgmCheck) {
+         if(self && self._bgmCheck)
+         {
             self._bgmCheck.isSelected = !enable;
          }
-         if(enable) 
+         saveBGMSetting(enable); // 保存设置到本地
+         if(enable)
          {
             SceneCore.pushView(new GameTipsView("开启BGM"));
          }
@@ -152,8 +184,18 @@ package game.view
             SceneCore.pushView(new GameTipsView("关闭BGM"));
          }
       }
-      public static function toggleBGM():void {
+      public static function isBGMEnable():Boolean
+      {
+         return GameCore.soundCore.bgvolume > 0;
+      }
+      public static function toggleBGM():void
+      {
          setBGMEnable(GameCore.soundCore.bgvolume == 0);
+      }
+      public static function saveBGMSetting(enable:Boolean):void
+      {
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isBGMEnable = enable; // 缓存设置
+         SharedObject.getLocal("net.zygame.hxwz.air").flush();
       }
 
       private function createSettingItem(label:String, type:String, initialValue:*, action:Function):LayoutGroup
