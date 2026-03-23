@@ -88,6 +88,7 @@ package
          if(Phone.isPhone())
          {
             GameCore.currentCore.runderType = "medium";
+            STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE; // 手机端自动全屏
          }
          if(isHW)
          {
@@ -102,7 +103,6 @@ package
             GameCore.currentCore.runderType = "low";
          }
          onRoleDataLoaded(1);
-         STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE; // 手机端自动全屏
          setSettings(); // 加载并应用之前保存的设置
       }
       

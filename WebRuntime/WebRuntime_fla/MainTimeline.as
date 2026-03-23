@@ -130,7 +130,7 @@
                      var jsonData:String = stream.readUTFBytes(stream.bytesAvailable); //
                      var importedData:Object = JSON.parse(jsonData); //
                      if (importedData.userData.nickName) { //
-                        loading.userData = importedData; //
+                        loading.userData = importedData.userData; //
                         loading.pname.text = importedData.userData.nickName; //
                         loading.pcode.text = importedData.address; // 加载联机地址
                         loading.settings = importedData.settings; // 加载设置
