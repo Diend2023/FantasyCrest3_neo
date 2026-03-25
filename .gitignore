@@ -8,7 +8,7 @@ bin-release/
 .settings/
 
 # Executables
-# *.swf
+*.swf
 *.air
 *.ipa
 *.apk
@@ -27,7 +27,6 @@ FantasyCrest3_neo/*
 !FantasyCrest3_neo/WebRuntime.swf
 !FantasyCrest3_neo/data/
 !FantasyCrest3_neo/role/
-!FantasyCrest3_neo/tools/
 !config.xml
 !project.xml
 
