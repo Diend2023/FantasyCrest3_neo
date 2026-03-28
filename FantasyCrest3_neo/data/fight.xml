@@ -1541,7 +1541,7 @@
 
     </zhaomei>
 
-	<MH visible="true" head="MH.png" acthor="柠七" coin="888" crystal="8" name="逢坂大河" profession="突进" passive="(未实现)每十秒，I技能将会额外增加对方当前生命6%的伤害" introduce="">
+	<MH visible="true" head="MH.png" acthor="柠七" coin="888" crystal="8" name="逢坂大河" profession="突进" passive="(已实现)每十秒，I技能将会额外增加对方当前生命6%的伤害" introduce="">
 
     	<data name="移动速度" value="1"/>
 
@@ -1954,7 +1954,8 @@
 
     	<data name="移动速度" value="1"/>
 
-        <data name="力量" value="0.8"/>
+        <!-- <data name="力量" value="0.8"/> -->
+        <data name="力量" value="0.5"/>
 
         <data name="魔力" value="0"/>
 

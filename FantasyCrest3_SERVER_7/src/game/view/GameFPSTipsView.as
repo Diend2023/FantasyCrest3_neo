@@ -1,4 +1,4 @@
-package game.view
+﻿package game.view
 {
    import game.uilts.GameFont;
    import starling.display.Button;
@@ -52,7 +52,8 @@ package game.view
          text.verticalScrollPolicy = "on"; // 强制允许垂直滚动
          // 原本的提示文本
          // text.text = "关于游戏会卡的解决方案：\n掉帧的原因：\n游戏没有启动硬件加速，因此导致掉帧，只要开启硬件加速或者使用默认启动硬件加速的浏览器进行游戏即可得到流畅体验。\n\n方案1：\n1、选择Internet Explorer浏览器或者其他浏览器进行游戏。\n\n方案2：\n1、右键游戏窗口，点击设置。\n2、弹出小窗口后，选择最左边的选项，开启硬件加速。\n3、刷新页面重启游戏。\n4、如果失败，请转试用方案1。";
-         text.text = "幻想纹章3本地版1.1\n\n这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本\n\n感谢@IS 和@碎风 的指路，感谢@风吟棠华落 提供数据解密方法，感谢@忆雪 提供的角色指导，感谢@正义永无止境 提供真幻想纹章3本地版，感谢@桐 提供的最终更新缓存，感谢开源项目JPEXS对反编译工作的支持\n\n再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报\n\n幻想纹章3交流群：1055702064\n\n幻想纹章Club：hxwz3.cn"; // 修改为版本介绍
+         text.isHTML = true; // 开启HTML格式支持
+         text.text = "<font color='#FFDE00' size='22'><b>幻想纹章3V1.2</b></font><br><br><font color='#E8E8E8' size='18'>这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本</font><br><br><font color='#00FFCC' size='18'>感谢@IS 和@碎风 的指路<br>感谢@风吟棠华落 提供数据解密方法<br>感谢@忆雪 提供的角色指导<br>感谢@正义永无止境 提供真幻想纹章3本地版<br>感谢@桐 提供的最终更新缓存<br>感谢开源项目JPEXS对反编译工作的支持</font><br><br><font color='#FF5555' size='18'><b>再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报</b></font><br><br><font color='#44CCFF' size='18'>幻想纹章3交流群：<u><a href='https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NKKmX64I09HS90RrF-0lABHCy_Pbk-ZG&authKey=KcyDbNw%2F17UKTfofV1dm4KRyvuIz7r3KF3OfZk50SFjEYvgfk5RWAhLEHBMHEsT8&noverify=0&group_code=1055702064' target='_blank'><font color='#44CCFF'>1055702064</font></a></u><br>幻想纹章Club：<u><a href='https://hxwz3.cn' target='_blank'><font color='#44CCFF'>hxwz3.cn</font></a></u></font>"; // 修改为带有排版颜色的版本介绍
          this.addChild(text);
          text.y = 50; // 调整文本位置
          text.x = 50;
@@ -73,7 +74,8 @@ package game.view
          button1.y = stage.stageHeight - button1.height * 2 - 16; //
          button1.addEventListener("triggered",function(e:Event):void //
          { //
-            text.text = "幻想纹章3本地版1.1更新内容：\n\n1、添加角色：假面骑士G3X，朽木白哉\n\n2、修复角色：纹4布罗利 KSU不再砸两次，抓取范围调整，SU抓取镜头缩放实现；水门 插标伤害固定为4；空条承太郎 时停时暂停背景音乐而不是修改音量为0；秩序白面 第三被动实现；白金 被动判定优化；恶魔人 被动实现；汤姆 被动实现逻辑优化；哈扎马 被动实现，攻击力削弱；拉格纳 被动时间显示优化；双月让叶 被动实现，攻击力削弱，O镜头拉近效果；花京院典明 被动实现\n\n3、修复问题：搭档模式水门飞雷神错误，搭档模式纹4志志雄被换下后自爆错误，秩序白面被破防判定不准确，纹4布罗利护盾特效不循环"; //
+            text.isHTML = true; //
+            text.text = "<font color='#FFDE00' size='22'><b>=========== 幻想纹章3 V1.2 更新详情 ===========</b></font><br><br><font color='#00FFCC' size='20'><b>【本地版更新内容】</b></font><br><font color='#00FFCC'><b>[功能新增]</b></font><br>&nbsp;&nbsp;解密全部加密数据（纹4布罗利、纹4志志雄除外），兼容未加密数据加载<br>&nbsp;&nbsp;提供幻想纹章3角色查看器（tools文件夹中）<br>&nbsp;&nbsp;实现自定义创建局域网房间（支持ipv6直接联机）<br>&nbsp;&nbsp;允许观战位在角色选择界面鼠标操作<br>&nbsp;&nbsp;禁止观战位在角色选择界面锁定角色<br>&nbsp;&nbsp;设置支持保存到存档中，每次启动时自动启用设置<br>&nbsp;&nbsp;新增三个实验性设置：真全彩、抗锯齿、硬边缘<br>&nbsp;&nbsp;新增3个全局快捷键：F1（开启/关闭声音）、F5（开启/关闭BGM）、F11（开启/关闭全屏）<br><br><font color='#00FFCC'><b>[角色更新]</b></font><br>&nbsp;&nbsp;<b>夏目麻衣：</b>添加被动实现<br>&nbsp;&nbsp;<b>志志雄：</b>添加被动实现，添加P的效果为直接开启被动5S<br>&nbsp;&nbsp;<b>Weiss：</b>添加被动实现，WO最后一击增加X轴追踪，SI冷却时间7 -&gt; 10<br>&nbsp;&nbsp;<b>逢坂大河：</b>添加被动实现，添加瞬步，SJ，U，原先的U改为SU<br>&nbsp;&nbsp;<b>空条承太郎：</b>时停时关闭背景音乐逻辑优化（音量改为0 -&gt; 暂停BGM再恢复播放BGM）<br>&nbsp;&nbsp;<b>空我：</b>优化变身音效播放逻辑<br>&nbsp;&nbsp;<b>黑面：</b>修复被动显示错误<br>&nbsp;&nbsp;<b>纹4布罗利：</b>优化SL、WL释放方法，添加KWP和KSL冷却时间同步<br>&nbsp;&nbsp;<b>城户灰都：</b>削弱大部分技能伤害<br>&nbsp;&nbsp;<b>哈扎马：</b>被动伤害改为施加伤害，削弱大部分技能伤害<br>&nbsp;&nbsp;<b>波风水门：</b>P、WP冷却时间6 -&gt; 12并且消耗1水晶，SP冷却时间3 -&gt; 6，削弱部分技能伤害<br><br><font color='#FF5555'><b>[BUG修复]</b></font><br>&nbsp;&nbsp;修复除了1P以外角色均不重置连击数的问题<br><br><font color='#00FFCC' size='20'><b>【手机版更新内容】</b></font><br>&nbsp;&nbsp;与本地版1.2完全一致<br><font color='#00FFCC'><b>[额外更新]</b></font><br>&nbsp;&nbsp;虚拟按键添加L键位<br>&nbsp;&nbsp;虚拟按键支持上下滑动释放更多技能（例如上滑U释放WU）<br>&nbsp;&nbsp;优化虚拟按键触发逻辑（修复纹4布罗利普通攻击后续无法触发）"; //
          }); //
          button2 = new Button(skin,"一键购买所有角色"); // 添加一键购买所有角色按钮
          this.addChild(button2); //
