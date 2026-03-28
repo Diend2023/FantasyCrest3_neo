@@ -37,6 +37,7 @@ package zygame.tmx
    import zygame.display.World;
    import zygame.utils.PointUtils;
    import zygame.utils.VertexUtils;
+   import game.view.GameSettingsView; // 导入设置界面类
    
    public class Map extends BodyDisplayObject
    {
@@ -840,7 +841,8 @@ package zygame.tmx
                      moveLen = _style.landTexture.width;
                      trace("宽度：",moveLen);
                      image = new Image(_style.landTexture);
-                     image.textureSmoothing = "bilinear";
+                     // image.textureSmoothing = "bilinear";
+                     image.textureSmoothing = GameSettingsView.isNNIEnable() ? "none" : "bilinear"; // 根据设置选择纹理过滤模式
                      if(imgi == imgNum - 1)
                      {
                         newwz = wz - _style.landTexture.width * imgi;

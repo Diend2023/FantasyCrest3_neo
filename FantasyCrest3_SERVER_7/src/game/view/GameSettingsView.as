@@ -22,6 +22,9 @@ package game.view
    import lzm.starling.STLConstant;
    import flash.display.StageDisplayState;
    import flash.net.SharedObject;
+   import game.uilts.Phone;
+   import starling.core.Starling;
+   import flash.geom.Rectangle;
 
    public class GameSettingsView extends DisplayObjectContainer
    {
@@ -31,6 +34,12 @@ package game.view
       private var _fullScreenCheck:Check;
       private var _soundCheck:Check;
       private var _bgmCheck:Check;
+      private var _bgraCheck:Check;
+      private var _AntiAliasingCheck:Check;
+      private var _NNICheck:Check;
+
+      private static var _isBGRAEnabled:Boolean = false; // 超真全彩默认关闭
+      private static var _isNNIEnabled:Boolean = false; // 硬边缘默认关闭
 
       public function GameSettingsView()
       {
@@ -84,6 +93,27 @@ package game.view
          _bgmCheck = bgmItem.getChildAt(1) as Check;
          mainContainer.addChild(bgmItem);
 
+         // 开启超真全彩
+         var bgraItem:LayoutGroup = createSettingItem("真全彩（实验性）", "toggle", _isBGRAEnabled, function(value:Boolean):void{
+            GameSettingsView.setBGRAEnable(value);
+         });
+         _bgraCheck = bgraItem.getChildAt(1) as Check;
+         mainContainer.addChild(bgraItem);
+
+         // 开启抗锯齿
+         var aaItem:LayoutGroup = createSettingItem("抗锯齿（实验性）", "toggle", (Starling.current.antiAliasing > 0), function(value:Boolean):void{
+            GameSettingsView.setAntiAliasingEnable(value);
+         });
+         _AntiAliasingCheck = aaItem.getChildAt(1) as Check;
+         mainContainer.addChild(aaItem);
+
+         // 开启硬边缘
+         var nniItem:LayoutGroup = createSettingItem("硬边缘（实验性）", "toggle", _isNNIEnabled, function(value:Boolean):void{
+            GameSettingsView.setNNIEnable(value);
+         });
+         _NNICheck = nniItem.getChildAt(1) as Check;
+         mainContainer.addChild(nniItem);
+
          skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
          buttonExit = new starling.display.Button(skin,"完成");
          this.addChild(buttonExit);
@@ -132,7 +162,8 @@ package game.view
       }
 
       // 2. 声音控制
-      public static function setSoundEnable(enable:Boolean):void {
+      public static function setSoundEnable(enable:Boolean):void
+      {
          GameCore.soundCore.volume = enable ? 1 : 0;
          // 同步更新主界面的喇叭图标（如果存在）
          if(GameStartMain.self && GameStartMain.self._music)
@@ -140,7 +171,8 @@ package game.view
             GameStartMain.self._music.upState = DataCore.getTextureAtlas("start_main").getTexture(enable ? "sound_open" : "sound_close");
          }
          saveSoundSetting(enable); // 保存设置到本地
-         if(self && self._soundCheck) {
+         if(self && self._soundCheck)
+         {
             self._soundCheck.isSelected = !enable;
          }
          if(enable)
@@ -198,15 +230,117 @@ package game.view
          SharedObject.getLocal("net.zygame.hxwz.air").flush();
       }
 
+      public static function setBGRAEnable(enable:Boolean):void
+      {
+         _isBGRAEnabled = enable;
+         if(self && self._bgraCheck)
+         {
+            self._bgraCheck.isSelected = enable;
+         }
+         if(enable)
+         {
+            DataCore.assetsRole.textureFormat = "bgra";
+            DataCore.assetsSwf.otherAssets.textureFormat = "bgra";
+            SceneCore.pushView(new GameTipsView("开启真全彩"));
+         }
+         else 
+         {
+            DataCore.assetsRole.textureFormat = Phone.isPhone() ? "bgraPacked4444" : "compressedAlpha";
+            DataCore.assetsSwf.otherAssets.textureFormat = Phone.isPhone() ? "bgraPacked4444" : "compressedAlpha";
+            SceneCore.pushView(new GameTipsView("关闭真全彩"));
+         }
+      }
+      public static function isBGRAEnable():Boolean
+      {
+         return _isBGRAEnabled;
+      }
+      public static function toggleBGRA():void
+      {
+         setBGRAEnable(!_isBGRAEnabled);
+      }
+      public static function saveBGRASetting(enable:Boolean):void
+      {
+         // SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isBGRAEnable = enable; // 缓存设置
+         // SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
+
+      public static function setAntiAliasingEnable(enable:Boolean):void
+      {
+         Starling.current.antiAliasing = enable ? 16 : 0; // 开启16x MSAA
+         
+         // 强制Starling重新配置BackBuffer以使抗锯齿立即生效
+         var viewPort:flash.geom.Rectangle = Starling.current.viewPort;
+         viewPort.width += 1;
+         Starling.current.viewPort = viewPort;
+         viewPort.width -= 1;
+         Starling.current.viewPort = viewPort;
+
+         if(self && self._AntiAliasingCheck)
+         {
+            self._AntiAliasingCheck.isSelected = enable;
+         }
+         if(enable)
+         {
+            SceneCore.pushView(new GameTipsView("开启抗锯齿"));
+         }
+         else
+         {
+            SceneCore.pushView(new GameTipsView("关闭抗锯齿"));
+         }
+      }
+      public static function isAntiAliasingEnable():Boolean
+      {
+         return Starling.current.antiAliasing == 0;
+      }
+      public static function toggleAntiAliasing():void
+      {
+         setAntiAliasingEnable(Starling.current.antiAliasing != 0);
+      }
+      public static function saveAntiAliasingSetting(enable:Boolean):void
+      {
+         // SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isAntiAliasingEnable = enable; // 缓存设置
+         // SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
+
+      public static function setNNIEnable(enable:Boolean):void
+      {
+         _isNNIEnabled = enable;
+         if(self && self._NNICheck)
+         {
+            self._NNICheck.isSelected = enable;
+         }
+         if(enable)
+         {
+            SceneCore.pushView(new GameTipsView("开启硬边缘"));
+         }
+         else
+         {
+            SceneCore.pushView(new GameTipsView("关闭硬边缘"));
+         }
+      }
+      public static function isNNIEnable():Boolean
+      {
+         return _isNNIEnabled;
+      }
+      public static function toggleNNI():void
+      {
+         setNNIEnable(!_isNNIEnabled);
+      }
+      public static function saveNNISetting(enable:Boolean):void
+      {
+         // SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isNNIEnabled = enable; // 缓存设置
+         // SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
+
       private function createSettingItem(label:String, type:String, initialValue:*, action:Function):LayoutGroup
       {
          var container:LayoutGroup = new LayoutGroup();
          var hLayout:HorizontalLayout = new HorizontalLayout();
-         hLayout.gap = 20;
+         hLayout.gap = 10;
          hLayout.verticalAlign = VerticalAlign.MIDDLE;
          hLayout.paddingLeft = 20;
          container.layout = hLayout;
-         container.height = 50;
+         container.height = 25;
 
          var textFormat:TextFormat = new TextFormat(GameFont.FONT_NAME, 20, 0xFFFFFF);
          textFormat.horizontalAlign = "left";

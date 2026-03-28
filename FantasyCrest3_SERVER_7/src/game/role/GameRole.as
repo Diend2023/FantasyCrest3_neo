@@ -24,6 +24,7 @@ package game.role
    import zygame.display.World;
    import zygame.event.GameMapHitType;
    import zygame.style.Color2Style;
+   import game.view.GameSettingsView; // 导入设置界面类
    
    public class GameRole extends BullyRole implements RoleData
    {
@@ -628,7 +629,8 @@ package game.role
       override public function onInit() : void
       {
          super.onInit();
-         (this.display as Image).textureSmoothing = "trilinear";
+         // (this.display as Image).textureSmoothing = "trilinear";
+         (this.display as Image).textureSmoothing = GameSettingsView.isNNIEnable() ? "none" : "trilinear"; // 根据设置选择纹理过滤模式
       }
       
       override public function onDefenseEffect() : void

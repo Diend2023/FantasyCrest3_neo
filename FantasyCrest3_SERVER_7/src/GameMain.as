@@ -67,6 +67,7 @@ package
       private function onInitComplete(e:Event) : void
       {
          Game.initData();
+         Starling.current.stage3D.context3D.ignoreResourceLimits = true; // 允许使用更多的纹理资源
          Starling.current.antiAliasing = 0;
          GameCore.soundCore.bgvolume = 0.4;
          PoltSystem.defaultDialogClass = GameMessage;
