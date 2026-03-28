@@ -191,7 +191,7 @@ package game.role
                }
             }
             tpRole(-150, 0, false, false);
-            this.attribute.updateCD("战略性勇敢",6);
+            this.attribute.updateCD("战略性勇敢",12);
          }
          else if(str == "战略性勇敢")
          {
@@ -214,7 +214,7 @@ package game.role
                   }
                }
             }
-            this.attribute.updateCD("战略性认怂",6);
+            this.attribute.updateCD("战略性认怂",12);
          }
       }
 
@@ -263,9 +263,9 @@ package game.role
          this.posx = kuwu1Effect.posx;
          this.posy = kuwu1Effect.posy;
          kuwu1Effect.discarded();
-         this.attribute.updateCD("飞雷神·闪",3);
-         this.attribute.updateCD("战略性勇敢",6);
-         this.attribute.updateCD("战略性认怂",6);
+         this.attribute.updateCD("飞雷神·闪",6);
+         this.attribute.updateCD("战略性勇敢",12);
+         this.attribute.updateCD("战略性认怂",12);
       }
 
    }
