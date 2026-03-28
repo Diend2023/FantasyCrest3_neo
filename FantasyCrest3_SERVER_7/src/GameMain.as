@@ -89,7 +89,7 @@ package
          if(Phone.isPhone())
          {
             GameCore.currentCore.runderType = "medium";
-            STLConstant.nativeStage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE; // 手机端自动全屏
+            GameSettingsView.setFullScreen(true); // 手机端默认全屏
          }
          if(isHW)
          {

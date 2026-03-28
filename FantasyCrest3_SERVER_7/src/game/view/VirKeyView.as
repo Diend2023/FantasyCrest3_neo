@@ -22,6 +22,10 @@ package game.view
       private var _touchStartY:Number = 0; //
 
       private var _slideType:int = 0; // 0: 无滑动, 1: 上滑, 2: 下滑
+
+      private var _delayTriggerKey:String = null; // 当前正在等待判定的按键
+      private var _delayTriggerCount:int = 0;     // 判定计数（帧数）
+      private const MAX_DELAY_FRAMES:int = 6;      // 判定阈值，在这个时间内滑动则触发组合键，否则触发单键。
       
       public function VirKeyView()
       {
@@ -103,18 +107,32 @@ package game.view
          {
             _touchTime--;
          }
+         if (_delayTriggerKey != null) //
+         { //
+            _delayTriggerCount++; //
+            if (_delayTriggerCount >= MAX_DELAY_FRAMES) // 缓冲结束：玩家没有滑动，视为普通点击处理按下
+            { //
+               realOnTag(_delayTriggerKey, true); //
+               _delayTriggerKey = null; //
+               _delayTriggerCount = 0; //
+            } //
+         } //
       }
       
       // public function onTag(target:String) : void
          public function onTag(target:String, isDown:Boolean = true) : void //
       {
-
-         if(_slideType != 0) return;// 如果有滑动状态，忽略自动回调，交由 onTouchEnd 处理
+         if (isDown) // 所有按键按下时先放入缓冲区，等待 onFrame 或 onTouchMove 判定
+         { //
+            _delayTriggerKey = target; //
+            _delayTriggerCount = 0; //
+            return; //
+         } //
          
-         var keyCode:int = 0; //
+         realOnTag(target, false); // 弹起事件不受影响，直接由 realOnTag 处理
 
-         switch(target)
-         {
+         // switch(target)
+         // {
             // case "j_key.png":
             //    world.onDown(74);
             //    break;
@@ -132,9 +150,14 @@ package game.view
             //    break;
             // case "p_key.png":
             //    world.onDown(80);
-            //    break; //
-            // case "l_key.png": //
-            //    world.onDown(76); //
+         // }
+      }
+
+      private function realOnTag(target:String, isDown:Boolean) : void //
+      { //
+         var keyCode:int = 0; //
+         switch(target) //
+         { //
             case "j_key.png": case "j": keyCode = 74; break; //
             case "k_key.png": case "k": keyCode = 75; break; //
             case "u_key.png": case "u": keyCode = 85; break; //
@@ -142,14 +165,14 @@ package game.view
             case "o_key.png": case "o": keyCode = 79; break; //
             case "p_key.png": case "p": keyCode = 80; break; //
             case "l_key.png": case "l": keyCode = 76; break; //
-         }
+         } //
 
          if(keyCode != 0) //
          { //
             if(isDown) world.onDown(keyCode); //
             else world.onUp(keyCode); //
          } //
-      }
+      } //
       
       override public function onTouchBegin(touch:Touch) : void
       {
@@ -206,6 +229,13 @@ package game.view
                { //
                   _slideType = 2; // 标记为下滑，暂不触发 world.onDown
                } //
+               if (_delayTriggerKey != null) //
+               { //
+                  var dirCode:int = (_slideType == 1) ? 87 : 83; // W 或 S
+                  world.onDown(dirCode); // 先按方向
+                  realOnTag(_delayTriggerKey, true); // 再按功能键
+                  _delayTriggerKey = null; // 清除延迟，防止 onFrame 重复发送
+               } //
             } //
             else // 回到中心范围
             { //
@@ -222,27 +252,19 @@ package game.view
          }
          var touchName:String = touch.target.name;
          
-         if(_slideType == 1) // 如果有滑动状态，在松手时先触发方向键按下
+         if (_delayTriggerKey != null) // 如果玩家点击速度极快，在 MAX_DELAY_FRAMES 到达前就松手了，这里需要立即触发
          { //
-            world.onDown(87); // 先按住 W
-         } //
-         else if(_slideType == 2) //
-         { //
-            world.onDown(83); // 先按住 S
+            realOnTag(_delayTriggerKey, true); // 补发按下
+            realOnTag(_delayTriggerKey, false); // 补发抬起
+            _delayTriggerKey = null; // 清除延迟，防止 onFrame 重复发送
+            _delayTriggerCount = 0; // 重置延迟计数
          } //
 
-         if(_slideType != 0)// 如果有滑动，手动模拟技能按下逻辑（因为 onTag 被我们跳过了）
+         if(_slideType != 0) //
          { //
-             switch(touchName) //
-             { //
-                case "j": world.onDown(74); break; //
-                case "k": world.onDown(75); break; //
-                case "u": world.onDown(85); break; //
-                case "i": world.onDown(73); break; //
-                case "o": world.onDown(79); break; //
-                case "p": world.onDown(80); break; //
-                case "l": world.onDown(76); break; //
-             } //
+            world.onUp(87); // 释放可能按住的 W
+            world.onUp(83); // 释放可能按住的 S
+            _slideType = 0; // 重置滑动状态
          } //
 
          switch(touchName)
@@ -276,13 +298,6 @@ package game.view
             case "l": //
                world.onUp(76); //
          }
-
-         if(_slideType != 0)// 技能按键弹起后，如果是滑动操作，立即释放方向键
-         { //
-            world.onUp(87); //
-            world.onUp(83); //
-            _slideType = 0; //
-         } //
       }
       
       public function moveKey() : void
