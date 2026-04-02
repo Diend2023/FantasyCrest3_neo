@@ -5,6 +5,8 @@ package game.role
    import zygame.display.World;
    import zygame.display.EffectDisplay;
    import zygame.data.BeHitData;
+   import game.world.BaseGameWorld;
+   import zygame.data.RoleFrameGroup;
    
    public class ZhanShen extends GameRole
    {
@@ -24,6 +26,11 @@ package game.role
             {
                effectNingjujuju.discarded();
             }
+         }
+         var effectYuanQiDan:EffectDisplay = this.world.getEffectFormName("YuanQiDan", this);
+         if(effectYuanQiDan && this.actionName != "刻杀·雪风" && this.actionName != "刻杀·悪滅")
+         {
+            effectYuanQiDan.discarded();
          }
       }
 
@@ -71,6 +78,60 @@ package game.role
                }
             }
          }
+         if(this.actionName == "虚空阵 刻杀·雪风")
+         {
+            if(this.frameAt(2,8))
+            {
+               this.breakAction();
+               this.clearDebuffMove();
+               this.playSkillPainting("刻杀·雪风");
+               this.runLockAction("刻杀·雪风");
+            }
+         }
+      }
+
+      override public function runLockAction(str:String, canBreak:Boolean = false) : void
+      {
+         // 防反技能释放时取消播放大招动画，重写runLockAction
+         var group:RoleFrameGroup = this.roleXmlData.getGroupAt(str);
+         if(group && group.key && group.key.indexOf("O") != -1 && actionName != str && str =="虚空阵 刻杀·雪风" || str =="虚空阵 刻杀·悪滅")
+         {
+            if(group && group["mp"])
+            {
+               usePoint(int(group["mp"]));
+            }
+            if(!isLock)
+            {
+               if(isKeyDown(65))
+               {
+                  this.scaleX = -1;
+               }
+               else if(isKeyDown(68))
+               {
+                  this.scaleX = 1;
+               }
+            }
+            this.action = str;
+            this.isLock = true;
+            this.canBreakAction = canBreak;
+            return;
+         }
+         super.runLockAction(str,canBreak);
+      }
+
+      // 播放大招动画
+      public function playSkillPainting(actionName:String):void
+      {
+         var effect:EffectDisplay = new EffectDisplay("bisha",null,this,1.5,1.5);
+         effect.x = this.x;
+         effect.y = this.y;
+         this.world.addChild(effect);
+         effect.fps = 24;
+         for(var i in this.world.getRoleList())
+         {
+            this.world.getRoleList()[i].cardFrame = 40;
+         }
+         (this.world as BaseGameWorld).showSkillPainting(targetName,actionName,troopid);
       }
 
    }

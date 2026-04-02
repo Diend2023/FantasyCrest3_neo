@@ -11,19 +11,27 @@ package game.role
    public class MaYi extends GameRole
    {
 
-      private var _wjFrameGroup:RoleFrameGroup;
-
-      private var _kuFrameGroup:RoleFrameGroup;
+      private static var _staticWjFrameGroup:RoleFrameGroup;
+      private static var _staticKuFrameGroup:RoleFrameGroup;
 
       private var _isPowerMode:Boolean = false; // 是否处于高爆发模式
       
       public function MaYi(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
          super(roleTarget,xz,yz,pworld,fps,pscale,troop,roleAttr);
+         // 只要新对局读取到的技能数据不为空，就立刻刷新缓存（防止上一局结束时存留的是已经被引擎 dispose 销毁的旧对象）
+         if(roleXmlData.roleFrameGroupActions.airActions["WJ"] != null) {
+             _staticWjFrameGroup = roleXmlData.roleFrameGroupActions.airActions["WJ"];
+         }
+         if(roleXmlData.roleFrameGroupActions.airActions["U"] != null) {
+             _staticKuFrameGroup = roleXmlData.roleFrameGroupActions.airActions["U"];
+         }
+
          if(!_isPowerMode)
          {
-            _wjFrameGroup = roleXmlData.roleFrameGroupActions.airActions["WJ"];
-            _kuFrameGroup = roleXmlData.roleFrameGroupActions.airActions["U"];
+            // 确保新建角色时恢复这两个动作
+            this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = _staticWjFrameGroup;
+            this.roleXmlData.roleFrameGroupActions.airActions["U"] = _staticKuFrameGroup;
          }
          listData = new ListCollection([{
             "icon":"sudu.png",
@@ -115,11 +123,11 @@ package game.role
             var kuAirAction:RoleFrameGroup = this.roleXmlData.roleFrameGroupActions.airActions["U"];
             if(wjAirAction == null)
             {
-               this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = _wjFrameGroup; // 恢复高机动 WJ 绞杀
+               this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = _staticWjFrameGroup; // 恢复高机动 WJ 绞杀
             }
             if(kuAirAction == null)
             {
-               this.roleXmlData.roleFrameGroupActions.airActions["U"] = _kuFrameGroup; // 恢复高机动 KU 空猎
+               this.roleXmlData.roleFrameGroupActions.airActions["U"] = _staticKuFrameGroup; // 恢复高机动 KU 空猎
             }
          }
          listData.updateItemAt(0); // 刷新列表显示
@@ -129,8 +137,6 @@ package game.role
       {
          var ob:Object = super.copyData();
          ob._isPowerMode = this._isPowerMode;
-         ob._wjFrameGroup = this._wjFrameGroup;
-         ob._kuFrameGroup = this._kuFrameGroup;
          return ob;
       }
 
@@ -138,10 +144,37 @@ package game.role
       {
          super.setData(value);
          _isPowerMode = value._isPowerMode;
-         _wjFrameGroup = value._wjFrameGroup;
-         _kuFrameGroup = value._kuFrameGroup;
          listData.getItemAt(0).icon = _isPowerMode ? "liliang.png" : "sudu.png"; // 根据高爆发模式状态显示不同图标
          listData.updateItemAt(0); // 刷新列表显示
+         
+         // 状态同步时，如果同步来的状态是高爆发，移除原本动作；否则若没有动作，为其恢复默认动作
+         if(_isPowerMode)
+         {
+            this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = null;
+            this.roleXmlData.roleFrameGroupActions.airActions["U"] = null;
+         }
+         else
+         {
+            if(this.roleXmlData.roleFrameGroupActions.airActions["WJ"] == null && _staticWjFrameGroup != null)
+            {
+               this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = _staticWjFrameGroup;
+            }
+            if(this.roleXmlData.roleFrameGroupActions.airActions["U"] == null && _staticKuFrameGroup != null)
+            {
+               this.roleXmlData.roleFrameGroupActions.airActions["U"] = _staticKuFrameGroup;
+            }
+         }
+      }
+
+      override public function dispose() : void
+      {
+         if (_staticWjFrameGroup != null) {
+            this.roleXmlData.roleFrameGroupActions.airActions["WJ"] = _staticWjFrameGroup;
+         }
+         if (_staticKuFrameGroup != null) {
+            this.roleXmlData.roleFrameGroupActions.airActions["U"] = _staticKuFrameGroup;
+         }
+         super.dispose();
       }
 
    }
