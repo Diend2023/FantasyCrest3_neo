@@ -497,6 +497,10 @@ package zygame.display
                      _frame = int(_skillXmlData.rootXML.@start);
                   }
                }
+               // if(_frame >= _skillXmlData.length - 1) // 自动循环(暂时不使用)
+               // { //
+               //    _frame = 0; //
+               // } //
             }
          }
       }

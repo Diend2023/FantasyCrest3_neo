@@ -174,7 +174,7 @@ package game.role
       }
 
       // 播放大招动画
-      public function  playSkillPainting(actionName:String):void
+      public function playSkillPainting(actionName:String):void
       {
          var effect:EffectDisplay = new EffectDisplay("bisha",null,this,1.5,1.5);
          effect.x = this.x;

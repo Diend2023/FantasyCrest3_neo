@@ -7,6 +7,7 @@ package game.role
    import zygame.data.BeHitData;
    import game.world.BaseGameWorld;
    import zygame.data.RoleFrameGroup;
+   import zygame.display.BaseRole
    
    public class ZhanShen extends GameRole
    {
@@ -50,9 +51,9 @@ package game.role
       override public function onBeHit(beData:BeHitData) : void
       {
          super.onBeHit(beData);
-         if(this.actionName == "虚空阵 素" || this.actionName == "虚空阵 盈" || this.actionName == "虚空阵 尊")
+         if(this.actionName == "虚空阵 素" || this.actionName == "虚空阵 盈" || this.actionName == "虚空阵 鸣" || this.actionName == "虚空阵 尊")
          {
-            if(this.frameAt(2,8))
+            if(this.frameAt(3,10))
             {
                this.breakAction();
                this.clearDebuffMove();
@@ -64,28 +65,34 @@ package game.role
                }
             }
          }
-         if(this.actionName == "虚空阵 鸣")
+         if(this.actionName == "虚空阵 刻杀·雪风")
          {
-            if(this.frameAt(1,7))
+            if(this.frameAt(3,10))
             {
                this.breakAction();
                this.clearDebuffMove();
-               this.playSkill("虚空阵 鸣 攻击");
-               this.golden = 30;
-               if (this.currentMp.value < this.mpMax)
+               this.runLockAction("刻杀·雪风");
+               beData.cardFrame = 120;
+            }
+         }
+         if(this.actionName == "刻杀·雪风" && this.frameAt(-1,16))
+         {
+            for each(var i:BaseRole in this.world.getRoleList())
+            {
+               if (i != this)
                {
-                  this.currentMp.value += 1;
+                  shitingRole(120, i);
+                  shitingEffect(120, i);
                }
             }
          }
-         if(this.actionName == "虚空阵 刻杀·雪风")
+         if(this.actionName == "虚空阵 刻杀·悪滅")
          {
-            if(this.frameAt(2,8))
+            if(this.frameAt(5,16))
             {
                this.breakAction();
                this.clearDebuffMove();
-               this.playSkillPainting("刻杀·雪风");
-               this.runLockAction("刻杀·雪风");
+               this.runLockAction("刻杀·悪滅");
             }
          }
       }
@@ -127,11 +134,44 @@ package game.role
          effect.y = this.y;
          this.world.addChild(effect);
          effect.fps = 24;
-         for(var i in this.world.getRoleList())
+         for each(var i:BaseRole in this.world.getRoleList())
          {
-            this.world.getRoleList()[i].cardFrame = 40;
+            i.cardFrame = 40;
          }
          (this.world as BaseGameWorld).showSkillPainting(targetName,actionName,troopid);
+      }
+
+      // 时停角色
+      public function shitingRole(cardFrame:int, role:BaseRole):void
+      {
+         for each(var i:BaseRole in this.world.getRoleList())
+         {
+            if(i == role)
+            {
+               i.cardFrame = cardFrame;
+            }
+         }
+      }
+
+      // 时停特效
+      public function shitingEffect(cardFrame:int, role:BaseRole):void
+      {
+         for each(var i:BaseRole in this.world.getRoleList())
+         {
+            if(i == role)
+            {
+               var effect:EffectDisplay = null;
+               var num:int = this.world.map.roleLayer.numChildren;
+               for(var j:int = 0; j < num; j++)
+               {
+                  effect = this.world.map.roleLayer.getChildAt(j) as EffectDisplay;
+                  if(effect && effect.role == role)
+                  {
+                     effect.cardFrame = cardFrame;
+                  }
+               }
+            }
+         }
       }
 
    }
