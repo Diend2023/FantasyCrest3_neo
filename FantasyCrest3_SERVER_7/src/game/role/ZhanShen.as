@@ -72,7 +72,7 @@ package game.role
                this.breakAction();
                this.clearDebuffMove();
                this.runLockAction("刻杀·雪风");
-               beData.cardFrame = 120;
+               beData.cardFrame = 90;
             }
          }
          if(this.actionName == "刻杀·雪风" && this.frameAt(-1,16))
@@ -81,8 +81,8 @@ package game.role
             {
                if (i != this)
                {
-                  shitingRole(120, i);
-                  shitingEffect(120, i);
+                  shitingRole(90, i);
+                  shitingEffect(90, i);
                }
             }
          }

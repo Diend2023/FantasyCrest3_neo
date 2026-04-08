@@ -332,21 +332,13 @@ package game.role
                   }
                }
             }
-            if (currentFrame == 4)
-            {
-               for each(var k:BaseRole in this.world.getRoleList())
-               {
-                  shiting(150, k);
-               }
-               currentFrame = 5;
-            }
-            if (currentFrame == 5)
+            if (currentFrame == 12)
             {
                var effectBLL13:EffectDisplay = new EffectDisplay("BLL13",{blendMode:"normal"},this,2,2);
                effectBLL13.fps = 15;
                effectBLL13.unhit = true;
                (world as BaseGameWorld).addChild(effectBLL13);
-               GameCore.soundCore.playEffect("BLL1");
+               // GameCore.soundCore.playEffect("BLL1");
                if((world as BaseGameWorld).founcDisplay == this)
                {
                   effectBLL13.posx = this.x - 640;
@@ -357,7 +349,11 @@ package game.role
                   effectBLL13.posx = (world as BaseGameWorld).centerSprite.x - 640;
                   effectBLL13.posy = (world as BaseGameWorld).centerSprite.y - 360;
                }
-               currentFrame = 6;
+               for each(var k:BaseRole in this.world.getRoleList())
+               {
+                  shiting(150, k);
+               }
+               this.currentFrame = 13;
             }
          }
 
