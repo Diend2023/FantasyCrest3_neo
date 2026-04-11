@@ -13,7 +13,7 @@
             "request": "launch",
             "name": "Launch SWF",
             "program": "${workspaceFolder}/FantasyCrest3_neo/FantasyCrest3-app.xml",
-            "profile": "web",
+            "profile": "desktop",
         }
     ]
 }
