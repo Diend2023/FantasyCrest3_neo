@@ -8,18 +8,69 @@ package game.role
    import game.world.BaseGameWorld;
    import zygame.data.RoleFrameGroup;
    import zygame.display.BaseRole
+   import feathers.data.ListCollection;
    
    public class ZhanShen extends GameRole
    {
+
+      private var _keyQueue:Array = [];
+
+      private const _keyObj:Object = {65:"←",68:"→",87:"↑",83:"↓",74:"J",75:"K",76:"L",85:"U",73:"I",79:"O",80:"P"};
       
       public function ZhanShen(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
          super(roleTarget,xz,yz,pworld,fps,pscale,troop,roleAttr);
+         this.listData = new ListCollection([{
+            "icon":"cd_I_mp.png",
+            "msg":""
+         }]);
+      }
+
+      override public function onDown(key:int):void
+      {
+         super.onDown(key);
+         if(_keyObj.hasOwnProperty(key))
+         {
+            _keyQueue.push(_keyObj[key]);
+         }
+         if(_keyQueue.length > 5)
+         {
+            _keyQueue.shift();
+         }
+         var keyQueue:Array = _keyQueue.reverse();
+         _keyQueue.reverse();
+         this.listData.getItemAt(0).msg = keyQueue.join("");
+         this.listData.updateItemAt(0);
       }
       
       override public function onFrame():void
       {
          super.onFrame();
+         if(this.hpmpDisplay.stateList.width != 500)
+         {
+            this.hpmpDisplay.stateList.width = 500;
+            this.hpmpDisplay.stateList.validate();
+            // 强制穿透修改：List -> ViewPort -> RoleStateItem -> BG/Label
+            if(this.hpmpDisplay.stateList.numChildren > 0)
+            {
+               var viewPort:Object = this.hpmpDisplay.stateList.getChildAt(0);
+               if(viewPort && "numChildren" in viewPort && viewPort.numChildren > 0)
+               {
+                  var item:Object = viewPort.getChildAt(0);
+                  if(item)
+                  {
+                     item.width = 130;
+                     if("numChildren" in item && item.numChildren >= 2)
+                     {
+                        var bg:Object = item.getChildAt(0);
+                        var label:Object = item.getChildAt(1);
+                        if(bg) bg.width = 130;
+                        if(label) label.width = 100;
+                     }
+                  }
+               }
+            }
+         }
          if(this.actionName != "待机")
          {
             var effectNingjujuju:EffectDisplay = this.world.getEffectFormName("ningjujuju", this);
@@ -32,6 +83,16 @@ package game.role
          if(effectYuanQiDan && this.actionName != "刻杀·雪风" && this.actionName != "刻杀·悪滅")
          {
             effectYuanQiDan.discarded();
+         }
+         if(this.actionName.indexOf("攻击") != -1)
+         {
+            if(this.isKeyDown(83) && this.isKeyDown(79) && this.currentMp.value >=4)
+            {
+               this.breakAction();
+               this.clearDebuffMove();
+               this.playSkill("雪风·刻");
+               this.currentMp.value -= 4;
+            }
          }
       }
 

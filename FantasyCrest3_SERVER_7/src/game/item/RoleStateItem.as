@@ -5,6 +5,9 @@ package game.item
    import starling.text.TextFormat;
    import zygame.core.DataCore;
    import zygame.display.BaseItem;
+   import feathers.controls.text.TextFieldTextRenderer; //
+   import feathers.core.ITextRenderer; //
+   import game.uilts.GameFont; //
    
    public class RoleStateItem extends BaseItem
    {
@@ -21,7 +24,11 @@ package game.item
          var bg:Image = new Image(DataCore.getTextureAtlas("hpmp").getTexture("state.png"));
          this.addChild(bg);
          _lable = new Label();
-         _lable.fontStyles = new TextFormat("mini",16,16777215);
+         _lable.textRendererFactory = function():ITextRenderer { //
+            return new TextFieldTextRenderer(); // 这才是支持系统字体的渲染器
+         }; //
+         // _lable.fontStyles = new TextFormat("mini",16,16777215);
+         _lable.fontStyles = new TextFormat(GameFont.FONT_NAME,18,16777215); //
          _lable.x = 24;
          _lable.y = 3;
          _lable.width = bg.width - 26;
