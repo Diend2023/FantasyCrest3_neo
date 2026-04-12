@@ -16,6 +16,8 @@ package game.role
       private var _keyQueue:Array = [];
 
       private const _keyObj:Object = {65:"←",68:"→",87:"↑",83:"↓",74:"J",75:"K",76:"L",85:"U",73:"I",79:"O",80:"P"};
+
+      private var _hasChangeStateList:Boolean = false;
       
       public function ZhanShen(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -46,10 +48,8 @@ package game.role
       override public function onFrame():void
       {
          super.onFrame();
-         if(this.hpmpDisplay.stateList.width != 500)
+         if(!_hasChangeStateList)
          {
-            this.hpmpDisplay.stateList.width = 500;
-            this.hpmpDisplay.stateList.validate();
             // 强制穿透修改：List -> ViewPort -> RoleStateItem -> BG/Label
             if(this.hpmpDisplay.stateList.numChildren > 0)
             {
@@ -66,6 +66,7 @@ package game.role
                         var label:Object = item.getChildAt(1);
                         if(bg) bg.width = 130;
                         if(label) label.width = 100;
+                        _hasChangeStateList = true;
                      }
                   }
                }

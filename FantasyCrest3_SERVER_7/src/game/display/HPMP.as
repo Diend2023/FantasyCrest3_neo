@@ -213,8 +213,9 @@ package game.display
          if(stateList.scaleX == -1)
          {
             stateList.x = 5 + stateList.width - 26;
-            (stateList.layout as HorizontalLayout).horizontalAlign = "right";
-            (stateList.layout as HorizontalLayout).paddingRight = 0;
+            stateList.x -= 100; //
+            // (stateList.layout as HorizontalLayout).horizontalAlign = "right";
+            // (stateList.layout as HorizontalLayout).paddingRight = 0;
          }
          stateList.touchable = false;
       }
