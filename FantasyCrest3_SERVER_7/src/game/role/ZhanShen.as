@@ -77,15 +77,17 @@ package game.role
             var effectNingjujuju:EffectDisplay = this.world.getEffectFormName("ningjujuju", this);
             if (effectNingjujuju)
             {
-               effectNingjujuju.discarded();
+               effectNingjujuju.continuousTime = 0;
+               effectNingjujuju.go(999);
             }
          }
          var effectYuanQiDan:EffectDisplay = this.world.getEffectFormName("YuanQiDan", this);
          if(effectYuanQiDan && this.actionName != "刻杀·雪风" && this.actionName != "刻杀·悪滅")
          {
-            effectYuanQiDan.discarded();
+            effectYuanQiDan.continuousTime = 0;
+            effectYuanQiDan.go(999);
          }
-         if(this.actionName.indexOf("攻击") != -1)
+         if(this.actionName.indexOf("攻击") != -1 && this.actionName != "虚空阵 鸣")
          {
             if(this.isKeyDown(83) && this.isKeyDown(79) && this.currentMp.value >=4)
             {
@@ -95,18 +97,22 @@ package game.role
                this.currentMp.value -= 4;
             }
          }
+         if (this.currentMp.value == this.mpMax)
+         {
+            this.mpPoint.value = 0;
+         }
       }
 
       override public function onSUpdate() : void
       {
+         if (this.currentMp.value == this.mpMax)
+         {
+            return;
+         }
          super.onSUpdate();
          if(this.actionName == "待机")
          {
             addMpPoint(1);
-         }
-         if (this.currentMp.value == this.mpMax)
-         {
-            this.mpPoint.value = 0;
          }
       }
 
@@ -120,7 +126,7 @@ package game.role
                this.breakAction();
                this.clearDebuffMove();
                this.playSkill(this.actionName + " 攻击");
-               this.golden = 30;
+               this.golden += 45;
                if (this.currentMp.value < this.mpMax)
                {
                   this.currentMp.value += 1;
