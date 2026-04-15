@@ -238,7 +238,7 @@
       <SubTexture name="元件 10455" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10455" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="虚空阵 素" key="SU" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30" msg="">
+    <act name="虚空阵 素" key="SU" type="land" cd="3" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30" msg="">
       <SubTexture name="元件 10131" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" turn="0" hitEffectName=""/>
       <SubTexture name="元件 10132" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10133" gox="0" goy="0" effects="[]"/>
@@ -365,7 +365,7 @@
       <SubTexture name="元件 10622" gox="700" goy="0" effects="[]"/>
       <SubTexture name="元件 10622" gox="700" goy="0" effects="[]"/>
     </act>
-    <act name="虚空阵 盈" key="U" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="20" msg="">
+    <act name="虚空阵 盈" key="U" type="land" cd="3" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="20" msg="">
       <SubTexture name="元件 10077" gox="0" goy="0" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" turn="0" hitEffectName="" effects="[]"/>
       <SubTexture name="元件 10078" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10079" gox="0" goy="0" effects="[]"/>
@@ -517,7 +517,7 @@
       <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10557" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="虚空阵 鸣" key="U" type="air" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
+    <act name="虚空阵 鸣" key="U" type="air" cd="3" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
       <SubTexture name="元件 10199" gox="0" goy="0" soundName="zsyinxiao/hase23" effects="[]"/>
       <SubTexture name="元件 10200" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10200" gox="0" goy="0" effects="[]"/>
@@ -538,6 +538,9 @@
     </act>
     <act name="虚空阵 鸣 攻击" key="" type="air" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="20">
       <SubTexture name="元件 10202" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10203" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10203" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10203" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10203" gox="0" goy="0" effects="[]" soundName="zsyinxiao/ha109b"/>
       <SubTexture name="元件 10204" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10206" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
@@ -547,7 +550,7 @@
       <SubTexture name="元件 10210" gox="-140" goy="-50" effects="[]"/>
       <SubTexture name="元件 10211" gox="-180" goy="0" isApplyGoPoint="true" effects="[]"/>
     </act>
-    <act name="虚空阵 尊" key="WU" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
+    <act name="虚空阵 尊" key="WU" type="land" cd="3" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="30">
       <SubTexture name="元件 10576" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" turn="0" hitEffectName=""/>
       <SubTexture name="元件 10577" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10578" gox="0" goy="0" effects="[]"/>

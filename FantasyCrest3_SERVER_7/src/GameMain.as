@@ -32,8 +32,6 @@ package
    import starling.events.KeyboardEvent; //
    import flash.ui.Keyboard; //
    import flash.net.SharedObject; //
-   import lzm.starling.STLConstant; //导入STLConstant用于手机端自动全屏
-   import flash.display.StageDisplayState; //导入StageDisplayState用于手机端自动全屏
    
    public class GameMain extends DisplayObjectContainer
    {

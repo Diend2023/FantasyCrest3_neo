@@ -40,6 +40,9 @@
   <file path="font/fong_suiwen_font.xml"/>
   <file path="font/fontNum_font.png"/>
   <file path="font/fontNum_font.xml"/>
+  <!-- 添加被动位图字体 -->
+  <file path="font/RoleStateItem_font.png"/>
+  <file path="font/RoleStateItem_font.xml"/>
   <file path="data/npcname.xml" info="NPC数据"/>
   <file path="data/maps.xml" info="地图数据"/>
   <file path="data/fuben.xml" info="副本地图数据"/>

@@ -10,7 +10,6 @@ package game.role
    import zygame.data.BeHitData;
    import zygame.display.BaseRole;
    import flash.geom.Rectangle;
-   import zygame.core.GameCore;
    
    public class BLL extends GameRole
    {

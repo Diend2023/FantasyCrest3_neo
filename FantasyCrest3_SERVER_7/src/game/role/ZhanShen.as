@@ -9,6 +9,7 @@ package game.role
    import zygame.data.RoleFrameGroup;
    import zygame.display.BaseRole
    import feathers.data.ListCollection;
+   import flash.geom.Rectangle;
    
    public class ZhanShen extends GameRole
    {
@@ -31,6 +32,16 @@ package game.role
       override public function onDown(key:int):void
       {
          super.onDown(key);
+         if(key == 85 && (this.actionName == "虚空阵 素" || this.actionName == "虚空阵 盈" || this.actionName == "虚空阵 鸣" || this.actionName == "虚空阵 尊"))
+         {
+            if(this.currentFrame > 10 && this.currentMp.value >= 1)
+            {
+               this.breakAction();
+               this.clearDebuffMove();
+               this.playSkill(this.actionName + " 攻击");
+               this.currentMp.value -= 1;
+            }
+         }
          if(_keyObj.hasOwnProperty(key))
          {
             _keyQueue.push(_keyObj[key]);
@@ -39,9 +50,7 @@ package game.role
          {
             _keyQueue.shift();
          }
-         var keyQueue:Array = _keyQueue.reverse();
-         _keyQueue.reverse();
-         this.listData.getItemAt(0).msg = keyQueue.join("");
+         this.listData.getItemAt(0).msg = _keyQueue.join("");
          this.listData.updateItemAt(0);
       }
       
@@ -64,8 +73,8 @@ package game.role
                      {
                         var bg:Object = item.getChildAt(0);
                         var label:Object = item.getChildAt(1);
-                        if(bg) bg.width = 130;
-                        if(label) label.width = 100;
+                        if(bg) bg.width = 110;
+                        if(label) label.width = 80;
                         _hasChangeStateList = true;
                      }
                   }
@@ -87,12 +96,13 @@ package game.role
             effectYuanQiDan.continuousTime = 0;
             effectYuanQiDan.go(999);
          }
-         if(this.actionName.indexOf("攻击") != -1 && this.actionName != "虚空阵 鸣")
+         if(this.actionName.indexOf("攻击") != -1 && this.actionName != "虚空阵 鸣 攻击")
          {
             if(this.isKeyDown(83) && this.isKeyDown(79) && this.currentMp.value >=4)
             {
                this.breakAction();
                this.clearDebuffMove();
+               this.golden += 45;
                this.playSkill("雪风·刻");
                this.currentMp.value -= 4;
             }
@@ -100,6 +110,26 @@ package game.role
          if (this.currentMp.value == this.mpMax)
          {
             this.mpPoint.value = 0;
+         }
+         var getRole:BaseRole = null;
+         if(this.actionName == "虚空阵 鸣 攻击" && this.frameAt(0, 5))
+         {
+            hand(200, 200, 100, 200, 0, -25);
+         }
+         if(this.actionName == "虚空阵 尊 攻击")
+         {
+            if(this.currentFrame == 2)
+            {
+               getRole = hand(200, 200, 100, 300, 200, 10);
+            }
+            if(this.currentFrame == 3)
+            {
+               getRole = hand(200, 200, 100, 300, 100, 10);
+               if(!getRole)
+               {
+                  this.breakAction();
+               }
+            }
          }
       }
 
@@ -240,6 +270,56 @@ package game.role
                }
             }
          }
+      }
+
+      public function hand(topRange:int = 200, bottomRange:int = 200, backRange:int = 100, frontRange:int = 200,  toX:int = 0, toY:int = 0):BaseRole
+      {
+         var rect:Rectangle = this.body.bounds.toRect();
+         // 横向判定
+         if(this.scaleX > 0)
+         {
+            rect.width += frontRange;
+            rect.x -= backRange;
+            rect.width += backRange;
+         }
+         else
+         {
+            rect.x -= frontRange;
+            rect.width += frontRange;
+            rect.width += backRange;
+         }
+         // 纵向判定
+         rect.y -= topRange;
+         rect.height += topRange;
+         rect.height += bottomRange;
+
+         // 修正左边界
+         if(rect.x < 0)
+         {
+            rect.width += rect.x; // 把溢出的部分减掉
+            rect.x = 0;
+            toX = 0;
+         }
+         // 修正右边界
+         if(rect.x + rect.width > world.map.getWidth())
+         {
+            rect.width = world.map.getWidth() - rect.x;
+            toX = 0;
+         }
+
+         if(rect.width > 0 && rect.height > 0)
+         {
+            var role:BaseRole = findRole(rect);
+            if(role)
+            {
+               role.clearDebuffMove();
+               role.straight = 30;
+               role.setX(this.x + toX * this.scaleX);
+               role.setY(this.y - toY);
+               return role;
+            }
+         }
+         return null;
       }
 
    }
