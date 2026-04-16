@@ -10,6 +10,7 @@ package game.role
    import zygame.display.BaseRole
    import feathers.data.ListCollection;
    import flash.geom.Rectangle;
+   import zygame.core.GameCore;
    
    public class ZhanShen extends GameRole
    {
@@ -191,6 +192,15 @@ package game.role
                this.breakAction();
                this.clearDebuffMove();
                this.runLockAction("刻杀·悪滅");
+               // GameCore.soundCore.playBGSound("astralfinish");
+               beData.cardFrame = 45;
+               for each(var j:BaseRole in this.world.getRoleList())
+               {
+                  if (j != this)
+                  {
+                     shitingEffect(45, j);
+                  }
+               }
             }
          }
       }

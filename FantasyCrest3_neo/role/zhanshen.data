@@ -3,6 +3,8 @@
   <content>
     <xml path="npc/zhanshen.xml"/>
     <image path="npc/zhanshen.png"/>
+    <!-- 添加终结bgm -->
+    <sound path="sound/astralfinish.mp3"/>
   </content>
   <loads>
     <sprites path="effect/ningjujuju"/>
@@ -44,6 +46,7 @@
     <sprites path="effect/zhan"/>
     <file path="sound/zhan.mp3"/>
     <sprites path="effect/xkz"/>
+    <sprites path="effect/xkz1"/>
     <file path="sound/zsyinxiao/ha404b.mp3"/>
     <file path="sound/zsyinxiao/hase23.mp3"/>
     <file path="sound/zsyinxiao/hase22.mp3"/>
@@ -404,7 +407,7 @@
       <SubTexture name="元件 10519" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10520" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10521" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="元件 10522" gox="0" goy="0" mapVibrationSize="" mapVibrationTime="" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;isLaunch\&quot;:false,\&quot;time\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:0,\&quot;hitY\&quot;:0,\&quot;canHit\&quot;:false,\&quot;y\&quot;:-250,\&quot;hitMap\&quot;:false,\&quot;atbottom\&quot;:false,\&quot;color\&quot;:[],\&quot;name\&quot;:\&quot;xkz\&quot;,\&quot;unhit\&quot;:true,\&quot;goy\&quot;:0,\&quot;scaleX\&quot;:0.4,\&quot;scaleY\&quot;:0.7,\&quot;rotation\&quot;:0,\&quot;blow\&quot;:false,\&quot;through\&quot;:false,\&quot;addColor\&quot;:13311,\&quot;fadeIn\&quot;:true,\&quot;intensity\&quot;:0,\&quot;fadeOut\&quot;:true,\&quot;srcColor\&quot;:-1,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-25,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;gox\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;}&quot;]"/>
+      <SubTexture name="元件 10522" gox="0" goy="0" mapVibrationSize="" mapVibrationTime="" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;isLaunch\&quot;:false,\&quot;time\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:0,\&quot;hitY\&quot;:0,\&quot;canHit\&quot;:false,\&quot;y\&quot;:-219,\&quot;hitMap\&quot;:false,\&quot;atbottom\&quot;:false,\&quot;color\&quot;:[],\&quot;name\&quot;:\&quot;xkz\&quot;,\&quot;unhit\&quot;:true,\&quot;goy\&quot;:0,\&quot;scaleX\&quot;:0.35,\&quot;scaleY\&quot;:0.55,\&quot;rotation\&quot;:0,\&quot;blow\&quot;:false,\&quot;through\&quot;:false,\&quot;addColor\&quot;:13311,\&quot;fadeIn\&quot;:true,\&quot;intensity\&quot;:1.5,\&quot;fadeOut\&quot;:true,\&quot;srcColor\&quot;:-1,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-25,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;gox\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;}&quot;,&quot;{\&quot;cardFrame\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;isLaunch\&quot;:false,\&quot;time\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;stiff\&quot;:0,\&quot;hitY\&quot;:0,\&quot;canHit\&quot;:false,\&quot;y\&quot;:-274,\&quot;hitMap\&quot;:false,\&quot;atbottom\&quot;:false,\&quot;color\&quot;:[],\&quot;name\&quot;:\&quot;xkz1\&quot;,\&quot;unhit\&quot;:true,\&quot;goy\&quot;:0,\&quot;scaleX\&quot;:0.9,\&quot;scaleY\&quot;:1.4,\&quot;rotation\&quot;:0,\&quot;blow\&quot;:false,\&quot;through\&quot;:false,\&quot;addColor\&quot;:16711680,\&quot;fadeIn\&quot;:true,\&quot;intensity\&quot;:0,\&quot;fadeOut\&quot;:true,\&quot;srcColor\&quot;:-1,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-61,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;gox\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;}&quot;]"/>
       <SubTexture name="元件 10523" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10524" gox="0" goy="0" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" effects="[]"/>
       <SubTexture name="元件 10522" gox="0" goy="0" effects="[]"/>
