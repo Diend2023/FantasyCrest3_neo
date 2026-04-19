@@ -51,6 +51,22 @@ package game.role
          {
             _keyQueue.shift();
          }
+         if(key == 73)
+         {
+            if(_keyQueue.join("").indexOf("→→I") != -1 || _keyQueue.join("").indexOf("←←I") != -1)
+            {
+               this.playSkill("红莲");
+            }
+            if(_keyQueue.join("").indexOf("↓→↓→I") != -1 || _keyQueue.join("").indexOf("↓←↓←I") != -1)
+            {
+               this.playSkill("残铁");
+            }
+            if(_keyQueue.join("").indexOf("→→↑I") != -1 || _keyQueue.join("").indexOf("←←↑I") != -1)
+            {
+               this.playSkill("鬼蹴·阍魔");
+            }
+            _keyQueue = [];
+         }
          this.listData.getItemAt(0).msg = _keyQueue.join("");
          this.listData.updateItemAt(0);
       }
@@ -96,6 +112,24 @@ package game.role
          {
             effectYuanQiDan.continuousTime = 0;
             effectYuanQiDan.go(999);
+         }
+         var effectZs1:EffectDisplay = this.world.getEffectFormName("zs1", this);
+         if(effectZs1 && effectZs1.scaleX < 0)
+         {
+            effectZs1.scaleX *= this.scaleX > 0 ? 1 : -1;
+            effectZs1.x -= effectZs1.width * effectZs1.scaleX;
+         }
+         var effectZs2:EffectDisplay = this.world.getEffectFormName("zs2", this);
+         if(effectZs2 && effectZs2.scaleX < 0)
+         {
+            effectZs2.scaleX *= this.scaleX > 0 ? 1 : -1;
+            effectZs2.x -= effectZs2.width * effectZs2.scaleX;
+         }
+         var effectZs3:EffectDisplay = this.world.getEffectFormName("zs3", this);
+         if(effectZs3 && effectZs3.scaleX < 0)
+         {
+            effectZs3.scaleX *= this.scaleX > 0 ? 1 : -1;
+            effectZs3.x -= effectZs3.width * effectZs3.scaleX;
          }
          if(this.actionName.indexOf("攻击") != -1 && this.actionName != "虚空阵 鸣 攻击")
          {
