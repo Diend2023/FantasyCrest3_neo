@@ -335,7 +335,7 @@ package game.role
             {
                var effectBLL13:EffectDisplay = new EffectDisplay("BLL13",{blendMode:"normal"},this,2,2);
                effectBLL13.fps = 15;
-               effectBLL13.unhit = true;
+               effectBLL13.unhit = false;
                (world as BaseGameWorld).addChild(effectBLL13);
                // GameCore.soundCore.playEffect("BLL1");
                if((world as BaseGameWorld).founcDisplay == this)

@@ -594,6 +594,8 @@ package game.role
       
       override protected function onDie(beData:BeHitData) : void
       {
+         super.onDie(beData); //
+         this.cardFrame = 0; //
       }
       
       public function statisticalHurt(i:int) : void
