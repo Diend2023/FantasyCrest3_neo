@@ -102,6 +102,8 @@ package game.role
          ZZX; // 添加志志雄
          Weiss; // 添加Weiss
          FBDH; // 添加逢坂大河
+         JianXin3_0; // 添加3.0绯村剑心
+         JianXin3_1; // 添加3.1绯村剑心
       }
    }
 }

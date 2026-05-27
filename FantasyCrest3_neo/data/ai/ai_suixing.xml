@@ -1,0 +1,29 @@
+<ai info="会挑衅怪物，喜欢团体战，当队伍HP少于50%时，会主动追击敌人。">
+	<and id="攻击" interval="10">
+		<or id="如果存在仇恨对象，或者95%主动挑衅，或者队伍HP少于50%，如果队伍在附近会主动进行攻击">
+			<action id="AI.troop(role,250,200);"/>
+			<action id="AI.troopHP(role,0.5);"/>
+			<action id="AI.hate(role);"/>
+			<action id="AI.random(95);"/>
+		</or>
+		<action id="AI.enemy(role,160,160);"/>
+		<action id="AI.attack(role);"/>
+	</and>
+	<and id="逃跑" interval="60">
+		<action id="AI.hp(role,0.15);"/>
+		<action id="AI.escape(role,400);"/>
+	</and>
+	<and id="追击：当队伍HP少于50%时，会主动追击仇恨对象" interval="10">
+		<action id="AI.troopHP(role,0.5);"/>
+		<action id="AI.hate(role);"/>
+		<action id="AI.chase(role);"/>
+	</and>
+	<and id="跟随：如果队伍HP少于50%时，会不再跟随，而是自主巡逻附近的猎物！" interval="10">
+		<action id="!AI.troopHP(role,0.5);"/>
+		<action id="!AI.troop(role,100,160);"/>
+		<action id="AI.follow(role,100);"/>
+	</and>
+	<and id="巡逻" interval="60">
+		<action id="AI.move(role);"/>
+	</and>
+</ai>

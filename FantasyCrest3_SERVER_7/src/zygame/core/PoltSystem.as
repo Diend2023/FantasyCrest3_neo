@@ -94,6 +94,53 @@ package zygame.core
          trace("开始执行剧情",xml.toXMLString());
       }
       
+      // 测试功能，直接从外部文本创建对话气泡
+      // public function plotFromMessage(text:String, targetName:String = null):void
+      // {
+      //    // 构造内部XML，外部不需要关心
+      //    var xml:XML = <m message={(targetName || "self") + "#" + text}/>;
+         
+      //    // 如果有自定义回调，直接调用
+      //    if(createMessageFunc != null)
+      //    {
+      //       createMessageFunc(xml);
+      //       return;
+      //    }
+         
+      //    // 直接创建对话气泡，不启动完整剧情流程
+      //    var strData:String = text;
+      //    strData = as3Message(strData);
+      //    currentDialog = new defaultDialogClass(strData);
+      //    _world.addChild(currentDialog);
+         
+      //    var ref:DisplayObjectContainer = null;
+      //    if(targetName)
+      //    {
+      //       ref = getRef(targetName);
+      //    }
+      //    else
+      //    {
+      //       ref = _npc ? _npc : _world.role;
+      //    }
+         
+      //    GameCore.currentWorld.founcDisplay = ref;
+      //    var pos:Point = ref.getPoltPos();
+      //    currentDialog.x = pos.x;
+      //    currentDialog.y = pos.y;
+      //    currentDialog.followDisplay = ref;
+         
+      //    if(ref != GameCore.currentWorld.role)
+      //    {
+      //       GameCore.currentWorld.role.scaleX = ref.x > GameCore.currentWorld.role.x ? 1 : -1;
+      //    }
+         
+      //    updateScaleX(currentDialog, ref);
+      //    // 注意：不设置 backFunc，让它自动消失即可
+      //    currentDialog.backFunc = function():void {
+      //       currentDialog = null;
+      //    };
+      // }
+
       public function onFrame() : void
       {
          if(!isRuning)
