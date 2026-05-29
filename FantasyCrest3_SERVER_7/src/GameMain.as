@@ -32,6 +32,7 @@ package
    import starling.events.KeyboardEvent; //
    import flash.ui.Keyboard; //
    import flash.net.SharedObject; //
+   import zygame.core.GamepadController; //
    
    public class GameMain extends DisplayObjectContainer
    {
@@ -103,6 +104,7 @@ package
          }
          onRoleDataLoaded(1);
          setSettings(); // 加载并应用之前保存的设置
+         GamepadController.flushPendingTips(); // 刷新游戏手柄的待显示提示，确保它们在游戏开始时正确显示
       }
       
       override public function onInit() : void

@@ -3,6 +3,7 @@ package zygame.core
    import flash.display.Stage;
    import flash.events.KeyboardEvent;
    import zygame.display.KeyDisplayObject;
+   import zygame.core.GamepadController; //
    
    public class KeyCore
    {
@@ -14,6 +15,8 @@ package zygame.core
       private var _key:int = -1;
       
       private var _stage:Stage;
+
+      private var _gamepad:GamepadController; //
       
       public function KeyCore(stage:Stage)
       {
@@ -21,6 +24,7 @@ package zygame.core
          _stage = stage;
          stage.addEventListener("keyDown",onKeyDown);
          stage.addEventListener("keyUp",onKeyUp);
+         _gamepad = new GamepadController(this, stage); //
       }
       
       public function addKeyEvent(keyDisplay:KeyDisplayObject) : void
@@ -82,6 +86,16 @@ package zygame.core
             _keys[i].onKeyUp(e);
          }
       }
+
+      public function dispose() : void //
+      { //
+         if(_gamepad) //
+         { //
+            _gamepad.dispose(); //
+            _gamepad = null; //
+         } //
+      } //
+
    }
 }
 
