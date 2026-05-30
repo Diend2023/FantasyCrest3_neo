@@ -1,8 +1,14 @@
 <maps>
 	<item name="一平之战" target="map1"/>
+	<!-- 添加3.0一平之战 -->
+	<item name="3.0一平之战" target="map1_3.0"/>
 	<item name="独梁桥" target="map2"/>
+	<!-- 添加3.0独梁桥 -->
+	<item name="3.0独梁桥" target="map2_3.0"/>
 	<item name="爱心桥" target="map3"/>
 	<item name="代沟之隔" target="map4"/>
+	<!-- 添加3.0代沟之隔 -->
+	<item name="3.0代沟之隔" target="map4_3.0"/>
 	<item name="决斗场" target="map5"/>
 	<item name="九尾之地" target="map6"/>
 	<item name="幻想纹章4" target="map7"/>

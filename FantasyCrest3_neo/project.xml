@@ -73,5 +73,10 @@
   <!-- 添加bgm -->
   <file path="bgm/main1.mp3"/>
   <file path="bgm/main2.mp3"/>
+  <file path="bgm/main3.0.mp3"/>
+  <file path="bgm/main3.1.mp3"/>
+  <file path="bgm/main3.2.mp3"/>
+  <file path="bgm/main3.3.mp3"/>
+  <file path="bgm/main3.4.mp3"/>
   <file path="data/unlock.xml"/>
 </Project>

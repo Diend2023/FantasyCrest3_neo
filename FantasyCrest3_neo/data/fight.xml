@@ -94,22 +94,6 @@
 
 	</jianxin_3.1>
 
-	<jianxin_3.2 head="jianxin_3.2.png" version="3.2" name="3.2绯村剑心" acthor="巅峰" passive="处于残影(强制)状态时,技能伤害将提高50%" introduce="原名:绯村心太。日本漫画《浪客剑心》及其衍生作品中的男主角,过去曾经被称为“刽子手拔刀斋”,流派为“飞天御剑流”,师父为比古清十郎。">
-		
-		<data name="移动速度" value="1"/>
-
-		<data name="魔力" value="0"/>
-
-		<data name="物理防御" value="0.5"/>
-
-		<data name="魔法防御" value="0.25"/>
-
-		<data name="体力" value="0.7"/>
-
-		<data name="水晶" value="4"/>
-		
-	</jianxin_3.2>
-
 	<anotherJX head="anotherJX.png" visible="true"  in4399="true" version="3.5" name="绯村剑心·拔刀斋" profession="爆发" coin="998" crystal="5" acthor="鸟儿" passive="处于残影（强制）状态时，暴击率将提高50%" introduce="原名：绯村心太。日本漫画《浪客剑心》及其衍生作品中的男主角，过去曾经被称为“刽子手拔刀斋”，流派为“飞天御剑流”，师父为比古清十郎。">
 
 		<data name="移动速度" value="1"/>

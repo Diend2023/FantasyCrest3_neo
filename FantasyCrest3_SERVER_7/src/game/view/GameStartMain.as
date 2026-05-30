@@ -134,12 +134,20 @@ package game.view
             getChildByName("low").alpha = 0.5;
             e.target["alpha"] = 1;
          };
+         
+         var versionRandom:int = Math.floor((Math.random() * 10)) //
+         var start_mainVersion:String = versionRandom >= 5 ? "5" : String(versionRandom); //
+
          super.onInit();
+
          textures = DataCore.getTextureAtlas("start_main");
          spr = new Sprite();
          this.addChild(spr);
          spr.y = 0;
+         if(start_mainVersion == "5") //
          bg = new Image(textures.getTexture("bg"));
+         else //
+         bg = new Image(textures.getTexture("bg_3." + start_mainVersion)); //
          spr.addChild(bg);
          bg.alignPivot();
          bg.x = stage.stageWidth / 2;
@@ -156,7 +164,10 @@ package game.view
          logo.x = stage.stageWidth / 2 - 330;
          logo.y = 8;
          logo.blendMode = "screen";
+         if(start_mainVersion == "5") //
          rolebg = new Image(textures.getTexture("bg_role"));
+         else //
+         rolebg = new Image(textures.getTexture("bg_role_3." + start_mainVersion)); //
          this.addChild(rolebg);
          rolebg.x = -rolebg.width;
          rolebg.y = stage.stageHeight + 60;
@@ -164,7 +175,8 @@ package game.view
          tw = new Tween(rolebg,1,"easeOut");
          tw.moveTo(-60,rolebg.y);
          Starling.juggler.add(tw);
-         if(!Phone.isPhone() && false)
+         // if(!Phone.isPhone() && false)
+         if(start_mainVersion != "5") //
          {
             icon4399 = new Image(textures.getTexture("djfx"));
             this.addChild(icon4399);
@@ -316,7 +328,10 @@ package game.view
          }
          // 原本的播放背景音乐的代码
          // GameCore.soundCore.playBGSound("main");
+         if(start_mainVersion == "5") //
          GameCore.soundCore.playBGSound(["main", "main1", "main2"][Math.floor(Math.random() * 3)]); // 随机播放背景音乐
+         else
+         GameCore.soundCore.playBGSound("main3." + start_mainVersion); // 播放特定版本的背景音乐
          isHW = Starling.context.driverInfo.toLowerCase().indexOf("software") == -1;
          tispbg = new Quad(stage.stageWidth,32,0);
          tispbg.alpha = 0.7;

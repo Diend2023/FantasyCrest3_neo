@@ -79,6 +79,10 @@ package game.view
          var view:GameSelectView = new GameSelectView(_config,_class);
          view.isSelfMode = _isSelfMode;
          view.isDoublePlayer = _isDoublePlayer2;
+         if(World.defalutClass == _1VSB) //
+         { //
+            view.isSelfMode = true; // 1VSB模式强制单人
+         } //
          return view;
       }
       
@@ -279,7 +283,7 @@ package game.view
             else if(World.defalutClass == _1VSB)
             {
                // SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_1p.group.array.concat()));
-               SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_2p.group.array));
+               SceneCore.replaceScene(new GameVSView(mapName,_1p.group.array,_2p.group.array)); //
             }
             else if(World.defalutClass == _2V2LEVEL)
             {
