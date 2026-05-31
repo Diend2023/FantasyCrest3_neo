@@ -25,6 +25,7 @@ package game.role
    import zygame.event.GameMapHitType;
    import zygame.style.Color2Style;
    import game.view.GameSettingsView; // 导入设置界面类
+   import zygame.core.DataCore; //
    
    public class GameRole extends BullyRole implements RoleData
    {
@@ -539,11 +540,17 @@ package game.role
          super.onShapeChange();
          if(maxMandatorySkill != mandatorySkill && isLock)
          {
-            createShadow(16776960);
+            if(DataCore.fightData.data[this.targetName].@version != undefined && Number(DataCore.fightData.data[this.targetName].@version <= 3.1)) //
+               createShadow(16711680); //
+            else //
+               createShadow(16776960);
          }
          if(actionName == "瞬步" && isGod())
          {
-            createShadow(8846335);
+            if(DataCore.fightData.data[this.targetName].@version != undefined && Number(DataCore.fightData.data[this.targetName].@version <= 3.1)) //
+               createShadow(65280); //
+            else //
+               createShadow(8846335);
          }
       }
       
