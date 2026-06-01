@@ -12,6 +12,8 @@ package game.item
       private var _icon:Image;
       
       private var _lable:Label;
+
+      private var _bg:Image; //
       
       public function RoleStateItem()
       {
@@ -20,6 +22,7 @@ package game.item
          this.height = 20;
          var bg:Image = new Image(DataCore.getTextureAtlas("hpmp").getTexture("state.png"));
          this.addChild(bg);
+         _bg = bg; //
          _lable = new Label();
          // _lable.fontStyles = new TextFormat("mini",16,16777215);
          _lable.fontStyles = new TextFormat("RoleStateItem_font",16,16777215); // 使用新的位图字体
@@ -47,6 +50,12 @@ package game.item
                _icon.texture = DataCore.getTextureAtlas("hpmp").getTexture(value.icon);
             }
             _lable.text = value.msg is cint ? value.msg.value : value.msg;
+            if(value.len && value.len is int) //
+            { //
+               this.width = value.len; //
+               _bg.width = value.len; //
+               _lable.width = value.len - 26; //
+            } //
          }
       }
    }
