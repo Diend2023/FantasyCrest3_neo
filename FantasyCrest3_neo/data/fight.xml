@@ -62,6 +62,7 @@
 
 	</jianxin>
 
+	<!-- 添加3.0绯村剑心 -->
 	<jianxin_3.0 head="jianxin_3.0.png" version="3.0" name="3.0绯村剑心" passive="处于残影（强制）状态时，技能伤害将提高50%" introduce="原名：绯村心太。日本漫画《浪客剑心》及其衍生作品中的男主角，过去曾经被称为“刽子手拔刀斋”，流派为“飞天御剑流”，师父为比古清十郎。">
 
 		<data name="移动速度" value="1"/>
@@ -78,6 +79,7 @@
 
 	</jianxin_3.0>
 
+	<!-- 添加3.1绯村剑心 -->
 	<jianxin_3.1 head="jianxin_3.1.png" version="3.1" name="3.1绯村剑心" acthor="巅峰" passive="处于残影（强制）状态时，技能伤害将提高50%" introduce="原名：绯村心太。日本漫画《浪客剑心》及其衍生作品中的男主角，过去曾经被称为“刽子手拔刀斋”，流派为“飞天御剑流”，师父为比古清十郎。">
 
 		<data name="移动速度" value="1"/>
@@ -185,6 +187,24 @@
 
 	</suolong>
 
+	<!-- 添加3.0索隆 -->
+	<suolong_3.0 head="suolong_3.0.png" version="3.0" name="3.0索隆" passive="战斗时得到25%的闪避能力，成功闪避后获得0.3s的霸体。该被动在5秒内只会触发一次。" introduce="罗罗诺亚·索隆，是在漫画《航海王》及改编动画中登场的角色。草帽海贼团中的战斗员，使用三把刀战斗的三刀流剑士，二年前超新星11人之一。">
+		
+		<data name="移动速度" value="1"/>
+		
+		<data name="力量" value="0.6"/>
+		
+		<data name="魔力" value="0"/>
+		
+		<data name="物理防御" value="0.75"/>
+		
+		<data name="魔法防御" value="0.25"/>
+		
+		<data name="体力" value="0.85"/>
+		
+		<data name="水晶" value="3"/>
+	</suolong_3.0>
+
 	<lufei visible="true" head="lufei.png" acthor="巅峰" name="路飞" profession="爆发" passive="在防御状态的时候被攻击，将反弹30%的伤害；对于必杀造成的伤害，将反弹50%；反伤最大伤害为10000。" introduce="蒙奇·D·路飞是在漫画及改编动画《海贼王》中登场的虚拟角色，男主角，草帽海贼团船长。">
 
 		<data name="移动速度" value="1.1"/>
@@ -203,6 +223,25 @@
 
 	</lufei>
 
+	<!-- 添加3.0路飞 -->
+	<lufei_3.0 visible="true" version="3.0" head="lufei_3.0.png" name="3.0路飞" passive="见闻色能够使路飞得到第一击100%闪避率，并存在10s的CD。" introduce="蒙奇·D·路飞是在漫画及改编动画《海贼王》中登场的虚拟角色，男主角，草帽海贼团船长。">
+		
+		<data name="移动速度" value="1.1"/>
+		
+		<data name="力量" value="0.75"/>
+		
+		<data name="魔力" value="0"/>
+		
+		<data name="物理防御" value="0.9"/>
+		
+		<data name="魔法防御" value="0.1"/>
+		
+		<data name="体力" value="0.7"/>
+		
+		<data name="水晶" value="4"/>
+
+	</lufei_3.0>
+
 	<shanzhi visible="true" head="shanzhi.png" name="山治" acthor="巅峰" passive="山治允许跳跃三次。" profession="敏捷/连段" introduce="山治是日本人气漫画《航海王》中的主要角色之一。草帽海贼团厨师，金发，有着卷曲眉毛，永远遮住半边脸的家伙，香烟不离口，最爱女人，很花心但很有风度，海贼中的绅士。">
 
 		<data name="移动速度" value="1.1"/> 
@@ -220,6 +259,25 @@
 		<data name="水晶" value="6"/>
 
 	</shanzhi>
+
+	<!-- 添加3.0山治 -->
+	<shanzhi_3.0 head="shanzhi_3.0.png" version="3.0" name="3.0山治" passive="山治允许跳跃三次，每次跳跃增加霸体0.3秒；如果击中了敌人增加自已的霸体0.1秒。" introduce="山治是日本人气漫画《航海王》中的主要角色之一。草帽海贼团厨师，金发，有着卷曲眉毛，永远遮住半边脸的家伙，香烟不离口，最爱女人，很花心但很有风度，海贼中的绅士。">
+		
+		<data name="移动速度" value="1.1"/> 
+		
+		<data name="力量" value="0.6"/>
+		
+		<data name="魔力" value="0"/>
+		
+		<data name="物理防御" value="0.25"/>
+		
+		<data name="魔法防御" value="0.25"/>
+		
+		<data name="体力" value="0.75"/>
+		
+		<data name="水晶" value="6"/>
+
+	</shanzhi_3.0>
 
 	<kawendixu visible="true"  in4399="true" version="3.4" coin="888" crystal="4" head="kawendixu.png" acthor="木姐" name="卡文迪许" profession="空反/反杀"  passive="倒地起身或者快速起身的时候，增加移动速度和125力量持续3秒。">
 
@@ -839,6 +897,25 @@
 		<data name="水晶" value="6"/>
 
 	</hchq>
+
+	<!-- 添加3.0河城荷取 -->
+	<hchq_3.0 head="hchq_3.0.png" version="3.0" name="3.0河城荷取" passive="处于飞行模式状态时，移动速度将提升20%。" introduce="河城荷取是系列作品《东方project》中的角色，初登场于《东方风神录》。">
+		
+		<data name="移动速度" value="0.8"/>
+		
+		<data name="力量" value="0.6"/>
+		
+		<data name="魔力" value="0.9"/>
+		
+		<data name="物理防御" value="0.3"/>
+		
+		<data name="魔法防御" value="0.75"/>
+		
+		<data name="体力" value="0.7"/>
+		
+		<data name="水晶" value="10"/>
+
+	</hchq_3.0>
 
 	<meihong visible="true" head="meihong.png" crystal="5" coin="888" name="藤原妹红" profession="复活/反杀" acthor="小鸟" passive="当死亡后，将会进行复活（回血每颗水晶恢复5%HP）；复活得到技能强化。">
 

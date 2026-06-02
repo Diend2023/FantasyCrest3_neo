@@ -1,0 +1,312 @@
+<Role type="sprite">
+  <!-- <class src="game.role.SuoLong"/> -->
+  <class src="game.role.SuoLong3_0"/>
+  <content>
+    <!-- <xml path="npc/suolong.xml"/>
+    <image path="npc/suolong.png"/> -->
+    <xml path="npc/suolong_3.0.xml"/>
+    <image path="npc/suolong_3.0.png"/>
+  </content>
+  <loads>
+    <sprites path="effect/suolongj3"/>
+    <file path="sound/suolong/Yell05.mp3"/>
+    <sprites path="effect/YiDaoZhan"/>
+    <file path="sound/suolong/Yell01.mp3"/>
+    <file path="sound/suolong/Yell04.mp3"/>
+    <sprites path="effect/BaDao"/>
+    <sprites path="effect/suolongsu"/>
+    <file path="sound/suolong/GyukiYuzume00.mp3"/>
+    <file path="sound/suolong/Speech01.mp3"/>
+    <file path="sound/suolong/Speech08.mp3"/>
+    <sprites path="effect/suolongKU"/>
+    <file path="sound/suolong/HyakuhachiPondoHou01.mp3"/>
+    <sprites path="effect/xuanfeng"/>
+    <file path="sound/suolong/KokuhyouOotatsumaki01.mp3"/>
+    <sprites path="effect/kuangzhanshi_juan"/>
+    <sprites path="effect/SuChuan"/>
+    <sprites path="effect/8"/>
+    <file path="sound/suolong/SantoryuOugiRokudouNoTsuji01.mp3"/>
+    <file path="sound/suolong/SantoryuOugiRokudouNoTsuji00.mp3"/>
+    <sprites path="effect/C"/>
+    <file path="sound/suolong/Speech04.mp3"/>
+    <sprites path="effect/suolongu"/>
+    <file path="sound/suolong/NigiriTorou00.mp3"/>
+    <sprites path="effect/shangqie"/>
+  </loads>
+  <action>
+    <act name="待机" fps="10">
+      <SubTexture name="zoro0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0005" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="zoro0040" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0041" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0042" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0043" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0044" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0045" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃">
+      <SubTexture name="zoro0021" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落">
+      <SubTexture name="zoro0022" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地" fps="6">
+      <SubTexture name="zoro0026" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0049" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="zoro0228" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落" fps="6">
+      <SubTexture name="zoro0239" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0240" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="12">
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0242" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0244" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0245" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0246" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="zoro0207" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御">
+      <SubTexture name="zoro0027" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="15">
+      <SubTexture name="zoro0094" gox="0" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0095" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0096" gox="35" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:15,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:0.5,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.4,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:10,\&quot;name\&quot;:\&quot;suolongj3\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-121,\&quot;y\&quot;:-148,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" hitPoint="" hitEffect="2" hitInterval="2" wFight="30" straight="15" hitX="6" isHitMapGoOn="false" soundName="suolong/Yell05" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0097" gox="35" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0098" gox="35" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0099" gox="35" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="zoro0100" gox="35" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0101" gox="38" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:16,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:0.5,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.7,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0.48,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:70,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:3407820,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:10,\&quot;name\&quot;:\&quot;YiDaoZhan\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:47,\&quot;y\&quot;:-64,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" hitPoint="" hitEffect="3" hitInterval="3" wFight="20" hitX="7" straight="20" isHitMapGoOn="false" soundName="suolong/Yell01" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0102" gox="41" goy="0" isApplyGoPoint="false" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0104" gox="44" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0105" gox="50" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="zoro0152" gox="125" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0153" gox="180" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:5,\&quot;hitY\&quot;:20,\&quot;scaleX\&quot;:-1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:148,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:1,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:65,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:180,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:18,\&quot;name\&quot;:\&quot;YiDaoZhan\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:11,\&quot;y\&quot;:-87,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" hitPoint="" isHitMapGoOn="false" soundName="suolong/Yell04" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0154" gox="210" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0155" gox="215" goy="0" isApplyGoPoint="true" effects="[]" hitPoint=""/>
+      <SubTexture name="zoro0155" gox="215" goy="0" effects="[]"/>
+      <SubTexture name="zoro0155" gox="215" goy="0" effects="[]"/>
+    </act>
+    <act name="空中攻击" fps="12">
+      <SubTexture name="zoro0083" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0083" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0084" gox="0" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:-1,\&quot;hitY\&quot;:22,\&quot;scaleX\&quot;:1.5,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:218,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:1,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:6750156,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:10,\&quot;name\&quot;:\&quot;BaDao\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:116,\&quot;y\&quot;:-72,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;,&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:-1,\&quot;hitY\&quot;:22,\&quot;scaleX\&quot;:1.5,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:228,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:1,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:3394815,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;BaDao\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:139,\&quot;y\&quot;:-89,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="suolong/Yell01" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0085" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="极·虎狩" key="SU" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24" msg="向前突刺并炸裂出回旋刀气">
+      <SubTexture name="zoro0110" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0111" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0112" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0113" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0113" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0114" gox="5" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:2,\&quot;hitY\&quot;:5,\&quot;scaleX\&quot;:1.2,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.2,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:13434879,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:100,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;suolongsu\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-83,\&quot;y\&quot;:-306,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isHitMapGoOn="false" soundName="suolong/GyukiYuzume00" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0114" gox="10" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0114" gox="95" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0115" gox="180" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0115" gox="265" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="350" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0115" gox="370" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="375" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="二刚力斩" key="SJ" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="11" msg="两次强力的居合斩">
+      <SubTexture name="zoro0094" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/Speech01" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0094" gox="0" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0095" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0095" gox="16" goy="0" effects="[]"/>
+      <SubTexture name="zoro0095" gox="32" goy="0" effects="[]"/>
+      <SubTexture name="zoro0096" gox="50" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:7,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:0.9,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.9,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:1,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:170,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:10,\&quot;name\&quot;:\&quot;YiDaoZhan\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-10,\&quot;y\&quot;:-60,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0097" gox="65" goy="0" effects="[]"/>
+      <SubTexture name="zoro0099" gox="80" goy="0" effects="[]"/>
+      <SubTexture name="zoro0100" gox="95" goy="0" effects="[]"/>
+      <SubTexture name="zoro0101" gox="110" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:5,\&quot;hitY\&quot;:18,\&quot;scaleX\&quot;:1.1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:1,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:80,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:10092543,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:175,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:20,\&quot;name\&quot;:\&quot;YiDaoZhan\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-21,\&quot;y\&quot;:-78,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0102" gox="125" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0103" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="zoro0104" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="zoro0105" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="zoro0105" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="zoro0106" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="zoro0106" gox="125" goy="0" effects="[]"/>
+    </act>
+    <act name="瞬步" key="L" type="land" cd="0" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="8" msg="索隆的爆发式位移">
+      <SubTexture name="zoro0050" gox="10" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0050" gox="25" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0050" gox="261" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0051" gox="270" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0051" gox="288" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="犀回" key="U" type="air" cd="12" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24" msg="空中的爆发斩击，可击飞敌人">
+      <SubTexture name="zoro0156" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/Speech08" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0156" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0157" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0157" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0158" gox="0" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:5,\&quot;hitY\&quot;:22,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:8,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:300,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;suolongKU\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-166,\&quot;y\&quot;:-220,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0159" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0160" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0160" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0160" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="三百六十烦恼凤" key="I" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="15" msg="划出一道短暂的空气墙，可造成多段击飞">
+      <SubTexture name="zoro0185" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/HyakuhachiPondoHou01" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0186" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0187" gox="-13" goy="0" effects="[]"/>
+      <SubTexture name="zoro0187" gox="-26" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0188" gox="-40" goy="0" effects="[&quot;{\&quot;gox\&quot;:8,\&quot;hitX\&quot;:3,\&quot;hitY\&quot;:13,\&quot;scaleX\&quot;:1.2,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.2,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:110,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:true,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;xuanfeng\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-224,\&quot;y\&quot;:-272,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]"/>
+      <SubTexture name="zoro0189" gox="-40" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="黑绳·大龙卷" key="WO" type="land" cd="16" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="18" msg="突进的血色龙卷风">
+      <SubTexture name="zoro0169" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/KokuhyouOotatsumaki01" stop="unstop" golden="0.5"/>
+      <SubTexture name="zoro0169" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0169" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0170" gox="0" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="zoro0171" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0172" gox="5" goy="0" effects="[]"/>
+      <SubTexture name="zoro0173" gox="10" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0175" gox="57" goy="0" effects="[&quot;{\&quot;gox\&quot;:5,\&quot;hitX\&quot;:5,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:2,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:6737100,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:300,\&quot;blendMode\&quot;:\&quot;white\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:13,\&quot;name\&quot;:\&quot;kuangzhanshi_juan\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-558,\&quot;y\&quot;:-439,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0174" gox="104" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="151" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="200" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0174" gox="240" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="280" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0174" gox="320" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="360" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="400" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0177" gox="425" goy="-30" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:10,\&quot;hitY\&quot;:24,\&quot;scaleX\&quot;:2,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:326,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:2,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0.44,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:80,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:16724787,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:400,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:true,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:22,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-175,\&quot;y\&quot;:-37,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isApplyGoPoint="false"/>
+      <SubTexture name="zoro0177" gox="450" goy="-60" effects="[]"/>
+      <SubTexture name="zoro0177" gox="475" goy="-90" effects="[]"/>
+      <SubTexture name="zoro0177" gox="500" goy="-120" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0178" gox="530" goy="-120" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="应登楼" key="I" type="air" cd="10" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="18" msg="横向空中突刺">
+      <SubTexture name="zoro0066" gox="0" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:6,\&quot;hitY\&quot;:20,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.7,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:80,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:6750156,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:230,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:true,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:20,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-143,\&quot;y\&quot;:-25,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isHitMapGoOn="false" soundName="suolong/SantoryuOugiRokudouNoTsuji01" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0066" gox="100" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0066" gox="166" goy="0" effects="[]"/>
+      <SubTexture name="zoro0066" gox="232" goy="0" effects="[]"/>
+      <SubTexture name="zoro0066" gox="300" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0068" gox="300" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="死·狮子歌歌" key="O" type="land" cd="15" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24" msg="拔刀，冲刺，合刀......斩！！！">
+      <SubTexture name="zoro0110" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/SantoryuOugiRokudouNoTsuji00" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0111" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0112" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0112" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0113" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0113" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0114" gox="100" goy="0" hitPoint="-183,-133 535,-117 536,-4 -216,2" hitEffect="4" straight="150" effects="[]"/>
+      <SubTexture name="zoro0114" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="zoro0114" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="zoro0114" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="zoro0114" gox="500" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0115" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" hitPoint="" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:50,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-274,\&quot;y\&quot;:-30,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:206,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-146,\&quot;y\&quot;:-85,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:338,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-188,\&quot;y\&quot;:-55,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:206,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-228,\&quot;y\&quot;:-61,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:35,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-261,\&quot;y\&quot;:-57,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:28,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-225,\&quot;y\&quot;:-49,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:172,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-180,\&quot;y\&quot;:-114,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:240,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-204,\&quot;y\&quot;:-79,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:37,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-302,\&quot;y\&quot;:-42,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-267,\&quot;y\&quot;:-51,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:175,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-292,\&quot;y\&quot;:-86,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-320,\&quot;y\&quot;:-126,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:30,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-279,\&quot;y\&quot;:5,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;hitY\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:100,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:10,\&quot;name\&quot;:\&quot;8\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-169,\&quot;y\&quot;:-54,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0108" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0122" gox="500" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:14,\&quot;hitY\&quot;:20,\&quot;scaleX\&quot;:2,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:200,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:400,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:50,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-427,\&quot;y\&quot;:-70,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0123" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0124" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0125" gox="500" goy="0" effects="[]"/>
+      <SubTexture name="zoro0126" gox="500" goy="0" effects="[]"/>
+    </act>
+    <act name="青龙印流水" key="U" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="旋转着突进，造成多段伤害并击飞敌人">
+      <SubTexture name="zoro0172" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="suolong/Speech04" stop="unstop" golden="0.5"/>
+      <SubTexture name="zoro0173" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0172" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0173" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0172" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0173" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0174" gox="22" goy="0" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:4,\&quot;hitY\&quot;:13,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:70,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:10092492,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;name\&quot;:\&quot;suolongu\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-177,\&quot;y\&quot;:-221,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]"/>
+      <SubTexture name="zoro0175" gox="44" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="66" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="88" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="110" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="132" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="154" goy="0" effects="[]"/>
+      <SubTexture name="zoro0175" gox="176" goy="0" effects="[]"/>
+      <SubTexture name="zoro0174" gox="198" goy="0" effects="[]"/>
+      <SubTexture name="zoro0176" gox="220" goy="0" effects="[]"/>
+      <SubTexture name="zoro0177" gox="250" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="罗生门·逆" key="WI" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="15" msg="向空中发动的二刀流，可击飞敌人">
+      <SubTexture name="zoro0151" gox="0" goy="0" effects="[]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="suolong/NigiriTorou00" stop="unstop" golden="0"/>
+      <SubTexture name="zoro0152" gox="0" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="zoro0152" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="zoro0152" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="zoro0153" gox="0" goy="-29" effects="[&quot;{\&quot;gox\&quot;:0,\&quot;hitX\&quot;:4,\&quot;hitY\&quot;:20,\&quot;scaleX\&quot;:1,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;rotation\&quot;:0,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;atbottom\&quot;:false,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;stiff\&quot;:70,\&quot;srcColor\&quot;:-1,\&quot;addColor\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;wFight\&quot;:150,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLockAction\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:7,\&quot;name\&quot;:\&quot;shangqie\&quot;,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:38,\&quot;y\&quot;:-9,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false}&quot;]" isApplyGoPoint="true"/>
+      <SubTexture name="zoro0154" gox="25" goy="-58" effects="[]"/>
+      <SubTexture name="zoro0154" gox="50" goy="-87" effects="[]"/>
+      <SubTexture name="zoro0154" gox="75" goy="-116" effects="[]"/>
+      <SubTexture name="zoro0154" gox="100" goy="-145" isApplyGoPoint="true" effects="[]"/>
+    </act>
+  </action>
+</Role>

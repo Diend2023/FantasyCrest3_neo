@@ -1,0 +1,231 @@
+<Role type="sprite">
+  <!-- <class src="game.role.LuFei"/> -->
+  <class src="game.role.LuFei3_0"/>
+  <content>
+    <!-- <xml path="npc/lufei.xml"/>
+    <image path="npc/lufei.png"/> -->
+    <xml path="npc/lufei_3.0.xml"/>
+    <image path="npc/lufei_3.0.png"/>
+  </content>
+  <loads>
+    <file path="sound/lufei/LF3.mp3"/>
+    <sprites path="effect/dianzi"/>
+    <file path="sound/lufei/LF31.mp3"/>
+    <file path="sound/lufei/LF24.mp3"/>
+    <file path="sound/lufei/LF36.mp3"/>
+    <file path="sound/lufei/LF29.mp3"/>
+    <sprites path="effect/BaoPo"/>
+    <file path="sound/lufei/LF44.mp3"/>
+    <file path="sound/lufei/LF38.mp3"/>
+    <sprites path="effect/Q"/>
+    <file path="sound/lufei/LF7.mp3"/>
+    <sprites path="effect/QIUQIU"/>
+    <file path="sound/lufei/LF13.mp3"/>
+    <sprites path="effect/BOOOM11"/>
+    <sprites path="effect/BOOM11"/>
+    <file path="sound/lufei/LF17.mp3"/>
+    <sprites path="effect/HJG"/>
+  </loads>
+  <action>
+    <act name="待机" fps="13">
+      <SubTexture name="元件 2 实例 10000" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10005" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="11">
+      <SubTexture name="元件 2 实例 10035" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10036" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10037" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10038" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10039" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10040" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃">
+      <SubTexture name="元件 2 实例 10021" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落">
+      <SubTexture name="元件 2 实例 10022" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地" fps="13">
+      <SubTexture name="元件 2 实例 10024" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10025" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="元件 2 实例 10252" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落" fps="13">
+      <SubTexture name="元件 2 实例 10254" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10255" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10256" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="15">
+      <SubTexture name="元件 2 实例 10256" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10256" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10256" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10257" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10258" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10259" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10260" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10261" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="元件 2 实例 10221" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御">
+      <SubTexture name="元件 2 实例 10142" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="18">
+      <SubTexture name="元件 2 实例 10048" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10049" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 2 实例 10050" gox="20" goy="0" hitPoint="-42,-93 85,-96 91,-72 -37,-73" hitInterval="10" hitEffect="2" effects="[]" hitX="9" straight="30" isHitMapGoOn="false" soundName="lufei/LF3" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10051" gox="40" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10052" gox="60" goy="0" effects="[]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="元件 2 实例 10053" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10054" gox="60" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 2 实例 10055" gox="90" goy="0" hitPoint="-9,-105 168,-102 168,-64 -7,-63" hitX="7" straight="50" hitEffect="2" hitInterval="10" effects="[]" isHitMapGoOn="false" soundName="lufei/LF3" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10056" gox="120" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 2 实例 10057" gox="120" goy="0" isHitMapGoOn="false" soundName="" stop="stop" golden="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 2 实例 10058" gox="140" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="元件 2 实例 10059" gox="160" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10059" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10060" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10061" gox="220" goy="0" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:22,\&quot;wFight\&quot;:230,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;stiff\&quot;:70,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:63,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-40,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:2,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:11,\&quot;fadeOut\&quot;:false}&quot;]" hitPoint="65,-83" straight="30" isApplyGoPoint="true" isHitMapGoOn="false" soundName="lufei/LF31" stop="unstop" golden="0" wFight="0"/>
+      <SubTexture name="元件 2 实例 10062" gox="225" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10063" gox="230" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="空中攻击" fps="16">
+      <SubTexture name="元件 2 实例 10080" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10081" gox="0" goy="0" hitPoint="-33,-29 127,106 177,52 34,-70" hitEffect="2" hitY="21" hitX="5" straight="45" effects="[]" isHitMapGoOn="false" soundName="lufei/LF24" stop="unstop" golden="0" wFight="100"/>
+      <SubTexture name="元件 2 实例 10082" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10083" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="橡胶长矛" key="SU" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="15" msg="橡胶体质的反弹踢，造成二段击退">
+      <SubTexture name="元件 2 实例 10070" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10070" gox="0" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="lufei/LF36" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10071" gox="80" goy="0" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:2,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:0,\&quot;wFight\&quot;:215,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;stiff\&quot;:45,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:151,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-1,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1.1,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:2.1,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10071" gox="160" goy="0" isApplyGoPoint="true" effects="[]" hitPoint=""/>
+      <SubTexture name="元件 2 实例 10072" gox="190" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10073" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="橡胶暴风雨" key="U" type="air" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="在空中向下打出多段连击">
+      <SubTexture name="元件 2 实例 10085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10086" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10087" gox="0" goy="0" hitPoint="56,-118 133,-62 180,28 54,87 9,-30 10,-95" hitInterval="1" hitEffect="6" hitY="14" hitX="2" straight="35" effects="[]" isHitMapGoOn="false" soundName="lufei/LF29" stop="unstop" golden="0" wFight="20"/>
+      <SubTexture name="元件 2 实例 10088" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10089" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10088" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10087" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10090" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10091" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="火拳铳" key="U" type="land" cd="10" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="武装色硬化手臂后甩出的“火拳”">
+      <SubTexture name="元件 2 实例 10130" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10131" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10132" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10133" gox="30" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:0,\&quot;wFight\&quot;:220,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;stiff\&quot;:50,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:96,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-106,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:0.5,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:1.5,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;fadeOut\&quot;:false}&quot;]" isHitMapGoOn="false" soundName="lufei/LF44" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10133" gox="40" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10133" gox="45" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10134" gox="48" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10135" gox="50" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10136" gox="50" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="橡胶钟" key="SI" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="15" msg="武装色硬化头部后反弹撞击，造成多段伤害">
+      <SubTexture name="元件 2 实例 10197" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="lufei/LF38" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10198" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10199" gox="100" goy="0" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:25,\&quot;wFight\&quot;:60,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;stiff\&quot;:40,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-23,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-44,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:3,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;Q\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:9,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10200" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10201" gox="220" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="橡胶机关枪" key="WU" type="all" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="陆地和空中均可释放，向空中位移并打出多段连击">
+      <SubTexture name="元件 2 实例 10202" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="lufei/LF7" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10202" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10202" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10205" gox="0" goy="0" isApplyGoPoint="true" hitPoint="-51,-84 89,-240 148,-212 182,-146 48,-9" hitInterval="1" hitEffect="1" hitY="20" hitX="2" straight="35" effects="[]"/>
+      <SubTexture name="元件 2 实例 10203" gox="20" goy="-20" effects="[]" hitPoint="-49,-63 91,-236 151,-205 182,-153 188,-118 19,11" hitInterval="1" hitEffect="1" hitY="20" hitX="2"/>
+      <SubTexture name="元件 2 实例 10204" gox="40" goy="-40" effects="[]" hitPoint="-80,-95 61,-227 175,-208 173,-102 40,-17" straight="30" hitInterval="1" hitEffect="1" hitY="20"/>
+      <SubTexture name="元件 2 实例 10205" gox="60" goy="-60" effects="[]" hitX="2" hitPoint="-49,-102 112,-254 194,-151 26,5" hitInterval="1" hitEffect="1" hitY="20"/>
+      <SubTexture name="元件 2 实例 10203" gox="80" goy="-80" effects="[]" hitPoint="-53,-69 97,-230 186,-197 195,-129 40,4" straight="20" hitInterval="1" hitEffect="1" hitY="20" hitX="2"/>
+      <SubTexture name="元件 2 实例 10204" gox="100" goy="-100" isApplyGoPoint="true" effects="[]" straight="40" hitPoint="64,-212 -85,-96 52,-2 163,-108 165,-209" hitInterval="1" hitEffect="1" hitY="20" hitX="2" wFight="30"/>
+      <SubTexture name="元件 2 实例 10206" gox="110" goy="-110" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="霸王色霸气" key="I" type="land" cd="6" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24" msg="路飞释放出霸王色霸气，多段连击可击飞敌人">
+      <SubTexture name="元件 2 实例 10262" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="lufei/LF38" stop="unstop" golden="1"/>
+      <SubTexture name="元件 2 实例 10262" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10262" gox="0" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[&quot;{\&quot;mFight\&quot;:60,\&quot;hitX\&quot;:1,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:16,\&quot;wFight\&quot;:40,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;stiff\&quot;:180,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-187,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-355,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1.3,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:1.3,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;QIUQIU\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:5,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10264" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10263" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10261" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="大猿王枪" key="O" type="land" cd="30" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="开启四档，瞬移至敌人上空并狠狠揍出一拳大猿王枪">
+      <SubTexture name="元件 2 实例 10178" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="lufei/LF13" stop="unstop" golden="2.5"/>
+      <SubTexture name="元件 2 实例 10178" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10178" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10179" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10180" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10180" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10183" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10182" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10181" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10182" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10185" gox="0" goy="0" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:0,\&quot;wFight\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;stiff\&quot;:30,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-188,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-173,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1.6,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:1.6,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;BOOOM11\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10186" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10185" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10186" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10185" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10186" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10185" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10186" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10187" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10188" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10189" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10190" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10190" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10191" gox="0" goy="0" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:-20,\&quot;wFight\&quot;:2000,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;stiff\&quot;:30,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-272,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-91,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:2,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:2,\&quot;rotation\&quot;:0,\&quot;name\&quot;:\&quot;BOOM11\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:40,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10192" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10193" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10190" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10180" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10179" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10178" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="橡胶正拳" key="WJ" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="武装色硬化拳头后向前打出厚实的一击">
+      <SubTexture name="元件 2 实例 10138" gox="43" goy="0" effects="[]" isHitMapGoOn="false" soundName="lufei/LF17" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10138" gox="86" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10138" gox="130" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10138" gox="180" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10138" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10139" gox="210" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;mFight\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isABlow\&quot;:false,\&quot;intensity\&quot;:1,\&quot;isFollow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;hitY\&quot;:24,\&quot;wFight\&quot;:340,\&quot;isLockActionShow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;stiff\&quot;:50,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;goy\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-105,\&quot;color\&quot;:[],\&quot;unhit\&quot;:false,\&quot;y\&quot;:-288,\&quot;isBreak\&quot;:false,\&quot;time\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blow\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;rotation\&quot;:351,\&quot;name\&quot;:\&quot;HJG\&quot;,\&quot;gox\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;cardFrame\&quot;:20,\&quot;fadeOut\&quot;:false}&quot;]"/>
+      <SubTexture name="元件 2 实例 10140" gox="215" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10139" gox="218" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10140" gox="220" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10141" gox="220" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10142" gox="220" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="瞬步" key="L" type="all" cd="0" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="橡胶体质的爆发式位移">
+      <SubTexture name="元件 2 实例 10044" gox="0" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="元件 2 实例 10045" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="元件 2 实例 10045" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10045" gox="250" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10045" gox="270" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 2 实例 10046" gox="290" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+  </action>
+</Role>

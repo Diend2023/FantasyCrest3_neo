@@ -10,6 +10,7 @@ package game.role
          HeiMain;
          MingRen;
          JianXin;
+         // 河城荷取
          Hchq;
          TeLanKeSi;
          SuoLong;
@@ -104,6 +105,10 @@ package game.role
          FBDH; // 添加逢坂大河
          JianXin3_0; // 添加3.0绯村剑心
          JianXin3_1; // 添加3.1绯村剑心
+         Hchq3_0; // 添加3.0河城荷取
+         SuoLong3_0; // 添加3.0索隆
+         SanZhi3_0; // 添加3.0山治
+         LuFei3_0; // 添加3.0路飞
       }
    }
 }

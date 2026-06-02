@@ -175,8 +175,7 @@ package game.view
          tw = new Tween(rolebg,1,"easeOut");
          tw.moveTo(-60,rolebg.y);
          Starling.juggler.add(tw);
-         // if(!Phone.isPhone() && false)
-         if(start_mainVersion != "5") //
+         if(!Phone.isPhone() && false)
          {
             icon4399 = new Image(textures.getTexture("djfx"));
             this.addChild(icon4399);

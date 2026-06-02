@@ -1,0 +1,251 @@
+<Role type="sprite" scale="1" fps="24">
+  <!-- <class src="game.role.SanZhi"/> -->
+  <class src="game.role.SanZhi3_0"/>
+  <content>
+    <!-- <xml path="npc/shanzhi.xml"/>
+    <image path="npc/shanzhi.png"/> -->
+    <xml path="npc/shanzhi_3.0.xml"/>
+    <image path="npc/shanzhi_3.0.png"/>
+  </content>
+  <loads>
+    <sprites path="effect/SuChuan"/>
+    <file path="sound/shanzhi/sj37.mp3"/>
+    <file path="sound/shanzhi/sj39.mp3"/>
+    <sprites path="effect/LuanJi"/>
+    <file path="sound/shanzhi/sj40.mp3"/>
+    <sprites path="effect/C"/>
+    <sprites path="effect/BaoPo"/>
+    <file path="sound/shanzhi/sj24.mp3"/>
+    <file path="sound/shanzhi/sj34.mp3"/>
+    <sprites path="effect/shanzhiutwo"/>
+    <file path="sound/shanzhi/sj32.mp3"/>
+    <sprites path="effect/shanzhio"/>
+    <file path="sound/shanzhi/sj.mp3"/>
+    <file path="sound/shanzhi/sj1.mp3"/>
+    <file path="sound/shanzhi/sj19.mp3"/>
+    <sprites path="effect/R"/>
+    <file path="sound/shanzhi/sj18.mp3"/>
+    <sprites path="effect/XuanXuan"/>
+    <sprites path="effect/xxxuan"/>
+    <sprites path="effect/LongZhanYi"/>
+    <file path="sound/shanzhi/sj27.mp3"/>
+    <sprites path="effect/dianzi"/>
+    <file path="sound/shanzhi/sj2.mp3"/>
+  </loads>
+  <action>
+    <act name="待机" fps="11">
+      <SubTexture name="元件 10004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10007" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10006" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10005" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="13">
+      <SubTexture name="元件 10036" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10037" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10038" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10039" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10040" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10041" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃" fps="12">
+      <SubTexture name="元件 10021" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落" fps="12">
+      <SubTexture name="元件 10026" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地" fps="24">
+      <SubTexture name="元件 10030" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10031" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10032" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10031" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10030" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="元件 10227" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落" fps="12">
+      <SubTexture name="元件 10238" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10239" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10240" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="13">
+      <SubTexture name="元件 10240" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10240" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10240" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10241" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10242" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10243" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10244" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="元件 10202" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御">
+      <SubTexture name="元件 10198" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="瞬步" cd="" key="L" type="land" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="山治的爆发式位移">
+      <SubTexture name="元件 10046" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10046" gox="90" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10046" gox="150" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10046" gox="195" goy="0" effects="[]"/>
+      <SubTexture name="元件 10046" gox="240" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10047" gox="250" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10048" gox="250" goy="0" effects="[]"/>
+    </act>
+    <act name="空中攻击" cd="" key="" type="land" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]">
+      <SubTexture name="元件 10066" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10067" gox="50" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:8,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:17,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:30,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-44,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-73,\&quot;stiff\&quot;:60}&quot;]" isHitMapGoOn="false" soundName="shanzhi/sj37" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10067" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="元件 10067" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="元件 10068" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10066" gox="220" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="20">
+      <SubTexture name="元件 10054" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10061" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10055" gox="23" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:10,\&quot;scaleX\&quot;:0.5,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:0.4,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:13421772,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-82,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:36,\&quot;stiff\&quot;:35}&quot;]" isHitMapGoOn="false" soundName="shanzhi/sj39" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10056" gox="46" goy="0" effects="[]"/>
+      <SubTexture name="元件 10057" gox="70" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10066" gox="70" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="元件 10067" gox="100" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:9,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:0.5,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:13421772,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;LuanJi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-15,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:0,\&quot;stiff\&quot;:40}&quot;]" isHitMapGoOn="false" soundName="shanzhi/sj40" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10068" gox="120" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10069" gox="120" goy="0" effects="[]"/>
+      <SubTexture name="元件 10070" gox="120" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="元件 10095" gox="120" goy="0" effects="[]"/>
+      <SubTexture name="元件 10071" gox="120" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:6,\&quot;scaleX\&quot;:0.7,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:0.7,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:16764006,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-56,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:16,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10072" gox="130" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10096" gox="210" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10097" gox="215" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="元件 10098" gox="236" goy="-27" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:7,\&quot;scaleX\&quot;:0.7,\&quot;hitY\&quot;:17,\&quot;scaleY\&quot;:0.7,\&quot;rotation\&quot;:326,\&quot;addColor\&quot;:16750950,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-66,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:5,\&quot;stiff\&quot;:80}&quot;]" isHitMapGoOn="false" soundName="shanzhi/sj37" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10099" gox="257" goy="-54" effects="[]"/>
+      <SubTexture name="元件 10099" gox="278" goy="-81" effects="[]"/>
+      <SubTexture name="元件 10099" gox="300" goy="-110" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10100" gox="330" goy="-120" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 10101" gox="350" goy="-126" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="两点分切" key="SU" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="20" msg="两次强劲的踢击，可击飞敌人">
+      <SubTexture name="元件 10115" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj24" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10116" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10117" gox="50" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:5,\&quot;scaleX\&quot;:0.7,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:0.7,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-82,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-21,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10119" gox="100" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10115" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="元件 10116" gox="100" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10117" gox="150" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:3,\&quot;scaleX\&quot;:2,\&quot;hitY\&quot;:21,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;LuanJi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:6,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-39,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-32,\&quot;stiff\&quot;:70}&quot;]"/>
+      <SubTexture name="元件 10117" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10118" gox="210" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10119" gox="210" goy="0" effects="[]"/>
+      <SubTexture name="元件 10115" gox="210" goy="0" effects="[]"/>
+    </act>
+    <act name="回犀旋 SHOOT" key="U" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="回旋踢，将敌人拉至自己身旁">
+      <SubTexture name="元件 10076" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10076" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10076" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj34" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10076" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10077" gox="-10" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:-4,\&quot;scaleX\&quot;:1.6,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1.1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;shanzhiutwo\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:70,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:7,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-232,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-248,\&quot;stiff\&quot;:100}&quot;]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10078" gox="-20" goy="0" effects="[]"/>
+      <SubTexture name="元件 10078" gox="-30" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="恶魔风脚·画龙点睛 SHOT" key="O" type="land" cd="17" other="[{&quot;value&quot;:&quot;2&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="20" msg="冲刺后炸裂的踢击">
+      <SubTexture name="元件 10184" gox="37" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj32" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10184" gox="74" goy="0" effects="[]"/>
+      <SubTexture name="元件 10184" gox="111" goy="0" effects="[]"/>
+      <SubTexture name="元件 10184" gox="148" goy="0" effects="[]"/>
+      <SubTexture name="元件 10184" gox="185" goy="0" effects="[]"/>
+      <SubTexture name="元件 10185" gox="222" goy="0" effects="[]"/>
+      <SubTexture name="元件 10186" gox="259" goy="0" effects="[]"/>
+      <SubTexture name="元件 10187" gox="300" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:10,\&quot;scaleX\&quot;:1.5,\&quot;hitY\&quot;:22,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;shanzhio\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:740,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:24,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-155,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-120,\&quot;stiff\&quot;:100}&quot;]"/>
+      <SubTexture name="元件 10187" gox="310" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 10187" gox="315" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10188" gox="312" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="恶魔风脚·烧铁锅 Spectrum" key="O" type="air" cd="20" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="12" msg="空中进行多段切踢，最后一击十分强劲用于收尾">
+      <SubTexture name="元件 10164" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:62,\&quot;addColor\&quot;:16737843,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:24,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-83,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:19,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:-1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:240,\&quot;addColor\&quot;:16724736,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-31,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:23,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:58,\&quot;addColor\&quot;:16777011,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-46,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:40,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:-1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:246,\&quot;addColor\&quot;:6750156,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-39,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:60,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:71,\&quot;addColor\&quot;:3407769,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-55,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:24,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:55,\&quot;addColor\&quot;:3394815,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-37,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:33,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:-1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:258,\&quot;addColor\&quot;:10053375,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-60,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:40,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:71,\&quot;addColor\&quot;:6750105,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-52,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:39,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:74,\&quot;addColor\&quot;:16724736,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-42,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:35,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:-1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:262,\&quot;addColor\&quot;:16750899,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-53,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:52,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:65,\&quot;addColor\&quot;:16750950,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;C\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-40,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:48,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10167" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10168" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:6,\&quot;scaleX\&quot;:1.2,\&quot;hitY\&quot;:-10,\&quot;scaleY\&quot;:1.2,\&quot;rotation\&quot;:58,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:300,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:30,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:45,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:78,\&quot;stiff\&quot;:120}&quot;]" isApplyGoPoint="false"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10165" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10164" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="恶魔风脚·碎踢" key="SI" type="land" cd="8" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="利用反转的力量进行攻击，击飞敌人">
+      <SubTexture name="元件 10191" gox="6" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj1" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10191" gox="12" goy="0" effects="[]"/>
+      <SubTexture name="元件 10191" gox="20" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10192" gox="30" goy="0" effects="[]"/>
+      <SubTexture name="元件 10192" gox="40" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10195" gox="100" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:5,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:24,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:15,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:200,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:8,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-127,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:31,\&quot;stiff\&quot;:110}&quot;]"/>
+      <SubTexture name="元件 10195" gox="110" goy="0" effects="[]"/>
+      <SubTexture name="元件 10196" gox="120" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10197" gox="120" goy="0" effects="[]"/>
+    </act>
+    <act name="空绞" key="SU" type="air" cd="2" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="18" msg="在空中进行多段切割">
+      <SubTexture name="元件 10160" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj19" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10160" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10161" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:2,\&quot;scaleX\&quot;:2.2,\&quot;hitY\&quot;:10,\&quot;scaleY\&quot;:2.2,\&quot;rotation\&quot;:43,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;R\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:6,\&quot;fadeIn\&quot;:true,\&quot;y\&quot;:-86,\&quot;fadeOut\&quot;:true,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-86,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10162" gox="0" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:2,\&quot;scaleX\&quot;:2.2,\&quot;hitY\&quot;:20,\&quot;scaleY\&quot;:2.2,\&quot;rotation\&quot;:40,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;R\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:70,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-94,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:-95,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10163" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="串烧 SHOOT" key="I" type="land" cd="8" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24" msg="转动着冲刺，先击退然后击飞敌人">
+      <SubTexture name="元件 10133" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj18" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10134" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10135" gox="25" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;XuanXuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:0,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:0,\&quot;stiff\&quot;:30}&quot;,&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:2,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;xxxuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;fadeIn\&quot;:true,\&quot;y\&quot;:-151,\&quot;fadeOut\&quot;:true,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-262,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10136" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="元件 10137" gox="75" goy="0" effects="[]"/>
+      <SubTexture name="元件 10136" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="元件 10136" gox="125" goy="0" effects="[]"/>
+      <SubTexture name="元件 10136" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="元件 10138" gox="175" goy="0" effects="[]"/>
+      <SubTexture name="元件 10139" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="元件 10140" gox="230" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="元件 10141" gox="220" goy="0" isApplyGoPoint="false" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:4,\&quot;scaleX\&quot;:-2,\&quot;hitY\&quot;:20,\&quot;scaleY\&quot;:2,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;LongZhanYi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-27,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:63,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10142" gox="210" goy="0" effects="[]"/>
+      <SubTexture name="元件 10143" gox="200" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="特级绞肉" key="I" type="air" cd="3" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="15" msg="空中的连续横向飞踢">
+      <SubTexture name="元件 10071" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj27" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10071" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10071" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10072" gox="15" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:3,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-33,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:67,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10073" gox="30" goy="0" effects="[]"/>
+      <SubTexture name="元件 10074" gox="45" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-3,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:66,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10073" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="元件 10072" gox="75" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:3,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-27,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:89,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10073" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="元件 10074" gox="105" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:3,\&quot;hitX\&quot;:0,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:3,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:1,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:111,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10073" gox="120" goy="0" effects="[]"/>
+      <SubTexture name="元件 10072" gox="135" goy="0" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:3,\&quot;hitX\&quot;:3,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:0,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-5,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:74,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10073" gox="150" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:3,\&quot;hitX\&quot;:2,\&quot;scaleX\&quot;:3,\&quot;hitY\&quot;:19,\&quot;scaleY\&quot;:1.5,\&quot;rotation\&quot;:0,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:120,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:5,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:12,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:false,\&quot;x\&quot;:47,\&quot;stiff\&quot;:70}&quot;]"/>
+      <SubTexture name="元件 10073" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="元件 10071" gox="150" goy="0" effects="[]"/>
+    </act>
+    <act name="碎空" key="U" type="air" cd="2" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="向天空进行飞踢，可击飞敌人">
+      <SubTexture name="元件 10151" gox="22" goy="-20" effects="[]" isHitMapGoOn="false" soundName="shanzhi/sj2" stop="unstop" golden="0"/>
+      <SubTexture name="元件 10151" gox="44" goy="-40" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="元件 10152" gox="66" goy="-60" effects="[&quot;{\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isLaunch\&quot;:false,\&quot;gox\&quot;:0,\&quot;hitX\&quot;:3,\&quot;scaleX\&quot;:1,\&quot;hitY\&quot;:21,\&quot;scaleY\&quot;:1,\&quot;rotation\&quot;:329,\&quot;addColor\&quot;:0,\&quot;time\&quot;:0,\&quot;goy\&quot;:0,\&quot;intensity\&quot;:0,\&quot;blow\&quot;:false,\&quot;srcColor\&quot;:-1,\&quot;atbottom\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;isLockAction\&quot;:true,\&quot;unhit\&quot;:false,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;isABlow\&quot;:false,\&quot;wFight\&quot;:200,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;cardFrame\&quot;:11,\&quot;fadeIn\&quot;:false,\&quot;y\&quot;:-78,\&quot;fadeOut\&quot;:false,\&quot;isFollow\&quot;:true,\&quot;x\&quot;:-44,\&quot;stiff\&quot;:30}&quot;]"/>
+      <SubTexture name="元件 10152" gox="88" goy="-80" effects="[]"/>
+      <SubTexture name="元件 10153" gox="110" goy="-100" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="元件 10153" gox="113" goy="-106" effects="[]"/>
+      <SubTexture name="元件 10153" gox="116" goy="-112" effects="[]"/>
+      <SubTexture name="元件 10153" gox="120" goy="-120" isApplyGoPoint="true" effects="[]"/>
+    </act>
+  </action>
+</Role>
