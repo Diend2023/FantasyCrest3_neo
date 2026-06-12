@@ -16,6 +16,8 @@ package game.role
    {
 
       private var roleKuwu1Dic:Dictionary = new Dictionary();
+
+      private var unvisibleCike2:Boolean = false;
       
       public function ShuiMen(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
       {
@@ -56,7 +58,7 @@ package game.role
          {
             if(effect.name && effect.name == "kuwu1_land" && effect.role == this)
             {
-               this.attribute.updateCD("飞雷神·闪",999);
+               this.attribute.resetCD("飞雷神·闪");
                j++;
             }
          }
@@ -76,6 +78,15 @@ package game.role
          {
             tpRole(0, 0, false, false);
          }
+         var effectsCike2:Vector.<EffectDisplay> = this.world.getEffectsFormName("cike2",this)
+         if(this.listData.length == 0 && effectsCike2.length > 0 && unvisibleCike2)
+         {
+            for each(var effectCike2:EffectDisplay in effectsCike2)
+            {
+               effectCike2.visible = false;
+            }
+            unvisibleCike2 = false;
+         }
       }
 
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole):void
@@ -84,12 +95,16 @@ package game.role
          var effectZhan:EffectDisplay = this.world.getEffectFormName("zhan",this);
          var effectMy6:EffectDisplay = this.world.getEffectFormName("my6",this);
          var effectC:EffectDisplay = this.world.getEffectFormName("C",this);
-         if(this.actionName == "飞雷神2" && effectZhan && effectMy6)
+         if(this.actionName == "飞雷神2" )
          {
-            createKuwu1(enemy);
-            beData.lockHurt = 4;
-            effectZhan.discarded();
-            effectMy6.discarded();
+            this.attribute.updateCD(this.actionName, this.attribute.getCD(this.actionName) / 60 + 1)
+            if(effectZhan && effectMy6)
+            {
+               createKuwu1(enemy);
+               beData.lockHurt = 4;
+               effectZhan.discarded();
+               effectMy6.discarded();
+            }
          }
          else if((this.actionName == "WJ" || this.actionName == "WU" || this.actionName == "龙椎闪") && effectZhan)
          {
@@ -191,7 +206,7 @@ package game.role
                }
             }
             tpRole(-150, 0, false, false);
-            this.attribute.updateCD("战略性勇敢",12);
+            this.attribute.updateCD("战略性勇敢", this.getCD(str));
          }
          else if(str == "战略性勇敢")
          {
@@ -212,9 +227,13 @@ package game.role
                   {
                      tpKuwu1(effect);
                   }
+                  else
+                  {
+                     unvisibleCike2 = true;
+                  }
                }
             }
-            this.attribute.updateCD("战略性认怂",12);
+            this.attribute.updateCD("战略性认怂", this.getCD(str));
          }
       }
 
@@ -236,6 +255,10 @@ package game.role
                delete roleKuwu1Dic[targetEnemy];
                return;
             }
+         }
+         if(this.actionName != "WJ" && this.actionName != "时空间·螺旋丸")
+         {
+            unvisibleCike2 = true;
          }
       }
 
@@ -263,9 +286,9 @@ package game.role
          this.posx = kuwu1Effect.posx;
          this.posy = kuwu1Effect.posy;
          kuwu1Effect.discarded();
-         this.attribute.updateCD("飞雷神·闪",6);
-         this.attribute.updateCD("战略性勇敢",12);
-         this.attribute.updateCD("战略性认怂",12);
+         this.attribute.resetCD("飞雷神·闪");
+         this.attribute.resetCD("战略性勇敢");
+         this.attribute.resetCD("战略性认怂");
       }
 
    }

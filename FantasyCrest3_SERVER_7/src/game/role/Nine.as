@@ -62,8 +62,8 @@ package game.role
             {
                beData.magicScale = 1;
             }
-            beData.armorScale += 0.25;
-            beData.magicScale += 0.25;
+            beData.armorScale *= 1.25;
+            beData.magicScale *= 1.25;
          }
          super.onHitEnemy(beData,enemy);
       }

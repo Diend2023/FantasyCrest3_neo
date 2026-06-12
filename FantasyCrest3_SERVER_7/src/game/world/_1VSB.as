@@ -122,7 +122,7 @@ package game.world
                var cd:int = 0; // 修复反编译错误，改为正常的for循环
                for(cd = 0; cd < this.getRoleList().length; cd++) //
                { //
-                  this.getRoleList()[cd].attribute.clearCD(); //
+                  this.getRoleList()[cd].attribute.clearAllCD(); //
                } //
                break;
             case 86:

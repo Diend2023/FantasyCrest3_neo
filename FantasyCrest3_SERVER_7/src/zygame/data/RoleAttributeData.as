@@ -436,7 +436,18 @@ package zygame.data
          return _cdData;
       }
       
-      public function clearCD() : void
+      public function resetCD(skillName:String) : void //
+      { //
+         _cdData[skillName] = _cdMaxData[skillName]; //
+      } //
+
+      public function clearCD(skillName:String) : void //
+      { //
+         delete _cdData[skillName]; //
+      } //
+
+      // public function clearCD() : void
+      public function clearAllCD() : void
       {
          for(var i in _cdData)
          {

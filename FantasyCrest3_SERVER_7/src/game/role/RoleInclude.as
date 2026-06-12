@@ -109,6 +109,7 @@ package game.role
          SuoLong3_0; // 添加3.0索隆
          SanZhi3_0; // 添加3.0山治
          LuFei3_0; // 添加3.0路飞
+         Hakumen;// 添加斩神白面
       }
    }
 }
