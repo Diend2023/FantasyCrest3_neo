@@ -43,7 +43,8 @@ package zygame.data
          roleAttribute.hpmax = 100;
          roleAttribute.speed = 6;
          roleAttribute.jump = 20;
-         roleAttribute.gravity = 100;
+         // roleAttribute.gravity = 100;
+         roleAttribute.gravity = 110; //
          roleAttribute.dodgeRate = 0;
          roleAttribute.shooting = 100;
          for(var i in defalult)

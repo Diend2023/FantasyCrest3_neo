@@ -1521,7 +1521,8 @@ package zygame.display
       {
          if(_blow2)
          {
-            if(_beHitY < -30)
+            // if(_beHitY < -30)
+            if(_beHitY < -10) // 调整倒地判定
             {
                _beHitY = -_beHitY * 0.3;
                this.onFallGroundEffect();
