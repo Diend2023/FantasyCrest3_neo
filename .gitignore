@@ -29,6 +29,7 @@ FantasyCrest3_neo/*
 !FantasyCrest3_neo/role/
 !config.xml
 !project.xml
+FantasyCrest3_SERVER_7/reference/*
 
 WebRuntime/*
 !WebRuntime/WebRuntime.fla

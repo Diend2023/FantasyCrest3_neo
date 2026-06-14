@@ -224,10 +224,10 @@ package zygame.core
       
       public function onActivate(event:Event) : void
       {
-         if(GameCore.currentCore)
-         {
-            GameCore.currentCore.start();
-         }
+         // if(GameCore.currentCore)
+         // {
+         //    GameCore.currentCore.start();
+         // }
          if(!SystemUtil.isDesktop)
          {
             SoundMixer.soundTransform = new SoundTransform(_currentValue);
@@ -236,10 +236,10 @@ package zygame.core
       
       public function onDeactivate(event:Event) : void
       {
-         if(GameCore.currentCore)
-         {
-            GameCore.currentCore.stop();
-         }
+         // if(GameCore.currentCore)
+         // {
+         //    GameCore.currentCore.stop();
+         // }
          if(!SystemUtil.isDesktop)
          {
             _currentValue = SoundMixer.soundTransform.volume;
