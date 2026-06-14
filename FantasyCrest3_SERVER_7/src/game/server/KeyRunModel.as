@@ -68,7 +68,9 @@ package game.server
             _keys.push(key);
             sendKey();
          }
-         return true;
+         // 房主(HostRun2Model)返回false让World继续派发_keyRole输入
+         // 客户端(AccessRun3Model)返回true跳过本地输入
+         return this is AccessRun3Model;
       }
       
       override public function onUp(key:int) : Boolean
@@ -82,7 +84,7 @@ package game.server
             _keys.removeAt(_keys.indexOf(key));
             sendKey();
          }
-         return true;
+         return this is AccessRun3Model;
       }
       
       public function sendWifiLevel(i:int) : void

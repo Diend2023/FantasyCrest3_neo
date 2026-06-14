@@ -224,27 +224,27 @@ package zygame.core
       
       public function onActivate(event:Event) : void
       {
-         if(GameCore.currentCore)
-         {
-            GameCore.currentCore.start();
-         }
-         if(!SystemUtil.isDesktop)
-         {
-            SoundMixer.soundTransform = new SoundTransform(_currentValue);
-         }
+         // if(GameCore.currentCore)
+         // {
+         //    GameCore.currentCore.start();
+         // }
+         // if(!SystemUtil.isDesktop)
+         // {
+         //    SoundMixer.soundTransform = new SoundTransform(_currentValue);
+         // }
       }
       
       public function onDeactivate(event:Event) : void
       {
-         if(GameCore.currentCore)
-         {
-            GameCore.currentCore.stop();
-         }
-         if(!SystemUtil.isDesktop)
-         {
-            _currentValue = SoundMixer.soundTransform.volume;
-            SoundMixer.soundTransform = new SoundTransform(0);
-         }
+         // if(GameCore.currentCore)
+         // {
+         //    GameCore.currentCore.stop();
+         // }
+         // if(!SystemUtil.isDesktop)
+         // {
+         //    _currentValue = SoundMixer.soundTransform.volume;
+         //    SoundMixer.soundTransform = new SoundTransform(0);
+         // }
       }
       
       public function set nativePath(str:String) : void

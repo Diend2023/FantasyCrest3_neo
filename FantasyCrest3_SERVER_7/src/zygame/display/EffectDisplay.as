@@ -338,10 +338,10 @@ package zygame.display
          {
             return;
          }
-         if(this.cardFrame == 0 && role.cardFrame > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
-         { //
-            cardFrame = role.cardFrame; //
-         } //
+         // if(this.cardFrame == 0 && role.cardFrame > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
+         // { //
+         //    cardFrame = role.cardFrame; //
+         // } //
          if(speedScale == 0) //speedScale为0时静止
          { //
             if(this.body) //时停时静止

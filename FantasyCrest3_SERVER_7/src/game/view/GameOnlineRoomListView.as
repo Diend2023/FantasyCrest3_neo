@@ -15,7 +15,6 @@ package game.view
    import zygame.core.SceneCore;
    import zygame.display.DisplayObjectContainer;
    import zygame.server.Service;
-   import zygame.utils.SendDataUtils;
    
    public class GameOnlineRoomListView extends DisplayObjectContainer
    {
@@ -34,18 +33,18 @@ package game.view
       // private var _ip:String;
       public static var _ip:String // 联机ip
 
-      public static var _port:int = 4888; // 联机端口
+      public static var _port:int = 8888; // 联机端口（go-websocket-server默认端口）
 
       public var ip:String // 实际使用的联机ip
 
-      public var port:int = 4888; // 实际使用的联机端口
+      public var port:int = 8888; // 实际使用的联机端口
 
 
       private var _msg:TextField;
       
       // 原本的联机大厅构造函数
       // public function GameOnlineRoomListView(ip:String = "120.79.155.18")
-      public function GameOnlineRoomListView(inIp:String = "", inPort:int = 4888, isOnline:Boolean = true) // 取消原本的默认联机ip
+      public function GameOnlineRoomListView(inIp:String = "", inPort:int = 8888, isOnline:Boolean = true) // 取消原本的默认联机ip
       {
          super();
          if(!isOnline) //
@@ -85,11 +84,10 @@ package game.view
                SceneCore.replaceScene(new GameStartMain());
                SceneCore.pushView(new GameTipsView("连接服务器失败"));
                trace("连接失败");
-            },true);
+            });
             Service.client.handFunc = function():void
             {
                SceneCore.pushView(new GameTipsView("成功登录服务器"));
-               Service.client.send(SendDataUtils.handData(_userName,_userCode));
                Service.client.userName = _userName;
                Service.client.userCode = _userCode;
                showList();
@@ -98,9 +96,10 @@ package game.view
             Service.client.closeFunc = function():void
             {
                SceneCore.replaceScene(new GameStartMain());
-               SceneCore.pushView(new GameTipsView("连接服务器失败"));
-               trace("连接失败");
+               SceneCore.pushView(new GameTipsView("连接服务器断开"));
+               trace("连接断开");
             };
+            Service.client.login(_userName, _userCode);
          }
          Service.client.messageFunc = onMessage;
          Service.client.roomlistFunc = onRoomList;
@@ -177,8 +176,7 @@ package game.view
          SceneCore.replaceScene(new GameStartMain());
       }
       
-      // private function onChange(e:Event) : void
-      private function onChangeForCheck(e:Event) : void // 修复函数名称重复的问题
+      private function onChangeForCheck(e:Event) : void
       {
          if(_list.selectedItem)
          {
@@ -188,7 +186,7 @@ package game.view
             }
             else
             {
-               Service.client.send(SendDataUtils.joinRoom(_list.selectedItem.id,""));
+               Service.client.send({"type":"join_room","id":_list.selectedItem.id,"code":""});
             }
             _list.selectedIndex = -1;
          }

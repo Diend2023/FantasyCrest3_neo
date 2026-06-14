@@ -1,50 +1,42 @@
 package game.server
 {
-   import zygame.server.GameServer;
-   import zygame.utils.IPUtils;
-   
+   /**
+    * 游戏服务器配置 - 已改为hxonline+go-websocket-server架构
+    * 不再需要本地启动GameServer，直接连接到go-websocket-server
+    */
    public class GameServerScoket
    {
-      private static var _server:GameServer; // 定义本地联机服务器
-
-      private static var _ip:String; // 定义本地联机服务器的IP地址
-
-      private static var _port:int; // 定义本地联机服务器的端口
+      private static var _ip:String = "127.0.0.1";
+      
+      private static var _port:int = 8888;
       
       public function GameServerScoket()
       {
          super();
       }
       
-      // public static function init() : void
-      public static function init(inIp:String, inPort:int) : void //
+      /**
+       * 不再需要初始化本地服务器，go-websocket-server已替代
+       */
+      public static function init(inIp:String = null, inPort:int = 8888) : void
       {
-         //原本的创建本地连接服务器代码
-         // var server:GameServer = new GameServer(ip,4888);
-         if (!_server) // 修复尝试重复创建本地联机服务器的问题
-         { //
-            _ip = inIp; //
-            _port = inPort; //
-            _server = new GameServer(_ip, _port); //
-         } //
+         if(inIp != null)
+         {
+            _ip = inIp;
+         }
+         _port = inPort;
+         trace("[GameServerScoket]已切换为hxonline+go-websocket-server架构，无需本地服务器");
       }
 
       public static function get ip() : String
       {
-         // 原本的获取本地IP地址代码
-         // return IPUtils.currentIP;
-         return _ip //
+         return _ip;
       }
 
-      public static function get port() : int //
-      { //
-         return _port //
-      } //
-
-      public static function get server():GameServer // 获取本地联机服务器实例
-      { //
-         return _server; //
-      } //
+      public static function get port() : int
+      {
+         return _port;
+      }
    }
 }
 
