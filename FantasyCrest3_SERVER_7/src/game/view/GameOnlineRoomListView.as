@@ -62,7 +62,7 @@ package game.view
       
       override public function onInit() : void
       {
-         // var ip:String;
+         var ip:String;
          var msg:TextField;
          var textures:TextureAtlas = DataCore.getTextureAtlas("start_main");
          var bg:Image = new Image(textures.getTexture("bg"));
@@ -77,9 +77,8 @@ package game.view
          }
          else
          {
-            // ip = _ip;
-            // Service.startService(ip,4888,function():void
-            Service.startService(ip,port,function():void //
+            ip = _ip;
+            Service.startService(ip,port,function():void
             {
                SceneCore.replaceScene(new GameStartMain());
                SceneCore.pushView(new GameTipsView("连接服务器失败"));
@@ -91,7 +90,7 @@ package game.view
                Service.client.userName = _userName;
                Service.client.userCode = _userCode;
                showList();
-               Service.send({"type":"room_list"}); //
+               Service.send({"type":"room_list"});
             };
             Service.client.closeFunc = function():void
             {
@@ -109,10 +108,10 @@ package game.view
          this.addChild(msg);
          msg.x = msg.y = 5;
          _msg = msg;
-         var onlineAddress:TextField = new TextField(stage.stageWidth,32,"联机大厅地址：" + ip + ":" + String(port),new TextFormat(GameFont.FONT_NAME,12,16776960,"left")); // 添加当前联机地址显示
-         this.addChild(onlineAddress); //
-         onlineAddress.x = 5; //
-         onlineAddress.y = msg.y + 15; //
+         var onlineAddress:TextField = new TextField(stage.stageWidth,32,"联机大厅地址：" + ip + ":" + String(port),new TextFormat(GameFont.FONT_NAME,12,16776960,"left"));
+         this.addChild(onlineAddress);
+         onlineAddress.x = 5;
+         onlineAddress.y = msg.y + 15;
       }
       
       private function onUserData(data:Object) : void
@@ -153,9 +152,14 @@ package game.view
          create.x = bg.x + bg.width / 2 - create.width / 2 - 15;
          create.y = bg.y - bg.height / 2 + create.height / 2 + 15;
          create.callBack = createRoom;
+         var refresh:CommonButton = new CommonButton("btn_style_1","start_main","刷新");
+         this.addChild(refresh);
+         refresh.x = create.x - refresh.width - 10;
+         refresh.y = create.y;
+         refresh.callBack = refreshRoomList;
          var exit:CommonButton = new CommonButton("btn_style_1","start_main","返回");
          this.addChild(exit);
-         exit.x = create.x - exit.width - 10;
+         exit.x = refresh.x - exit.width - 10;
          exit.y = create.y;
          exit.callBack = onExit;
          _list = new List();
@@ -165,8 +169,24 @@ package game.view
          _list.width = bg.width;
          _list.height = 300;
          _list.itemRendererType = OnlineRoomItem;
-         // _list.addEventListener("change",onChange);
-         _list.addEventListener("change",onChangeForCheck); // 修复函数名称重复的问题
+         _list.addEventListener("change",onChangeForCheck);
+         // 监听服务器推送的房间变更事件（op=3 ChangedRoom），自动刷新列表
+         Service.client.exitFunc = function(data:Object):void
+         {
+            refreshRoomList();
+         };
+         Service.client.joinFunc = function(data:Object):void
+         {
+            refreshRoomList();
+         };
+      }
+      
+      private function refreshRoomList(target:String = null) : void
+      {
+         if(Service.client && Service.client.connected)
+         {
+            Service.send({"type":"room_list"});
+         }
       }
       
       public function onExit(target:String) : void

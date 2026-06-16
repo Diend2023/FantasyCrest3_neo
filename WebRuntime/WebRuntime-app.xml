@@ -103,6 +103,22 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 <!-- To localize the description, use the following format for the description element.
     <description>
         <text xml:lang="en">English App description goes here</text>
@@ -112,6 +128,22 @@
     -->
     <name>幻想纹章3.0.2</name>
     
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
@@ -317,6 +349,22 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 <!-- <initialWindow>
         <content>WebRuntime.swf</content>
         <systemChrome>standard</systemChrome>
@@ -333,6 +381,22 @@
     </initialWindow> -->
 
     
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 

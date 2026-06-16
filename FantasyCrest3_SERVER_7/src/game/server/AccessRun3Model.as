@@ -289,6 +289,7 @@ package game.server
          }
          prole.onAttack();
          prole.attribute.updateAllCD();
+         if(prole.cardFrame > 0) prole.cardFrame--; //
          return true;
       }
       

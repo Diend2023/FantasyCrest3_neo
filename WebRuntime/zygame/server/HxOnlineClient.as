@@ -57,6 +57,11 @@ package zygame.server
       private var _pendingCallbacks:Object = {};
       private var _callbackId:int = 0;
       
+      /** 延迟测量 */
+      private var _delays:Vector.<int> = new Vector.<int>();
+      private var _lastPingTime:Number = 0;
+      private var _currentDelay:int = 0;
+      
       /** 调试模式 */
       public static var debug:Boolean = false;
       
@@ -79,6 +84,48 @@ package zygame.server
       public function get uid() : int { return _uid; }
       public function get userId() : String { return _userId; }
       public function get name() : String { return _name; }
+      
+      /**
+       * 获取当前延迟
+       */
+      public function getDelay() : int
+      {
+         return _currentDelay;
+      }
+      
+      /**
+       * 记录延迟并更新平均值
+       */
+      private function recordDelay(ms:int) : void
+      {
+         _delays.push(ms);
+         if(_delays.length > 10)
+         {
+            _delays.shift();
+         }
+         var sum:int = 0;
+         for(var i:int = 0; i < _delays.length; i++)
+         {
+            sum += _delays[i];
+         }
+         _currentDelay = int(sum / _delays.length);
+      }
+      
+      /**
+       * 发送ping测量延迟（通过发送空房间消息并记录往返时间）
+       */
+      public function pingServer() : void
+      {
+         if(!_connected) return;
+         _lastPingTime = new Date().time;
+         // 发送一个轻量级的房间数据请求来测量RTT
+         sendOp(OP_GET_ROOM_DATA, null, function(data:Object):void
+         {
+            var now:Number = new Date().time;
+            var ms:int = int(now - _lastPingTime);
+            recordDelay(ms);
+         });
+      }
       
       /**
        * 初始化服务器地址
@@ -114,6 +161,7 @@ package zygame.server
          }
          
          _socket = new SimpleWebSocket(_serverUrl);
+         // 连接在SimpleWebSocket构造函数中自动完成，无需额外connect()
          _socket.onOpen = function():void
          {
             _connected = true;
@@ -139,7 +187,6 @@ package zygame.server
             _connected = false;
             if(cb != null) cb({"code": -1, "op": OP_LOGIN, "data": "无法连接服务器"});
          };
-         _socket.connect();
       }
       
       private function sendLoginOp(userId:String, userName:String, cb:Function) : void

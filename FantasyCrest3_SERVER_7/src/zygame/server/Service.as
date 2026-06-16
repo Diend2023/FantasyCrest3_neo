@@ -6,7 +6,6 @@ package zygame.server
    
    /**
     * 联机服务客户端 - 基于HxOnlineClient + go-websocket-server
-    * 使用原生Socket实现WebSocket协议，避免hxonline.swc的isNaN兼容问题
     */
    public class Service
    {
@@ -23,7 +22,7 @@ package zygame.server
       
       private var _userCode:String = "";
       
-      private var _processTimer:Timer;
+      private var _pingTimer:Timer;
       
       // === 回调函数（保持与旧API兼容） ===
       
@@ -61,17 +60,6 @@ package zygame.server
       {
          _hxClient = HxOnlineClient.getInstance();
          client = this;
-         _processTimer = new Timer(16);
-         _processTimer.addEventListener(TimerEvent.TIMER, onProcessTimer);
-         _processTimer.start();
-      }
-      
-      private function onProcessTimer(e:TimerEvent) : void
-      {
-         if(_hxClient != null)
-         {
-            _hxClient.process();
-         }
       }
       
       public function get connected() : Boolean
@@ -111,7 +99,7 @@ package zygame.server
       
       public function get delay() : int
       {
-         return 0;
+         return _hxClient != null ? _hxClient.getDelay() : 0;
       }
       
       public static function startService(ip:String, port:int, ioFunc:Function, autoFind:Boolean = false) : void
@@ -136,6 +124,14 @@ package zygame.server
          {
             client.onHxMessage(op, data);
          };
+         
+         // 每3秒ping一次测量延迟
+         client._pingTimer = new Timer(3000);
+         client._pingTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void
+         {
+            hxClient.pingServer();
+         });
+         client._pingTimer.start();
          
          client.ioerrorFunc = ioFunc;
       }
@@ -602,10 +598,10 @@ package zygame.server
          {
             _hxClient.close();
          }
-         if(_processTimer != null)
+         if(_pingTimer != null)
          {
-            _processTimer.stop();
-            _processTimer = null;
+            _pingTimer.stop();
+            _pingTimer = null;
          }
       }
    }

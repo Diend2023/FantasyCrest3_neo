@@ -6,7 +6,6 @@ package zygame.server
    
    /**
     * 联机服务客户端 - 基于HxOnlineClient + go-websocket-server
-    * 使用原生Socket实现WebSocket协议，避免hxonline.swc的isNaN兼容问题
     */
    public class Service
    {
@@ -23,7 +22,7 @@ package zygame.server
       
       private var _userCode:String = "";
       
-      private var _processTimer:Timer;
+      private var _pingTimer:Timer;
       
       // === 回调函数（保持与旧API兼容） ===
       
@@ -61,17 +60,6 @@ package zygame.server
       {
          _hxClient = HxOnlineClient.getInstance();
          client = this;
-         _processTimer = new Timer(16);
-         _processTimer.addEventListener(TimerEvent.TIMER, onProcessTimer);
-         _processTimer.start();
-      }
-      
-      private function onProcessTimer(e:TimerEvent) : void
-      {
-         if(_hxClient != null)
-         {
-            _hxClient.process();
-         }
       }
       
       public function get connected() : Boolean
@@ -111,7 +99,7 @@ package zygame.server
       
       public function get delay() : int
       {
-         return 0;
+         return _hxClient != null ? _hxClient.getDelay() : 0;
       }
       
       public static function startService(ip:String, port:int, ioFunc:Function, autoFind:Boolean = false) : void
@@ -121,7 +109,7 @@ package zygame.server
             client = new Service();
          }
          var hxClient:HxOnlineClient = client._hxClient;
-         HxOnlineClient.debug = false;
+         HxOnlineClient.debug = true;
          hxClient.init("ws://" + ip + ":" + port, "fantasycrest3");
          
          hxClient.onClose = function():void
@@ -136,6 +124,14 @@ package zygame.server
          {
             client.onHxMessage(op, data);
          };
+         
+         // 每3秒ping一次测量延迟
+         client._pingTimer = new Timer(3000);
+         client._pingTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void
+         {
+            hxClient.pingServer();
+         });
+         client._pingTimer.start();
          
          client.ioerrorFunc = ioFunc;
       }
@@ -243,6 +239,7 @@ package zygame.server
                   if(result.code == 0)
                   {
                      trace("[Service]加入房间成功");
+                     // 设置加入者的初始状态
                      _hxClient.setClientState({"type": "player", "isReady": false}, function(stateResult:Object):void
                      {
                         refreshAndNotifyRoom();
@@ -333,6 +330,7 @@ package zygame.server
             if(result.code == 0)
             {
                trace("[Service]创建房间成功, 设置状态为master");
+               // 设置创建者的初始状态为房主
                _hxClient.setClientState({"type": "master", "isReady": false}, function(stateResult:Object):void
                {
                   trace("[createRoomInternal] setClientState result=" + JSON.stringify(stateResult));
@@ -404,6 +402,7 @@ package zygame.server
                
                if(rolelistFunc != null)
                {
+                  // 与旧服务器room_player_list格式一致，包含完整房间信息
                   rolelistFunc({
                      "id": roomData.id,
                      "code": roomData.data ? (roomData.data.code || "") : "",
@@ -434,11 +433,13 @@ package zygame.server
             {
                var user:Object = users[ui];
                var isMaster:Boolean = roomData.master != null && user.uid == roomData.master.uid;
+               // 从usersState中获取该用户的状态
                var userState:Object = usersState[String(user.uid)] || user.state || {};
                var userType:String = "player";
                
                trace("[convertRoomData] user[" + ui + "] uid=" + user.uid + " name=" + user.name + " userState=" + JSON.stringify(userState));
                
+               // 优先使用状态中的type（通过change_role设置），否则根据是否房主判断
                if(userState.type)
                {
                   userType = userState.type;
@@ -449,6 +450,7 @@ package zygame.server
                }
                else
                {
+                  // 默认：第二个玩家为player，第三个及以后为watching
                   userType = ui <= 1 ? "player" : "watching";
                }
                
@@ -462,6 +464,7 @@ package zygame.server
                   "master": isMaster ? 1 : 0
                });
                
+               // 通过uid匹配找到自己
                if(user.uid == myUid)
                {
                   selfType = userType;
@@ -481,6 +484,8 @@ package zygame.server
             {
                if(data != null)
                {
+                  // 服务器将消息包装为 {data: 实际内容, uid: 发送者uid}
+                  // 需要解包获取实际消息内容
                   var msgData:Object = (data.data != null && data.uid != null) ? data.data : data;
                   if(msgData.__game == true)
                   {
@@ -566,10 +571,12 @@ package zygame.server
        */
       public function sendUDP(data:Object, ip:String = null, port:int = 0) : void
       {
+         // WebSocket已替代UDP，无需操作
       }
       
       public function sendUDPAll(data:Object) : void
       {
+         // WebSocket已替代UDP，无需操作
       }
       
       public function openUDP() : void
@@ -577,21 +584,24 @@ package zygame.server
          trace("[Service]openUDP - 已由WebSocket替代，无需操作");
       }
       
+      /**
+       * 返回缓冲数据长度（WebSocket模式下始终返回0，保留接口兼容）
+       */
       public function waitLength() : int
       {
          return 0;
       }
-      
+
       public function close() : void
       {
          if(_hxClient != null)
          {
             _hxClient.close();
          }
-         if(_processTimer != null)
+         if(_pingTimer != null)
          {
-            _processTimer.stop();
-            _processTimer = null;
+            _pingTimer.stop();
+            _pingTimer = null;
          }
       }
    }

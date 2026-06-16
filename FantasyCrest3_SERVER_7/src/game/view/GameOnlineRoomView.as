@@ -314,6 +314,33 @@ package game.view
          roomdata = data;
          _list.dataProvider = new ListCollection(data.list);
          updateList();
+         // 查找自己的类型
+         var myType:String = "player";
+         for(var i in data.list)
+         {
+            if(data.list[i].name == GameOnlineRoomListView._userName)
+            {
+               myType = data.list[i].type;
+               break;
+            }
+         }
+         Service.client.type = myType;
+         // 更新按钮：房主显示"开始游戏"，其他玩家显示"准备"/"取消"
+         if(_readyBtn != null)
+         {
+            if(myType == "master")
+            {
+               _readyBtn.imageTarget = "oline_play";
+               _readyBtn.imageDisplay.texture = DataCore.getTextureAtlas("start_main").getTexture(_readyBtn.imageTarget);
+               _mapList.touchable = true;
+            }
+            else
+            {
+               _readyBtn.imageTarget = "oline_ready";
+               _readyBtn.imageDisplay.texture = DataCore.getTextureAtlas("start_main").getTexture(_readyBtn.imageTarget);
+               _mapList.touchable = false;
+            }
+         }
          if(Service.client.type == "master")
          {
             action("mapChange",{"index":_mapList.selectedIndex});

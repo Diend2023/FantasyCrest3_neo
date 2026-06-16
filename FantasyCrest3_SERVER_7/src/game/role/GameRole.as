@@ -111,6 +111,10 @@ package game.role
       
       override public function onDown(key:int) : void
       {
+         if(!this.parent || !this.roleXmlData)
+         {
+            return;
+         }
          pushKey(key);
          switch(key - 72)
          {
@@ -239,10 +243,10 @@ package game.role
       
       public function isOSkill() : Boolean
       {
-         if(!this.roleXmlData)
-         {
-            return false;
-         }
+         // if(!this.roleXmlData)
+         // {
+         //    return false;
+         // }
          var group:RoleFrameGroup = this.roleXmlData.getGroupAt(actionName);
          if(group && group.key && group.key.indexOf("O") != -1)
          {
@@ -471,10 +475,10 @@ package game.role
       
       override public function playSkill(target:String) : void
       {
-         if(!this.roleXmlData)
-         {
-            return;
-         }
+         // if(!this.roleXmlData)
+         // {
+         //    return;
+         // }
          if(isOSkill())
          {
             return;
@@ -497,10 +501,10 @@ package game.role
       
       override public function runLockAction(str:String, canBreak:Boolean = false) : void
       {
-         if(!this.roleXmlData)
-         {
-            return;
-         }
+         // if(!this.roleXmlData)
+         // {
+         //    return;
+         // }
          var effect:EffectDisplay = null;
          if(str == "瞬步" && maxMandatorySkill != mandatorySkill)
          {
@@ -661,7 +665,8 @@ package game.role
       
       override public function get hitEffectName() : String
       {
-         if(roleXmlData && roleXmlData.hitEffectName && roleXmlData.hitEffectName != "fistHit")
+         // if(roleXmlData && roleXmlData.hitEffectName && roleXmlData.hitEffectName != "fistHit")
+         if(roleXmlData.hitEffectName && roleXmlData.hitEffectName != "fistHit")
          {
             return roleXmlData.hitEffectName;
          }
