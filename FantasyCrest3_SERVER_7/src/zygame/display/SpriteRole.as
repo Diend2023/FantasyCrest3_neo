@@ -103,10 +103,6 @@ package zygame.display
                {
                   if(!isInjured())
                   {
-                     if(actionName == "防御") //
-                     { //
-                        return; //
-                     } //
                      if(actionName == "普通攻击")
                      {
                         trace("中断！");

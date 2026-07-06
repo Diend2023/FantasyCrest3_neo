@@ -53,8 +53,7 @@ package game.data
          "moveY":150,
          "scale":1.5
       },{
-         // "name":"map",
-         "name": new Date().getTime() >= 1801238400000 && new Date().getTime() <= 1803139200000 ? "map_NY" : "map",
+         "name":"map",
          "type":"sound"
       }];
 

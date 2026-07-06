@@ -1,4 +1,4 @@
-﻿package WebRuntime_fla
+package WebRuntime_fla
 {
    import adobe.utils.*;
    import flash.accessibility.*;
@@ -74,6 +74,12 @@
       public var userData:Object;
       
       public var errorCount:int;
+
+      public var baseURL:String = "https://cnb.cool/diend2023/FantasyCrest3_neo_release/-/git/raw/master/"; // 热更新服务器地址 //
+
+      public var localVersion:String = ""; // 本地缓存的版本号 //
+
+      public var remoteVersion:String = ""; // 远程md5.data中的版本号 //
 
 	   public var main0:Sound = new Sound(); // 背景音乐
 	  
@@ -218,6 +224,9 @@
          var _loc2_:File = null;
          var _loc3_:FileStream = null;
          var _loc4_:String = null;
+         var _loc9_:Object = null; // 解析的JSON对象 //
+         var _loc10_:String = null; // 本地版本号 //
+         var _loc11_:Object = null; // 本地文件列表 //
          this.files = [];
          this.oldFiles = [];
          this.maxCount = 0;
@@ -231,21 +240,46 @@
                _loc3_ = new FileStream();
                _loc3_.open(_loc2_,FileMode.READ);
                _loc4_ = _loc3_.readUTFBytes(_loc3_.bytesAvailable);
-               this.oldFiles = this.getMD5s(_loc4_);
+               if(_loc4_.charAt(0) == "{") // 新JSON格式 //
+               {
+                  _loc9_ = JSON.parse(_loc4_); //
+                  this.localVersion = _loc9_.version || ""; // 获取本地版本号 //
+                  if(_loc9_.files) // 提取本地文件列表用于逐文件MD5比对 //
+                  {
+                     for(_loc10_ in _loc9_.files) //
+                     { //
+                        this.oldFiles.push(_loc10_ + ":" + _loc9_.files[_loc10_]); //
+                     } //
+                  } //
+               }
+               // 保留对旧格式的兼容
+               // else //
+               // { //
+               //    this.oldFiles = this.getMD5s(_loc4_);
+               // }
             }
          }
          catch(e:Error)
          {
          }
-         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
+         var _loc12_:String = SharedObject.getLocal("net.zygame.hxwz.air").data.baseURL as String; // 从缓存恢复上次md5.data中下发的baseURL //
+         if(_loc12_ && _loc12_ != "") // 优先使用缓存的baseURL（迁移用） //
+         { //
+            this.baseURL = _loc12_; //
+            trace("使用缓存baseURL: " + this.baseURL); //
+         } //
+         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.baseURL + "md5.data?math=" + Math.random())); // 使用CNB仓库获取md5.data //
          _loc1_.addEventListener(Event.COMPLETE,this.onMD5Complete);
          _loc1_.addEventListener(IOErrorEvent.IO_ERROR,this.onMD5Error);
-         trace("MD5 Start ",this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random());
+         trace("MD5 Start ",this.baseURL + "md5.data?math=" + Math.random()); //
       }
       
       public function onMD5Error(param1:IOErrorEvent) : void
       {
-         this.loading.error_tips.visible = true;
+         // this.loading.error_tips.visible = true;
+         trace("MD5获取失败，跳过更新直接启动"); //
+         this.loading.start.visible = true; // 允许跳过更新直接进入游戏 //
+         this.loading.clear.visible = true; //
       }
       
       public function getMD5s(param1:String) : Array
@@ -268,27 +302,69 @@
       public function onMD5Complete(param1:Event) : void
       {
          var _loc4_:Object = null;
-         var _loc5_:Array = null;
+         var _loc5_:String = null; // 文件名 //
          var _loc6_:Array = null;
          var _loc7_:int = 0;
          var _loc8_:File = null;
          var _loc2_:String = param1.target.data;
+         var _loc9_:Object = null; // 解析的JSON对象 //
+         var _loc10_:Object = null; // 远程文件列表 //
          trace(_loc2_);
-         _loc2_ = _loc2_.substr(0,_loc2_.length - 1);
-         this.md5Data = _loc2_;
-         var _loc3_:Array = _loc2_.split(",");
-         for(_loc4_ in _loc3_)
-         {
-            if(_loc3_[_loc4_] != "")
-            {
-               _loc5_ = _loc3_[_loc4_].split(":");
-               this.files.push({
-                  "url":_loc5_[0],
-                  "md5":_loc5_[1]
-               });
-            }
-         }
+         // 新JSON格式解析
+         try //
+         { //
+            _loc9_ = JSON.parse(_loc2_); //
+         } //
+         catch(e:Error) //
+         { //
+            trace("md5.data JSON解析失败: " + e.message); //
+            this.loading.start.visible = true; // 解析失败也允许直接启动 //
+            this.loading.clear.visible = true; //
+            return; //
+         } //
+         if(_loc9_.version) //
+         { //
+            this.remoteVersion = _loc9_.version; //
+         } //
+         if(_loc9_.baseURL && _loc9_.baseURL != "") // md5.data中携带了新baseURL，优先使用并缓存（仓库迁移用） //
+         { //
+            this.baseURL = _loc9_.baseURL; //
+            SharedObject.getLocal("net.zygame.hxwz.air").data.baseURL = this.baseURL; // 持久化缓存 //
+            SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
+            trace("从md5.data更新baseURL: " + this.baseURL); //
+         } //
+         // 如果远程版本与本地版本一致，跳过更新
+         // if(this.remoteVersion != "" && this.localVersion == this.remoteVersion) //
+         // { //
+         //    trace("版本一致，跳过更新"); //
+         //    this.loading.start.visible = true; //
+         //    this.loading.clear.visible = true; //
+         //    return; //
+         // } //
+         this.md5Data = _loc2_; // 保存原始JSON用于后续写入 //
+
+         // 保留对旧格式的兼容（如果解析失败回退到旧逻辑）
+         // _loc2_ = _loc2_.substr(0,_loc2_.length - 1);
+         // this.md5Data = _loc2_;
+         // var _loc3_:Array = _loc2_.split(",");
+
+         _loc10_ = _loc9_.files; // 获取文件列表 //
+         for(_loc5_ in _loc10_) // 遍历JSON中的文件列表 //
+         { //
+            this.files.push({ //
+               "url":_loc5_, //
+               "md5":_loc10_[_loc5_] //
+            }); //
+         } //
+
          this.maxCount = this.files.length;
+         if(this.maxCount == 0) //
+         { //
+            trace("无需更新文件"); //
+            this.loading.start.visible = true; //
+            this.loading.clear.visible = true; //
+            return; //
+         } //
          this.nextLoad();
          trace("清理确认",this.maxCount);
          if(SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear == null)
@@ -337,8 +413,9 @@
             if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || File.applicationStorageDirectory.resolvePath(load.url).exists == false)
             {
                this.loading.loadFile.text = load.url;
-               trace(this.path + load.url);
-               loader = new URLLoader(new URLRequest(this.path + load.url + "?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
+               // trace(this.path + load.url);
+               trace(baseURL + load.url); //
+               loader = new URLLoader(new URLRequest(baseURL + load.url + "?math=" + Math.random())); // 使用CNB仓库下载文件 //
                loader.dataFormat = URLLoaderDataFormat.BINARY;
                loader.addEventListener(Event.COMPLETE,function(param1:Event):void
                {
@@ -387,11 +464,14 @@
                this.loading.start.visible = true;
                this.loading.clear.visible = true;
                md5File = File.applicationStorageDirectory.resolvePath("md5.data");
-               // 去除原本的md5保存代码
-               // fileSave = new FileStream();
-               // fileSave.open(md5File,FileMode.WRITE);
-               // fileSave.writeUTFBytes(this.md5Data);
-               // fileSave.close();
+               // 恢复md5保存代码，直接取消注释即可 //
+               if(this.md5Data && this.md5Data.length > 0) // md5Data为null时不写入，避免2007错误 //
+               { //
+                  fileSave = new FileStream();
+                  fileSave.open(md5File,FileMode.WRITE);
+                  fileSave.writeUTFBytes(this.md5Data);
+                  fileSave.close();
+               } //
                trace("错误信息\r",this.errorLog);
             }
             catch(e:Error)
@@ -557,6 +637,7 @@
          this.addChild(loader);
          con = new LoaderContext();
          con.allowCodeImport = true;
+         con.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain); // 将主游戏SWF加载到子域，避免WebRuntime的zygame类定义覆盖主游戏的同名类
          loader.loadBytes(e.target.data as ByteArray,con);
          loader.contentLoaderInfo.addEventListener(Event.COMPLETE,function(param1:Event):void
          {
@@ -645,8 +726,8 @@
       //    this.loadCount = 0;
       //    this.batch = 100;
       //    this.errorCount = 0;
-      //    this.nextLoad(); //
-      //   //  this.cheakUpdate();
+      //    this.cheakUpdate(); // 从CNB仓库获取md5.data并进行热更新，失败则跳过直接启动 //
+      //   //  this.nextLoad(); // 原直接跳过更新的逻辑
       //    loading._4399userData = [ // 初始化4399用户数据
       //       { //
       //          nickName: "", //
