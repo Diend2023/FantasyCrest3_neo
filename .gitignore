@@ -40,6 +40,9 @@ WebRuntime/*
 !WebRuntime/AppIconsForPublish/
 !WebRuntime/WebRuntime_fla/
 !WebRuntime/zygame/
+!WebRuntime/package.ps1
+
+Bootstrap.app
 
 hakumen.*
 

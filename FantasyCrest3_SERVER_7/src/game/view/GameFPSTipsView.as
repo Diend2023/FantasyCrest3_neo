@@ -1,4 +1,4 @@
-﻿package game.view
+package game.view
 {
    import game.uilts.GameFont;
    import starling.display.Button;
@@ -84,7 +84,7 @@
             } //
             else //
             { //
-               text.text = "暂无版本介绍"; //
+               text.text = "暂无版本说明"; //
             } //
          }); //
          button2 = new Button(skin,"一键购买所有角色"); // 添加一键购买所有角色按钮

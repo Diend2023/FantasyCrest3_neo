@@ -81,6 +81,8 @@ package WebRuntime_fla
 
       public var remoteVersion:String = ""; // 远程md5.data中的版本号 //
 
+      public var _migrationRetry:Boolean = false; // 防递归标记，避免迁移时无限重拉 //
+
 	   public var main0:Sound = new Sound(); // 背景音乐
 	  
       public var soundChannel:SoundChannel; // 声音通道
@@ -92,7 +94,100 @@ package WebRuntime_fla
             trace("bgm加载失败"); //
             main0 = new Sound(); // 没有加载成功则重新实例化Sound对象以防止错误
          }); //
-         addFrameScript(0,this.frame1);
+         // addFrameScript(0,this.frame1); // 帧代码已移入构造函数，FLA第1帧清空 //
+         main0.load(new URLRequest("bgm/main0.mp3")); //
+         soundChannel = main0.play(0, int.MAX_VALUE); //
+         container = new Sprite(); //
+         while(this.numChildren > 0) //
+         { //
+            container.addChild(this.getChildAt(0)); //
+         } //
+         this.addChild(container); //
+         if(stage) // Bootstrap loadBytes时stage为null，延迟到addedToStage //
+         { //
+            initStage(); //
+         } //
+         else //
+         { //
+            this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage); //
+         } //
+         this.loadName = "FantasyCrest3_SERVER_7";
+         this.loading.start.addEventListener(MouseEvent.CLICK,this.login);
+         this.loading.zhuce.addEventListener(MouseEvent.CLICK,this.zhuceFunc);
+         this.loading.mimaxiug.addEventListener(MouseEvent.CLICK,this.mimaFunc);
+         this.loading.load.addEventListener(MouseEvent.CLICK,this.loadFunc); // 新增导入存档按钮功能
+         this.loading.clear.addEventListener(MouseEvent.CLICK,this.clear);
+         // this.path2 = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
+         // this.path = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
+         this.baseURL = "https://cnb.cool/diend2023/FantasyCrest3_neo_release/-/git/raw/master/"; //
+         this.files = [];
+         this.oldFiles = [];
+         this.maxCount = 0;
+         this.loadCount = 0;
+         this.batch = 100;
+         this.errorCount = 0;
+         // this.nextLoad();
+         this.cheakUpdate(); //
+         loading._4399userData = [{ //
+            nickName: "", //
+            name: "", //
+            uid: 0, //
+            allFight: 0, //
+            fight: "", //
+            ofigth: "", //
+            vip: 0, //
+            version: "", //
+            fbs: "" //
+         }]; //
+         loading.userData = { //
+            nickName: "???", //
+            coin: 0, //
+            crystal: 0, //
+            fight: "", //
+            ofigth: "", //
+            fbs: "", //
+            userData: { //
+               buys: [], //
+               fight: "", //
+               allFight: 0, //
+               ofigth: "", //
+               vip: 0, //
+               version: "", //
+               fbs: "" //
+            }, //
+            _4399userData: loading._4399userData //
+         }; //
+         loading.address = {text:""}; // 初始化联机地址
+         loading.settings = {}; // 初始化设置
+         trace("userData1",JSON.stringify(loading.userData)); //
+         setTimeout(function():void
+         {
+            try
+            {
+               loading.pname.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userName;
+               // 原本的读取密码缓存代码
+               // loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userCode;
+               loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
+               loading.userData = SharedObject.getLocal("net.zygame.hxwz.air").data.userData; // 读取用户数据缓存
+               loading.address.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
+               loading.settings = SharedObject.getLocal("net.zygame.hxwz.air").data.settings || {}; // 读取设置缓存
+            }
+            catch(e:Error)
+            {
+               trace("123",e.message);
+            }
+         },300);
+         try
+         {
+            if(this.stage)
+            {
+               this.stage.nativeWindow.x = this.stage.fullScreenWidth / 2 - this.stage.nativeWindow.width / 2;
+               this.stage.nativeWindow.y = this.stage.fullScreenHeight / 2 - this.stage.nativeWindow.height / 2;
+            }
+         }
+         catch(e:Error)
+         {
+         }
       }
 
       // 用于使登录界面居中显示，且支持缩放
@@ -108,7 +203,21 @@ package WebRuntime_fla
          container.x = 0;
          container.y = 0;
       } //
-      
+
+      private function initStage() : void // 初始化stage相关设置 //
+      { //
+         stage.scaleMode = StageScaleMode.NO_SCALE;
+         stage.align = StageAlign.TOP_LEFT;
+         stage.addEventListener(Event.RESIZE,handleStageResize); //
+         handleStageResize(); //
+      } //
+
+      private function onAddedToStage(e:Event) : void // Bootstrap loadBytes时延迟初始化 //
+      { //
+         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage); //
+         initStage(); //
+      } //
+
       public function zhuceFunc(param1:MouseEvent) : void
       {
          this.zhuce.visible = true;
@@ -268,9 +377,11 @@ package WebRuntime_fla
             this.baseURL = _loc12_; //
             trace("使用缓存baseURL: " + this.baseURL); //
          } //
-         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.baseURL + "md5.data?math=" + Math.random())); // 使用CNB仓库获取md5.data //
+         // var _loc1_:URLLoader = new URLLoader(new URLRequest(this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
+         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.baseURL + "md5.data?math=" + Math.random())); // 使用热更新服务器获取md5.data //
          _loc1_.addEventListener(Event.COMPLETE,this.onMD5Complete);
          _loc1_.addEventListener(IOErrorEvent.IO_ERROR,this.onMD5Error);
+         // trace("MD5 Start ",this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random());
          trace("MD5 Start ",this.baseURL + "md5.data?math=" + Math.random()); //
       }
       
@@ -328,11 +439,20 @@ package WebRuntime_fla
          } //
          if(_loc9_.baseURL && _loc9_.baseURL != "") // md5.data中携带了新baseURL，优先使用并缓存（仓库迁移用） //
          { //
+            var _oldBaseUrl:String = this.baseURL; // 记录下载时使用的旧地址 //
             this.baseURL = _loc9_.baseURL; //
             SharedObject.getLocal("net.zygame.hxwz.air").data.baseURL = this.baseURL; // 持久化缓存 //
             SharedObject.getLocal("net.zygame.hxwz.air").flush(); //
             trace("从md5.data更新baseURL: " + this.baseURL); //
+            if(_oldBaseUrl != this.baseURL && !this._migrationRetry) // 服务器发生迁移，立刻从新地址重新拉取md5.data //
+            { //
+               this._migrationRetry = true; //
+               trace("检测到baseURL迁移，重新从新地址获取md5.data"); //
+               this.cheakUpdate(); //
+               return; //
+            } //
          } //
+         this._migrationRetry = false; // 重置防递归标记 //
          // 如果远程版本与本地版本一致，跳过更新
          // if(this.remoteVersion != "" && this.localVersion == this.remoteVersion) //
          // { //
@@ -347,6 +467,19 @@ package WebRuntime_fla
          // _loc2_ = _loc2_.substr(0,_loc2_.length - 1);
          // this.md5Data = _loc2_;
          // var _loc3_:Array = _loc2_.split(",");
+         // for(_loc4_ in _loc3_)
+         // {
+         //    if(_loc3_[_loc4_] != "")
+         //    {
+         //       _loc5_ = _loc3_[_loc4_].split(":");
+         //       this.files.push({
+         //          "url":_loc5_[0],
+         //          "md5":_loc5_[1]
+         //       });
+         //    }
+         // }
+         // this.maxCount = this.files.length;
+         // this.nextLoad();
 
          _loc10_ = _loc9_.files; // 获取文件列表 //
          for(_loc5_ in _loc10_) // 遍历JSON中的文件列表 //
@@ -415,7 +548,8 @@ package WebRuntime_fla
                this.loading.loadFile.text = load.url;
                // trace(this.path + load.url);
                trace(baseURL + load.url); //
-               loader = new URLLoader(new URLRequest(baseURL + load.url + "?math=" + Math.random())); // 使用CNB仓库下载文件 //
+               // loader = new URLLoader(new URLRequest(this.path + load.url + "?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
+               loader = new URLLoader(new URLRequest(baseURL + load.url + "?math=" + Math.random())); // 使用热更新服务器下载文件 //
                loader.dataFormat = URLLoaderDataFormat.BINARY;
                loader.addEventListener(Event.COMPLETE,function(param1:Event):void
                {
@@ -464,13 +598,18 @@ package WebRuntime_fla
                this.loading.start.visible = true;
                this.loading.clear.visible = true;
                md5File = File.applicationStorageDirectory.resolvePath("md5.data");
-               // 恢复md5保存代码，直接取消注释即可 //
-               if(this.md5Data && this.md5Data.length > 0) // md5Data为null时不写入，避免2007错误 //
+               // 去除原本的md5保存代码
+               // fileSave = new FileStream();
+               // fileSave.open(md5File,FileMode.WRITE);
+               // fileSave.writeUTFBytes(this.md5Data);
+               // fileSave.close();
+               // 恢复md5保存代码，添加空值守卫避免2007错误 //
+               if(this.md5Data && this.md5Data.length > 0) //
                { //
-                  fileSave = new FileStream();
-                  fileSave.open(md5File,FileMode.WRITE);
-                  fileSave.writeUTFBytes(this.md5Data);
-                  fileSave.close();
+                  fileSave = new FileStream(); //
+                  fileSave.open(md5File,FileMode.WRITE); //
+                  fileSave.writeUTFBytes(this.md5Data); //
+                  fileSave.close(); //
                } //
                trace("错误信息\r",this.errorLog);
             }
@@ -699,95 +838,5 @@ package WebRuntime_fla
          }
          return _loc3_;
       }
-      
-      // internal function frame1() : *
-      // {
-      //    container = new Sprite(); //
-      //    while(this.numChildren > 0) //
-      //    { //
-      //       container.addChild(this.getChildAt(0)); //
-      //    } //
-      //    this.addChild(container); //
-      //    stage.scaleMode = StageScaleMode.NO_SCALE;
-      //    stage.align = StageAlign.TOP_LEFT;
-      //    stage.addEventListener(Event.RESIZE,handleStageResize); //
-      //    handleStageResize(); //
-      //    this.loadName = "FantasyCrest3_SERVER_7";
-      //    this.loading.start.addEventListener(MouseEvent.CLICK,this.login);
-      //    this.loading.zhuce.addEventListener(MouseEvent.CLICK,this.zhuceFunc);
-      //    this.loading.mimaxiug.addEventListener(MouseEvent.CLICK,this.mimaFunc);
-      //    this.loading.load.addEventListener(MouseEvent.CLICK,this.loadFunc); // 新增导入存档按钮功能
-      //    this.loading.clear.addEventListener(MouseEvent.CLICK,this.clear);
-      //    this.path2 = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
-      //    this.path = "http://www.4399api.com/system/attachment/100/05/24/100052440/";
-      //    this.files = [];
-      //    this.oldFiles = [];
-      //    this.maxCount = 0;
-      //    this.loadCount = 0;
-      //    this.batch = 100;
-      //    this.errorCount = 0;
-      //    this.cheakUpdate(); // 从CNB仓库获取md5.data并进行热更新，失败则跳过直接启动 //
-      //   //  this.nextLoad(); // 原直接跳过更新的逻辑
-      //    loading._4399userData = [ // 初始化4399用户数据
-      //       { //
-      //          nickName: "", //
-      //          name: "", //
-      //          uid: 0, //
-      //          allFight: 0, //
-      //          fight: "", //
-      //          ofigth: "", //
-      //          vip: 0, //
-      //          version: "", //
-      //          fbs: ""}]; //
-      //    loading.userData = { // 初始化用户数据
-      //       nickName: "???", //
-      //       coin: 0, //
-      //       crystal: 0, //
-      //       fight: "", //
-      //       ofigth: "", //
-      //       fbs: "", //
-      //       userData: { //
-      //          buys: [], //
-      //          fight: "", //
-      //          allFight: 0, //
-      //          ofigth: "", //
-      //          vip: 0, //
-      //          version: "", //
-      //          fbs: "" //
-      //       }, //
-      //       _4399userData: loading._4399userData //
-      //    }; //
-      //    loading.address = {text:""}; // 初始化联机地址
-      //    loading.settings = {}; // 初始化设置
-      //    trace("userData1",JSON.stringify(loading.userData)); //
-      //    setTimeout(function():void
-      //    {
-      //       try
-      //       {
-      //          loading.pname.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userName;
-      //          // 原本的读取密码缓存代码
-      //          // loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.userCode;
-      //          loading.pcode.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
-      //          loading.userData = SharedObject.getLocal("net.zygame.hxwz.air").data.userData; // 读取用户数据缓存
-      //          loading.address.text = SharedObject.getLocal("net.zygame.hxwz.air").data.address; // 读取联机地址缓存
-      //          loading.settings = SharedObject.getLocal("net.zygame.hxwz.air").data.settings || {}; // 读取设置缓存
-      //       }
-      //       catch(e:Error)
-      //       {
-      //          trace("123",e.message);
-      //       }
-      //    },300);
-      //    try
-      //    {
-      //       if(this.stage)
-      //       {
-      //          this.stage.nativeWindow.x = this.stage.fullScreenWidth / 2 - this.stage.nativeWindow.width / 2;
-      //          this.stage.nativeWindow.y = this.stage.fullScreenHeight / 2 - this.stage.nativeWindow.height / 2;
-      //       }
-      //    }
-      //    catch(e:Error)
-      //    {
-      //    }
-      // }
    }
 }

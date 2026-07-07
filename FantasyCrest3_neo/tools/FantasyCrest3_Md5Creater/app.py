@@ -81,9 +81,9 @@ def get_target_dir() -> Path:
     return default
 
 
-def get_version(target_dir: Path) -> str:
-    """从 version.txt 读取版本号，不存在则自动生成"""
-    version_file = target_dir / "version.txt"
+def get_version(target_dir: Path, config_dir: Path) -> str:
+    """从 version.txt 读取版本号，不存在则自动生成到 config_dir"""
+    version_file = config_dir / "version.txt"
     if version_file.exists():
         version = version_file.read_text(encoding="utf-8").strip()
     else:
@@ -94,9 +94,9 @@ def get_version(target_dir: Path) -> str:
     return version
 
 
-def get_base_url(target_dir: Path) -> str:
-    """从 baseURL.txt 读取 CNB 地址，不存在则自动生成（占位值）"""
-    url_file = target_dir / "baseURL.txt"
+def get_base_url(target_dir: Path, config_dir: Path) -> str:
+    """从 baseURL.txt 读取地址，不存在则自动生成到 config_dir"""
+    url_file = config_dir / "baseURL.txt"
     if url_file.exists():
         url = url_file.read_text(encoding="utf-8").strip()
         logging.info(f"baseURL(来自文件): {url}")
@@ -107,16 +107,16 @@ def get_base_url(target_dir: Path) -> str:
     return url
 
 
-def load_ignore_spec(target_dir: Path) -> pathspec.PathSpec:
-    """加载 .md5ignore 文件，不存在则使用内置默认规则（.gitignore 语法）"""
-    ignore_file = target_dir / ".md5ignore"
+def load_ignore_spec(target_dir: Path, config_dir: Path) -> pathspec.PathSpec:
+    """加载 .md5ignore，不存在则自动生成到 config_dir"""
+    ignore_file = config_dir / ".md5ignore"
     if ignore_file.exists():
         lines = ignore_file.read_text(encoding="utf-8").splitlines()
         logging.info(f"从 .md5ignore 加载忽略规则 ({len(lines)} 行)")
-    else:
-        ignore_file.write_text(DEFAULT_IGNORE, encoding="utf-8")
-        lines = DEFAULT_IGNORE.splitlines()
-        logging.info(f"自动生成 .md5ignore ({len(lines)} 行)")
+        return pathspec.PathSpec.from_lines("gitwildmatch", lines)
+    ignore_file.write_text(DEFAULT_IGNORE, encoding="utf-8")
+    lines = DEFAULT_IGNORE.splitlines()
+    logging.info(f"自动生成 .md5ignore ({len(lines)} 行)")
     return pathspec.PathSpec.from_lines("gitwildmatch", lines)
 
 
@@ -134,6 +134,7 @@ def generate(target_dir: Path, version: str, spec: pathspec.PathSpec, base_url: 
     skipped = 0
 
     for root, dirs, filenames in os.walk(target_dir):
+        dirs[:] = [d for d in dirs if not d.startswith(".")]  # 跳过隐藏目录遍历
         for name in filenames:
             file_path = Path(root) / name
             rel = str(file_path.relative_to(target_dir)).replace("\\", "/")
@@ -162,9 +163,9 @@ def main():
         logging.info("=== FantasyCrest3 Md5Creater 启动 ===")
 
         target = get_target_dir()
-        version = get_version(target)
-        base_url = get_base_url(target)
-        spec = load_ignore_spec(target)
+        version = get_version(target, exe_dir)
+        base_url = get_base_url(target, exe_dir)
+        spec = load_ignore_spec(target, exe_dir)
 
         data = generate(target, version, spec, base_url)
 
