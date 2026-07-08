@@ -53,7 +53,7 @@ package game.view
          // 原本的提示文本
          // text.text = "关于游戏会卡的解决方案：\n掉帧的原因：\n游戏没有启动硬件加速，因此导致掉帧，只要开启硬件加速或者使用默认启动硬件加速的浏览器进行游戏即可得到流畅体验。\n\n方案1：\n1、选择Internet Explorer浏览器或者其他浏览器进行游戏。\n\n方案2：\n1、右键游戏窗口，点击设置。\n2、弹出小窗口后，选择最左边的选项，开启硬件加速。\n3、刷新页面重启游戏。\n4、如果失败，请转试用方案1。";
          text.isHTML = true; // 开启HTML格式支持
-         text.text = "<font color='#FFDE00' size='22'><b>幻想纹章3V1.2</b></font><br><br><font color='#E8E8E8' size='18'>这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本</font><br><br><font color='#00FFCC' size='18'>感谢@IS 和@碎风 的指路<br>感谢@风吟棠华落 提供数据解密方法<br>感谢@忆雪 提供的角色指导<br>感谢@正义永无止境 提供真幻想纹章3本地版<br>感谢@桐 提供的最终更新缓存<br>感谢开源项目JPEXS对反编译工作的支持</font><br><br><font color='#FF5555' size='18'><b>再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报</b></font><br><br><font color='#44CCFF' size='18'>幻想纹章3交流群：<u><a href='https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NKKmX64I09HS90RrF-0lABHCy_Pbk-ZG&authKey=KcyDbNw%2F17UKTfofV1dm4KRyvuIz7r3KF3OfZk50SFjEYvgfk5RWAhLEHBMHEsT8&noverify=0&group_code=1055702064' target='_blank'><font color='#44CCFF'>1055702064</font></a></u><br>幻想纹章Club：<u><a href='https://hxwz3.cn' target='_blank'><font color='#44CCFF'>hxwz3.cn</font></a></u></font>"; // 修改为带有排版颜色的版本介绍
+         text.text = "<font color='#FFDE00' size='22'><b>幻想纹章3V1.3</b></font><br><br><font color='#E8E8E8' size='18'>这是一个由多位幻想纹章爱好者共同协助逆向得到的版本。历时两个月的研究，我们终于得到一个可玩的版本</font><br><br><font color='#00FFCC' size='18'>感谢@IS 和@碎风 的指路<br>感谢@风吟棠华落 提供数据解密方法<br>感谢@忆雪 提供的角色指导<br>感谢@正义永无止境 提供真幻想纹章3本地版<br>感谢@桐 提供的最终更新缓存<br>感谢开源项目JPEXS对反编译工作的支持</font><br><br><font color='#FF5555' size='18'><b>再次感谢所有幻想纹章爱好者的支持，如果你不是免费得到的该版本，请立刻举报</b></font><br><br><font color='#44CCFF' size='18'>幻想纹章3交流群：<u><a href='https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=NKKmX64I09HS90RrF-0lABHCy_Pbk-ZG&authKey=KcyDbNw%2F17UKTfofV1dm4KRyvuIz7r3KF3OfZk50SFjEYvgfk5RWAhLEHBMHEsT8&noverify=0&group_code=1055702064' target='_blank'><font color='#44CCFF'>1055702064</font></a></u><br>幻想纹章Club：<u><a href='https://hxwz3.cn' target='_blank'><font color='#44CCFF'>hxwz3.cn</font></a></u></font>"; // 修改为带有排版颜色的版本介绍
          this.addChild(text);
          text.y = 50; // 调整文本位置
          text.x = 50;
@@ -75,8 +75,6 @@ package game.view
          button1.addEventListener("triggered",function(e:Event):void //
          { //
             text.isHTML = true; //
-            // 原本硬编码的版本说明文本
-            // text.text = "<font color='#FFDE00' size='22'><b>=========== 幻想纹章3 V1.2 更新详情 ===========</b></font><br>...";
             var updateXml:XML = DataCore.getXml("update"); // 从 data/update.xml 读取版本说明 //
             if(updateXml && updateXml.releaseNotes && String(updateXml.releaseNotes).length > 0) //
             { //

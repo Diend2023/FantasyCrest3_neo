@@ -109,6 +109,11 @@ package game.role
          SuoLong3_0; // 添加3.0索隆
          SanZhi3_0; // 添加3.0山治
          LuFei3_0; // 添加3.0路飞
+         TeLanKeSi3_0; // 添加3.0特兰克斯
+         BuLuoLi3_0; // 添加3.0布罗利
+         GuiJianShi3_0; // 添加3.0鬼剑士
+         Cike3_0; // 添加3.0刺客
+         BaiMian3_0; // 添加3.0白面
          // Hakumen;// 添加斩神白面
       }
    }

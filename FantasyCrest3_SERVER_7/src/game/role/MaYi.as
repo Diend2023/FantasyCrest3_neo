@@ -42,8 +42,8 @@ package game.role
          listData.updateItemAt(0);
          if(_isPowerMode)
          {
-            this.attribute.resetCD("高机动 WJ 绞杀（空）");
-            this.attribute.resetCD("高机动 KU 空猎");
+            this.attribute.updateCD("高机动 WJ 绞杀（空）", this.getCD("高机动 WJ 绞杀（空）"));
+            this.attribute.updateCD("高机动 KU 空猎", this.getCD("高机动 KU 空猎"));
          }
       }
 
@@ -128,9 +128,12 @@ package game.role
       override public function setData(value:Object) : void
       {
          super.setData(value);
-         _isPowerMode = value._isPowerMode;
-         listData.getItemAt(0).icon = _isPowerMode ? "liliang.png" : "sudu.png"; // 根据高爆发模式状态显示不同图标
-         listData.updateItemAt(0); // 刷新列表显示
+         if(value._isPowerMode != null)
+         {
+            _isPowerMode = value._isPowerMode;
+            listData.getItemAt(0).icon = _isPowerMode ? "liliang.png" : "sudu.png"; // 根据高爆发模式状态显示不同图标
+            listData.updateItemAt(0); // 刷新列表显示
+         }
       }
    }
 }

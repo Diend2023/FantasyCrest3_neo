@@ -351,6 +351,25 @@
 
 	</telankesi>
 
+	<!-- 添加3.0特兰克斯 -->
+	<telankesi_3.0 head="telankesi_3.0.png" version="3.0" name="3.0特兰克斯" passive="在移动的时候允许在空中自由移动。" introduce="特兰克斯，日本国民神作动漫《龙珠》系列的重要男性角色之一。赛亚人王子贝吉塔和地球科学家布尔玛之子，保卫地球的战士之一。">
+
+		<data name="移动速度" value="0.9"/>
+
+		<data name="力量" value="0.7"/>
+
+		<data name="魔力" value="0.5"/>
+
+		<data name="物理防御" value="0.6"/>
+
+		<data name="魔法防御" value="0.75"/>
+
+		<data name="体力" value="0.75"/>
+
+		<data name="水晶" value="6"/>
+
+	</telankesi_3.0>
+
 	<wukong visible="true" head="wukong.png" acthor="巅峰" name="孙悟空" profession="爆发/突进" passive="在连续战斗中得到加成，物理百分比伤害增加2%*连击数伤害；最大50%伤害加成。">
 
 		<data name="移动速度" value="1"/>
@@ -461,6 +480,25 @@
 
 	</buluoli>
 
+	<!-- 添加3.0布罗利 -->
+	<buluoli_3.0 head="buluoli_3.0.png" version="3.0" name="3.0布罗利" passive="被动1：每损失1%的血量增加2点力量。被动2：每耗时1秒增加2点力量，上限200力量。" introduce="日本动漫《七龙珠》剧场版中的原创角色，一出生就有一万的战斗力，与孙悟空同一天出生。会对孙悟空的声音、气产生反应。">
+
+		<data name="移动速度" value="0.7"/>
+
+		<data name="力量" value="0.6"/>
+
+		<data name="魔力" value="0.3"/>
+
+		<data name="物理防御" value="0.8"/>
+
+		<data name="魔法防御" value="0.5"/>
+
+		<data name="体力" value="0.95"/>
+
+		<data name="水晶" value="3"/>
+
+	</buluoli_3.0>
+
 	<jianhun visible="true" coin="733" crystal="4" in4399="true" version="3.4" head="jianhun.png" name="鬼剑士（剑魂）" profession="突进/感电" acthor="木姐" passive="技能中断后返回相应未执行动作CD；格挡成功会得到1秒霸体，该被动有5秒CD；每击伤害会有概率感电（里鬼剑50%）。">
 
 		<data name="移动速度" value="1"/>
@@ -533,6 +571,25 @@
 
 	</guijianshi>
 
+	<!-- 添加3.0鬼剑士（狂战士） -->
+	<guijianshi_3.0 head="guijianshi_3.0.png" version="3.0" name="3.0鬼剑士（狂战士）" passive="释放血气技能需要消耗当前2%的血量（低于10%血量不再消耗），每损失1%的血增加3点力量。" introduce="狂战士是网络游戏《地下城与勇士》中男鬼剑士转职后的职业之一。「为了得到更强的力量，不惜一切代价！即使出卖自己的灵魂！」">
+
+		<data name="移动速度" value="0.9"/>
+
+		<data name="力量" value="0.8"/>
+
+		<data name="魔力" value="0"/>
+
+		<data name="物理防御" value="0.5"/>
+
+		<data name="魔法防御" value="0.25"/>
+
+		<data name="体力" value="1"/>
+
+		<data name="水晶" value="6"/>
+
+	</guijianshi_3.0>
+
 	 <heianwushi visible="true" in4399="true" version="3.3" coin="777" crystal="4" head="heianwushi.png" name="鬼剑士（黑暗武士）" profession="突进/爆发" acthor="木姐" passive="每次攻击敌人将吸收5%敌人的力量进行增幅，持续5秒；最大吸收10次。">
 
 		<data name="移动速度" value="0.9"/>
@@ -571,6 +628,29 @@
 
 	</cike>
 
+	<!-- 添加3.0暗夜使者（刺客） -->
+	<cike_3.0 head="cike_3.0.png" version="3.0" name="3.0暗夜使者（刺客）" passive="本身会获得暴击率35%，但暴击效果只有125%。一段时间儿不使用技能将会进入隐身状态，增加50%闪避率。" introduce="刺客Rogue，作为DNF新增加的盗贼职业中的一个分支，国内一般译为刺客。">
+
+		<data name="移动速度" value="1"/>
+
+		<data name="力量" value="1"/>
+
+		<data name="魔力" value="0"/>
+
+		<data name="物理防御" value="0.3"/>
+
+		<data name="魔法防御" value="0.3"/>
+
+		<data name="体力" value="0.6"/>
+
+		<data name="水晶" value="3"/>
+
+		<data name="暴击率" value="3.5"/>
+
+		<data name="暴击伤害" value="0.8"/>
+
+	</cike_3.0>
+
 	<manyou visible="true" head="manyou.png" acthor="木姐" coin="899" crystal="5" name="漫游枪手" profession="灵活/爆发" passive="自带暴击35%，暴击率会随连击数增加（连击数*3%）；最大暴击率100%。" introduce="">
 
 		<data name="移动速度" value="1.2"/>
@@ -585,7 +665,7 @@
 
 		<data name="体力" value="0.65"/>
 
-		>data name="暴击率" value="3.5"/>
+		<data name="暴击率" value="3.5"/>
 
 		<data name="水晶" value="3"/>
 
@@ -1060,6 +1140,25 @@
 		<data name="水晶" value="6"/>
 
 	</baimian>
+
+	<!-- 添加3.0白面 -->
+	<baimian_3.0 head="baimian_3.0.png" version="3.0" name="3.0白面" passive="每次被魔法伤害攻击时，都可以吸收30%的魔法伤害。" introduce="白面，游戏《苍翼默示录》中的参战人物。过去曾经消灭“黑兽”的六英雄之首，全身穿着白色铠甲，戴着白色面具，使用野太刀的神秘人物。">
+
+		<data name="移动速度" value="1"/>
+
+		<data name="力量" value="0.7"/>
+
+		<data name="魔力" value="0.4"/>
+
+		<data name="物理防御" value="0.25"/>
+
+		<data name="魔法防御" value="0.25"/>
+
+		<data name="体力" value="0.7"/>
+
+		<data name="水晶" value="6"/>
+
+	</baimian_3.0>
 
 	<Twelve visible="true" head="Twelve.png" acthor="小鸟" name="艾布鲁" profession="耐打" passive="当自已被攻击次数越高，免伤能力越强，最高可达80%。" introduce="艾布鲁由Urien亲信吴博士制造的人型杀戮兵器，为多个人间兵器中最优秀的一个，绝对听从尤里安（Urien）的指示。">
 
