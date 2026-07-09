@@ -263,7 +263,7 @@
       <SubTexture name="元件 10046" gox="0" goy="0" effects="[]"/>
     </act>
     <!-- 添加断空 -->
-    <act name="断空" key="P" type="land" cd="16" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
+    <act name="断空" key="P" type="land" cd="16" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
       <SubTexture name="元件 10073" gox="0" goy="0" effects="[]" soundName="baizai/2"/>
       <SubTexture name="元件 10073" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10075" gox="0" goy="0" effects="[]"/>

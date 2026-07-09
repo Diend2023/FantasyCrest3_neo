@@ -10,6 +10,8 @@ package game.role
    import zygame.data.BeHitData;
    import zygame.display.BaseRole;
    import flash.geom.Rectangle;
+   import zygame.core.SceneCore;
+   import game.display.CG; // 全屏CG特效视图 //
    
    public class BLL extends GameRole
    {
@@ -333,21 +335,24 @@ package game.role
             }
             if (currentFrame == 12)
             {
-               var effectBLL13:EffectDisplay = new EffectDisplay("BLL13",{blendMode:"normal"},this,2,2);
+               var effectBLL13:EffectDisplay = new EffectDisplay("BLL13",{blendMode:"normal"},null);
                effectBLL13.fps = 15;
-               effectBLL13.unhit = false;
-               (world as BaseGameWorld).addChild(effectBLL13);
-               // GameCore.soundCore.playEffect("BLL1");
-               if((world as BaseGameWorld).founcDisplay == this)
-               {
-                  effectBLL13.posx = this.x - 640;
-                  effectBLL13.posy = this.y - 360;
-               }
-               else
-               {
-                  effectBLL13.posx = (world as BaseGameWorld).centerSprite.x - 640;
-                  effectBLL13.posy = (world as BaseGameWorld).centerSprite.y - 360;
-               }
+               effectBLL13.posx = 0;
+               effectBLL13.posy = 0;
+               effectBLL13.scaleX = 1.4;
+               effectBLL13.scaleY = 1.4;
+               SceneCore.pushView(new CG(effectBLL13)); //
+               // (world as BaseGameWorld).addChild(effectBLL13);
+               // if((world as BaseGameWorld).founcDisplay == this)
+               // {
+               //    effectBLL13.posx = this.x - 640;
+               //    effectBLL13.posy = this.y - 360;
+               // }
+               // else
+               // {
+               //    effectBLL13.posx = (world as BaseGameWorld).centerSprite.x - 640;
+               //    effectBLL13.posy = (world as BaseGameWorld).centerSprite.y - 360;
+               // }
                for each(var k:BaseRole in this.world.getRoleList())
                {
                   shiting(150, k);
@@ -418,14 +423,25 @@ package game.role
          if (effectTxjs107)
          {
             this.golden = 2;
+            if(effectTxjs107.scaleX * this.scaleX < 0)
+            {
+               effectTxjs107.scaleX *= -1;
+            }
             if (effectTxjs107.currentFrame == 19)
             {
                effectTxjs107.go(0);
             }
          }
-         if (effectBLL5 && effectBLL5.currentFrame == 11)
+         if (effectBLL5)
          {
-            effectBLL5.go(0);
+            if(effectBLL5.scaleX * this.scaleX < 0)
+            {
+               effectBLL5.scaleX *= -1;
+            }
+            if (effectBLL5.currentFrame == 11)
+            {
+               effectBLL5.go(0);
+            }
          }
       }
 

@@ -338,7 +338,7 @@ package zygame.display
          {
             return;
          }
-         if(this.cardFrame == 0 && role.cardFrame > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
+         if(role && this.cardFrame == 0 && role.cardFrame > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
          { //
             cardFrame = role.cardFrame; //
          } //

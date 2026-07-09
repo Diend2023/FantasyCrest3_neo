@@ -322,16 +322,18 @@ package WebRuntime_fla
          SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = ""; // 清除用户密码缓存
          SharedObject.getLocal("net.zygame.hxwz.air").data.settings = {}; // 清除设置缓存
          SharedObject.getLocal("net.zygame.hxwz.air").flush(); // 刷新缓存
+         // 重置一次性清理标记，下次启动时重新清理 applicationStorageDirectory //
+         SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear = null; //
+         SharedObject.getLocal("net.zygame.hxwz.air.301").flush(); //
          this.loading.userData = {}; // 清除当前生成的用户数据
          this.loading.address.text = ""; // 清除当前生成的联机地址
          // 去除原本的清除缓存代码
          // this.loading.pname.text = ""; //
          // this.loading.pcode.text = ""; //
-
-         // if(File.applicationStorageDirectory.exists)
-         // {
-         //    File.applicationStorageDirectory.deleteDirectory(true);
-         // }
+         if(File.applicationStorageDirectory.exists)
+         {
+            File.applicationStorageDirectory.deleteDirectory(true);
+         }
          // this.loading.clear.visible = false;
          // this.loading.start.visible = false;
          // this.cheakUpdate();
@@ -507,7 +509,8 @@ package WebRuntime_fla
             this.loading.clear.visible = true; //
             return; //
          } //
-         this.nextLoad();
+         // this.nextLoad(); // 移到清理缓存之后执行，避免竞态
+         // 一次性清理缓存 — 移到 nextLoad 之前避免竞态 //
          trace("清理确认",this.maxCount);
          if(SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear == null)
          {
@@ -539,6 +542,7 @@ package WebRuntime_fla
             SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear = true;
             SharedObject.getLocal("net.zygame.hxwz.air.301").flush();
          }
+         this.nextLoad(); // 清理完成后再开始下载文件 //
          trace(JSON.stringify(this.files));
       }
       
