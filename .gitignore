@@ -32,6 +32,7 @@ FantasyCrest3_neo/*
 !config.xml
 !project.xml
 FantasyCrest3_SERVER_7/reference/*
+FantasyCrest3_neo/tools/FantasyCrest3_RoleExtractor/projects/*
 
 WebRuntime/*
 !WebRuntime/WebRuntime.fla
