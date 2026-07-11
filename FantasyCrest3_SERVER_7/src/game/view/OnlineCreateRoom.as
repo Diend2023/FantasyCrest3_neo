@@ -32,6 +32,7 @@ package game.view
          var mode2:CommonButton;
          var mode3:CommonButton;
          var mode4:CommonButton; //
+         var mode5:CommonButton; //
          var countText:TextField;
          var count1:CommonButton;
          var count2:CommonButton;
@@ -79,6 +80,14 @@ package game.view
          mode4.callBack = onSelectMode; //
          mode4.name = "搭档模式"; //
          mode4.alpha = 0.5; //
+         mode5 = new CommonButton("btn_style_1","start_main","练习模式"); //
+         this.addChild(mode5); //
+         mode5.x = 400; //
+         mode5.y = 128; //
+         mode5.alignPivot("left","top"); //
+         mode5.callBack = onSelectMode; //
+         mode5.name = "练习模式"; //
+         mode5.alpha = 0.5; //
          countText = new TextField(200,64,"房间人数",new TextFormat(GameFont.FONT_NAME,24,16777215));
          this.addChild(countText);
          // countText.y = 128;
@@ -166,6 +175,7 @@ package game.view
          this.getChildByName("高端模式").alpha = 0.5;
          this.getChildByName("英雄之迹").alpha = 0.5;
          this.getChildByName("搭档模式").alpha = 0.5; //
+         this.getChildByName("练习模式").alpha = 0.5; //
          this.getChildByName(str).alpha = 1;
       }
       

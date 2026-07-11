@@ -14,6 +14,7 @@ package game.view
    import zygame.display.World;
    import zygame.server.Service;
    import game.world._2V2ASSISTOnline; //
+   import game.world._1VSBOnline; //
    
    public class OnlineSelectRoleView extends OnlineView
    {
@@ -60,6 +61,10 @@ package game.view
             case "搭档模式": //
                IS_HIGH_GAME = false; //
                World.defalutClass = _2V2ASSISTOnline; //
+               break; //
+            case "练习模式": //
+               IS_HIGH_GAME = false; //
+               World.defalutClass = _1VSBOnline; //
          }
       }
       
