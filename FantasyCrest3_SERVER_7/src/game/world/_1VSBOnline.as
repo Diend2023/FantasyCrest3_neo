@@ -242,9 +242,10 @@ class GamePauseView1VSBOnline extends GamePauseView
       this.addChild(bg);
       bg.alpha = 0.5;
 
-      createBtn("继续游戏", stage.stageHeight / 2,       13);
+      createBtn("结束练习", stage.stageHeight / 2 - 84,  82);
+      createBtn("继续游戏", stage.stageHeight / 2 - 42,  13);
+      createBtn("设置",stage.stageHeight / 2 + 0,        83);
       createBtn("重置练习", stage.stageHeight / 2 + 42,   8);
-      createBtn("结束练习", stage.stageHeight / 2 + 84,  82);
       this.openKey();
    }
 
@@ -274,6 +275,12 @@ class GamePauseView1VSBOnline extends GamePauseView
             this.clearKey();
             this.removeFromParent(true);
             GameCore.currentWorld.onDown(key);
+            return;
+         case 69:
+            return;
+         case 81:
+            return;
+         case 88:
             return;
          default:
             super.onDown(key);
