@@ -13,6 +13,7 @@ package game.world
    import game.view.GameOverView;
    import game.view.GameTipsView;
    import zygame.core.SceneCore;
+   import zygame.core.GameCore;
    import zygame.display.BaseRole;
    import zygame.server.Service;
 
@@ -182,7 +183,10 @@ package game.world
          }
          if(key == 13)
          {
-            SceneCore.pushView(new GamePauseView1VSBOnline());
+            if(!GamePauseView1VSBOnline.isOpen)
+            {
+               SceneCore.pushView(new GamePauseView1VSBOnline());
+            }
             return;
          }
          super.onDown(key);
@@ -229,6 +233,7 @@ package game.world
 import game.display.CommonButton;
 import game.view.GameOnlineRoomView;
 import game.view.GamePauseView;
+import game.view.GameSettingsView;
 import starling.display.Quad;
 import zygame.core.GameCore;
 import zygame.core.SceneCore;
@@ -236,8 +241,13 @@ import game.view.GameStateView;
 
 class GamePauseView1VSBOnline extends GamePauseView
 {
+   internal static var isOpen:Boolean = false; // 供 _1VSBOnline 查询 //
+   private var _justCreated:Boolean = true; // 防同帧 key 穿透关闭 //
+
    override public function onInit() : void
    {
+      _justCreated = true;
+      isOpen = true;
       var bg:Quad = new Quad(stage.stageWidth, stage.stageHeight, 0);
       this.addChild(bg);
       bg.alpha = 0.5;
@@ -264,17 +274,27 @@ class GamePauseView1VSBOnline extends GamePauseView
 
    override public function onDown(key:int) : void
    {
+      if(_justCreated)
+      {
+         _justCreated = false;
+         return;
+      }
       switch(key)
       {
          case 13: // 继续游戏 → 仅关闭菜单
             this.clearKey();
             this.removeFromParent(true);
+            isOpen = false;
             return;
          case 8:  // 重置练习 → 走 sandboxCmd 同步双方
          case 82: // 结束练习 → 走 sandboxCmd 同步双方
             this.clearKey();
             this.removeFromParent(true);
+            isOpen = false;
             GameCore.currentWorld.onDown(key);
+            return;
+         case 83: // 设置 → 不注销键盘，保持监听 //
+            SceneCore.pushView(new GameSettingsView());
             return;
          case 69:
             return;

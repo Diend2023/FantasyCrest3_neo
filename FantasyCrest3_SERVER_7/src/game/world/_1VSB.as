@@ -24,6 +24,12 @@ package game.world
          super.initRole();
       }
       
+      override public function ready() : void //
+      { //
+         super.ready(); //
+         this.auto = true; //
+      } //
+
       override public function cheakGameOver() : int
       {
          var arr:Array = [];
