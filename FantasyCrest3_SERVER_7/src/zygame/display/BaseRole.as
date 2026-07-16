@@ -1266,6 +1266,13 @@ package zygame.display
             this.fps = this.roleXmlData.currentRoleFrame.group.fps;
          }
       }
+
+      // setData 后手动同步当前动作 fps，供 BaseGameWorld 重置流程调用 //
+      public function updateActionFps() : void
+      {
+         if(this.roleXmlData && this.roleXmlData.currentRoleFrame)
+            this.fps = this.roleXmlData.currentRoleFrame.group.fps;
+      }
       
       public function get actionName() : String
       {
@@ -2037,7 +2044,7 @@ package zygame.display
       public function hurtNumber(beHurt:int, beData:BeHitData, pos:Point) : void
       {
          // if(isGod())
-         if(isGod() && !beData.invincibleGod) //
+         if(isGod() && beData && !beData.invincibleGod) //
          {
             return;
          }

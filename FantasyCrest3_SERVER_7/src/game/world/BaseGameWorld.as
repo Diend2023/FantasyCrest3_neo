@@ -294,6 +294,7 @@ package game.world
                _roleAttr[role2.targetName + role2.troopid].scaleX = role2.scaleX > 0 ? 1 : -1;
                _roleAttr[role2.targetName + role2.troopid].action = "待机";
                role2.setData(_roleAttr[role2.targetName + role2.troopid]);
+               (role2 as GameRole).updateActionFps(); // setData 后更新 group.fps //
                delete _roleAttr[role2.targetName + role2.troopid];
             }
             role2.fightid = int(i);

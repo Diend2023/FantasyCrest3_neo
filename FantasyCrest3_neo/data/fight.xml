@@ -2689,7 +2689,7 @@
 	<!-- 添加九尾 -->
 	<jiuwei visible="true" version="3.5" head="jiuwei.png" coin="99999" crystal="99999" name="九尾" profession="BOSS" acthor="" passive="">
 
-		<data name="移动速度" value="0.5"/>
+		<data name="移动速度" value="0"/>
 
 		<data name="力量" value="0.7"/>
 
@@ -2705,7 +2705,11 @@
 
 		<data name="闪避率" value="0"/>
 
-		<data name="抗击" id="beatBack" value="10"/>
+		<data name="抗击" id="beatBack" value="100"/>
+
+		<data name="负重" id="gravity" value="0"/>
+
+		<data name="跳跃力" id="jump" value="0"/>
 
 	</jiuwei>
 
