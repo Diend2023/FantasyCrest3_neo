@@ -1267,12 +1267,11 @@ package zygame.display
          }
       }
 
-      // setData 后手动同步当前动作 fps，供 BaseGameWorld 重置流程调用 //
-      public function updateActionFps() : void
-      {
-         if(this.roleXmlData && this.roleXmlData.currentRoleFrame)
-            this.fps = this.roleXmlData.currentRoleFrame.group.fps;
-      }
+      public function updateActionFps() : void // setData 后手动同步当前动作 fps，供 BaseGameWorld 重置流程调用
+      { //
+         if(this.roleXmlData && this.roleXmlData.currentRoleFrame) //
+            this.fps = this.roleXmlData.currentRoleFrame.group.fps; //
+      } //
       
       public function get actionName() : String
       {
