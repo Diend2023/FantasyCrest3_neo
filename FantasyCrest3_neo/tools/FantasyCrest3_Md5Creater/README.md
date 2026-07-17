@@ -60,7 +60,7 @@ python app.py
 ## EXE 打包
 
 ```bash
-pyinstaller FantasyCrest3_Md5Creater.spec
+pyinstaller  FantasyCrest3_Md5Creater.spec
 ```
 
 生成 `dist/FantasyCrest3_Md5Creater.exe`，放到 release 的 `tools/FantasyCrest3_Md5Creater/` 目录下。

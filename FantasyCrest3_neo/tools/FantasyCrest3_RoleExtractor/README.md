@@ -40,7 +40,7 @@ python main.py
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --name "RoleExtractor" main.py
+pyinstaller --onefile --windowed --icon ..\..\AppIconsForPublish\48.ico --name "FantasyCrest3_RoleExtractor" main.py
 ```
 
 打包后目录结构：

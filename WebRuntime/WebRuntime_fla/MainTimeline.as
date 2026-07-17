@@ -355,14 +355,21 @@ package WebRuntime_fla
          try
          {
             _loc2_ = File.applicationStorageDirectory.resolvePath("md5.data");
+            trace("本地md5缓存:", _loc2_.nativePath, "存在:", _loc2_.exists); //
+            if(!_loc2_.exists) // 缓存目录没有则读安装目录 //
+            { //
+               _loc2_ = File.applicationDirectory.resolvePath("md5.data"); //
+               trace("本地md5安装:", _loc2_.nativePath, "存在:", _loc2_.exists); //
+            } //
             if(_loc2_.exists)
             {
                _loc3_ = new FileStream();
                _loc3_.open(_loc2_,FileMode.READ);
                _loc4_ = _loc3_.readUTFBytes(_loc3_.bytesAvailable);
-               if(_loc4_.charAt(0) == "{") // 新JSON格式 //
+               var _idx_:int = _loc4_.indexOf("{"); // 跳过 BOM 和空白 //
+               if(_idx_ >= 0) // 修复 BOM 导致解析失败 //
                {
-                  _loc9_ = JSON.parse(_loc4_); //
+                  _loc9_ = JSON.parse(_loc4_.substr(_idx_)); //
                   this.localVersion = _loc9_.version || ""; // 获取本地版本号 //
                   if(_loc9_.files) // 提取本地文件列表用于逐文件MD5比对 //
                   {
@@ -556,7 +563,8 @@ package WebRuntime_fla
          if(this.files.length > 0)
          {
             load = this.files[0];
-            if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || File.applicationStorageDirectory.resolvePath(load.url).exists == false)
+            // if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || File.applicationStorageDirectory.resolvePath(load.url).exists == false)
+            if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || (File.applicationStorageDirectory.resolvePath(load.url).exists == false && File.applicationDirectory.resolvePath(load.url).exists == false)) //
             {
                this.loading.loadFile.text = load.url;
                // trace(this.path + load.url);
