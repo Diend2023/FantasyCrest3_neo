@@ -95,7 +95,8 @@ package WebRuntime_fla
             main0 = new Sound(); // 没有加载成功则重新实例化Sound对象以防止错误
          }); //
          // addFrameScript(0,this.frame1); // 帧代码已移入构造函数，FLA第1帧清空 //
-         main0.load(new URLRequest("bgm/main0.mp3")); //
+         var bgmFile:File = File.applicationStorageDirectory.resolvePath("bgm/main0.mp3"); //
+         main0.load(new URLRequest((bgmFile.exists ? bgmFile.url : "bgm/main0.mp3"))); // 优先从缓存目录加载，支持热更新 //
          soundChannel = main0.play(0, int.MAX_VALUE); //
          container = new Sprite(); //
          while(this.numChildren > 0) //
