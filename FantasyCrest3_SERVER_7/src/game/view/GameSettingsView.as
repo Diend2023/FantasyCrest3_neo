@@ -1,7 +1,6 @@
 // 添加设置界面
 package game.view
 {
-   import feathers.controls.Button;
    import feathers.controls.Check;
    import feathers.controls.LayoutGroup;
    import feathers.layout.HorizontalLayout;
@@ -25,6 +24,7 @@ package game.view
    import game.uilts.Phone;
    import starling.core.Starling;
    import flash.geom.Rectangle;
+   import game.view.GameInputSettingView; // 手柄设置界面
 
    public class GameSettingsView extends DisplayObjectContainer
    {
@@ -113,6 +113,21 @@ package game.view
          });
          _NNICheck = nniItem.getChildAt(1) as Check;
          mainContainer.addChild(nniItem);
+
+         // 手柄按键映射设置按钮
+         var gamepadItem:LayoutGroup = createSettingItem("手柄按键映射", "action", null, function():void{ //
+            SceneCore.pushView(new GameInputSettingView()); //
+         }); //
+         // 修改按钮文字为"打开"
+         if(gamepadItem.numChildren >= 2) //
+         { //
+            var gpBtn:Object = gamepadItem.getChildAt(1); //
+            if(gpBtn is starling.display.Button) //
+            { //
+               (gpBtn as starling.display.Button).text = "打开"; //
+            } //
+         } //
+         mainContainer.addChild(gamepadItem); //
 
          skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
          buttonExit = new starling.display.Button(skin,"完成");
@@ -365,14 +380,22 @@ package game.view
          }
          else if (type == "action")
          {
-            var button:feathers.controls.Button = new feathers.controls.Button();
-            button.label = "执行";
-            button.defaultSkin = new Quad(80, 30, 0x444488);
-            button.fontStyles = new TextFormat(GameFont.FONT_NAME, 16, 0xFFFFFF);
-            button.addEventListener(Event.TRIGGERED, function():void {
-               action();
-            });
-            container.addChild(button);
+            // var button:feathers.controls.Button = new feathers.controls.Button(); //
+            // button.label = "执行"; //
+            // button.defaultSkin = new Quad(80, 30, 0x444488); //
+            // button.fontStyles = new TextFormat(GameFont.FONT_NAME, 16, 0xFFFFFF); //
+            // button.addEventListener(Event.TRIGGERED, function():void { //
+            //    action(); //
+            // }); //
+            // container.addChild(button); //
+            var skin:Texture = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1"); //
+            var button:starling.display.Button = new starling.display.Button(skin, "执行"); //
+            button.textFormat.size = 16; //
+            button.scale = 0.6; //
+            button.addEventListener("triggered", function():void { //
+               action(); //
+            }); //
+            container.addChild(button); //
          }
          return container;
       }

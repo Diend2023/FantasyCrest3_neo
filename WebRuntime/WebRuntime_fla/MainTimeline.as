@@ -633,6 +633,41 @@ package WebRuntime_fla
                   fileSave.writeUTFBytes(this.md5Data); //
                   fileSave.close(); //
                } //
+               var restart:Boolean = false; //
+               try { // 检查关键文件是否有热更新，有则重启加载新版本 //
+                  var remoteFiles:Object = JSON.parse(String(this.md5Data)).files; //
+                  var keyList:Array = ["WebRuntime.swf","bgm/main0.mp3"]; //
+                  for(var ki:String in keyList) { //
+                     if(remoteFiles[keyList[ki]]) { //
+                        if(this.oldFiles.indexOf(keyList[ki] + ":" + remoteFiles[keyList[ki]]) == -1) { //
+                           restart = true; //
+                           trace("热更重启: " + keyList[ki]); //
+                           break; //
+                        } //
+                     } //
+                  } //
+               } catch(e:Error) {} //
+               if(restart) { //
+                  trace("热更新包含 WebRuntime 或 BGM，重启启动器"); //
+                  soundChannel.stop(); //
+                  while(this.numChildren > 0) //
+                     this.removeChildAt(0); //
+                  var restartFile:File = File.applicationStorageDirectory.resolvePath("WebRuntime.swf"); // 优先缓存 //
+                  if(!restartFile.exists) //
+                     restartFile = File.applicationDirectory.resolvePath("WebRuntime.swf"); //
+                  var restartUrlLoader:URLLoader = new URLLoader(); //
+                  restartUrlLoader.dataFormat = URLLoaderDataFormat.BINARY; //
+                  restartUrlLoader.addEventListener(Event.COMPLETE, function(e:Event):void { //
+                     var ldr:Loader = new Loader(); //
+                     var con:LoaderContext = new LoaderContext(); //
+                     con.allowCodeImport = true; //
+                     con.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain); //
+                     ldr.loadBytes(e.target.data as ByteArray, con); //
+                     addChild(ldr); //
+                  }); //
+                  restartUrlLoader.load(new URLRequest(restartFile.url)); //
+                  return; //
+               } //
                trace("错误信息\r",this.errorLog);
             }
             catch(e:Error)

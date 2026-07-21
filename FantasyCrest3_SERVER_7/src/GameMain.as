@@ -184,6 +184,11 @@ package
          { //
             GameSettingsView.setBGMEnable(settings.isBGMEnable); //
          } //
+         // 加载手柄输入映射设置（控件ID字符串格式，如BUTTON_4）
+         if(settings.gameInput !== undefined) //
+         { //
+            GamepadController.applyMapping(settings.gameInput); //
+         } //
       } //
    }
 }
