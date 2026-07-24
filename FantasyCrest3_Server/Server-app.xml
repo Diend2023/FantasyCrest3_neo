@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<application xmlns="http://ns.adobe.com/air/application/51.3">
+  <id>com.zygame.server</id>
+  <versionNumber>1.0</versionNumber>
+  <filename>Server</filename>
+  <description/>
+  <name>Server</name>
+  <copyright/>
+  <initialWindow>
+    <content>Server.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <aspectRatio>portrait</aspectRatio>
+    <renderMode>auto</renderMode>
+  </initialWindow>
+  <icon/>
+  <customUpdateUI>false</customUpdateUI>
+  <allowBrowserInvocation>false</allowBrowserInvocation>
+    <icon>
+        <image48x48>AppIconsForPublish/48.png</image48x48>
+    </icon>
+</application>
