@@ -15,7 +15,6 @@
     <aspectRatio>portrait</aspectRatio>
     <renderMode>auto</renderMode>
   </initialWindow>
-  <icon/>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
     <icon>

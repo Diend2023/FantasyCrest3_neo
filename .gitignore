@@ -45,6 +45,8 @@ WebRuntime/*
 
 Bootstrap.app
 
+Server.app
+
 hakumen.*
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`

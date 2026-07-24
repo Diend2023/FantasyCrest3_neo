@@ -4,7 +4,7 @@
 		"source-path": [
 			"."
 		],
-		"output": "Bootstrap.swf",
+		"output": "Server.swf",
 		"debug": true,
 		"default-background-color": "#000000",
 		"default-frame-rate": 24,
