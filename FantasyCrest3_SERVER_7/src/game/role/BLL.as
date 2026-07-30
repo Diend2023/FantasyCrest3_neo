@@ -234,7 +234,7 @@ package game.role
          // O抹杀加农炮镜头锁定实现
          if (actionName == "抹杀加农炮")
          {
-            if (currentFrame == 1)
+            if (currentFrame == 2)
             {
                for each(var i:BaseRole in this.world.getRoleList())
                {
@@ -333,7 +333,7 @@ package game.role
                   }
                }
             }
-            if (currentFrame == 12)
+            if (currentFrame == 11)
             {
                var effectBLL13:EffectDisplay = new EffectDisplay("BLL13",{blendMode:"normal"},null);
                effectBLL13.fps = 15;
@@ -357,7 +357,7 @@ package game.role
                {
                   shiting(150, k);
                }
-               this.currentFrame = 13;
+               this.currentFrame = 12;
             }
          }
 

@@ -58,6 +58,8 @@ package game.role
       
       public var inkeys:Array = [65,68,87,83];
       
+      public var _netLastFullData:Object = null; // P0优化：差异编码缓存上次收到的全量基线
+      
       private var _isBackJump:Boolean = false;
       
       public function GameRole(roleTarget:String, xz:int, yz:int, pworld:World, fps:int = 24, pscale:Number = 1, troop:int = -1, roleAttr:RoleAttributeData = null)
@@ -748,6 +750,21 @@ package game.role
       
       public function setData(value:Object) : void
       {
+         // P0优化：差异编码 — 非全量数据时原地合并基线字段
+         if(value.full == false) //
+         { //
+            if(_netLastFullData == null) return; //
+            for(var fk:String in _netLastFullData) //
+            { //
+               if(!(fk in value)) value[fk] = _netLastFullData[fk]; //
+            } //
+            delete value.full; //
+            _netLastFullData = value; //
+         } //
+         else //
+         { //
+            _netLastFullData = value; //
+         } //
          var curFrame:int = 0;
          attribute.hp = value.hp;
          straight = value.straight;

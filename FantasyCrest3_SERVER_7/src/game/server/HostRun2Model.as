@@ -18,6 +18,9 @@ package game.server
       
       private var debug:FPSUtil = new FPSUtil(50);
       
+      private static var _mergeFrameCount:int = 0; // P0优化：合并打包帧计数，用于全量同步周期
+      private var _netLastCopyDataDict:Object = {}; // P0优化：按pid缓存角色上次全量数据
+      
       public function HostRun2Model(roleTarget:String)
       {
          super(roleTarget);
@@ -185,40 +188,103 @@ package game.server
          var skill:UDPSkill;
          var world:World = GameCore.currentWorld;
          var curFrame:int = (world as BaseGameWorld).frameCount;
-         world.getRoleList().forEach(function(role:BaseRole, index:int, v:Vector.<BaseRole>):void
-         {
-            Service.radioUDP({
-               "type":"radio",
-               "data":{
-                  "type":"room_message",
-                  "target":"role",
-                  "frame":curFrame,
-                  "data":{
-                     "name":role.targetName,
-                     "id":role.pid,
-                     "data":(role as GameRole).copyData()
-                  }
-               }
-            });
-         });
+         // 原始逐角色独立发送（注释保留）
+         // world.getRoleList().forEach(function(role:BaseRole, index:int, v:Vector.<BaseRole>):void
+         // {
+         //    Service.radioUDP({
+         //       "type":"radio",
+         //       "data":{
+         //          "type":"room_message",
+         //          "target":"role",
+         //          "frame":curFrame,
+         //          "data":{
+         //             "name":role.targetName,
+         //             "id":role.pid,
+         //             "data":(role as GameRole).copyData()
+         //          }
+         //       }
+         //    });
+         // });
+         // P0优化：合并打包 + 差异编码
+         _mergeFrameCount++; //
+         var isFullFrame:Boolean = (_mergeFrameCount % 30 == 0); //
+         var rolesData:Array = []; //
+         var skillsData:Array = []; //
+         var lastCopyDict:Object = _netLastCopyDataDict; //
+         world.getRoleList().forEach(function(role:BaseRole, index:int, v:Vector.<BaseRole>):void //
+         { //
+            var fullData:Object = (role as GameRole).copyData(); //
+            var lastData:Object = lastCopyDict[role.pid]; //
+            var sendData:Object; //
+            if(isFullFrame || lastData == null) //
+            { //
+               lastCopyDict[role.pid] = fullData; //
+               fullData.full = true; //
+               sendData = fullData; //
+            } //
+            else //
+            { //
+               var delta:Object = {full:false}; //
+               for(var dk:String in fullData) //
+               { //
+                  if(!HostRun2Model._netIsSameValue(fullData[dk], lastData[dk])) //
+                  { //
+                     delta[dk] = fullData[dk]; //
+                  } //
+               } //
+               lastCopyDict[role.pid] = fullData; //
+               sendData = delta; //
+            } //
+            rolesData.push({ //
+               "name":role.targetName, //
+               "id":role.pid, //
+               "data":sendData //
+            }); //
+         }); //
          num = world.map.roleLayer.numChildren;
          for(i = 0; i < num; )
          {
             skill = world.map.roleLayer.getChildAt(i) as UDPSkill;
             if(skill)
             {
-               Service.radioUDP({
-                  "type":"radio",
-                  "data":{
-                     "type":"room_message",
-                     "target":"skill",
-                     "frame":curFrame,
-                     "data":skill.copyData()
-                  }
-               });
+               // Service.radioUDP({ // 原始逐技能独立发送
+               //    "type":"radio",
+               //    "data":{
+               //       "type":"room_message",
+               //       "target":"skill",
+               //       "frame":curFrame,
+               //       "data":skill.copyData()
+               //    }
+               // });
+               skillsData.push(skill.copyData()); // P0优化：收集到技能数组中
             }
             i++;
          }
+         Service.radioUDP({ //
+            "type":"radio", //
+            "data":{ //
+               "type":"room_message", //
+               "frame":curFrame, //
+               "roles":rolesData, //
+               "skills":skillsData //
+            } //
+         }); //
+      }
+      // P0优化：差异编码值比较
+      private static function _netIsSameValue(a:*, b:*):Boolean //
+      { //
+         if(a is Array && b is Array) //
+         { //
+            var arrA:Array = a as Array; //
+            var arrB:Array = b as Array; //
+            if(arrA.length != arrB.length) return false; //
+            for(var arrIdx:int = 0; arrIdx < arrA.length; arrIdx++) //
+            { //
+               if(arrA[arrIdx] != arrB[arrIdx]) return false; //
+            } //
+            return true; //
+         } //
+         return a == b; //
       }
    }
 }

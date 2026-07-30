@@ -74,13 +74,26 @@ package zygame.server
             clinet = getClientFormName(ob.userName);
             if(clinet && clinet.room)
             {
-               for(var i in clinet.room.clients)
+               // for(var i in clinet.room.clients) // 原始for...in循环
+               // {
+               //    if(clinet.room.clients[i] != clinet)
+               //    {
+               //       sendData = new ByteArray();
+               //       sendData.writeObject(ob.data);
+               //       udp.send(sendData,0,0,clinet.room.clients[i].udpip,clinet.room.clients[i].udpport);
+               //    }
+               // }
+               var radioClients:Vector.<SocketClient> = clinet.room.clients; // P0优化：缓存引用避免重复属性访问
+               var radioLen:int = radioClients.length; //
+               for(var i:int = 0; i < radioLen; i++) //
                {
-                  if(clinet.room.clients[i] != clinet)
+                  // if(clinet.room.clients[i] != clinet)
+                  if(radioClients[i] != clinet) //
                   {
                      sendData = new ByteArray();
                      sendData.writeObject(ob.data);
-                     udp.send(sendData,0,0,clinet.room.clients[i].udpip,clinet.room.clients[i].udpport);
+                     // udp.send(sendData,0,0,clinet.room.clients[i].udpip,clinet.room.clients[i].udpport);
+                     udp.send(sendData,0,0,radioClients[i].udpip,radioClients[i].udpport); //
                   }
                }
             }
@@ -95,7 +108,9 @@ package zygame.server
       
       public function getClientFormName(pname:String) : SocketClient
       {
-         for(var i in sockets)
+         // for(var i in sockets) // 原始for...in循环
+         var sLen:int = sockets.length; // P0优化：for i++替换for...in
+         for(var i:int = 0; i < sLen; i++) //
          {
             if(sockets[i].userName == pname)
             {
@@ -107,9 +122,11 @@ package zygame.server
       
       public function updateUDPPort(e:DatagramSocketDataEvent, ob:Object) : void
       {
-         var i:Object;
+         // var i:Object; // P0优化：移至 for 循环内声明
+         // for(i in sockets) // 原始for...in循环
          var i2:int;
-         for(i in sockets)
+         var upLen:int = sockets.length; // P0优化：for i++替换for...in
+         for(var i:int = 0; i < upLen; i++) //
          {
             if(sockets[i].userName == ob.userName)
             {
@@ -424,7 +441,9 @@ package zygame.server
       
       public function onFrame() : void
       {
-         for(var i in rooms)
+         // for(var i in rooms) // 原始for...in循环
+         var rLen:int = rooms.length; // P0优化：for i++替换for...in
+         for(var i:int = 0; i < rLen; i++) //
          {
             rooms[i].onFrame();
          }

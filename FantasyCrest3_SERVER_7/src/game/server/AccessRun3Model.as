@@ -155,9 +155,17 @@ package game.server
             GameCore.currentWorld.addChild(hurt);
             return;
          }
+         // P0优化：合并打包格式检测 — 存在roles数组说明是合并后的整帧数据
+         if(data.roles != undefined) //
+         { //
+            _roomDatas.push(data); //
+            return; //
+         } //
          if(data.target == "role" || data.target == "skill")
          {
-            for(var i in _roomDatas)
+            // for(var i in _roomDatas) // 原始for...in循环
+            var roomLen:int = _roomDatas.length; // P0优化：for i++替换for...in
+            for(var i:int = 0; i < roomLen; i++) //
             {
                if(_roomDatas[i].frame == data.frame)
                {
@@ -225,16 +233,28 @@ package game.server
             switch(data.target)
             {
                case "role":
-                  for(var i in pushIn.roles)
+                  // for(var i in pushIn.roles) // 原始for...in循环
+                  // {
+                  //    if(data.id == pushIn.roles[i].id)
+                  //    {
+                  //       (pushIn.roles as Array).splice(int(i),1);
+                  //       pushIn.roles.push(data.data);
+                  //       return;
+                  //    }
+                  // }
+                  // pushIn.roles.push(data.data); // 原始fallback代码
+                  var rolesArr:Array = pushIn.roles as Array; // P0优化：for i++替换for...in
+                  var rLen:int = rolesArr.length; //
+                  for(var i:int = 0; i < rLen; i++) //
                   {
-                     if(data.id == pushIn.roles[i].id)
+                     if(data.id == rolesArr[i].id) //
                      {
-                        (pushIn.roles as Array).splice(int(i),1);
-                        pushIn.roles.push(data.data);
+                        rolesArr.splice(i,1); //
+                        rolesArr.push(data.data); //
                         return;
                      }
                   }
-                  pushIn.roles.push(data.data);
+                  rolesArr.push(data.data); //
                   break;
                case "skill":
                   pushIn.skills.push(data.data);
@@ -332,9 +352,20 @@ package game.server
          }
          skinCount = 0;
          _roles = _roomData.roles;
-         for(var i in _roomData.roles)
+         // for(var i in _roomData.roles) // 原始for...in循环
+         // {
+         //    ob = _roomData.roles[i];
+         //    role = world.getRoleFormPid(ob.id);
+         //    if(role)
+         //    {
+         //       (role as GameRole).setData(ob.data);
+         //    }
+         // }
+         var rolesArr:Array = _roomData.roles as Array; // P0优化：for i++替换for...in
+         var rolesLen:int = rolesArr.length; //
+         for(var i:int = 0; i < rolesLen; i++) //
          {
-            ob = _roomData.roles[i];
+            ob = rolesArr[i]; //
             role = world.getRoleFormPid(ob.id);
             if(role)
             {
@@ -342,7 +373,21 @@ package game.server
             }
          }
          var skills:Array = _roomData.skills;
-         for(var i2 in skills)
+         // for(var i2 in skills) // 原始for...in循环
+         // {
+         //    ob2 = skills[i2];
+         //    role2 = world.getRoleFormPid(ob2.roleid);
+         //    if(role2)
+         //    {
+         //       eff = world.getEffectFormName(ob2.name as String,role2) as UDPSkill;
+         //       if(eff)
+         //       {
+         //          eff.setData(ob2);
+         //       }
+         //    }
+         // }
+         var skillsLen:int = skills.length; // P0优化：for i++替换for...in
+         for(var i2:int = 0; i2 < skillsLen; i2++) //
          {
             ob2 = skills[i2];
             role2 = world.getRoleFormPid(ob2.roleid);
