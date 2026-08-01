@@ -6,6 +6,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.NetworkInfo;
 	import flash.net.NetworkInterface;
 	import flash.text.TextField;
@@ -20,6 +21,8 @@ package
 
 		private var _logField:TextField;
 		private var _logLines:Vector.<String>;
+		private var _userScrolledUp:Boolean = false; // 用户手动上翻时暂停自动滚动
+		private var _lineCount:int = 0; // 累积行数，用于trim
 
 		public function Server()
 		{
@@ -44,13 +47,15 @@ package
 
 			_logField = new TextField();
 			_logField.defaultTextFormat = new TextFormat("_typewriter", 14, 0xE0E0E0);
-			_logField.autoSize = TextFieldAutoSize.LEFT;
 			_logField.multiline = true;
 			_logField.wordWrap = true;
-			_logField.width = stage.stageWidth;
+			_logField.width = stage.stageWidth - 20;
 			_logField.height = stage.stageHeight;
 			_logField.x = 10;
 			_logField.y = 10;
+			_logField.background = true;
+			_logField.backgroundColor = 0x1A1A2E;
+			_logField.selectable = true;
 			addChild(_logField);
 
 			var title:TextField = new TextField();
@@ -63,6 +68,10 @@ package
 
 			_logField.y = title.y + title.height + 10;
 			_logField.height = stage.stageHeight - _logField.y - 10;
+
+			// 滚轮支持 + 用户上翻时暂停自动滚动
+			_logField.addEventListener(Event.SCROLL, onLogScroll); //
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel); //
 		}
 
 		private function startServer() : void
@@ -142,16 +151,45 @@ package
 			{
 				return;
 			}
-			var line:String = "[" + getTimeString() + "] " + msg;
-			_logLines.push(line);
-			// 超过上限时裁剪旧日志，避免 TextField 文本无限膨胀导致渲染卡顿
-			while(_logLines.length > MAX_LOG_LINES)
-			{
-				_logLines.shift();
-			}
-			_logField.text = _logLines.join("\n");
-			_logField.scrollV = _logField.maxScrollV;
+			var line:String = "[" + getTimeString() + "] " + msg + "\n";
+			_logField.appendText(line); //
+			_lineCount++; //
+			// 超过上限时从顶部裁剪，避免 TextField 无限膨胀
+			if(_lineCount > MAX_LOG_LINES) //
+			{ //
+				var excess:int = _lineCount - MAX_LOG_LINES; //
+				var trimPos:int = 0; //
+				for(var i:int = 0; i < excess; i++) //
+				{ //
+					trimPos = _logField.text.indexOf("\n", trimPos) + 1; //
+				} //
+				if(trimPos > 0) //
+				{ //
+					_logField.text = _logField.text.substring(trimPos); //
+				} //
+				_lineCount = MAX_LOG_LINES; //
+			} //
+			// 用户未上翻时自动滚到底部
+			if(!_userScrolledUp) //
+			{ //
+				_logField.scrollV = _logField.maxScrollV; //
+			} //
 		}
+
+		// 滚轮事件：分发到TextField
+		private function onMouseWheel(e:MouseEvent) : void //
+		{ //
+			if(_logField.hitTestPoint(e.stageX, e.stageY)) //
+			{ //
+				_logField.scrollV -= e.delta * 3; //
+			} //
+		} //
+
+		// 检测用户是否手动上翻
+		private function onLogScroll(e:Event) : void //
+		{ //
+			_userScrolledUp = (_logField.scrollV < _logField.maxScrollV); //
+		} //
 
 		private function getTimeString() : String
 		{
