@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<propsdata>
+	<material>
+		<item id="冰岚之书" info="散发着寒气的魔法书，记载着冰系魔法的奥秘。"/>
+		<item id="虫壳" info="坚硬的外壳，可用于合成材料。"/>
+		<item id="史莱姆液块" info="史莱姆掉落的粘稠液块。"/>
+		<item id="史莱姆王液块" info="史莱姆王掉落的稀有液块。"/>
+		<item id="红色液块" info="红色的粘稠液块。"/>
+		<item id="兽牙" info="锋利的兽牙，制作武器所需的材料。"/>
+		<item id="呆萌素" info="奇怪的物质，用途不明。"/>
+		<item id="红色碎片" info="红色的神秘碎片。"/>
+		<item id="绿色碎片" info="绿色的神秘碎片。"/>
+		<item id="蓝色碎片" info="蓝色的神秘碎片。"/>
+		<item id="黄色碎片" info="黄色的神秘碎片。"/>
+		<item id="紫色碎片" info="紫色的神秘碎片。"/>
+		<item id="波兰石" info="闪闪发光的矿石。"/>
+	</material>
+	<consumables>
+		<!-- 金币为特殊道具：拾取时不进入背包，直接增加金币数量（见 Spoils.pickUp 特殊处理） -->
+		<item id="金币" info="游戏中的通用货币。"/>
+		<item id="血瓶" info="恢复一定量的生命值。"/>
+		<item id="大血瓶" info="恢复大量的生命值。"/>
+		<item id="小血瓶" info="恢复少量的生命值。"/>
+		<item id="经验瓶" info="使用后获得一定经验值。"/>
+		<item id="大经验瓶" info="使用后获得大量经验值。"/>
+		<item id="小经验瓶" info="使用后获得少量经验值。"/>
+		<item id="二锅头" info="辛辣的白酒，饮用后精神大振。"/>
+		<item id="伏特加" info="烈性的伏特加酒。"/>
+		<item id="朗姆酒" info="香醇的朗姆酒。"/>
+		<item id="提神酒" info="能够提神醒脑的酒。"/>
+		<item id="特质魔法酒" info="具有神奇效果的魔法酒。"/>
+		<item id="决心饼" info="充满决心的饼干。"/>
+		<item id="单单香菇" info="普通的香菇。"/>
+		<item id="篮瘦香菇" info="看起来有点蔫的香菇。"/>
+		<item id="红色香菇" info="红色的香菇。"/>
+		<item id="绿色香菇" info="绿色的香菇。"/>
+		<item id="沾满口水的水果" info="不知为何沾满口水的水果。"/>
+		<item id="神秘瓶子" info="装着神秘液体的瓶子。"/>
+		<item id="神秘代码" info="写满神秘代码的纸条。"/>
+		<item id="盒子之物" info="盒子里装着的神秘之物。"/>
+		<item id="礼包" info="包装精美的礼包。"/>
+		<item id="眼睛" info="神秘的物件。"/>
+		<item id="宠物蛋" info="可以孵化宠物的蛋。"/>
+	</consumables>
+	<crest>
+		<item id="力量纹章" info="增加力量的纹章。"/>
+		<item id="体力纹章" info="增加体力的纹章。"/>
+		<item id="魔力纹章" info="增加魔力的纹章。"/>
+		<item id="命中纹章" info="增加命中率的纹章。"/>
+		<item id="暴击纹章" info="增加暴击率的纹章。"/>
+		<item id="爆伤纹章" info="增加暴击伤害的纹章。"/>
+		<item id="物防纹章" info="增加物理防御的纹章。"/>
+		<item id="魔防纹章" info="增加魔法防御的纹章。"/>
+		<item id="深蓝纹章" info="深蓝色的神秘纹章。"/>
+		<item id="灵眼纹章" info="拥有灵眼的纹章。"/>
+		<item id="移动纹章" info="增加移动速度的纹章。"/>
+		<item id="跳跃纹章" info="增加跳跃力的纹章。"/>
+	</crest>
+	<task>
+		<item id="信" info="一封重要的信件，请转交给指定的人。"/>
+	</task>
+</propsdata>

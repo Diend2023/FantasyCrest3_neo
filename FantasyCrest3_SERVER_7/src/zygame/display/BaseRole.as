@@ -2096,7 +2096,8 @@ package zygame.display
          {
             for(n = 0; n < arr.length; )
             {
-               spolis = new Spoils.defaultClass(this.world,this.attribute,this.x + Math.random() * 10 - 5,this.y,arr[n],true);
+               // spolis = new Spoils.defaultClass(this.world,this.attribute,this.x + Math.random() * 10 - 5,this.y,arr[n],true);
+               spolis = new Spoils.defaultClass(this.world,this.attribute,this.x + Math.random() * 300 - 150,this.y,arr[n],true); //
                GameCore.currentWorld.addChild(spolis);
                DataCore.statisticalProps(arr[n]);
                n++;

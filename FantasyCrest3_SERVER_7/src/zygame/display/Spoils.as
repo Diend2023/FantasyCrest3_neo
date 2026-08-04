@@ -74,6 +74,7 @@ package zygame.display
          image.alignPivot();
          image.width = 20;
          image.height = 20;
+         image.scale = 0.8; //
          display = image;
          var tw:Tween = new Tween(image,1);
          tw.animate("rotation",deg2rad(15));

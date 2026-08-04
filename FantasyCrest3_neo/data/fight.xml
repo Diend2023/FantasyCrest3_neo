@@ -1541,6 +1541,19 @@
 
 		<data name="负重" value="0.1"/>
 
+		<!-- 新增，为感染者·光元素配置消耗品掉落 -->
+		<props>
+
+			<item id="小血瓶" chance="0.5"/>
+
+			<item id="小经验瓶" chance="0.5"/>
+
+			<item id="单单香菇" chance="0.3"/>
+
+			<item id="决心饼" chance="0.3"/>
+
+		</props>
+
 	</guangyuansu>
 
 	<!-- <guanggong visible="false" head="none.png" acthor="强" coin="0" name="感染者·光之弓箭手" profession="小怪" passive="" introduce="">

@@ -24,8 +24,8 @@
 
 
 	<!-- 添加dnf_yuansu_0副本 -->
-	<!-- <item name="DNF元素入侵[剧情]" target="dnf_yuansu_0">
-	</item> -->
+	<item name="DNF元素入侵[剧情]" target="dnf_yuansu_0">
+	</item>
 
 	<!-- 添加jiuwei副本 -->
 	<!-- <item name="九尾[剧情]" target="map_jiuwei">

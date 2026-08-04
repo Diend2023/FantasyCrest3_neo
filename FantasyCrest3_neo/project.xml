@@ -3,6 +3,7 @@
   <file path="ui/wzhang.png"/>
 <file path="data/update.xml" info="热更新配置及版本说明"/> <!-- 新增，用于加载版本说明文本 -->
 <file path="data/fight.xml" info="战斗数据"/>
+<file path="data/propsdata.xml" info="道具数据"/> <!-- 新增，用于加载道具配置 -->
 <file path="data/rankdata.xml" info="用于4399继承战力使用"/>
 <file path="ui/zz_tips.png"/>
  <file path="core/effect/blow.png"/>
@@ -68,6 +69,9 @@
   <file path="core/font/hitfont_font.xml"/>
   <file path="core/sprites/fightState.png"/>
   <file path="core/sprites/fightState.xml"/>
+  <!-- 添加props -->
+  <file path="core/sprites/props.png"/>
+  <file path="core/sprites/props.xml"/>
   <file path="sound/sound_hit.mp3"/>
   <file path="data/ai/ordinary.xml"/>
   <file path="bgm/main.mp3"/>
