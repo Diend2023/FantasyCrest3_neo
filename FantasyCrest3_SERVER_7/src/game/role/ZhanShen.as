@@ -356,7 +356,18 @@ package game.role
             var role:BaseRole = findRole(rect);
             if(role)
             {
-               role.clearDebuffMove();
+               role.breakAction();
+               // 已处于倒地/打飞状态的目标：清除吹飞残留状态，使其进入受伤僵直，避免被二次打飞倒地
+               var handDown:Boolean = role.blow2 || role.blow || role.actionName == "打飞" || role.actionName == "倒落";
+               if (handDown)
+               {
+                  role.clearDebuffMove();
+                  role.blowtime = 0;
+               }
+               if (!handDown && role.blowtime <= 0)
+               {
+                  role.blowtime = 1;
+               }
                role.straight = 30;
                role.setX(this.x + toX * this.scaleX);
                role.setY(this.y - toY);

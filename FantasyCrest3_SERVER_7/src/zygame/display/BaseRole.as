@@ -1628,7 +1628,17 @@ package zygame.display
          _blow = false;
          _blow2 = false;
       }
-      
+
+      public function set blowtime(i:int) : void //
+      { //
+         _blowTime = i; //
+      } //
+
+      public function get blowtime() : int //
+      { //
+         return _blowTime; //
+      } //
+
       public function set beHitX(i:int) : void
       {
          _beHitX = i;
@@ -2308,6 +2318,21 @@ package zygame.display
       {
          _blow = b;
       }
+
+      public function get blow() : Boolean //
+      { //
+         return _blow; //
+      } //
+      
+      public function set blow2(b:Boolean) : void //
+      { //
+         _blow2 = b; //
+      } //
+      
+      public function get blow2() : Boolean //
+      { //
+         return _blow2; //
+      } //
       
       public function copyState() : Object
       {
