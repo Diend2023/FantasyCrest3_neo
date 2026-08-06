@@ -10,6 +10,8 @@ package game.role
    import zygame.data.RoleAttributeData;
    import zygame.display.World;
    import zygame.display.EffectDisplay;
+   import starling.display.DisplayObject;
+   import starling.display.DisplayObjectContainer;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
    
@@ -21,6 +23,10 @@ package game.role
       private var _worldFilter:ColorMatrixFilter; // 用于地面层
 
       private var _backgroundFilter:ColorMatrixFilter;  // 用于背景
+
+      private var _filterTargets:Array = []; // 时停滤镜目标层
+
+      private var _filterInstances:Array = []; // 各目标层独立的滤镜实例
 
       // private var baseBgVolume:Number = 0.4;
 
@@ -215,72 +221,69 @@ package game.role
 
       public function startTheWorldVisualEffect():void
       {
-         if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
+         // if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
+         // {
+         //    return;
+         // }
+         // 1. 收集目标渲染层（跳过角色互动层）
+         _filterTargets.length = 0;
+         _filterInstances.length = 0;
+         if (this.world.map && this.world.map.numChildren > 0)
+         {
+            var roleLayerParent:DisplayObjectContainer = this.world.map.roleLayer ? this.world.map.roleLayer.parent : null;
+            for (var i:int = 0; i < this.world.map.numChildren; i++)
+            {
+               var child:DisplayObject = this.world.map.getChildAt(i);
+               if (child == roleLayerParent)
+               {
+                  continue;
+               }
+               _filterTargets.push(child);
+            }
+         }
+         // 2. 背景精灵也作为目标层
+         if (this.world.backgroundContent)
+         {
+            _filterTargets.push(this.world.backgroundContent);
+         }
+         if (_filterTargets.length == 0)
          {
             return;
          }
-         // 1. 创建独立的滤镜实例
-         _worldFilter = new ColorMatrixFilter();
-         _backgroundFilter = new ColorMatrixFilter();
-         
-         // 2. 反色矩阵 (瞬间冲击)
+         // 3. 为每个目标层创建独立的滤镜实例（避免共享实例导致滤镜失效）
          var invertMatrix:Vector.<Number> = Vector.<Number>([
             -1,  0,  0,  1,  0,
              0, -1,  0,  1,  0,
              0,  0, -1,  1,  0,
              0,  0,  0,  1,  0 
          ]);
-         
-         _worldFilter.matrix = invertMatrix;
-         _backgroundFilter.matrix = invertMatrix;  // 同步初始矩阵
-         
-         // 3. 给地图的地面层加滤镜
-         if (this.world.map && this.world.map.numChildren > 0)
+         for (i = 0; i < _filterTargets.length; i++)
          {
-            this.world.map.getChildAt(0).filter = _worldFilter;
+            var filter:ColorMatrixFilter = new ColorMatrixFilter();
+            filter.matrix = invertMatrix;
+            (_filterTargets[i] as DisplayObject).filter = filter;
+            _filterInstances.push(filter);
          }
-         
-         // 4. 给背景精灵加滤镜
-         if (this.world.backgroundContent)
-         {
-            this.world.backgroundContent.filter = _backgroundFilter;
-         }
-         
-         // 5. 缓动过渡到“时停”状态，使用 onUpdate 同步背景滤镜的矩阵
-         var tw:Tween = new Tween(_worldFilter, 0.2);
-         
-         tw.onUpdate = function():void
-         {
-            // 同步背景滤镜的矩阵到地图滤镜
-            if (_backgroundFilter)
-            {
-               _backgroundFilter.matrix = _worldFilter.matrix;
-            }
-         };
-         
+         // 保留引用，便于 stop 时清理
+         _worldFilter = _filterInstances[0] as ColorMatrixFilter;
+         _backgroundFilter = this.world.backgroundContent ? (_filterInstances[_filterInstances.length - 1] as ColorMatrixFilter) : null;
+         // 4. 缓动 0.2 秒后切换到"时停"高亮灰度状态
+         var tw:Tween = new Tween({}, 0.2);
          tw.onComplete = function():void
          {
-            if(_worldFilter)
+            var s:Number = 1.5;
+            var r:Number = 0.3 * s;
+            var g:Number = 0.59 * s;
+            var b:Number = 0.11 * s;
+            var brightGrayMatrix:Vector.<Number> = Vector.<Number>([
+               r, g, b, 0, 0,
+               r, g, b, 0, 0,
+               r, g, b, 0, 0,
+               0, 0, 0, 1, 0
+            ]);
+            for (var j:int = 0; j < _filterInstances.length; j++)
             {
-               // 高亮灰度矩阵
-               var s:Number = 1.5; 
-               var r:Number = 0.3 * s;
-               var g:Number = 0.59 * s;
-               var b:Number = 0.11 * s;
-               
-               var brightGrayMatrix:Vector.<Number> = Vector.<Number>([
-                  r, g, b, 0, 0, 
-                  r, g, b, 0, 0, 
-                  r, g, b, 0, 0, 
-                  0, 0, 0, 1, 0   
-               ]);
-               
-               _worldFilter.matrix = brightGrayMatrix;
-               // 同步到背景
-               if (_backgroundFilter)
-               {
-                  _backgroundFilter.matrix = brightGrayMatrix;
-               }
+               (_filterInstances[j] as ColorMatrixFilter).matrix = brightGrayMatrix;
             }
          };
          Starling.juggler.add(tw);
@@ -293,23 +296,21 @@ package game.role
       // 结束时停视觉效果
       public function stopTheWorldVisualEffect():void
       {
-         if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
+         // if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
+         // {
+         //    return;
+         // }
+         // 1. 移除所有目标层的滤镜
+         for (var i:int = 0; i < _filterTargets.length; i++)
          {
-            return;
-         }
-         // 1. 移除地图地面层的滤镜
-         if (this.world.map && this.world.map.numChildren > 0)
-         {
-            if (this.world.map.getChildAt(0).filter == _worldFilter)
+            var target:DisplayObject = _filterTargets[i] as DisplayObject;
+            if (target)
             {
-               this.world.map.getChildAt(0).filter = null;
+               target.filter = null;
             }
          }
-         // 2. 移除背景精灵的滤镜
-         if (this.world.backgroundContent && this.world.backgroundContent.filter == _backgroundFilter)
-         {
-            this.world.backgroundContent.filter = null;
-         }
+         _filterTargets.length = 0;
+         _filterInstances.length = 0;
          _worldFilter = null;
          _backgroundFilter = null;
          if(world.runModel is HostRun2Model)

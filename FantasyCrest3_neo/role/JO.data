@@ -191,8 +191,10 @@
       <SubTexture name="元件 10079" gox="0" goy="0" effects="[]"/>
     </act>
     <act name="the world" key="O" type="land" cd="30" other="[{&quot;value&quot;:&quot;4&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="19" msg="">
-      <SubTexture name="元件 10064" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="ctl29" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <!-- <SubTexture name="元件 10064" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="ctl29" stop="unstop" golden="0" turn="0" hitEffectName=""/> -->
+      <!-- <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/> -->
       <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="元件 10064" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="ctl29" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10064" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10065" gox="0" goy="0" effects="[]"/>
