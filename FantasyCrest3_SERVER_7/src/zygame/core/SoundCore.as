@@ -39,6 +39,10 @@ package zygame.core
          {
             if(target == _currentBGSoundName)
             {
+               if(!isNaN(bgPausePosition)) // 如果暂停位置不为NaN，说明音乐被暂停了，恢复播放
+               { //
+                  resumeBGSound(); //
+               } //
                return;
             }
             _bgChannel.stop();

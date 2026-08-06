@@ -3,6 +3,7 @@ package game.role
 {
    import feathers.data.ListCollection;
    import game.buff.AttributeChangeBuff;
+   import game.server.AccessRun3Model;
    import zygame.display.BaseRole;
    import zygame.data.BeHitData;
    import zygame.data.RoleAttributeData;
@@ -52,6 +53,11 @@ package game.role
 
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
       {
+         super.onHitEnemy(beData, enemy);
+         if(world.runModel is AccessRun3Model)
+         {
+            return;
+         }
          // 被动吸收水晶逻辑
          var n:int = Math.random() * 100;
          if(n < 15)
@@ -66,7 +72,6 @@ package game.role
                this.listData.updateItemAt(0);
             }
          }
-         super.onHitEnemy(beData, enemy);
       }
 
       override public function copyData() : Object

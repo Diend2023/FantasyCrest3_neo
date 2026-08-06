@@ -8,6 +8,8 @@ package game.role
    import zygame.data.BeHitData;
    import zygame.display.BaseRole;
    import flash.geom.Rectangle; // 抓取用
+   import game.server.AccessRun3Model;
+   import game.server.HostRun2Model;
    
    public class KW extends GameRole
    {
@@ -65,7 +67,7 @@ package game.role
          if(actionName == "形态更换")
          {
             // 形态更换逻辑实现
-            if (currentFrame == 5)
+            if (currentFrame == 5 && !(world.runModel is AccessRun3Model))
             {
                currentForm = forms[Math.floor(Math.random() * forms.length)];
                formTimer = 600;
@@ -97,6 +99,10 @@ package game.role
                      this.jumpTimeMax = baseJumpTimeMax;
                      haveShiting = false;
                      hurtMultipleAdd = 0.2;
+               }
+               if(world.runModel is HostRun2Model)
+               {
+                  (world.runModel as HostRun2Model).doFunc(this.name,"setForm",currentForm);
                }
             }
          }
@@ -263,6 +269,39 @@ package game.role
             {
                this.world.getRoleList()[i].cardFrame = cardFrame;
             }
+         }
+      }
+
+      // 联机同步：从机收到主机广播的形态选择结果后调用
+      public function setForm(form:String):void
+      {
+         currentForm = form;
+         formTimer = 600;
+         switch(currentForm)
+         {
+            case "Dragon":
+               listData.getItemAt(0).icon = formDragonUI.icon;
+               listData.getItemAt(0).msg = formDragonUI.msg;
+               this.attribute.crit = baseCrit;
+               this.jumpTimeMax = baseJumpTimeMax + 1;
+               haveShiting = false;
+               hurtMultipleAdd = 0;
+               break;
+            case "Pegasus":
+               listData.getItemAt(0).icon = formPegasusUI.icon;
+               listData.getItemAt(0).msg = formPegasusUI.msg;
+               this.attribute.crit = baseCrit;
+               this.jumpTimeMax = baseJumpTimeMax;
+               haveShiting = true;
+               hurtMultipleAdd = 0;
+               break;
+            case "Titan":
+               listData.getItemAt(0).icon = formTitanUI.icon;
+               listData.getItemAt(0).msg = formTitanUI.msg;
+               this.attribute.crit = baseCrit;
+               this.jumpTimeMax = baseJumpTimeMax;
+               haveShiting = false;
+               hurtMultipleAdd = 0.2;
          }
       }
 

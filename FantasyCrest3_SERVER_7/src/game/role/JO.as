@@ -127,6 +127,24 @@ package game.role
          this.hasPassive = value.hasPassive;
       }
 
+      override public function win() : void
+      {
+         super.win();
+         if(!isNaN(GameCore.soundCore.bgPausePosition))
+         {
+            GameCore.soundCore.resumeBGSound();
+         }
+      }
+
+      override public function over():void
+      {
+         super.over();
+         if(!isNaN(GameCore.soundCore.bgPausePosition))
+         {
+            GameCore.soundCore.resumeBGSound();
+         }
+      }
+
       public function theWorld():void
       {
          this.theWorldTimer = 345; // 5秒钟
@@ -197,7 +215,7 @@ package game.role
 
       public function startTheWorldVisualEffect():void
       {
-         if(this.world.targetName != "map1")
+         if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
          {
             return;
          }
@@ -275,7 +293,7 @@ package game.role
       // 结束时停视觉效果
       public function stopTheWorldVisualEffect():void
       {
-         if(this.world.targetName != "map1")
+         if(this.world.targetName != "map1" && this.world.targetName != "map1_3.0")
          {
             return;
          }

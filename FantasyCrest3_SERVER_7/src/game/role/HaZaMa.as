@@ -7,6 +7,7 @@ package game.role
    import starling.display.Quad;
    import feathers.data.ListCollection;
    import zygame.buff.BuffRef;
+   import game.server.AccessRun3Model;
    import zygame.display.BaseRole;
    import zygame.data.BeHitData;
    import flash.geom.Point;
@@ -138,6 +139,10 @@ package game.role
       override public function hitDataBuff(beData:BeHitData):void
       {
          super.hitDataBuff(beData);
+         if(world.runModel is AccessRun3Model)
+         {
+            return;
+         }
          // 10%概率破防
          for each (var enemy:BaseRole in this.world.getRoleList())
          {
