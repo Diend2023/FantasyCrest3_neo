@@ -37,9 +37,11 @@ package game.view
       private var _bgraCheck:Check;
       private var _AntiAliasingCheck:Check;
       private var _NNICheck:Check;
+      private var _CloseVibrationCheck:Check;
 
       private static var _isBGRAEnabled:Boolean = false; // 超真全彩默认关闭
       private static var _isNNIEnabled:Boolean = false; // 硬边缘默认关闭
+      private static var _isCloseVibration:Boolean = false; // 抗锯齿默认关闭
 
       public function GameSettingsView()
       {
@@ -93,6 +95,13 @@ package game.view
          _bgmCheck = bgmItem.getChildAt(1) as Check;
          mainContainer.addChild(bgmItem);
 
+         // 关闭震动
+         var closeVibrationItem:LayoutGroup = createSettingItem("关闭震动", "toggle", _isCloseVibration, function(value:Boolean):void{
+            GameSettingsView.setCloseVibration(value);
+         });
+         _CloseVibrationCheck = closeVibrationItem.getChildAt(1) as Check;
+         mainContainer.addChild(closeVibrationItem);
+
          // 开启超真全彩
          var bgraItem:LayoutGroup = createSettingItem("真全彩（实验性）", "toggle", _isBGRAEnabled, function(value:Boolean):void{
             GameSettingsView.setBGRAEnable(value);
@@ -140,6 +149,7 @@ package game.view
             saveBGMSetting(isBGMEnable()); // 保存当前设置
             saveSoundSetting(isSoundEnable());
             saveFullScreenSetting(isFullScreen());
+            saveCloseVibrationSetting(isCloseVibration());
             removeFromParent(true);
          });
       }
@@ -244,6 +254,37 @@ package game.view
          SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isBGMEnable = enable; // 缓存设置
          SharedObject.getLocal("net.zygame.hxwz.air").flush();
       }
+
+      public static function setCloseVibration(enable:Boolean):void
+      {
+         _isCloseVibration = enable;
+         if(self && self._CloseVibrationCheck)
+         {
+            self._CloseVibrationCheck.isSelected = enable;
+         }
+         if(enable)
+         {
+            SceneCore.pushView(new GameTipsView("关闭震动"));
+         }
+         else 
+         {
+            SceneCore.pushView(new GameTipsView("开启震动"));
+         }
+      }
+      public static function isCloseVibration():Boolean
+      {
+         return _isCloseVibration;
+      }
+      public static function toggleCloseVibration():void
+      {
+         setCloseVibration(!_isCloseVibration);
+      }
+      public static function saveCloseVibrationSetting(enable:Boolean):void
+      {
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isCloseVibration = enable; // 缓存设置
+         SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
+
 
       public static function setBGRAEnable(enable:Boolean):void
       {

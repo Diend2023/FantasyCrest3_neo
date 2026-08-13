@@ -41,6 +41,7 @@ package zygame.display
    import zygame.run.IRunModel;
    import zygame.tmx.Map;
    import zygame.utils.PointUtils;
+   import game.view.GameSettingsView; // 导入设置界面类
    
    public class World extends KeyDisplayObject
    {
@@ -152,6 +153,10 @@ package zygame.display
       
       public function get vibrationSize() : int
       {
+         if(GameSettingsView.isCloseVibration())
+         {
+            return 0;
+         }
          return _vibrationSize;
       }
       

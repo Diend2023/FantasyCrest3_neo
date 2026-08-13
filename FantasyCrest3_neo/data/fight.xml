@@ -779,6 +779,25 @@
 
 	</hfh>
 
+	<!-- 添加3.2黄飞鸿 -->
+	<hfh_3.2 visible="true" coin="369" in4399="true" version="3.2" acthor="老邪" head="hfh_3.2.png" name="3.2李烈火（黄飞鸿）" passive="部分技能可以对敌人进行重击击倒，碰撞地面后会产生弹起效果；弹飞的敌人无法使用受身快速起身。">
+		
+		<data name="移动速度" value="1.2"/>
+
+		<data name="力量" value="0.6"/>
+
+		<data name="魔力" value="0.6"/>
+
+		<data name="物理防御" value="0.5"/>
+
+		<data name="魔法防御" value="0.2"/>
+
+		<data name="体力" value="0.7"/>
+
+		<data name="水晶" value="5"/>
+
+	</hfh_3.2>
+	
 	<HML visible="true" in4399="false" head="HML.png" acthor="老邪" name="高岭响（花木兰）" profession="突进/连段" passive="使用非突进技能或者普通攻击会累积1次攻击段数，最多5次；使用突进技能会根据累积的加成而改变突进次数。">
 
 		<data name="移动速度" value="1.2"/>
@@ -1181,6 +1200,29 @@
 		<data name="暴击伤害" value="0.8"/>
 
 	</Twelve>
+
+	<!-- 添加3.1艾布鲁 -->
+	<Twelve_3.1 head="Twelve_3.1.png" acthor="小鸟" version="3.1" name="3.1艾布鲁" passive="当自已被攻击次数越高，免伤能力越强，最高可达80%。" introduce="艾布鲁由Urien亲信吴博士制造的人型杀戮兵器，为多个人间兵器中最优秀的一个，绝对听从尤里安（Urien）的指示。">
+		
+		<data name="移动速度" value="1"/>
+		
+		<data name="力量" value="1"/>
+		
+		<data name="魔力" value="0.7"/>
+		
+		<data name="物理防御" value="0.3"/>
+
+		<data name="魔法防御" value="0.3"/>
+
+		<data name="体力" value="0.6"/>
+
+		<data name="水晶" value="3"/>
+
+		<data name="暴击率" value="3.5"/>
+
+		<data name="暴击伤害" value="0.8"/>
+
+	</Twelve_3.1>
 
 	<Naruto visible="true" in4399="true" version="3.5" head="Naruto.png" coin="988" crystal="5" name="旋涡鸣人" profession="爆发" acthor="小研En/柠七" passive="血量越低，大招的伤害会根据比例增加最大30%伤害。">
 

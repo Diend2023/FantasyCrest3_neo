@@ -338,9 +338,9 @@ package zygame.display
          {
             return;
          }
-         if(role && this.cardFrame == 0 && role.cardFrame > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
+         if(role && this.cardFrame == 0 && int(role.cardFrame * 0.8) > this.cardFrame && this._unhit && this.currentFrame > 0) // 卡帧优化
          { //
-            cardFrame = role.cardFrame; //
+            cardFrame = int(role.cardFrame * 0.8); //
          } //
          if(speedScale == 0) //speedScale为0时静止
          { //

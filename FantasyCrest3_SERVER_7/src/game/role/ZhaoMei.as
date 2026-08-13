@@ -76,7 +76,7 @@ package game.role
                   beData.armorScale = 1;
                }
                beData.armorScale *= 1 + _OUsePoint * 0.05;
-               beData.armorScale -= 20;
+               beData.armorScale -= 15;
                _OUsePoint = 0;
             }
          }
@@ -86,6 +86,10 @@ package game.role
          {
             _Count += 1;
             _skillCanCountObj[this.actionName] = false;
+         }
+         if(this.inFrame("普通攻击",27))
+         {
+            _Count += 1;
          }
          // 计数达到3次，扣除敌人水晶并增加自身水晶
          if(_Count >= 3)

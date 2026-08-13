@@ -1,0 +1,442 @@
+<Role type="sprite" scale="1.3" fps="12" hitEffectName="">
+  <class src="game.role.HuangFeiHong3_2"/>
+  <content>
+    <!-- <xml path="npc/hfh.xml"/>
+    <image path="npc/hfh.png"/> -->
+    <xml path="npc/hfh_3.2.xml"/>
+    <image path="npc/hfh_3.2.png"/>
+    <sound path="sound/hfh_bgm.mp3"/>
+  </content>
+  <loads>
+    <sprites path="effect/Feng"/>
+    <sprites path="effect/heian"/>
+    <file path="sound/li50.mp3"/>
+    <sprites path="effect/SuChuan"/>
+    <file path="sound/li0.mp3"/>
+    <sprites path="effect/BaoPo"/>
+    <file path="sound/li01.mp3"/>
+    <sprites path="effect/quanji"/>
+    <sprites path="effect/Y"/>
+    <file path="sound/bm\huoyan2.mp3"/>
+    <sprites path="effect/R"/>
+    <file path="sound/li1021.mp3"/>
+    <sprites path="effect/LuanJi"/>
+    <sprites path="effect/shan"/>
+    <file path="sound/bm\huiwu.mp3"/>
+    <sprites path="effect/3"/>
+    <sprites path="effect/quantou"/>
+    <sprites path="effect/A"/>
+    <sprites path="effect/LongZhanYi"/>
+    <sprites path="effect/suolongj3"/>
+    <sprites path="effect/shanzhio"/>
+    <file path="sound/li104.mp3"/>
+    <sprites path="effect/baozha"/>
+    <sprites path="effect/C2"/>
+    <file path="sound/li02.mp3"/>
+    <file path="sound/bm\huoyan1.mp3"/>
+    <sprites path="effect/2"/>
+    <sprites path="effect/YiDaoZhan"/>
+    <sprites path="effect/shanzhiutwo"/>
+    <sprites path="effect/dianzi"/>
+    <sprites path="effect/BaDao"/>
+    <sprites path="effect/B"/>
+    <sprites path="effect/LingYa"/>
+    <sprites path="effect/suolongKU"/>
+    <file path="sound/bm\huidongbangzi1.mp3"/>
+    <sprites path="effect/baoqi"/>
+    <sprites path="effect/penfa"/>
+    <file path="sound/bm\huoyan3.mp3"/>
+    <sprites path="effect/huobao"/>
+    <sprites path="effect/lanyan"/>
+  </loads>
+  <action>
+    <act name="待机">
+      <SubTexture name="李烈火0000" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;Feng\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:true,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:19,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-57,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:18,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;heian\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:true,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:30,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-92,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:true,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]"/>
+      <SubTexture name="李烈火0001" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0002" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0003" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0004" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0005" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0006" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走">
+      <SubTexture name="李烈火0027" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0028" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0029" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0030" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0031" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0032" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃">
+      <SubTexture name="李烈火0009" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落" fps="10">
+      <SubTexture name="李烈火0013" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0014" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地">
+      <SubTexture name="李烈火0016" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0016" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0017" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0017" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞">
+      <SubTexture name="李烈火0340" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落">
+      <SubTexture name="李烈火0341" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="14">
+      <SubTexture name="李烈火0342" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0343" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0344" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0345" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0346" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0347" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0348" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0349" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0350" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0351" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤">
+      <SubTexture name="李烈火0333" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0334" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="li50" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0335" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御">
+      <SubTexture name="李烈火0018" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="16">
+      <SubTexture name="李烈火0044" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0045" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0046" gox="12" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;SuChuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:10,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:45,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:4,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:13421772,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:24,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-61,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0047" gox="24" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0048" gox="36" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0049" gox="50" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0050" gox="58" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0052" gox="66" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="李烈火0054" gox="74" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:8,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:45,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:6,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.9,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:28,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-132,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li01" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0055" gox="82" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0057" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0058" gox="100" goy="0" isHitMapGoOn="false" soundName="" stop="stop" golden="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0191" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0192" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0192" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0193" gox="100" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0194" gox="114" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;quanji\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:14,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.3,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-113,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-149,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:4,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0195" gox="128" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0194" gox="142" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0195" gox="156" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0196" gox="170" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0197" gox="170" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0.1"/>
+      <SubTexture name="李烈火0198" gox="170" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="空中攻击" fps="13" cd="" key="J" type="air" other="[{&quot;value&quot;:&quot;null&quot;,&quot;id&quot;:&quot;mp&quot;}]">
+      <SubTexture name="李烈火0373" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0374" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0375" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;Y\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:5,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:2,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:14,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:113,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-122,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:2,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:62,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="bm\huoyan2" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0376" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0377" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0378" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0379" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="瞬步" key="L" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="12" msg="向前方快速突进">
+      <SubTexture name="李烈火0030" gox="0" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0.3"/>
+      <SubTexture name="李烈火0321" gox="87" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0321" gox="174" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0321" gox="261" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0321" gox="350" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0322" gox="400" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="龙摆尾·连" key="U" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="利用精湛的踢技将敌人踢至身前或踢飞">
+      <SubTexture name="李烈火0083" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0084" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0.2"/>
+      <SubTexture name="李烈火0085" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0087" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;R\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:2,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-89,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:-2,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:323,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:150}&quot;]" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0088" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0089" gox="0" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="李烈火0090" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0091" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0"/>
+      <SubTexture name="李烈火0092" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0094" gox="100" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LuanJi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:20,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:18,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:2,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-16,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:1,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:335,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;shan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:14,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:-1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:250,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-163,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:332,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:150}&quot;]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="bm\huiwu" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0095" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0096" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0097" gox="100" goy="0" effects="[]"/>
+    </act>
+    <act name="水面阴生日脚残" key="SU" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="14" msg="向前方发起连续的两次腿击，造成击飞与击退">
+      <SubTexture name="李烈火0200" gox="6" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0201" gox="12" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0202" gox="20" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0204" gox="50" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0205" gox="62" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;3\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:true,\&quot;hitY\&quot;:18,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.3,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.3,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:45,\&quot;intensity\&quot;:1,\&quot;color\&quot;:[],\&quot;y\&quot;:204,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:4,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:243,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0206" gox="74" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0207" gox="86" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0208" gox="100" goy="0" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0209" gox="124" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0210" gox="148" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;quantou\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:-25,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:2.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-2.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:153,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:62,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:3,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:2,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:286,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:250}&quot;]"/>
+      <SubTexture name="李烈火0211" gox="172" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="196" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0213" gox="220" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0214" gox="244" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0215" gox="270" goy="0" isApplyGoPoint="true" effects="[]"/>
+    </act>
+    <act name="难知追巽扇" key="WI" type="land" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="18" msg="向前方快速突进，最后一击造成击飞">
+      <SubTexture name="李烈火0271" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0272" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0273" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0274" gox="50" goy="0" hitPoint="-167,-63 -144,-143 -83,-150 76,-115 111,-94 108,-1 54,38 -29,38 -88,36 -140,4" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;Feng\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:true,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:14,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-17,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" hitEffect="1" hitX="18" turn="0" hitEffectName="" wFight="200"/>
+      <SubTexture name="李烈火0274" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0275" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0276" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0277" gox="250" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0278" gox="300" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;A\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:30,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:15,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:3,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-62,\&quot;intensity\&quot;:1,\&quot;color\&quot;:[],\&quot;y\&quot;:-175,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li01" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0279" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0280" gox="300" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0281" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0282" gox="300" goy="0" effects="[]"/>
+    </act>
+    <act name="两脚踢翻尘世浪" key="O" type="land" cd="25" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="利用高超的武技给予对手连续打击">
+      <SubTexture name="李烈火0082" gox="13" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="2"/>
+      <SubTexture name="李烈火0084" gox="26" goy="0" isApplyGoPoint="false" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;suolong fnf\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:40,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:1,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:5,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:3407871,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-33,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-260,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:10,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;HJG\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.4,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:10066329,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-69,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-318,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:150}&quot;]"/>
+      <SubTexture name="李烈火0085" gox="39" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;hongchongji\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-1,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-108,\&quot;intensity\&quot;:1,\&quot;color\&quot;:[],\&quot;y\&quot;:-2,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:4,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:7,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;HJG\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:0,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;3\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:15,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:60,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:8,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:13421772,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-155,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-179,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:360,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0086" gox="52" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0087" gox="65" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0088" gox="78" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0089" gox="91" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0090" gox="104" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0091" gox="120" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0092" gox="138" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0093" gox="156" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0094" gox="174" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;BaoPo\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:11,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:15,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.3,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.3,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-31,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-118,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:5,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li01" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0095" gox="192" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0096" gox="210" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0200" gox="230" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0201" gox="234" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0202" gox="238" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0203" gox="242" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0205" gox="246" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0206" gox="250" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LongZhanYi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.6,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.6,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:3368652,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:48,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:1,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:8,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0207" gox="265" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0208" gox="280" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0209" gox="295" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0210" gox="310" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;suolongj3\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:4,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.8,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.8,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-123,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-205,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:6,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0211" gox="325" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="340" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0213" gox="355" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0214" gox="370" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="李烈火0167" gox="370" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0169" gox="370" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0169" gox="381" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0171" gox="392" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;shanzhio\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:25,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:9,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:30,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.6,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.6,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-61,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-257,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:500}&quot;]" isHitMapGoOn="false" soundName="li104" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0172" gox="403" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0173" gox="414" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0174" gox="425" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0175" gox="436" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;XuanXuan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:0,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0176" gox="450" goy="0" isApplyGoPoint="true" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0"/>
+      <SubTexture name="李烈火0229" gox="500" goy="-83" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="李烈火0230" gox="550" goy="-166" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0231" gox="600" goy="-250" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0232" gox="600" goy="-250" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;baozha\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:40,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:50,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:16,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:-50,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.6,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.6,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-190,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-345,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:2,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:500}&quot;]" isApplyGoPoint="true" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0233" gox="600" goy="-250" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0234" gox="600" goy="-250" effects="[]" isApplyGoPoint="false"/>
+    </act>
+    <act name="穿霞赤扇开" key="WU" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="14" msg="可以在击飞对手的同时拉近距离">
+      <SubTexture name="李烈火0222" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0222" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0223" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;3\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:22,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:-1.1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-191,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-11,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:150}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;C2\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:19,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:15,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-14,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:150}&quot;]" isHitMapGoOn="false" soundName="li02" stop="unstop" golden="0" turn="0" hitEffectName="" hitPoint="96,-24 61,-116"/>
+      <SubTexture name="李烈火0224" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="bm\huoyan1" stop="unstop" golden="0" turn="0" hitEffectName="" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0225" gox="-14" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0227" gox="-28" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0228" gox="-42" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0229" gox="-56" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0230" gox="-70" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0231" gox="-84" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0016" gox="-100" goy="0" effects="[]" isApplyGoPoint="true"/>
+    </act>
+    <act name="信脚望花行" key="SI" type="land" cd="5" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="一记辅以内力的旋腿可将对手拉到身前并击飞" fps="18">
+      <SubTexture name="李烈火0100" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0101" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0102" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0103" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0104" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;2\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:25,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:40,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.6,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.4,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-240,\&quot;intensity\&quot;:1,\&quot;color\&quot;:[],\&quot;y\&quot;:-139,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:-2,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:320}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0105" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0106" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0107" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0108" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="万里血足踏千浪" key="WO" type="all" cd="30" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="空陆两用绝技，可以给予对手重大损伤的连环踢技">
+      <SubTexture name="李烈火0201" gox="15" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="2"/>
+      <SubTexture name="李烈火0202" gox="30" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0203" gox="45" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0204" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0205" gox="75" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0206" gox="90" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;YiDaoZhan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:45,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-65,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:8,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0207" gox="105" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0208" gox="120" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0209" gox="135" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0210" gox="150" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;suolongj3\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:23,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:10,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-165,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-270,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li01" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0211" gox="165" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0212" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0213" gox="195" goy="0" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0084" gox="210" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0085" gox="225" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0086" gox="240" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0087" gox="255" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;shanzhiutwo\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:23,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.4,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.4,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-249,\&quot;intensity\&quot;:1,\&quot;color\&quot;:[],\&quot;y\&quot;:-123,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:329,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li0" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0088" gox="270" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0089" gox="285" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0090" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0092" gox="315" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0093" gox="330" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0094" gox="345" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;dianzi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:18,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:3,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:80,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-46,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:4,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:332,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li104" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0095" gox="360" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0096" gox="375" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0332" gox="400" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;BaDao\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:15,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:3,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:25,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.3,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.3,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:2,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-38,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0331" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0326" gox="400" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0111" gox="400" goy="-30" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0112" gox="400" goy="-30" effects="[]"/>
+      <SubTexture name="李烈火0113" gox="400" goy="-30" effects="[]"/>
+      <SubTexture name="李烈火0114" gox="400" goy="-30" effects="[]"/>
+      <SubTexture name="李烈火0115" gox="400" goy="-30" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;B\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:25,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:15,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:15,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:82,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-116,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:200}&quot;]" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0231" gox="400" goy="-30" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0230" gox="390" goy="-34" effects="[]"/>
+      <SubTexture name="李烈火0229" gox="380" goy="-38" effects="[]"/>
+      <SubTexture name="李烈火0228" gox="370" goy="-42" effects="[]"/>
+      <SubTexture name="李烈火0232" gox="360" goy="-46" effects="[]"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LingYa\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:15,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:5,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:10,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:137,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-119,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[]"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[]"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[]"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[]"/>
+      <SubTexture name="李烈火0233" gox="350" goy="-50" effects="[]"/>
+      <SubTexture name="李烈火0234" gox="350" goy="-50" effects="[]"/>
+    </act>
+    <act name="始于足下" key="U" type="air" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="18" msg="可以在空中利用连续踢技击飞或击落对手">
+      <SubTexture name="李烈火0205" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0205" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0206" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0207" gox="0" goy="0" isApplyGoPoint="false" effects="[]"/>
+      <SubTexture name="李烈火0208" gox="0" goy="0" isApplyGoPoint="true" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;B\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:2,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.9,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.9,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:104,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-66,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:1,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0202" gox="12" goy="-12" effects="[]"/>
+      <SubTexture name="李烈火0203" gox="24" goy="-24" effects="[]"/>
+      <SubTexture name="李烈火0204" gox="36" goy="-36" effects="[]"/>
+      <SubTexture name="李烈火0205" gox="50" goy="-50" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0206" gox="58" goy="-58" effects="[]"/>
+      <SubTexture name="李烈火0206" gox="66" goy="-66" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;suolongKU\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:5,\&quot;isFollow\&quot;:true,\&quot;hitY\&quot;:15,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.8,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-71,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:60,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:7,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:true,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:262,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li01" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0207" gox="74" goy="-74" effects="[]"/>
+      <SubTexture name="李烈火0208" gox="82" goy="-82" effects="[]" isApplyGoPoint="false"/>
+      <SubTexture name="李烈火0208" gox="90" goy="-90" effects="[]"/>
+      <SubTexture name="李烈火0209" gox="100" goy="-100" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0210" gox="105" goy="-105" effects="[]"/>
+      <SubTexture name="李烈火0210" gox="110" goy="-110" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;Y\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:10,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:15,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:-25,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:74,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-87,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:1,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:225,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="li104" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0211" gox="115" goy="-115" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="120" goy="-120" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="120" goy="-120" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="120" goy="-120" effects="[]"/>
+      <SubTexture name="李烈火0212" gox="120" goy="-120" effects="[]"/>
+      <SubTexture name="李烈火0213" gox="120" goy="-120" effects="[]"/>
+      <SubTexture name="李烈火0214" gox="120" goy="-120" effects="[]"/>
+    </act>
+    <act name="狮王争霸" key="P" type="land" cd="9999" other="[{&quot;value&quot;:&quot;5&quot;,&quot;id&quot;:&quot;mp&quot;}]" msg="舞狮" fps="16">
+      <SubTexture name="李烈火0387" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0388" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0389" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0390" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0391" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0392" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0393" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LongZhanYi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:1,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:-1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:0,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="bm\huidongbangzi1" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0394" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0395" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0396" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0397" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0398" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;LongZhanYi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:1,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1.2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1.2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16777215,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:0,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="bm\huidongbangzi1" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0399" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0400" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0401" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0402" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0403" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0404" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;baoqi\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:16,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:13421772,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-109,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-229,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]"/>
+      <SubTexture name="李烈火0405" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0406" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;penfa\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:15,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:5,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:30,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:2,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:2,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-309,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-682,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="bm\huoyan3" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0407" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0408" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0409" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0410" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0411" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0412" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0409" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0409" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0412" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0412" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="凤翼天凰扇" key="SO" type="land" cd="25" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="抛出扇子后向前方高速位移，在位移距离内造成多段伤害">
+      <SubTexture name="李烈火0297" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="2" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0298" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0299" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0300" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0301" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0302" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0303" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0304" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="li1021" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0305" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0306" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0307" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0308" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0309" gox="430" goy="20" isApplyGoPoint="true" hitPoint="-422,-100 -425,-1 13,-3 42,-82 42,-82" straight="80" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;shan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:2,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:0,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor\&quot;,\&quot;addColor\&quot;:16724787,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-338,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-78,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]"/>
+      <SubTexture name="李烈火0310" gox="430" goy="20" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;huobao\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:3,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.8,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-470,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-378,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:2,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:200,\&quot;rotation\&quot;:345,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;huobao\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:3,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.5,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.82,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-320,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-457,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:200,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;,&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;huobao\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:20,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:3,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:20,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.52,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.9,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:-151,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-498,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:200,\&quot;rotation\&quot;:23,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="bm\huoyan3" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0311" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0312" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0313" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0313" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0313" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0313" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0313" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0314" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0315" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0316" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0317" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0318" gox="430" goy="20" effects="[]"/>
+      <SubTexture name="李烈火0318" gox="430" goy="20" effects="[]"/>
+    </act>
+    <act name="南明离火扇" key="I" type="land" cd="7" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16" msg="造成多段伤害并击飞对手">
+      <SubTexture name="李烈火0247" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0248" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0249" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0250" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0251" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0252" gox="0" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;B\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:12,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:6,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:22,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.8,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:0.8,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:13421772,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:162,\&quot;intensity\&quot;:0,\&quot;color\&quot;:[],\&quot;y\&quot;:-87,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:3,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:360,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:125}&quot;]" isHitMapGoOn="false" soundName="li104" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0253" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="bm\huoyan2" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="李烈火0254" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0255" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0256" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0257" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0258" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0259" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="双龙出海" key="SJ" type="land" cd="6" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]">
+      <SubTexture name="李烈火0167" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0168" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0169" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0170" gox="30" goy="0" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;baozha\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:13,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:0.6,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:330,\&quot;intensity\&quot;:null,\&quot;color\&quot;:[],\&quot;y\&quot;:-206,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:0,\&quot;goy\&quot;:0,\&quot;hitX\&quot;:16,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:91,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:250}&quot;]"/>
+      <SubTexture name="李烈火0171" gox="60" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="李烈火0172" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0173" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0174" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0175" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0176" gox="60" goy="0" effects="[]"/>
+    </act>
+    <act name="火焰扇" key="WJ" type="all" cd="8" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]">
+      <SubTexture name="李烈火0222" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="李烈火0223" gox="0" goy="0" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0223" gox="25" goy="-25" effects="[]"/>
+      <SubTexture name="李烈火0224" gox="50" goy="-50" effects="[&quot;{\&quot;findName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;lanyan\&quot;,\&quot;isABlow\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;unhit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:12,\&quot;isFollow\&quot;:false,\&quot;hitY\&quot;:18,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;scaleX\&quot;:1,\&quot;isLaunch\&quot;:false,\&quot;blow\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;scaleY\&quot;:1,\&quot;blendMode\&quot;:\&quot;changeColor2\&quot;,\&quot;addColor\&quot;:16737792,\&quot;through\&quot;:false,\&quot;time\&quot;:0,\&quot;x\&quot;:50,\&quot;intensity\&quot;:null,\&quot;color\&quot;:[],\&quot;y\&quot;:-42,\&quot;srcColor\&quot;:-1,\&quot;gox\&quot;:3,\&quot;goy\&quot;:-3,\&quot;hitX\&quot;:5,\&quot;isBreak\&quot;:false,\&quot;isLockActionShow\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;mFight\&quot;:0,\&quot;rotation\&quot;:0,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;wFight\&quot;:0}&quot;]"/>
+      <SubTexture name="李烈火0225" gox="75" goy="-75" effects="[]"/>
+      <SubTexture name="李烈火0226" gox="100" goy="-100" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0227" gox="110" goy="-110" effects="[]"/>
+      <SubTexture name="李烈火0228" gox="120" goy="-120" effects="[]"/>
+      <SubTexture name="李烈火0229" gox="130" goy="-130" isApplyGoPoint="true" effects="[]"/>
+      <SubTexture name="李烈火0230" gox="130" goy="-130" effects="[]"/>
+      <SubTexture name="李烈火0231" gox="130" goy="-130" effects="[]"/>
+    </act>
+  </action>
+</Role>
