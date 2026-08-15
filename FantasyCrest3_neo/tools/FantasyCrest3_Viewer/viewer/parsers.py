@@ -152,7 +152,8 @@ def parse_role_data(role_file: Path) -> RoleData:
     if action_node is not None:
         for act in action_node.findall("act"):
             frames: list[FrameData] = []
-            for i, frame in enumerate(act.findall("SubTexture"), start=1):
+            # 原始代码: for i, frame in enumerate(act.findall("SubTexture"), start=1):
+            for i, frame in enumerate(act.findall("SubTexture"), start=0):  # // 帧序号从0开始
                 attrs = dict(frame.attrib)
                 effects = parse_effects_text(attrs.get("effects", ""))
                 frames.append(FrameData(index=i, attrs=attrs, effects=effects))

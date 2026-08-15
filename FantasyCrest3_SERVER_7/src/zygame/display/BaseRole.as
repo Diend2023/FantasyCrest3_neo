@@ -29,6 +29,7 @@ package zygame.display
    import zygame.data.EncryptCEData;
    import zygame.data.GameEXPData;
    import zygame.data.RoleAttributeData;
+   import zygame.data.RoleFrame; //
    import zygame.data.RoleFrameGroup;
    import zygame.data.RoleXMLData;
    import zygame.debug.Debug;
@@ -1698,6 +1699,19 @@ package zygame.display
       {
          return this._frame;
       }
+
+      public function get currentTextureName() : String //
+      { //
+         if(this.roleXmlData) //
+         { //
+            var roleFrame:RoleFrame = this.roleXmlData.getFrameAt(this.actionName,this.currentFrame); //
+            if(roleFrame) //
+            { //
+               return roleFrame.name; //
+            } //
+         } //
+         return null; //
+      } //
       
       override public function createBody(vertice:Vector.<Vec2>, type:BodyType = null) : void
       {

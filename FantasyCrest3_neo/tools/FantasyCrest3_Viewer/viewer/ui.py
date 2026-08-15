@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import tkinter as tk
+import tkinter.ttk as ttk  # // 新增：用于创建支持自定义深色配色的滚动条
 from tkinter import messagebox, filedialog
 
 import customtkinter as ctk
@@ -217,7 +218,40 @@ class RoleViewerApp(ctk.CTk):
             bg="#2b2b2b", fg="white", selectbackground="#1f538d",
             highlightthickness=0, borderwidth=1
         )
-        self.all_frames_listbox.grid(row=1, column=1, sticky="nsew", padx=10, pady=(0, 10))
+        # 原始代码
+        # self.all_frames_listbox.grid(row=1, column=1, sticky="nsew", padx=10, pady=(0, 10))
+        self.all_frames_listbox.grid(row=1, column=1, sticky="nsew", padx=(10, 26), pady=(0, 10))  # // 修改：右侧留出滚动条位置
+        # 原始代码，tk.Scrollbar 在 Windows 视觉样式下无法自定义颜色（显示为白色）
+        # self.all_frames_scrollbar = tk.Scrollbar(
+        #     parent, orient="vertical", width=16,
+        #     command=self.all_frames_listbox.yview,
+        #     bg="#2b2b2b", troughcolor="#2b2b2b", activebackground="#1f538d",
+        # )
+        self._scroll_style = ttk.Style()  # // 新增：ttk 深色滚动条样式
+        try:  # // 新增：clam 主题才允许自定义滚动条配色
+            self._scroll_style.theme_use("clam")  # // 新增
+        except tk.TclError:  # // 新增
+            pass  # // 新增
+        self._scroll_style.configure(  # // 新增
+            "Dark.Vertical.TScrollbar",  # // 新增
+            # 原始代码，滑块与轨道同为 #2b2b2b，滑块平时不可见
+            # background="#2b2b2b", troughcolor="#2b2b2b",
+            background="#6f6f6f", troughcolor="#2b2b2b",  # // 修改：平时色取原悬停色，再亮一档
+            bordercolor="#2b2b2b", lightcolor="#6f6f6f", darkcolor="#6f6f6f",  # // 修改：高亮/阴影与滑块同色
+            arrowcolor="#8a8a8a", gripcount=0,  # // 新增
+        )  # // 新增
+        self._scroll_style.map(  # // 新增：锁定悬停/按下状态也为深色，避免变回系统默认白色
+            "Dark.Vertical.TScrollbar",  # // 新增
+            background=[("pressed", "#7f7f7f"), ("active", "#7f7f7f")],  # // 修改：悬停/按下再亮一档
+        )  # // 新增
+        self.all_frames_scrollbar = ttk.Scrollbar(  # // 新增：改用 ttk 滚动条以支持深色
+            parent, orient="vertical", style="Dark.Vertical.TScrollbar",  # // 新增
+            command=self.all_frames_listbox.yview,  # // 新增
+        )  # // 新增
+        # 原始代码，sticky=ns 会在单元格内水平居中，导致滚动条跑到列表中间
+        # self.all_frames_scrollbar.grid(row=1, column=1, sticky="ns", padx=(0, 10), pady=(0, 10))
+        self.all_frames_scrollbar.grid(row=1, column=1, sticky="nse", padx=(0, 10), pady=(0, 10))  # // 修改：sticky 加 e，垂直拉伸且水平靠右
+        self.all_frames_listbox.configure(yscrollcommand=self.all_frames_scrollbar.set)  # // 新增
         self.all_frames_listbox.bind("<<ListboxSelect>>", self.on_all_frame_select)
 
         title_frame = ctk.CTkFrame(parent, fg_color="transparent")
@@ -581,7 +615,8 @@ class RoleViewerApp(ctk.CTk):
         self.atlas_cache[role_id] = atlas_frames
         self.atlas_map_cache[role_id] = {f.name: f for f in atlas_frames}
 
-        for idx, frame in enumerate(atlas_frames, start=1):
+        # 原始代码: for idx, frame in enumerate(atlas_frames, start=1):
+        for idx, frame in enumerate(atlas_frames, start=0):  # // 序号从0开始
             self.all_frames_listbox.insert(
                 tk.END,
                 f"#{idx:03d} {frame.name} ({frame.width}x{frame.height}) @({frame.x},{frame.y})",
