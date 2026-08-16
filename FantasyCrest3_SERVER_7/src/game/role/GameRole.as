@@ -910,6 +910,11 @@ package game.role
             this.goldenTime = 0.15;
          }
       }
+
+      public function get isBackJump() : Boolean //
+      { //
+         return _isBackJump; //
+      } //
       
       override public function onMove() : void
       {

@@ -1,0 +1,577 @@
+<Role type="sprite" scale="0.7" fps="60" hitEffectName="">
+  <class src="game.role.Hakumen"/>
+  <content>
+    <xml path="npc/hakumen.xml"/>
+    <image path="npc/hakumen.png"/>
+  </content>
+  <loads>
+    <sprites path="effect/xkzn"/>
+    <file path="sound/zsyinxiao/hase23.mp3"/>
+  </loads>
+  <action>
+    <act name="待机" fps="10">
+      <!-- 待机1 -->
+      <SubTexture name="ha000_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha000_11" gox="0" goy="0" effects="[]"/>
+      <!-- 待机2 -->
+      <SubTexture name="ha001_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha001_09" gox="0" goy="0" effects="[]"/>
+      <!-- 嘲讽1 -->
+      <SubTexture name="ha300_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha300_12" gox="0" goy="0" effects="[]"/>
+      <!-- 嘲讽2 -->
+      <SubTexture name="ha450_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_16" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_20" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_21" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_22" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_23" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha450_23" gox="0" goy="0" effects="[]"/>
+      <!-- 嘲讽3 -->
+      <SubTexture name="ha610_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_16" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha610_18" gox="0" goy="0" effects="[]"/>
+      <!-- 嘲讽4 -->
+      <SubTexture name="ha611_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha611_14" gox="0" goy="0" effects="[]"/>
+      <!-- 嘲讽5 -->
+      <SubTexture name="ha615_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha615_09" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="行走" fps="12">
+      <SubTexture name="ha030_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha030_08" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="跳跃" fps="20">
+      <SubTexture name="ha020_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_03" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="降落" fps="12">
+      <SubTexture name="ha020_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha020_07" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="落地" fps="10">
+      <SubTexture name="ha023_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha023_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha023_00" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="打飞" fps="20">
+      <SubTexture name="ha060_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha060_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha060_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha060_04" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="倒落" fps="16">
+      <SubTexture name="ha060_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha060_06" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="起身" fps="16">
+      <SubTexture name="ha061_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha061_10" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="受伤" fps="24">
+      <!-- 受伤1 -->
+      <SubTexture name="ha000_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha050_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha050_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha050_03" gox="0" goy="0" effects="[]"/>
+      <!-- 受伤2 -->
+      <SubTexture name="ha052_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha052_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha052_03" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="防御" fps="10">
+      <SubTexture name="ha043_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha043_03" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="空中攻击" fps="24">
+      <SubTexture name="ha251_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha251_08" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="瞬步" key="瞬步" type="all" fps="16">
+      <SubTexture name="ha032_01" gox="25" goy="0" effects="[]"/>
+      <SubTexture name="ha032_02" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="ha032_02" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha032_03" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="ha032_03" gox="250" goy="0" effects="[]"/>
+      <SubTexture name="ha032_04" gox="350" goy="0" effects="[]"/>
+      <SubTexture name="ha032_04" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha032_05" gox="450" goy="0" effects="[]"/>
+      <SubTexture name="ha032_06" gox="475" goy="0" effects="[]"/>
+      <SubTexture name="ha032_07" gox="500" goy="0" effects="[]"/>
+    </act>
+    <act name="突进" type="air" cd="999" fps="16">
+      <SubTexture name="ha035_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="普通攻击" fps="24">
+      <SubTexture name="ha214_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_05" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="ha214_06" gox="70" goy="0" effects="[]"/>
+      <SubTexture name="ha214_07" gox="80" goy="0" effects="[]"/>
+      <SubTexture name="ha214_08" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_09" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_10" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_11" gox="90" goy="0" stop="stop" effects="[]"/>
+      <SubTexture name="ha210_00" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_01" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_02" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_03" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_03" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_03" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha210_04" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha210_05" gox="190" goy="0" effects="[]"/>
+      <SubTexture name="ha210_06" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha210_07" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha210_08" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha210_09" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha210_10" gox="200" goy="0" stop="stop" effects="[]"/>
+      <SubTexture name="ha211_00" gox="210" goy="0" effects="[]"/>
+      <SubTexture name="ha211_01" gox="220" goy="0" effects="[]"/>
+      <SubTexture name="ha211_02" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_03" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_03" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_03" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_04" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_05" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_06" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_07" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_08" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_09" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_10" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_11" gox="230" goy="0" effects="[]"/>
+      <SubTexture name="ha211_12" gox="230" goy="0" effects="[]"/>
+    </act>
+    <act name="2C" key="SJ" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha232_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_16" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_17" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="C" key="WJ" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha202_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_16" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="J2A" key="SJ" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha260_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha260_10" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="JC" key="WJ" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha406_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_09" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="J2C" key="WU" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha252_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha252_12" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="斩神5D" key="U" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="12">
+      <SubTexture name="ha203_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_01" gox="0" goy="0" effects="[&quot;{\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;cardFrame\&quot;:0,\&quot;time\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;gox\&quot;:0,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;isLaunch\&quot;:false,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;stiff\&quot;:0,\&quot;hitX\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;canHit\&quot;:false,\&quot;mFight\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;wFight\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;through\&quot;:false,\&quot;hitY\&quot;:0,\&quot;name\&quot;:\&quot;xkzn\&quot;,\&quot;scaleX\&quot;:0.9,\&quot;scaleY\&quot;:0.9,\&quot;rotation\&quot;:0,\&quot;unhit\&quot;:true,\&quot;goy\&quot;:0,\&quot;blow\&quot;:false,\&quot;x\&quot;:-71,\&quot;addColor\&quot;:0,\&quot;fadeIn\&quot;:true,\&quot;intensity\&quot;:0,\&quot;fadeOut\&quot;:true,\&quot;srcColor\&quot;:-1,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;y\&quot;:-261}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha203_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_20" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_21" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_22" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="斩神6D" key="WU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="12">
+      <SubTexture name="ha213_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_15" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="斩神2D" key="SU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="12">
+      <SubTexture name="ha233_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_20" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_21" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_22" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="斩神JD" key="U" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="12">
+      <SubTexture name="ha253_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_15" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="空投" key="SU" type="air" cd="6" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha321_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha321_12" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="红莲214A" key="→→I" type="land" cd="0" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha400_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha400_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha400_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha400_03" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="ha400_04" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha400_05" gox="250" goy="0" effects="[]"/>
+      <SubTexture name="ha400_06" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha400_07" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha400_08" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha400_09" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha400_10" gox="300" goy="0" effects="[]"/>
+    </act>
+    <act name="残铁41236C" key="↓→I" type="land" cd="0" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha402_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_10" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_11" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_13" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_14" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_16" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_19" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha402_20" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="鬼蹴·阍魔623A" key="→→↑I" type="land" cd="0" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha403_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha403_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha403_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha403_03" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="ha403_04" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha403_03" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha403_04" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_05" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_06" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_07" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_08" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_09" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_10" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_11" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_12" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_13" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_14" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_15" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_16" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_17" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_18" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_19" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_20" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha403_21" gox="300" goy="0" effects="[]"/>
+    </act>
+    <act name="鵺柳214D" key="→→↓I" type="land" cd="0" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha409_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha409_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha409_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha409_03" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="ha409_04" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha409_03" gox="150" goy="0" effects="[]"/>
+      <SubTexture name="ha409_04" gox="200" goy="0" effects="[]"/>
+      <SubTexture name="ha409_03" gox="250" goy="0" effects="[]"/>
+      <SubTexture name="ha409_04" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha409_03" gox="350" goy="0" effects="[]"/>
+      <SubTexture name="ha409_04" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_05" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_06" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_07" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_08" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_09" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_10" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_11" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_12" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_13" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_14" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_15" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_16" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_17" gox="400" goy="0" effects="[]"/>
+      <SubTexture name="ha409_18" gox="400" goy="0" effects="[]"/>
+    </act>
+    <act name="莲华236B" key="→↑I" type="land" cd="0" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;N&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="24">
+      <SubTexture name="ha401_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha401_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha410_09" gox="0" goy="0" effects="[]"/>
+    </act>
+  </action>
+</Role>
