@@ -15,6 +15,8 @@ package game.role
 
       private var KLMoveFrameCount:int = 0
 
+      private var KWLMoveFrameCount:int = 0
+
       private var _keyQueue:Array = [];
 
       private const _keyObj:Object = {65:"←",68:"→",87:"↑",83:"↓",74:"J",75:"K",76:"L",85:"U",73:"I",79:"O",80:"P"};
@@ -89,10 +91,6 @@ package game.role
                     break;
             }
         }
-        if(this.actionName == "跳跃" && this.isBackJump)
-        {
-            this.go(this.roleXmlData.getActionLength("跳跃") - 1);
-        }
         if(this.inFrame("降落", this.roleXmlData.getActionLength("降落") - 1))
         {
             this.currentFrame -= 2;
@@ -127,6 +125,18 @@ package game.role
         if(actionName == "斩神JD" || actionName == "空投")
         {
             KLMoveFrameCount = 0;
+        }
+        if(KWLMoveFrameCount > 0)
+        {
+            if(this.cardFrame <= 0)
+            {
+                this.xMove(10 * (this.scaleX > 0 ? -1 : 1));
+                KWLMoveFrameCount -= 1;
+            }
+        }
+        if(actionName == "斩神JD" || actionName == "空投")
+        {
+            KWLMoveFrameCount = 0;
         }
       }
 
@@ -186,12 +196,16 @@ package game.role
             if(this.attribute.getCD("突进") <= 0)
             {
                 target = "突进";
-                KLMoveFrameCount = 45;
+                KLMoveFrameCount = 40;
             }
             else
             {
                 return;
             }
+        }
+        if(target == "空中后撤" && this.attribute.getCD("空中后撤") <= 0)
+        {
+            KWLMoveFrameCount = 20;
         }
         super.playSkill(target);
       }

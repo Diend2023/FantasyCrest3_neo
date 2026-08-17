@@ -396,7 +396,7 @@ package game.view
          hLayout.verticalAlign = VerticalAlign.MIDDLE;
          hLayout.paddingLeft = 20;
          container.layout = hLayout;
-         container.height = 25;
+         container.height = 20;
 
          var textFormat:TextFormat = new TextFormat(GameFont.FONT_NAME, 20, 0xFFFFFF);
          textFormat.horizontalAlign = "left";

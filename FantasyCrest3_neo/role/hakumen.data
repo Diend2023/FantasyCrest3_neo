@@ -246,16 +246,28 @@
       <SubTexture name="ha251_08" gox="0" goy="0" effects="[]"/>
     </act>
     <act name="瞬步" key="瞬步" type="all" fps="16">
-      <SubTexture name="ha032_01" gox="25" goy="0" effects="[]"/>
+      <SubTexture name="ha032_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha032_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha032_02" gox="50" goy="0" effects="[]"/>
-      <SubTexture name="ha032_02" gox="100" goy="0" effects="[]"/>
       <SubTexture name="ha032_03" gox="150" goy="0" effects="[]"/>
       <SubTexture name="ha032_03" gox="250" goy="0" effects="[]"/>
       <SubTexture name="ha032_04" gox="350" goy="0" effects="[]"/>
-      <SubTexture name="ha032_04" gox="400" goy="0" effects="[]"/>
-      <SubTexture name="ha032_05" gox="450" goy="0" effects="[]"/>
-      <SubTexture name="ha032_06" gox="475" goy="0" effects="[]"/>
+      <SubTexture name="ha032_04" gox="450" goy="0" effects="[]"/>
+      <SubTexture name="ha032_05" gox="475" goy="0" effects="[]"/>
+      <SubTexture name="ha032_06" gox="500" goy="0" effects="[]"/>
       <SubTexture name="ha032_07" gox="500" goy="0" effects="[]"/>
+    </act>
+    <act name="地面后撤" key="WL" type="land" cd="6" fps="16">
+      <SubTexture name="ha033_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha033_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha033_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha033_02ex01" gox="-75" goy="0" effects="[]"/>
+      <SubTexture name="ha033_02ex02" gox="-125" goy="0" effects="[]"/>
+      <SubTexture name="ha033_02ex01" gox="-175" goy="0" effects="[]"/>
+      <SubTexture name="ha033_02ex02" gox="-225" goy="0" effects="[]"/>
+      <SubTexture name="ha033_03" gox="-250" goy="0" effects="[]"/>
+      <SubTexture name="ha033_04" gox="-275" goy="0" effects="[]"/>
+      <SubTexture name="ha033_05" gox="-275" goy="0" effects="[]"/>
     </act>
     <act name="突进" type="air" cd="999" fps="16">
       <SubTexture name="ha035_00" gox="0" goy="0" effects="[]"/>
@@ -267,6 +279,13 @@
       <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha035_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha035_01ex01" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="空中后撤" key="WL" type="air" cd="6" fps="12">
+      <SubTexture name="ha036_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha036_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha036_01ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha036_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha036_01ex01" gox="0" goy="0" effects="[]"/>
     </act>
     <act name="普通攻击" fps="24">
       <SubTexture name="ha214_00" gox="0" goy="0" effects="[]"/>
