@@ -332,7 +332,8 @@ package zygame.display
             r2 = r as BaseRole;
             if(r2 && v.y < 0 && v.x > -0.7 && v.x < 0.7 && r2.jumpMath < 0)
             {
-               r2.unJump();
+               // r2.unJump();
+               r2.unJump(false,true); // 保留 _jumpMath 作为下落深度指示，供 jumpOff 判断是否播放落地动作
             }
          }
          return flag;

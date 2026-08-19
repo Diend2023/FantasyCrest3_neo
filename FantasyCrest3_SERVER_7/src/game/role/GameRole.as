@@ -518,7 +518,8 @@ package game.role
             }
             else if(isKeyDown(68))
             {
-               this.scaleY = 1;
+               // this.scaleY = 1;
+               this.scaleX = 1; //
             }
          }
          if(group && group.key && group.key.indexOf("O") != -1 && actionName != str)
@@ -701,10 +702,12 @@ package game.role
          super.jumped();
       }
       
-      override public function unJump(unLock:Boolean = false) : void
+      // override public function unJump(unLock:Boolean = false) : void
+      override public function unJump(unLock:Boolean = false, keepJumpMath:Boolean = false) : void // 透传 keepJumpMath 以保留下落深度
       {
          _jumpCount = _jumpCountMax;
-         super.unJump(unLock);
+         // super.unJump(unLock);
+         super.unJump(unLock, keepJumpMath); //
       }
       
       public function set jumpTime(i:int) : void

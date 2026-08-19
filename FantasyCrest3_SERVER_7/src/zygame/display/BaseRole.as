@@ -554,6 +554,7 @@ package zygame.display
       private function onMoved() : void
       {
          _isMoveing = true;
+         var preJump:Boolean = isJump(); // 记录进入本帧时的跳跃状态，用于检测"从空中落到地面"
          if(_oldX == this.body.position.x && _oldY == this.body.position.y)
          {
             if(_testCount > 0)
@@ -585,8 +586,10 @@ package zygame.display
                   lastTimeX = 0;
                   return;
                }
-               if(!_lock && _jumpBoolean || isInjured())
+               // if(!_lock && _jumpBoolean || isInjured())
+               if(!_lock && preJump && !isJump() || isInjured()) // 上一帧在空中、本帧触地，或受伤时强制落地
                {
+                  _jumpBoolean = true; // 恢复标志：本帧确实从空中落回地面，供 jumpOff 内条件判断使用
                   jumpOff();
                }
             }
@@ -1596,7 +1599,8 @@ package zygame.display
          }
       }
       
-      public function unJump(unLock:Boolean = false) : void
+      // public function unJump(unLock:Boolean = false) : void
+      public function unJump(unLock:Boolean = false, keepJumpMath:Boolean = false) : void // keepJumpMath 为 true 时保留 _jumpMath（用于保留下落深度）
       {
          if(!this.isJump())
          {
@@ -1611,7 +1615,11 @@ package zygame.display
             breakAction();
          }
          _jumpBoolean = false;
-         _jumpMath = 0;
+         // _jumpMath = 0;
+         if(!keepJumpMath) //
+         { //
+            _jumpMath = 0; //
+         } //
          _jumpHit = false;
          if(unLock)
          {

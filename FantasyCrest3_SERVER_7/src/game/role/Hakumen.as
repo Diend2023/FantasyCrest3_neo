@@ -10,12 +10,10 @@ package game.role
 
    public class Hakumen extends GameRole
    {
-      
-      private var hasDefense:Boolean = false;
 
-      private var KLMoveFrameCount:int = 0
+      private var _KLMoveFrameCount:int = 0
 
-      private var KWLMoveFrameCount:int = 0
+      private var _KWLMoveFrameCount:int = 0
 
       private var _keyQueue:Array = [];
 
@@ -35,7 +33,6 @@ package game.role
       {
         if(this.inFrame("防御",8) && this.isDefense())
         {
-            this.hasDefense = true;
             this.go(3);
         }
         super.onFrame();
@@ -81,13 +78,13 @@ package game.role
                     this.go(0);
                     break;
                 case 106:
-                    this.go(this.currentFrame - 6);
+                    this.currentFrame -= 6;
                     break;
                 case 122:
-                    this.go(this.currentFrame - 3);
+                    this.currentFrame -= 3;
                     break;
                 case 133:
-                    this.go(this.currentFrame - 4);
+                    this.currentFrame -= 4;
                     break;
             }
         }
@@ -110,33 +107,35 @@ package game.role
                 this.currentFrame -= 1;
             }
         }
-        if(KLMoveFrameCount > 0)
-        {
-            if(this.cardFrame <= 0)
-            {
-                this.xMove(10 * (this.scaleX > 0 ? 1 : -1));
-                KLMoveFrameCount -= 1;
-            }
-        }
         if(!this.isJump())
         {
             this.attribute.clearCD("突进")
         }
-        if(actionName == "斩神JD" || actionName == "空投")
+        if(actionName == "JD斩神" || actionName == "空投")
         {
-            KLMoveFrameCount = 0;
+            _KLMoveFrameCount = 0;
+            _KWLMoveFrameCount = 0;
         }
-        if(KWLMoveFrameCount > 0)
+      }
+
+      override public function onMove():void
+      {
+        super.onMove()
+        if(_KLMoveFrameCount > 0)
+        {
+            if(this.cardFrame <= 0)
+            {
+                this.xMove(10 * (this.scaleX > 0 ? 1 : -1));
+                _KLMoveFrameCount -= 1;
+            }
+        }
+        if(_KWLMoveFrameCount > 0)
         {
             if(this.cardFrame <= 0)
             {
                 this.xMove(10 * (this.scaleX > 0 ? -1 : 1));
-                KWLMoveFrameCount -= 1;
+                _KWLMoveFrameCount -= 1;
             }
-        }
-        if(actionName == "斩神JD" || actionName == "空投")
-        {
-            KWLMoveFrameCount = 0;
         }
       }
 
@@ -163,25 +162,25 @@ package game.role
          }
          if(key == 73)
          {
-            if(_keyQueue.join("").indexOf("→→I") != -1 || _keyQueue.join("").indexOf("←←I") != -1)
+            if((_keyQueue.join("").indexOf("→→I") != -1 || _keyQueue.join("").indexOf("←←I") != -1) && this.actionName != "214A红莲")
             {
-               this.playSkill("红莲214A");
+               this.playSkill("214A红莲");
             }
-            if(_keyQueue.join("").indexOf("↓→I") != -1 || _keyQueue.join("").indexOf("↓←I") != -1)
+            if((_keyQueue.join("").indexOf("↓→I") != -1 || _keyQueue.join("").indexOf("↓←I") != -1) && this.actionName != "41236C残铁")
             {
-               this.playSkill("残铁41236C");
+               this.playSkill("41236C残铁");
             }
-            if(_keyQueue.join("").indexOf("→→↑I") != -1 || _keyQueue.join("").indexOf("←←↑I") != -1)
+            if((_keyQueue.join("").indexOf("→→↑I") != -1 || _keyQueue.join("").indexOf("←←↑I") != -1) && this.actionName != "623A鬼蹴·阍魔")
             {
-               this.playSkill("鬼蹴·阍魔623A");
+               this.playSkill("623A鬼蹴·阍魔");
             }
-            if(_keyQueue.join("").indexOf("→→↓I") != -1 || _keyQueue.join("").indexOf("←←↓I") != -1)
+            if((_keyQueue.join("").indexOf("→→↓I") != -1 || _keyQueue.join("").indexOf("←←↓I") != -1) && this.actionName != "214D鵺柳")
             {
-               this.playSkill("鵺柳214D");
+               this.playSkill("214D鵺柳");
             }
-            if(_keyQueue.join("").indexOf("→↑I") != -1 || _keyQueue.join("").indexOf("←↑I") != -1)
+            if((_keyQueue.join("").indexOf("→↑I") != -1 || _keyQueue.join("").indexOf("←↑I") != -1) && this.actionName != "236B莲华")
             {
-               this.playSkill("莲华236B");
+               this.playSkill("236B莲华");
             }
             _keyQueue = [];
          }
@@ -196,7 +195,8 @@ package game.role
             if(this.attribute.getCD("突进") <= 0)
             {
                 target = "突进";
-                KLMoveFrameCount = 40;
+                _KLMoveFrameCount = 40;
+                _KWLMoveFrameCount = 0;
             }
             else
             {
@@ -205,7 +205,8 @@ package game.role
         }
         if(target == "空中后撤" && this.attribute.getCD("空中后撤") <= 0)
         {
-            KWLMoveFrameCount = 20;
+            _KWLMoveFrameCount = 20;
+            _KLMoveFrameCount = 0;
         }
         super.playSkill(target);
       }
