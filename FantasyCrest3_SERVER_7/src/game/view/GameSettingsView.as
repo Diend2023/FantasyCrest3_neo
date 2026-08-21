@@ -35,13 +35,15 @@ package game.view
       private var _soundCheck:Check;
       private var _bgmCheck:Check;
       private var _bgraCheck:Check;
-      private var _AntiAliasingCheck:Check;
+      private var _antiAliasingCheck:Check;
       private var _NNICheck:Check;
-      private var _CloseVibrationCheck:Check;
+      private var _closeVibrationCheck:Check;
+      private var _recordingCheck:Check;
 
       private static var _isBGRAEnabled:Boolean = false; // 超真全彩默认关闭
       private static var _isNNIEnabled:Boolean = false; // 硬边缘默认关闭
       private static var _isCloseVibration:Boolean = false; // 抗锯齿默认关闭
+      private static var _isRecording:Boolean = false // 开启录制默认关闭
 
       public function GameSettingsView()
       {
@@ -99,8 +101,15 @@ package game.view
          var closeVibrationItem:LayoutGroup = createSettingItem("关闭震动", "toggle", _isCloseVibration, function(value:Boolean):void{
             GameSettingsView.setCloseVibration(value);
          });
-         _CloseVibrationCheck = closeVibrationItem.getChildAt(1) as Check;
+         _closeVibrationCheck = closeVibrationItem.getChildAt(1) as Check;
          mainContainer.addChild(closeVibrationItem);
+
+         // 开启录制
+         var recordItem:LayoutGroup = createSettingItem("开启录制", "toggle", _isRecording, function(value:Boolean):void{
+            GameSettingsView.setRecording(value);
+         });
+         _recordingCheck = recordItem.getChildAt(1) as Check;
+         mainContainer.addChild(recordItem);
 
          // 开启超真全彩
          var bgraItem:LayoutGroup = createSettingItem("真全彩（实验性）", "toggle", _isBGRAEnabled, function(value:Boolean):void{
@@ -113,7 +122,7 @@ package game.view
          var aaItem:LayoutGroup = createSettingItem("抗锯齿（实验性）", "toggle", (Starling.current.antiAliasing > 0), function(value:Boolean):void{
             GameSettingsView.setAntiAliasingEnable(value);
          });
-         _AntiAliasingCheck = aaItem.getChildAt(1) as Check;
+         _antiAliasingCheck = aaItem.getChildAt(1) as Check;
          mainContainer.addChild(aaItem);
 
          // 开启硬边缘
@@ -138,6 +147,21 @@ package game.view
          } //
          mainContainer.addChild(gamepadItem); //
 
+         // 查看录像列表按钮
+         var replayItem:LayoutGroup = createSettingItem("查看录像列表", "action", null, function():void{ //
+            SceneCore.pushView(new ReplayListView()); //
+         }); //
+         // 修改按钮文字为"打开"
+         if(replayItem.numChildren >= 2) //
+         { //
+            var rpBtn:Object = replayItem.getChildAt(1); //
+            if(rpBtn is starling.display.Button) //
+            { //
+               (rpBtn as starling.display.Button).text = "打开"; //
+            } //
+         } //
+         mainContainer.addChild(replayItem); //
+
          skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
          buttonExit = new starling.display.Button(skin,"完成");
          this.addChild(buttonExit);
@@ -150,6 +174,7 @@ package game.view
             saveSoundSetting(isSoundEnable());
             saveFullScreenSetting(isFullScreen());
             saveCloseVibrationSetting(isCloseVibration());
+            saveRecordingSetting(isRecording());
             removeFromParent(true);
          });
       }
@@ -258,9 +283,9 @@ package game.view
       public static function setCloseVibration(enable:Boolean):void
       {
          _isCloseVibration = enable;
-         if(self && self._CloseVibrationCheck)
+         if(self && self._closeVibrationCheck)
          {
-            self._CloseVibrationCheck.isSelected = enable;
+            self._closeVibrationCheck.isSelected = enable;
          }
          if(enable)
          {
@@ -285,6 +310,35 @@ package game.view
          SharedObject.getLocal("net.zygame.hxwz.air").flush();
       }
 
+      public static function setRecording(enable:Boolean):void
+      {
+         _isRecording = enable;
+         if(self && self._recordingCheck)
+         {
+            self._recordingCheck.isSelected = enable;
+         }
+         if(enable)
+         {
+            SceneCore.pushView(new GameTipsView("开启录制"));
+         }
+         else 
+         {
+            SceneCore.pushView(new GameTipsView("关闭录制"));
+         }
+      }
+      public static function isRecording():Boolean
+      {
+         return _isRecording;
+      }
+      public static function toggleRecording():void
+      {
+         setRecording(!_isRecording);
+      }
+      public static function saveRecordingSetting(enable:Boolean):void
+      {
+         SharedObject.getLocal("net.zygame.hxwz.air").data.settings.isRecording = enable; // 缓存设置
+         SharedObject.getLocal("net.zygame.hxwz.air").flush();
+      }
 
       public static function setBGRAEnable(enable:Boolean):void
       {
@@ -331,9 +385,9 @@ package game.view
          viewPort.width -= 1;
          Starling.current.viewPort = viewPort;
 
-         if(self && self._AntiAliasingCheck)
+         if(self && self._antiAliasingCheck)
          {
-            self._AntiAliasingCheck.isSelected = enable;
+            self._antiAliasingCheck.isSelected = enable;
          }
          if(enable)
          {
