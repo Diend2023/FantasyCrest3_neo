@@ -56,6 +56,13 @@ package game.view
       
       public static var self:GameStartMain;
       
+      // 录像元数据缓存（供WorldRecordData采集，写入.zyvideo文件头）
+      public static var recordModeLabel:String = ""; // 主菜单模式label
+
+      public static var recordMode:String = ""; // 模式mode（_modeList选中项）
+
+      public static var recordSituation:String = ""; // 对局模式（SituationSelectView），非对战局为""
+      
       private var _modeList:List;
       
       private var _mask:Image;
@@ -535,6 +542,12 @@ package game.view
       private function onSelect(e:Event) : void
       {
          trace("onSelect",_modeList.selectedItem);
+         // 缓存模式信息。注意：onSelect末尾的selectedIndex=-1重置会二次触发change且selectedItem为null，若直接赋值会把已缓存的recordMode覆盖成null，故仅在真正选中模式（selectedItem非空）时才缓存
+         if(_modeList.selectedItem != null) //
+         { //
+            recordMode = _modeList.selectedItem as String; //
+            recordSituation = ""; // 进入新的选择流程时重置对局模式
+         } //
          if(Service.userData == null)
          {
             return;
@@ -604,6 +617,7 @@ package game.view
       
       private function onBtnEvent(label:String) : void
       {
+         recordModeLabel = label; // 缓存主菜单模式label（录像元数据）
          if(Service.userData == null)
          {
             return;
@@ -715,6 +729,7 @@ package game.view
          SceneCore.pushView(view);
          view.callBack = function(target:String):void
          {
+            recordSituation = target; // 缓存对局模式（录像元数据）
             createSelectView(isDoublePlayer,isSelfMode,maxSelect,classWorld,target == "高端局",target == "互选局",false,true);
          };
       }

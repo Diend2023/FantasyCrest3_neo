@@ -3,6 +3,7 @@ package game.world
    import game.data.Game;
    import game.data.OverTag;
    import game.role.GameRole;
+   import game.server.ReplayRunModel; // 回放拦截
    import game.view.GameOverView;
    import game.view.GameStartMain;
    import game.view.GameVSView;
@@ -28,6 +29,12 @@ package game.world
       
       override public function over() : void
       {
+         // 回放模式不进入GameOverView/下一关，直接结束回放返回录像列表
+         if(ReplayRunModel.isReplay) //
+         { //
+            ReplayRunModel.finishReplay(); //
+            return; //
+         } //
          var id:int = cheakGameOver();
          var gameOver:GameOverView = new GameOverView(fightData.data1,fightData.data2,id == 0 ? OverTag.GAME_WIN : OverTag.GAME_OVER);
          SceneCore.replaceScene(gameOver);

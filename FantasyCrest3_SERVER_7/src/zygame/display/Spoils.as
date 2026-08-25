@@ -65,16 +65,16 @@ package zygame.display
       override public function onInit() : void
       {
          // create(DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTextures(targetName)[0]);
-         var tex:Texture = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTexture(targetName); // 新增：先精确匹配道具 id
+         var tex:Texture = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTexture(targetName); // 先精确匹配道具 id
          if(tex == null) //
          { //
-            tex = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTexture(targetName + "0000"); // 新增：兼容 Animate 导出的帧号后缀贴图名
+            tex = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTexture(targetName + "0000"); // 兼容 Animate 导出的帧号后缀贴图名
          } //
          if(tex == null) //
          { //
-            tex = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTextures(targetName)[0]; // 新增：兜底仍使用前缀匹配
+            tex = DataCore.assetsSwf.otherAssets.getTextureAtlas(defaultTextureAtlasName).getTextures(targetName)[0]; // 兜底仍使用前缀匹配
          } //
-         create(tex); // 新增：使用精确匹配到的贴图
+         create(tex); // 使用精确匹配到的贴图
       }
       
       public function create(texture:Texture) : void

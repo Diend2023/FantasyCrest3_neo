@@ -10,9 +10,12 @@ package game.world
    import game.data.WorldRecordData;
    import game.display.SkillPainting;
    import game.role.GameRole;
+   import game.server.ReplayRunModel; // 回放驱动
    import game.view.GameOverView;
    import game.view.GamePauseView;
+   import game.view.GameSettingsView; // 录像开关判断
    import game.view.GameStateView;
+   import game.view.GameTipsView; //
    import nape.phys.Body;
    import nape.phys.BodyType;
    import nape.shape.Polygon;
@@ -103,6 +106,11 @@ package game.world
          {
             this.map.getMapLayerFormName("hit_layer").visible = false;
          }
+         // 回放模式挂载回放驱动（原始世界类复用，胜负流程由世界自动驱动）
+         if(ReplayRunModel.isReplay) //
+         { //
+            runModel = new ReplayRunModel(ReplayRunModel.recordData,this); //
+         } //
       }
       
       // 入场动作逻辑
@@ -284,6 +292,11 @@ package game.world
          }
          this.initRole();
          this.founcDisplay = _centerSprite;
+         // 开启录像（设置页开关开启、非联机、非剧情/副本、非回放时触发，置于initRole之后保证troopid正确）
+         if(GameSettingsView.isRecording() && !Service.client && !(this is _FBBaseWorld) && !ReplayRunModel.isReplay) //
+         { //
+            this.record(); //
+         } //
          for(var i in this.getRoleList())
          {
             role2 = getRoleList()[i];
@@ -509,6 +522,12 @@ package game.world
       
       public function over() : void
       {
+         // 回放模式不弹结算界面，直接结束回放返回录像列表
+         if(ReplayRunModel.isReplay) //
+         { //
+            ReplayRunModel.finishReplay(); //
+            return; //
+         } //
          var gameOver:GameOverView = new GameOverView(fightData.data1,fightData.data2,OverTag.NONE);
          SceneCore.pushView(gameOver,true,Fade);
       }
@@ -583,6 +602,11 @@ package game.world
       
       override public function onDown(key:int) : void
       {
+         // 回放模式屏蔽所有按键（角色完全由录像驱动）
+         if(ReplayRunModel.isReplay) //
+         { //
+            return; //
+         } //
          if(!auto || Service.client)
          {
             super.onDown(key);
@@ -676,6 +700,11 @@ package game.world
       
       override public function onUp(key:int) : void
       {
+         // 回放模式屏蔽所有按键
+         if(ReplayRunModel.isReplay) //
+         { //
+            return; //
+         } //
          if(!auto || Service.client)
          {
             super.onUp(key);
@@ -857,7 +886,15 @@ package game.world
             worldData.stop();
             bytes = worldData.bytes;
             bytes.compress();
-            RTools.saveByteArray(File.applicationStorageDirectory.resolvePath("video/" + new Date().time + ".zyvideo"),bytes);
+            // RTools.saveByteArray(File.applicationStorageDirectory.resolvePath("video/" + new Date().time + ".zyvideo"),bytes);
+            // 确保video目录存在后保存录像（RTools.saveByteArray不建目录，目录不存在会保存失败）
+            var _videoDir:File = File.applicationStorageDirectory.resolvePath("video"); //
+            if(!_videoDir.exists) //
+            { //
+               _videoDir.createDirectory(); //
+            } //
+            RTools.saveByteArray(_videoDir.resolvePath(new Date().time + ".zyvideo"),bytes); //
+            SceneCore.pushView(new GameTipsView("录像保存成功"));
          }
          if(state)
          {

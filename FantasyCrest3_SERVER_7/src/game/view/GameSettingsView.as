@@ -61,12 +61,12 @@ package game.view
          this.addChild(bg);
          bg.alpha = 0.7;
 
-         // 最外层的垂直容器
+         // 最外层容器（水平两列）
          var mainContainer:LayoutGroup = new LayoutGroup();
          var mainContainerBackground:Quad = new Quad(stage.stageWidth / 1.25, stage.stageHeight / 1.25, 0x000000);
          mainContainerBackground.alpha = 0.7;
-         mainContainer.layout = new VerticalLayout();
-         (mainContainer.layout as VerticalLayout).gap = 20;
+         mainContainer.layout = new HorizontalLayout();
+         (mainContainer.layout as HorizontalLayout).gap = 30;
          mainContainer.backgroundSkin = mainContainerBackground;
          mainContainer.width = mainContainerBackground.width;
          mainContainer.height = mainContainerBackground.height;
@@ -75,62 +75,71 @@ package game.view
          mainContainer.validate();
          mainContainer.x = (stage.stageWidth - mainContainer.width) / 2;
          mainContainer.y = (stage.stageHeight - mainContainer.height) / 2;
+         // 两列子容器（左列：nniItem之前的基础设置；右列：nniItem之后的高级/扩展设置）
+         var leftContainer:LayoutGroup = new LayoutGroup();
+         leftContainer.layout = new VerticalLayout();
+         (leftContainer.layout as VerticalLayout).gap = 20;
+         mainContainer.addChild(leftContainer);
+         var rightContainer:LayoutGroup = new LayoutGroup();
+         rightContainer.layout = new VerticalLayout();
+         (rightContainer.layout as VerticalLayout).gap = 20;
+         mainContainer.addChild(rightContainer);
 
          // 开启全屏
          var fullScreenItem:LayoutGroup = createSettingItem("开启全屏（F11）", "toggle", (STLConstant.nativeStage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE), function(value:Boolean):void{
             GameSettingsView.setFullScreen(value);
          });
          _fullScreenCheck = fullScreenItem.getChildAt(1) as Check;
-         mainContainer.addChild(fullScreenItem);
+         leftContainer.addChild(fullScreenItem);
 
          // 关闭声音 (注意：UI勾选代表关闭，所以传入 !value)
          var soundItem:LayoutGroup = createSettingItem("关闭声音（F1）", "toggle", (GameCore.soundCore.volume == 0), function(value:Boolean):void{
             GameSettingsView.setSoundEnable(!value);
          });
          _soundCheck = soundItem.getChildAt(1) as Check;
-         mainContainer.addChild(soundItem);
+         leftContainer.addChild(soundItem);
 
          // 关闭BGM (同理)
          var bgmItem:LayoutGroup = createSettingItem("关闭BGM（F5）", "toggle", (GameCore.soundCore.bgvolume == 0), function(value:Boolean):void{
             GameSettingsView.setBGMEnable(!value);
          });
          _bgmCheck = bgmItem.getChildAt(1) as Check;
-         mainContainer.addChild(bgmItem);
+         leftContainer.addChild(bgmItem);
 
          // 关闭震动
          var closeVibrationItem:LayoutGroup = createSettingItem("关闭震动", "toggle", _isCloseVibration, function(value:Boolean):void{
             GameSettingsView.setCloseVibration(value);
          });
          _closeVibrationCheck = closeVibrationItem.getChildAt(1) as Check;
-         mainContainer.addChild(closeVibrationItem);
+         leftContainer.addChild(closeVibrationItem);
 
          // 开启录制
          var recordItem:LayoutGroup = createSettingItem("开启录制", "toggle", _isRecording, function(value:Boolean):void{
             GameSettingsView.setRecording(value);
          });
          _recordingCheck = recordItem.getChildAt(1) as Check;
-         mainContainer.addChild(recordItem);
+         leftContainer.addChild(recordItem);
 
          // 开启超真全彩
          var bgraItem:LayoutGroup = createSettingItem("真全彩（实验性）", "toggle", _isBGRAEnabled, function(value:Boolean):void{
             GameSettingsView.setBGRAEnable(value);
          });
          _bgraCheck = bgraItem.getChildAt(1) as Check;
-         mainContainer.addChild(bgraItem);
+         leftContainer.addChild(bgraItem);
 
          // 开启抗锯齿
          var aaItem:LayoutGroup = createSettingItem("抗锯齿（实验性）", "toggle", (Starling.current.antiAliasing > 0), function(value:Boolean):void{
             GameSettingsView.setAntiAliasingEnable(value);
          });
          _antiAliasingCheck = aaItem.getChildAt(1) as Check;
-         mainContainer.addChild(aaItem);
+         leftContainer.addChild(aaItem);
 
          // 开启硬边缘
          var nniItem:LayoutGroup = createSettingItem("硬边缘（实验性）", "toggle", _isNNIEnabled, function(value:Boolean):void{
             GameSettingsView.setNNIEnable(value);
          });
          _NNICheck = nniItem.getChildAt(1) as Check;
-         mainContainer.addChild(nniItem);
+         leftContainer.addChild(nniItem);
 
          // 手柄按键映射设置按钮
          var gamepadItem:LayoutGroup = createSettingItem("手柄按键映射", "action", null, function():void{ //
@@ -145,7 +154,7 @@ package game.view
                (gpBtn as starling.display.Button).text = "打开"; //
             } //
          } //
-         mainContainer.addChild(gamepadItem); //
+         rightContainer.addChild(gamepadItem); //
 
          // 查看录像列表按钮
          var replayItem:LayoutGroup = createSettingItem("查看录像列表", "action", null, function():void{ //
@@ -160,7 +169,7 @@ package game.view
                (rpBtn as starling.display.Button).text = "打开"; //
             } //
          } //
-         mainContainer.addChild(replayItem); //
+         rightContainer.addChild(replayItem); //
 
          skin = DataCore.getTextureAtlas("start_main").getTexture("btn_style_1");
          buttonExit = new starling.display.Button(skin,"完成");

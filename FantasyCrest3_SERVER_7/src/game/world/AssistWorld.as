@@ -174,6 +174,11 @@ package game.world
                outRole(prole);
                prole.move("wait");
                prole.usePoint(1);
+               // 录像记录换人事件（回放端据此还原换人流程）
+               if(worldData) //
+               { //
+                  worldData.pushSwap(prole.targetName,arr[0].targetName); //
+               } //
                if(changeRoleView)
                {
                   changeRoleView.update();
