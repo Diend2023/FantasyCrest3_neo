@@ -14,6 +14,8 @@ package game.role
    import starling.display.DisplayObjectContainer;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.server.ReplayRunModel;
+   import game.world.BaseGameWorld;
    
    public class JO extends GameRole
    {
@@ -161,7 +163,7 @@ package game.role
          // {
          //    GameCore.soundCore.bgvolume = baseBgVolume;
          // },5);
-         if(world.runModel is AccessRun3Model)
+         if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel)
          {
             return;
          }
@@ -291,6 +293,10 @@ package game.role
          {
             (world.runModel as HostRun2Model).doFunc(this.name,"startTheWorldVisualEffect");
          }
+         if(world is BaseGameWorld && (world as BaseGameWorld).worldData)
+         {
+            (world as BaseGameWorld).worldData.pushFunc(this.name,"startTheWorldVisualEffect");
+         }
       }
 
       // 结束时停视觉效果
@@ -316,6 +322,10 @@ package game.role
          if(world.runModel is HostRun2Model)
          {
             (world.runModel as HostRun2Model).doFunc(this.name,"stopTheWorldVisualEffect");
+         }
+         if(world is BaseGameWorld && (world as BaseGameWorld).worldData)
+         {
+            (world as BaseGameWorld).worldData.pushFunc(this.name,"stopTheWorldVisualEffect");
          }
       }
    }

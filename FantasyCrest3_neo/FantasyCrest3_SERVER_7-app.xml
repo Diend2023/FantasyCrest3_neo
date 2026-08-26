@@ -21,6 +21,7 @@
     </name>
     -->
     <copyright></copyright>
+    <architecture>64</architecture>
     <!-- <initialWindow>
         <content>FantasyCrest3_SERVER_7.swf</content>
         <systemChrome>standard</systemChrome>

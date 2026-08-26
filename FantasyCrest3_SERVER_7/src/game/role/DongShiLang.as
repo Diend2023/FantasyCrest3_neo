@@ -3,6 +3,7 @@ package game.role
    import feathers.data.ListCollection;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.server.ReplayRunModel; //
    import game.skill.BingDong;
    import game.skill.BingHua;
    import zygame.data.BeHitData;
@@ -10,6 +11,7 @@ package game.role
    import zygame.display.BaseRole;
    import zygame.display.EffectDisplay;
    import zygame.display.World;
+   import game.world.BaseGameWorld; //
    
    public class DongShiLang extends ArmorRole
    {
@@ -157,7 +159,8 @@ package game.role
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
       {
          super.onHitEnemy(beData,enemy);
-         if(world.runModel is AccessRun3Model)
+         // if(world.runModel is AccessRun3Model)
+         if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel) //
          {
             return;
          }
@@ -179,6 +182,10 @@ package game.role
          {
             (world.runModel as HostRun2Model).doFunc(this.name,"bing",xz,yz);
          }
+         if(world is BaseGameWorld && (world as BaseGameWorld).worldData) //
+         { //
+            (world as BaseGameWorld).worldData.pushFunc(this.name,"bing",[xz,yz]); //
+         } //
       }
       
       override public function copyData() : Object

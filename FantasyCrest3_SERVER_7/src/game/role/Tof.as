@@ -5,6 +5,7 @@ package game.role
    import flash.geom.Point;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.server.ReplayRunModel; //
    import game.view.GameStateView;
    import game.world.BaseGameWorld;
    import starling.animation.Tween;
@@ -113,7 +114,8 @@ package game.role
             {
                lock = true;
                cd.value = 600;
-               if(world.runModel is AccessRun3Model)
+               // if(world.runModel is AccessRun3Model)
+               if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel) //
                {
                   return;
                }
@@ -133,6 +135,10 @@ package game.role
          {
             (world.runModel as HostRun2Model).doFunc(this.name,"shiting");
          }
+         if(world is BaseGameWorld && (world as BaseGameWorld).worldData) //
+         { //
+            (world as BaseGameWorld).worldData.pushFunc(this.name,"shiting"); //
+         } //
          new ColorQuad(16711935,0.5,0.7).create();
       }
       

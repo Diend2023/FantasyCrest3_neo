@@ -168,6 +168,17 @@ package game.data
             totalFrames = worldDatas.length; //
          } //
       } //
+
+      // 录像功能事件标记（JIN.bing等按录像重放创建特效，回放端据此重放doFunc）
+      public function pushFunc(roleName:String, func:String, ret:Array = null) : void //
+      { //
+         if(!_stop) //
+         { //
+            worldDatas.push([{target:"func",role:roleName,func:func,ret:ret}]); //
+            totalFrames = worldDatas.length; //
+         } //
+      } //
+
    }
 }
 

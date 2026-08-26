@@ -7,6 +7,7 @@ package game.role
    import zygame.core.DataCore;
    import zygame.data.BeHitData;
    import zygame.display.BaseRole;
+   import game.server.ReplayRunModel;
    
    public class G3X extends GameRole
    {
@@ -19,7 +20,10 @@ package game.role
       override public function onInit() : void
       {
          super.onInit();
-         this.ai = true;
+         if(!(this.world.runModel is ReplayRunModel))
+         {
+            this.ai = true;
+         }
          this.setAi(new AiHeart(this,DataCore.getXml("ordinary")));
       }
 
@@ -29,7 +33,7 @@ package game.role
          {
             this.ai = false;
          }
-         else
+         else if(!(this.world.runModel is ReplayRunModel))
          {
             this.ai = true;
          }

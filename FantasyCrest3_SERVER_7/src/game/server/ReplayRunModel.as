@@ -66,6 +66,7 @@ package game.server
          var role:GameRole;
          var owner:GameRole;
          var eff:UDPSkill;
+         var fRole:GameRole;
          if(_isOver)
          {
             return false;
@@ -132,6 +133,14 @@ package game.server
                   }
                }
             }
+            else if(item.target == "func") //
+            { //
+               fRole = _world.getRoleFormName(item.role) as GameRole; //
+               if(fRole) //
+               { //
+                  fRole.doFunc(item.func,item.ret); //
+               } //
+            } //
          }
          // 返回false走完整帧循环：moveMap/_gameBG/子对象onFrame/物理/胜负检测全部正常执行
          return false;

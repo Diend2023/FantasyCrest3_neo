@@ -10,6 +10,7 @@ package game.role
    import flash.geom.Rectangle; // 抓取用
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.world.BaseGameWorld;
    
    public class KW extends GameRole
    {
@@ -103,6 +104,10 @@ package game.role
                if(world.runModel is HostRun2Model)
                {
                   (world.runModel as HostRun2Model).doFunc(this.name,"setForm",currentForm);
+               }
+               if(world is BaseGameWorld && (world as BaseGameWorld).worldData)
+               {
+                  (world as BaseGameWorld).worldData.pushFunc(this.name,"setForm",[currentForm]);
                }
             }
          }

@@ -942,6 +942,7 @@ package game.role
          if(!ret)
          {
             this[func]();
+            return; //
          }
          switch(int(ret.length))
          {

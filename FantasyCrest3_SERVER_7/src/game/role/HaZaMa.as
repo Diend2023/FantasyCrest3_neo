@@ -8,6 +8,7 @@ package game.role
    import feathers.data.ListCollection;
    import zygame.buff.BuffRef;
    import game.server.AccessRun3Model;
+   import game.server.ReplayRunModel; //
    import zygame.display.BaseRole;
    import zygame.data.BeHitData;
    import flash.geom.Point;
@@ -139,7 +140,7 @@ package game.role
       override public function hitDataBuff(beData:BeHitData):void
       {
          super.hitDataBuff(beData);
-         if(world.runModel is AccessRun3Model)
+         if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel)
          {
             return;
          }

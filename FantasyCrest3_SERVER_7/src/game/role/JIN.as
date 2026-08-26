@@ -3,11 +3,13 @@ package game.role
    import feathers.data.ListCollection;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.server.ReplayRunModel; //
    import game.skill.BingDong;
    import zygame.data.BeHitData;
    import zygame.data.RoleAttributeData;
    import zygame.display.BaseRole;
    import zygame.display.World;
+   import game.world.BaseGameWorld; //
    
    public class JIN extends GameRole
    {
@@ -43,7 +45,8 @@ package game.role
          super.onHitEnemy(beData,enemy);
          if(this.mandatorySkill == 0)
          {
-            if(world.runModel is AccessRun3Model)
+            // if(world.runModel is AccessRun3Model)
+            if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel) //
             {
                return;
             }
@@ -66,7 +69,25 @@ package game.role
          {
             (world.runModel as HostRun2Model).doFunc(this.name,"bing",xz,yz);
          }
+         if(world is BaseGameWorld && (world as BaseGameWorld).worldData) //
+         { //
+            (world as BaseGameWorld).worldData.pushFunc(this.name,"bing",[xz,yz]); //
+         } //
       }
+
+      override public function copyData():Object //
+      { //
+         var ob:Object = super.copyData(); //
+         ob.cdValue = this.cd.value; //
+         return ob; //
+      } //
+
+      override public function setData(value:Object) : void //
+      { //
+         super.setData(value); //
+         this.cd.value = value.cdValue; //
+      } //
+
    }
 }
 

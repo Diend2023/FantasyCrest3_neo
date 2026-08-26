@@ -3,12 +3,14 @@ package game.role
    import flash.geom.Rectangle;
    import game.server.AccessRun3Model;
    import game.server.HostRun2Model;
+   import game.server.ReplayRunModel; //
    import game.skill.HuZhuQiu;
    import zygame.data.BeHitData;
    import zygame.data.RoleAttributeData;
    import zygame.display.BaseRole;
    import zygame.display.EffectDisplay;
    import zygame.display.World;
+   import game.world.BaseGameWorld; //
    
    public class SunCe extends GameRole
    {
@@ -44,13 +46,18 @@ package game.role
             {
                (world.runModel as HostRun2Model).doFunc(this.name,"createQiuQiu",isBeHit);
             }
+            if(world is BaseGameWorld && (world as BaseGameWorld).worldData) //
+            { //
+               (world as BaseGameWorld).worldData.pushFunc(this.name,"createQiuQiu",[isBeHit]); //
+            } //
          }
       }
       
       override public function onHitEnemy(beData:BeHitData, enemy:BaseRole) : void
       {
          super.onHitEnemy(beData,enemy);
-         if(world.runModel is AccessRun3Model)
+         // if(world.runModel is AccessRun3Model)
+         if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel) //
          {
             return;
          }
@@ -63,7 +70,8 @@ package game.role
       override public function onBeHit(beData:BeHitData) : void
       {
          super.onBeHit(beData);
-         if(world.runModel is AccessRun3Model)
+         // if(world.runModel is AccessRun3Model)
+         if(world.runModel is AccessRun3Model || world.runModel is ReplayRunModel) //
          {
             return;
          }
