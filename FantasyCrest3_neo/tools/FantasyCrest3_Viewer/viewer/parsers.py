@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
 
-from .models import ActionData, AtlasFrame, FrameData, InitStat, RoleData, RoleIndexItem
+from .models import ActionData, AtlasData, AtlasFrame, FrameData, InitStat, RoleData, RoleIndexItem
 
 
 def runtime_base_dir() -> Path:
@@ -176,6 +176,13 @@ def parse_role_data(role_file: Path) -> RoleData:
     )
 
 
+def _to_int_attr(attrs: dict, key: str, default: int = 0) -> int:
+    try:
+        return int(float(attrs.get(key, "")))
+    except (TypeError, ValueError):
+        return default
+
+
 def parse_atlas_xml(atlas_xml_path: Path) -> list[AtlasFrame]:
     root, err = safe_parse_xml(atlas_xml_path)
     if err:
@@ -187,13 +194,27 @@ def parse_atlas_xml(atlas_xml_path: Path) -> list[AtlasFrame]:
         try:
             frame = AtlasFrame(
                 name=attrs.get("name", ""),
-                x=int(float(attrs.get("x", "0"))),
-                y=int(float(attrs.get("y", "0"))),
-                width=int(float(attrs.get("width", "0"))),
-                height=int(float(attrs.get("height", "0"))),
+                x=_to_int_attr(attrs, "x"),
+                y=_to_int_attr(attrs, "y"),
+                width=_to_int_attr(attrs, "width"),
+                height=_to_int_attr(attrs, "height"),
+                frame_x=_to_int_attr(attrs, "frameX"),
+                frame_y=_to_int_attr(attrs, "frameY"),
                 attrs=attrs,
             )
             frames.append(frame)
         except Exception:
             continue
     return frames
+
+
+def parse_atlas_data(atlas_xml_path: Path) -> AtlasData:
+    """解析图集根数据（含锚点 px/py 与全部帧），对应 Maplive Pool.parsing 的 _xml 根节点"""
+    root, err = safe_parse_xml(atlas_xml_path)
+    if err:
+        raise ValueError(err)
+    return AtlasData(
+        px=_to_int_attr(root.attrib, "px"),
+        py=_to_int_attr(root.attrib, "py"),
+        frames=parse_atlas_xml(atlas_xml_path),
+    )

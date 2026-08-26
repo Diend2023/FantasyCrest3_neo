@@ -7,8 +7,8 @@ from tkinter import messagebox, filedialog
 import customtkinter as ctk
 from PIL import Image
 
-from .models import ActionData, AtlasFrame, InitStat, RoleData, RoleIndexItem
-from .parsers import find_game_root, parse_atlas_xml, parse_fight_file, parse_role_data
+from .models import ActionData, AtlasData, AtlasFrame, InitStat, RoleData, RoleIndexItem
+from .parsers import find_game_root, parse_atlas_data, parse_atlas_xml, parse_fight_file, parse_role_data
 
 
 class RoleViewerApp(ctk.CTk):
@@ -31,6 +31,7 @@ class RoleViewerApp(ctk.CTk):
         self.role_data_cache: dict[str, RoleData | None] = {}
         self.role_error_cache: dict[str, str] = {}
         self.atlas_cache: dict[str, list[AtlasFrame]] = {}
+        self.atlas_data_cache: dict[str, AtlasData] = {}
         self.atlas_map_cache: dict[str, dict[str, AtlasFrame]] = {}
         self.image_cache: dict[str, Image.Image] = {}
         self.role_head_map: dict[str, AtlasFrame] = {}
@@ -304,6 +305,7 @@ class RoleViewerApp(ctk.CTk):
         self.role_data_cache.clear()
         self.role_error_cache.clear()
         self.atlas_cache.clear()
+        self.atlas_data_cache.clear()
         self.atlas_map_cache.clear()
         self.image_cache.clear()
         self.role_head_map.clear()
@@ -606,13 +608,15 @@ class RoleViewerApp(ctk.CTk):
             return
 
         try:
-            atlas_frames = parse_atlas_xml(atlas_xml_path)
+            atlas_data = parse_atlas_data(atlas_xml_path)
         except Exception as exc:
             self.status_var.set(f"{role_id}: 图集xml解析失败")
             self.preview_meta.insert("1.0", str(exc))
             return
+        atlas_frames = atlas_data.frames
 
         self.atlas_cache[role_id] = atlas_frames
+        self.atlas_data_cache[role_id] = atlas_data
         self.atlas_map_cache[role_id] = {f.name: f for f in atlas_frames}
 
         # 原始代码: for idx, frame in enumerate(atlas_frames, start=1):
@@ -726,68 +730,77 @@ class RoleViewerApp(ctk.CTk):
             return
             
         atlas_map = self.atlas_map_cache.get(role_id, {})
-        valid_frames = []
-        max_w = max_h = 0
-        
-        for frame in self.current_action.frames:
-            frame_name = frame.name
-            atlas_frame = atlas_map.get(frame_name)
-            if not atlas_frame:
-                continue
-            
-            x1 = max(0, atlas_frame.x)
-            y1 = max(0, atlas_frame.y)
-            x2 = min(image.width, atlas_frame.x + atlas_frame.width)
-            y2 = min(image.height, atlas_frame.y + atlas_frame.height)
-            
-            if x2 <= x1 or y2 <= y1:
-                continue
-                
-            crop = image.crop((x1, y1, x2, y2))
-            valid_frames.append(crop)
-            
-            max_w = max(max_w, crop.width)
-            max_h = max(max_h, crop.height)
-                
-        if not valid_frames:
+        # 与预览/播放一致：以动作内全部可解析帧计算统一画布外延，保证逐帧导出位置不抖动
+        action_atlas_frames = [
+            atlas_map[f.name] for f in self.current_action.frames if f.name in atlas_map
+        ]
+        if not action_atlas_frames:
             messagebox.showwarning("警告", "该动作没有可导出的有效帧")
             return
-            
-        canvas_w = max_w
-        canvas_h = max_h
+        half_w, half_h = self._compute_frame_extents(role_id, action_atlas_frames)
+        canvas_w = half_w * 2
+        canvas_h = half_h * 2
         if canvas_w <= 0 or canvas_h <= 0:
             messagebox.showwarning("警告", "包含的帧截取信息无效，无法导出")
             return
-            
-        # 强制设置一个保底的方形大画布并让它居中（防止极端长宽比紧贴画面边缘的情况导致显示在左上角）
-        # 强行让画布大小为1比1，并将最后的图形缩放至 400x400
-        # 去除所有留白，让角色完全填满并紧贴最大边缘
-        side_len = max(canvas_w, canvas_h)
-        base_size = max(side_len, 2)  # 兜底防0
-            
-        gif_frames = []
-        for crop in valid_frames:
-            # Python PIL 保存动态透明GIF最好是背景色全透明，且带上遮罩
-            canvas = Image.new("RGBA", (int(base_size), int(base_size)), (255, 255, 255, 0))
-            pos_x = (base_size - crop.width) // 2
-            pos_y = (base_size - crop.height) // 2
-            
-            # 确保图像有透明通道才能作为mask
-            crop_rgba = crop.convert("RGBA")
-            canvas.paste(crop_rgba, (int(pos_x), int(pos_y)), crop_rgba)
-            
-            # 缩放至固定的 400x400 大小
-            try:
-                resample = Image.Resampling.NEAREST
-            except AttributeError:
-                resample = Image.NEAREST
-            canvas_scaled = canvas.resize((400, 400), resample)
-            
-            gif_frames.append(canvas_scaled)
-            
-        duration = int(2000 / self.get_action_fps())
-        
+
+        # 先按统一画布渲染全部帧（不缩放），用于计算内容并集与统一裁剪
         try:
+            resample = Image.Resampling.NEAREST
+        except AttributeError:
+            resample = Image.NEAREST
+
+        gif_frames = []
+        content_bbox = None
+        for frame in self.current_action.frames:
+            atlas_frame = atlas_map.get(frame.name)
+            if not atlas_frame:
+                continue
+            # 与预览/播放一致：累积 turn 翻转（含图像镜像与镜像后的锚点粘贴位置）
+            flipped = self._get_flipped(self.current_action, frame.index)
+            canvas = self._build_frame_canvas(role_id, atlas_frame, flipped, half_w, half_h)
+            if canvas is None:
+                continue
+            gif_frames.append(canvas)
+            # 求全部帧非透明内容的最小并集矩形（所有帧共用同一裁剪区域，保证不抖动）
+            bbox = canvas.getchannel("A").getbbox()
+            if bbox:
+                if content_bbox is None:
+                    content_bbox = list(bbox)
+                else:
+                    content_bbox[0] = min(content_bbox[0], bbox[0])
+                    content_bbox[1] = min(content_bbox[1], bbox[1])
+                    content_bbox[2] = max(content_bbox[2], bbox[2])
+                    content_bbox[3] = max(content_bbox[3], bbox[3])
+
+        if not gif_frames:
+            messagebox.showwarning("警告", "该动作没有可导出的有效帧")
+            return
+
+        # 自动裁剪到内容并集区域（保留少量内边距），使宽高比贴合实际内容，去除多余透明留白
+        if content_bbox:
+            pad = 4
+            x0 = max(0, content_bbox[0] - pad)
+            y0 = max(0, content_bbox[1] - pad)
+            x1 = min(canvas_w, content_bbox[2] + pad)
+            y1 = min(canvas_h, content_bbox[3] + pad)
+            if x1 > x0 and y1 > y0:
+                gif_frames = [c.crop((x0, y0, x1, y1)) for c in gif_frames]
+                canvas_w = x1 - x0
+                canvas_h = y1 - y0
+
+        # 等比缩放到最大边（保留最佳比例，不做方形拉伸），像素风用最近邻保持锐利
+        export_max = 400
+        scale = min(1.0, export_max / canvas_w, export_max / canvas_h)
+        out_w = max(1, int(canvas_w * scale))
+        out_h = max(1, int(canvas_h * scale))
+        gif_frames = [c.resize((out_w, out_h), resample) for c in gif_frames]
+
+        # 与播放帧率保持一致
+        duration = max(16, int(1000 / self.get_action_fps()))
+
+        try:
+            # 透明背景交给 PIL 自动量化生成透明索引，避免手动指定 transparency 索引错误
             gif_frames[0].save(
                 filepath,
                 format="GIF",
@@ -795,8 +808,8 @@ class RoleViewerApp(ctk.CTk):
                 append_images=gif_frames[1:],
                 duration=duration,
                 loop=0,
-                disposal=2,  # 使用透明背景背景清除防重叠
-                transparency=0
+                disposal=2,  # 使用透明背景清除防重叠
+                optimize=True,
             )
             self.status_var.set(f"导出成功: {filepath}")
             messagebox.showinfo("成功", f"成功导出 GIF 到:\n{filepath}")
@@ -838,6 +851,7 @@ class RoleViewerApp(ctk.CTk):
             return
 
         frame = atlas_frames[idx]
+        # 全部帧为单帧预览，使用当前帧紧凑画布（锚点居中、完整显示、清晰）
         self.preview_title_var.set(f"预览（全部帧）: {frame.name}")
         self.render_frame_preview(role_id, frame, extra_meta={"source": "atlas"})
 
@@ -854,7 +868,9 @@ class RoleViewerApp(ctk.CTk):
 
         frame = self.current_action.frames[idx]
         frame_name = frame.name
-        atlas_map = self.atlas_map_cache.get(self.current_role.role_id, {})
+        flipped = self._get_flipped(self.current_action, frame.index)
+        role_id = self.current_role.role_id
+        atlas_map = self.atlas_map_cache.get(role_id, {})
         atlas_frame = atlas_map.get(frame_name)
         if not atlas_frame:
             self.preview_title_var.set(f"预览（技能帧）: {frame_name}")
@@ -868,6 +884,7 @@ class RoleViewerApp(ctk.CTk):
                         "action": self.current_action.name,
                         "frame_index": frame.index,
                         "frame_attrs": frame.attrs,
+                        "flipped": flipped,
                         "effects": frame.effects,
                     },
                     ensure_ascii=False,
@@ -876,48 +893,129 @@ class RoleViewerApp(ctk.CTk):
             )
             return
 
+        # 以当前动作全部可解析帧计算统一画布外延，保证动作内逐帧播放时画布固定不抖动
+        action_atlas_frames = [
+            atlas_map[f.name] for f in self.current_action.frames if f.name in atlas_map
+        ]
+        half_w = half_h = None
+        if action_atlas_frames:
+            half_w, half_h = self._compute_frame_extents(role_id, action_atlas_frames)
+
         self.preview_title_var.set(f"预览（技能帧）: {self.current_action.name} / #{frame.index} {frame_name}")
         self.render_frame_preview(
-            self.current_role.role_id,
+            role_id,
             atlas_frame,
             extra_meta={
                 "source": "action",
                 "action": self.current_action.name,
                 "action_frame_index": frame.index,
                 "action_frame_attrs": frame.attrs,
+                "flipped": flipped,
                 "effects": frame.effects,
             },
+            flipped=flipped,
+            half_w=half_w, half_h=half_h,
         )
 
-    def render_frame_preview(self, role_id: str, atlas_frame: AtlasFrame, extra_meta: dict):
+    def _get_flipped(self, action: ActionData, frame_index: int) -> bool:
+        """与 Maplive FrameGroup.getRoleScaleX 一致：0..frame_index 中每遇到 turn=1 翻转一次"""
+        flipped = False
+        for i in range(frame_index + 1):
+            if i >= len(action.frames):
+                break
+            turn_raw = action.frames[i].attrs.get("turn", "0")
+            try:
+                if int(turn_raw) != 0:
+                    flipped = not flipped
+            except (TypeError, ValueError):
+                pass
+        return flipped
+
+    def _compute_frame_extents(self, role_id: str, atlas_frames: list[AtlasFrame]):
+        """计算覆盖全部给定帧（含翻转）的最小对称画布半宽/半高。
+        对应 Maplive：bitmap.x = getPx() - frameX（相对 node），位图相对画布中心偏移 = (px-frameX, py-frameY)。
+        半宽须容纳未翻转位图范围 [px-fx, px-fx+w] 与翻转位图范围 [fx-px-w, fx-px]，取两者外延的最大绝对值。
+        """
+        atlas_data = self.atlas_data_cache.get(role_id)
+        px = atlas_data.px if atlas_data else 0
+        py = atlas_data.py if atlas_data else 0
+        half_w = half_h = 1
+        for f in atlas_frames:
+            half_w = max(half_w, abs(px - f.frame_x), abs(px - f.frame_x + f.width))
+            half_h = max(half_h, abs(py - f.frame_y), abs(py - f.frame_y + f.height))
+        return half_w, half_h
+
+    def _build_frame_canvas(self, role_id: str, atlas_frame: AtlasFrame, flipped: bool = False,
+                            half_w: int | None = None, half_h: int | None = None):
+        """按 Maplive 坐标模型将帧渲染到逻辑画布，返回 RGBA 画布图（找不到则返回 None）。
+        坐标模型（与 Maplive RoleStageObject.draw 一致，忽略 gox/goy 位移）：
+        - 画布中心对应 Maplive 的 node（角色根），即角色锚点所在位置
+        - 未翻转：帧图左上角相对画布中心 = (px - frameX, py - frameY)，对应 bitmap.x = getPx() - frameX
+        - 翻转：以画布中心（角色根）为轴水平镜像，帧图左上角相对画布中心 = (frameX - px - width, py - frameY)
+          （即未翻转偏移取反再减宽度，对应游戏 scaleX = -scaleX）
+        - 不考虑 gox/goy 位移与特效、音效
+        """
         image = self.image_cache.get(role_id)
         if image is None:
-            self._safe_update_label(self.preview_image_label, "未加载到贴图图片", None)
+            return None
+
+        x1 = max(0, atlas_frame.x)
+        y1 = max(0, atlas_frame.y)
+        x2 = min(image.width, atlas_frame.x + atlas_frame.width)
+        y2 = min(image.height, atlas_frame.y + atlas_frame.height)
+        if x2 <= x1 or y2 <= y1:
+            return None
+
+        crop = image.crop((x1, y1, x2, y2)).convert("RGBA")
+        w, h = crop.size
+
+        # 翻转需对图像本身做水平镜像（对应游戏 scaleX = -scaleX），并配合下方翻转后的粘贴位置
+        if flipped:
+            crop = crop.transpose(Image.FLIP_LEFT_RIGHT)
+
+        atlas_data = self.atlas_data_cache.get(role_id)
+        px = atlas_data.px if atlas_data else 0
+        py = atlas_data.py if atlas_data else 0
+        fx = atlas_frame.frame_x
+        fy = atlas_frame.frame_y
+
+        # 半宽/半高保证当前帧内容完整不切断（含翻转）
+        if half_w is None or half_h is None:
+            half_w = max(abs(px - fx), abs(px - fx + w), 1)
+            half_h = max(abs(py - fy), abs(py - fy + h), 1)
+        cw = half_w * 2
+        ch = half_h * 2
+
+        canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        if flipped:
+            paste_x = fx - px - w + half_w
+        else:
+            paste_x = px - fx + half_w
+        paste_y = py - fy + half_h
+        canvas.paste(crop, (paste_x, paste_y), crop)
+        return canvas
+
+    def render_frame_preview(self, role_id: str, atlas_frame: AtlasFrame, extra_meta: dict,
+                             flipped: bool = False, half_w: int | None = None, half_h: int | None = None):
+        canvas = self._build_frame_canvas(role_id, atlas_frame, flipped, half_w, half_h)
+        if canvas is None:
+            reason = "未加载到贴图图片" if not self.image_cache.get(role_id) else "帧裁剪区域无效"
+            self._safe_update_label(self.preview_image_label, reason, None)
             self.preview_ctk_image = None
         else:
-            x1 = max(0, atlas_frame.x)
-            y1 = max(0, atlas_frame.y)
-            x2 = min(image.width, atlas_frame.x + atlas_frame.width)
-            y2 = min(image.height, atlas_frame.y + atlas_frame.height)
+            # 动态获取当前图片 Label 实际被分配到的宽高，如果尚未渲染出来给个默认的兜底大小
+            lbl_w = self.preview_image_label.winfo_width()
+            lbl_h = self.preview_image_label.winfo_height()
+            max_w = lbl_w - 4 if lbl_w > 50 else 500
+            max_h = lbl_h - 4 if lbl_h > 50 else 400
 
-            if x2 <= x1 or y2 <= y1:
-                self._safe_update_label(self.preview_image_label, "帧裁剪区域无效", None)
-                self.preview_ctk_image = None
-            else:
-                crop = image.crop((x1, y1, x2, y2))
-                
-                # 动态获取当前图片 Label 实际被分配到的宽高，如果尚未渲染出来给个默认的兜底大小
-                lbl_w = self.preview_image_label.winfo_width()
-                lbl_h = self.preview_image_label.winfo_height()
-                max_w = lbl_w - 4 if lbl_w > 50 else 500
-                max_h = lbl_h - 4 if lbl_h > 50 else 400
-                
-                scale = min(max_w / crop.width, max_h / crop.height, 1)
-                show_size = (max(1, int(crop.width * scale)), max(1, int(crop.height * scale)))
-                new_img = ctk.CTkImage(light_image=crop, dark_image=crop, size=show_size)
-                self._safe_update_label(self.preview_image_label, "", new_img)
-                self.preview_ctk_image = new_img
+            scale = min(max_w / canvas.width, max_h / canvas.height, 1)
+            show_size = (max(1, int(canvas.width * scale)), max(1, int(canvas.height * scale)))
+            new_img = ctk.CTkImage(light_image=canvas, dark_image=canvas, size=show_size)
+            self._safe_update_label(self.preview_image_label, "", new_img)
+            self.preview_ctk_image = new_img
 
+        atlas_data = self.atlas_data_cache.get(role_id)
         meta = {
             "atlas_name": atlas_frame.name,
             "atlas_rect": {
@@ -926,6 +1024,14 @@ class RoleViewerApp(ctk.CTk):
                 "width": atlas_frame.width,
                 "height": atlas_frame.height,
             },
+            "coord": {
+                "px": atlas_data.px if atlas_data else 0,
+                "py": atlas_data.py if atlas_data else 0,
+                "frame_x": atlas_frame.frame_x,
+                "frame_y": atlas_frame.frame_y,
+            },
+            "flipped": flipped,
+            "canvas_half": {"w": half_w, "h": half_h},
             "atlas_attrs": atlas_frame.attrs,
             **extra_meta,
         }

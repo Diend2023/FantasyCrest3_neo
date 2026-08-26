@@ -40,12 +40,22 @@ class ActionData:
 
 @dataclass
 class AtlasFrame:
-    name: str
-    x: int
-    y: int
-    width: int
-    height: int
-    attrs: dict[str, str]
+    name: str = ""
+    x: int = 0
+    y: int = 0
+    width: int = 0
+    height: int = 0
+    frame_x: int = 0
+    frame_y: int = 0
+    attrs: dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class AtlasData:
+    """图集根数据，对应 Maplive Pool.getPx/getPy 的锚点与全部帧"""
+    px: int = 0
+    py: int = 0
+    frames: list[AtlasFrame] = field(default_factory=list)
 
 
 @dataclass
