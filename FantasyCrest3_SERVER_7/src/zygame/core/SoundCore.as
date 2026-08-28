@@ -22,6 +22,8 @@ package zygame.core
       private var _currentBGSoundName:String;
       
       public var soundDic:Dictionary;
+      
+      private var _soundKeys:Vector.<Function>; // soundDic 的 Function 键列表，供 updateSound 索引遍历，避免 Dictionary 的 for-in
 
       public var bgPausePosition:Number = NaN; // 背景音乐暂停位置
       
@@ -30,6 +32,7 @@ package zygame.core
          super();
          soundOld = [];
          soundDic = new Dictionary();
+         _soundKeys = new Vector.<Function>(); //
          fps = new FPSUtil(6);
       }
       
@@ -123,12 +126,18 @@ public function resumeBGSound() : void //
                   if(ifFunc != null)
                   {
                      delete soundDic[ifFunc];
+                     var idx:int = _soundKeys.indexOf(ifFunc); // 同步移除键列表中的对应项
+                     if(idx != -1) //
+                     { //
+                        _soundKeys.splice(idx,1); //
+                     } //
                   }
                   _soundCount--;
                });
                if(ifFunc != null)
                {
                   soundDic[ifFunc] = channel;
+                  _soundKeys.push(ifFunc); // 登记键，供 updateSound 索引遍历
                }
                return channel;
             }
@@ -143,16 +152,33 @@ public function resumeBGSound() : void //
          {
             soundOld = [];
          }
-         for(var i in soundDic)
-         {
-            if(i())
-            {
-               if((soundDic[i] as SoundChannel).soundTransform.volume > 0)
-               {
-                  (soundDic[i] as SoundChannel).soundTransform = new SoundTransform((soundDic[i] as SoundChannel).soundTransform.volume - 0.05,(soundDic[i] as SoundChannel).soundTransform.pan);
-               }
-            }
-         }
+         // for(var i in soundDic)
+         // {
+         //    if(i())
+         //    {
+         //       if((soundDic[i] as SoundChannel).soundTransform.volume > 0)
+         //       {
+         //          (soundDic[i] as SoundChannel).soundTransform = new SoundTransform((soundDic[i] as SoundChannel).soundTransform.volume - 0.05,(soundDic[i] as SoundChannel).soundTransform.pan);
+         //       }
+         //    }
+         // }
+         // Dictionary 的 for-in 每帧构造迭代器且 key 是 Function，改为索引遍历键列表
+         // 复用 SoundTransform 并缓存 channel / soundTransform，原写法每帧每个声道新建对象且重复取值 3 次
+         for(var i:int = 0; i < _soundKeys.length; ) //
+         { //
+            var key:Function = _soundKeys[i]; //
+            var channel:SoundChannel = soundDic[key] as SoundChannel; //
+            if(channel != null && key()) //
+            { //
+               var st:SoundTransform = channel.soundTransform; //
+               if(st.volume > 0) //
+               { //
+                  st.volume = st.volume - 0.05; //
+                  channel.soundTransform = st; //
+               } //
+            } //
+            i++; //
+         } //
       }
       
       public function get playSoundCount() : int
