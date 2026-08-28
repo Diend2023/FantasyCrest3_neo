@@ -7,6 +7,7 @@ package zygame.utils
    {
       
       public static const vec2:Vec2 = new Vec2();
+      public static const vec22:Vec2 = new Vec2(); // Geom.distanceBody 需两个独立的输出 Vec2，原代码复用同一个实例会导致后者覆盖前者
       
       public function PointUtils()
       {

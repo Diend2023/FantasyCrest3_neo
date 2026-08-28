@@ -667,6 +667,44 @@ package zygame.display
          return _roleAttribute;
       }
       
+      // 静态上下文：供 _isHitMapEach 复用，避免每帧为每个角色创建闭包
+      private static var _hitMapBody:Body = null; //
+      private static var _hitMapAbody:Vector.<Body> = null; //
+      private static var _hitMapIsHit:Boolean = false; //
+      
+      private static function _isHitMapEach(a:Arbiter) : void //
+      { //
+         var d:Number = NaN; //
+         var collisionAngle:int = rad2deg(a.collisionArbiter.normal.angle); //
+         var body2:Body = a.body1 == _hitMapBody ? a.body2 : a.body1; //
+         _hitMapAbody.push(body2); //
+         if(body2 == a.body2) //
+         { //
+            collisionAngle *= -1; //
+         } //
+         if(!_hitMapIsHit) //
+         { //
+            if(collisionAngle < -20 && collisionAngle > -160) //
+            { //
+               if(!body2.userData.noHit && !(body2.userData.ref is BaseRole)) //
+               { //
+                  if(body2.userData.isThrough) //
+                  { //
+                     d = Geom.distanceBody(_hitMapBody,body2,PointUtils.vec2,PointUtils.vec22); //
+                     if(d > -1) //
+                     { //
+                        _hitMapIsHit = true; //
+                     } //
+                  } //
+                  else //
+                  { //
+                     _hitMapIsHit = true; //
+                  } //
+               } //
+            } //
+         } //
+      } //
+      
       public function isHitMap() : Boolean
       {
          var isHit:Boolean;
@@ -687,45 +725,53 @@ package zygame.display
             return false;
          }
          isHit = false;
-         for(i = abody.length - 1; i >= 0; )
-         {
-            abody.removeAt(i);
-            i = i - 1;
-         }
+         // for(i = abody.length - 1; i >= 0; )
+         // {
+         //    abody.removeAt(i);
+         //    i = i - 1;
+         // }
+         abody.length = 0; // removeAt 逐个移除是 O(n²)，直接重置长度即可
          if(this.body.arbiters.length > 0)
          {
-            this.body.arbiters.foreach(function(a:Arbiter):void
-            {
-               var d:Number = NaN;
-               var collisionAngle:int = rad2deg(a.collisionArbiter.normal.angle);
-               var body2:Body = a.body1 == body ? a.body2 : a.body1;
-               abody.push(body2);
-               if(body2 == a.body2)
-               {
-                  collisionAngle *= -1;
-               }
-               if(!isHit)
-               {
-                  if(collisionAngle < -20 && collisionAngle > -160)
-                  {
-                     if(!body2.userData.noHit && !(body2.userData.ref is BaseRole))
-                     {
-                        if(body2.userData.isThrough)
-                        {
-                           d = Geom.distanceBody(body,body2,PointUtils.vec2,PointUtils.vec2);
-                           if(d > -1)
-                           {
-                              isHit = true;
-                           }
-                        }
-                        else
-                        {
-                           isHit = true;
-                        }
-                     }
-                  }
-               }
-            });
+            // this.body.arbiters.foreach(function(a:Arbiter):void
+            // {
+            //    var d:Number = NaN;
+            //    var collisionAngle:int = rad2deg(a.collisionArbiter.normal.angle);
+            //    var body2:Body = a.body1 == body ? a.body2 : a.body1;
+            //    abody.push(body2);
+            //    if(body2 == a.body2)
+            //    {
+            //       collisionAngle *= -1;
+            //    }
+            //    if(!isHit)
+            //    {
+            //       if(collisionAngle < -20 && collisionAngle > -160)
+            //       {
+            //          if(!body2.userData.noHit && !(body2.userData.ref is BaseRole))
+            //          {
+            //             if(body2.userData.isThrough)
+            //             {
+            //                d = Geom.distanceBody(body,body2,PointUtils.vec2,PointUtils.vec2);
+            //                if(d > -1)
+            //                {
+            //                   isHit = true;
+            //                }
+            //             }
+            //             else
+            //             {
+            //                isHit = true;
+            //             }
+            //          }
+            //       }
+            //    }
+            // });
+            _hitMapBody = this.body; //
+            _hitMapAbody = abody; //
+            _hitMapIsHit = isHit; //
+            this.body.arbiters.foreach(_isHitMapEach); //
+            isHit = _hitMapIsHit; //
+            _hitMapBody = null; //
+            _hitMapAbody = null; //
          }
          if(!isHit && mapHitType == GameMapHitType.HIT)
          {
@@ -739,7 +785,8 @@ package zygame.display
                {
                   if(abody.indexOf(bodyList[b]) == -1)
                   {
-                     d2 = Geom.distanceBody(body,bodyList[b],PointUtils.vec2,PointUtils.vec2);
+                     // d2 = Geom.distanceBody(body,bodyList[b],PointUtils.vec2,PointUtils.vec2);
+                     d2 = Geom.distanceBody(body,bodyList[b],PointUtils.vec2,PointUtils.vec22); // 两个输出参数需各自独立的 Vec2
                      if(d > d2)
                      {
                         d = d2;
@@ -756,7 +803,7 @@ package zygame.display
                {
                   isHit = true;
                }
-               bodyList.splice(0,bodyList.length);
+               // bodyList.splice(0,bodyList.length); 该 Vector 随即被置 null，清空无意义
             }
             bodyList = null;
          }
@@ -1015,11 +1062,24 @@ package zygame.display
             if(actionPoint.x != 0 || actionPoint.y != 0 || isLock)
             {
                my = actionPoint.y * contentScale;
-               if(my < 0 && !isHitMap() || my > 0)
-               {
-                  if(isHitMap() && my > 0)
-                  {
-                     this._isAllowUnJumpAction = this.actionName;
+               // if(my < 0 && !isHitMap() || my > 0)
+               // {
+               //    if(isHitMap() && my > 0)
+               //    {
+               //       this._isAllowUnJumpAction = this.actionName;
+               //    }
+               // my > 0 时原首处因短路不调用；my < 0 时原次处结果恒被 my > 0 否决，且此时 mapHitType 已为 OUT
+               // 不会进入落地修正分支，故无副作用，属纯浪费。统一为至多一次调用
+               var hitMapValue:Boolean = my < 0 ? isHitMap() : false; //
+               if(my < 0 && !hitMapValue || my > 0) //
+               { //
+                  if(my > 0) //
+                  { //
+                     hitMapValue = isHitMap(); //
+                  } //
+                  if(hitMapValue && my > 0) //
+                  { //
+                     this._isAllowUnJumpAction = this.actionName; //
                   }
                   if(isHitMapGoOn)
                   {

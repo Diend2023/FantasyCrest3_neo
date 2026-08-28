@@ -130,9 +130,9 @@ package
          Debug.UNAI = true;
          BaseRole.defalutSpriteRoleClass = GameRole;
          ServerUtils.ip = "120.79.155.18";
-         var gdebugLoader:Loader = new Loader(); //
-         gdebugLoader.load(new URLRequest("GDebug.swf")); //
-         stage.addChild(gdebugLoader); //
+         // var gdebugLoader:Loader = new Loader(); //
+         // gdebugLoader.load(new URLRequest("GDebug.swf")); //
+         // stage.addChild(gdebugLoader); //
          // gdebugLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadDebugComplete); //
       }
 

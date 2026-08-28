@@ -39,21 +39,48 @@ package zygame.display
          bodyCache = new Dictionary();
       }
       
+      // 静态上下文：供 _hitTestAtMapEach 复用，避免每次调用创建闭包
+      private static var _hitTestSrc:Body = null; //
+      private static var _hitTestOut:Vector.<Body> = null; //
+      
+      private static function _hitTestAtMapEach(body2:Body) : void //
+      { //
+         if(body2 != _hitTestSrc && (body2.userData.ref is Map || body2.userData.ref is Actor)) //
+         { //
+            if((body2.userData.ref as BodyDisplayObject).isCanHit) //
+            { //
+               _hitTestOut.push(body2); //
+            } //
+         } //
+      } //
+      
       public function hitTestAtMap(body:Body) : Vector.<Body>
       {
-         var bodyPresseds:Vector.<Body> = new Vector.<Body>();
-         var bodiesUnderMouse:BodyList = new BodyList();
-         bodiesUnderMouse = GameCore.currentWorld.nape.bodiesInBody(body);
-         bodiesUnderMouse.foreach(function(body2:Body):void
-         {
-            if(body2 != body && (body2.userData.ref is Map || body2.userData.ref is Actor))
-            {
-               if((body2.userData.ref as BodyDisplayObject).isCanHit)
-               {
-                  bodyPresseds.push(body2);
-               }
-            }
-         });
+         // var bodyPresseds:Vector.<Body> = new Vector.<Body>();
+         // var bodiesUnderMouse:BodyList = new BodyList();
+         // bodiesUnderMouse = GameCore.currentWorld.nape.bodiesInBody(body);
+         // bodiesUnderMouse.foreach(function(body2:Body):void
+         // {
+         //    if(body2 != body && (body2.userData.ref is Map || body2.userData.ref is Actor))
+         //    {
+         //       if((body2.userData.ref as BodyDisplayObject).isCanHit)
+         //       {
+         //          bodyPresseds.push(body2);
+         //       }
+         //    }
+         // });
+         // 先查询后分配：无重叠 body 时直接返回，省掉多余的 BodyList 与 Vector 分配；闭包改静态函数避免每帧分配
+         var bodiesUnderMouse:BodyList = GameCore.currentWorld.nape.bodiesInBody(body); //
+         if(bodiesUnderMouse == null || bodiesUnderMouse.length == 0) //
+         { //
+            return null; //
+         } //
+         var bodyPresseds:Vector.<Body> = new Vector.<Body>(); //
+         _hitTestSrc = body; //
+         _hitTestOut = bodyPresseds; //
+         bodiesUnderMouse.foreach(_hitTestAtMapEach); //
+         _hitTestSrc = null; //
+         _hitTestOut = null; //
          if(bodyPresseds.length == 0)
          {
             return null;
