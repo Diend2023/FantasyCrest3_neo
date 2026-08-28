@@ -51,9 +51,11 @@ package zygame.display
       
       public static var worldScale:Number = 1.3;
       
-      public static var velocityIterations:int = 10;
+      // public static var velocityIterations:int = 10;
+      public static var velocityIterations:int = 6; // Nape 默认 10；平台跳跃+静态地形场景 6 已足够，省 30~40% 物理时间
       
-      public static var positionIterations:int = 10;
+      // public static var positionIterations:int = 10;
+      public static var positionIterations:int = 4; // 同上
       
       public static var defalutClass:Class = World;
       
@@ -303,7 +305,8 @@ package zygame.display
          }
          if(collsion.body1.userData.isThrough || collsion.body2.userData.isThrough)
          {
-            len = Geom.distanceBody(collsion.body1,collsion.body2,PointUtils.vec2,PointUtils.vec2);
+            // len = Geom.distanceBody(collsion.body1,collsion.body2,PointUtils.vec2,PointUtils.vec2);
+            len = Geom.distanceBody(collsion.body1,collsion.body2,PointUtils.vec2,PointUtils.vec22); // 两个输出参数需各自独立的 Vec2
             if(len < -15)
             {
                return PreFlag.IGNORE;

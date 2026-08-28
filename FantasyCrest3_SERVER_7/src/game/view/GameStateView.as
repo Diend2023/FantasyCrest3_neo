@@ -9,6 +9,7 @@ package game.view
    import game.world._2V2ASSIST;
    import game.world._2V2LEVEL;
    import game.world._2VFBOnline;
+   import lzm.starling.swf.FPSUtil;
    import starling.core.Starling;
    import starling.display.Image;
    import starling.text.TextField;
@@ -37,10 +38,13 @@ package game.view
       
       private var _fbhp:FBHpState;
       
+      private var _tipsTextFps:FPSUtil; // FPS/延迟文本按 2Hz 更新，避免每帧触发 TextField 重新排版与 Context3D 显存查询
+      
       public function GameStateView()
       {
          super();
          _tips = new Vector.<Image>();
+         _tipsTextFps = new FPSUtil(2); //
       }
       
       public function createFBHPState() : void
@@ -205,14 +209,17 @@ package game.view
          {
             _fbhp.onFrame();
          }
-         if(Service.client)
-         {
-            _tipsText.text = "FPS:" + Starling.current.statsDisplay.fps.toFixed(1) + "/" + Starling.current.nativeStage.frameRate + "\nDEY:" + Service.client.delay + "ms";
-         }
-         else
-         {
-            _tipsText.text = "FPS:" + Starling.current.statsDisplay.fps.toFixed(1) + "\nGPU:" + totalGPUMemory;
-         }
+         if(_tipsTextFps.update()) // 降频到 2Hz，FPS 数值本身只是参考值，半秒刷新不影响观测
+         { //
+            if(Service.client)
+            {
+               _tipsText.text = "FPS:" + Starling.current.statsDisplay.fps.toFixed(1) + "/" + Starling.current.nativeStage.frameRate + "\nDEY:" + Service.client.delay + "ms";
+            }
+            else
+            {
+               _tipsText.text = "FPS:" + Starling.current.statsDisplay.fps.toFixed(1) + "\nGPU:" + totalGPUMemory;
+            }
+         } //
          if(false)
          {
             _tipsText.text = "FPS:" + Starling.current.statsDisplay.fps.toFixed(1) + "/" + Starling.current.nativeStage.frameRate + "\nGPU:" + totalGPUMemory;
