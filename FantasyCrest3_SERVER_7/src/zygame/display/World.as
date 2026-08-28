@@ -709,9 +709,13 @@ package zygame.display
          _messageNpc = null;
          if(role && !role.isLock && !role.isJump() && !poltSystem.isRuning && !AI.enemy(role,240,240))
          {
-            for(var npc in _starlingMap.getNpcs())
-            {
-               npcActor = _starlingMap.getNpcs()[npc];
+            // for(var npc in _starlingMap.getNpcs())
+            // {
+            //    npcActor = _starlingMap.getNpcs()[npc];
+            var npcs:Vector.<Actor> = _starlingMap.getNpcs(); // 原写法每次迭代都重复调用 getNpcs()，改为缓存一次
+            for(i = 0; i < npcs.length; ) //
+            { //
+               npcActor = npcs[i]; //
                if(npcActor.show && npcActor.hasPolt() && npcActor.cheakCanMessage(_role))
                {
                   if(_messageTips)
@@ -724,11 +728,17 @@ package zygame.display
                   _messageNpc = npcActor;
                   break;
                }
+               i++; //
             }
          }
-         for(var r in _refs)
-         {
-            _refs[r].onFrame();
+         // for(var r in _refs)
+         // {
+         //    _refs[r].onFrame();
+         // }
+         for(i = 0; i < _refs.length; ) // for-in 对 Vector 会构造迭代器，改索引循环；实时读 length 以保留遍历中新增元素的行为
+         { //
+            _refs[i].onFrame(); //
+            i++; //
          }
          if(_q)
          {
@@ -756,13 +766,23 @@ package zygame.display
          }
          if(this._sfps.update())
          {
-            for(var r2 in _refs)
-            {
-               _refs[r2].onSUpdate();
-            }
-            for(var buff in this._roles)
-            {
-               this._roles[buff].onSUpdate();
+            // for(var r2 in _refs)
+            // {
+            //    _refs[r2].onSUpdate();
+            // }
+            for(i = 0; i < _refs.length; ) //
+            { //
+               _refs[i].onSUpdate(); //
+               i++; //
+            } //
+            // for(var buff in this._roles)
+            // {
+            //    this._roles[buff].onSUpdate();
+            // }
+            for(i = 0; i < this._roles.length; ) //
+            { //
+               this._roles[i].onSUpdate(); //
+               i++; //
             }
             if(_state)
             {
@@ -789,9 +809,14 @@ package zygame.display
          //    onFrameUpdate(null);
          // }
          inFrame = false;
-         for(r2 in _refs)
-         {
-            _refs[r2].onFrameAfter();
+         // for(r2 in _refs)
+         // {
+         //    _refs[r2].onFrameAfter();
+         // }
+         for(i = 0; i < _refs.length; ) //
+         { //
+            _refs[i].onFrameAfter(); //
+            i++; //
          }
          if(isDiscarded)
          {
