@@ -46,6 +46,7 @@ package zygame.display
          _spr.x = -this.x;
          _spr.y = -this.y;
          this.blendMode = "mask";
+         this.setRequiresRedraw(); // RenderTexture 内容被重绘不会自动标脏，开启 skipUnchangedFrames 后雾效会静止不动，需手动触发重绘
       }
       
       override public function set alpha(value:Number) : void

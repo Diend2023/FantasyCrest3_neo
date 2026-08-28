@@ -43,6 +43,9 @@ class RoleViewerApp(ctk.CTk):
         self.play_after_id: str | None = None
         self.is_playing = False
         self.play_index = 0
+        # GIF 导出放大倍率：素材本身是 100~300px 的像素风小图，
+        # 不放大导出后只有 ~110x175，在照片查看器/设计软件/社交软件中会按 1:1 显示显得很小
+        self.export_zoom = 2.0
 
         self.preview_ctk_image = None
         self.role_draw_ctk_image = None
@@ -261,13 +264,20 @@ class RoleViewerApp(ctk.CTk):
 
         controls = ctk.CTkFrame(parent)
         controls.grid(row=3, column=1, sticky="nsew", padx=10, pady=(0, 8))
-        controls.grid_columnconfigure(4, weight=1)
+        controls.grid_columnconfigure(6, weight=1)
         ctk.CTkButton(controls, text="播放", width=36, command=self.play_action).grid(row=0, column=0, padx=2, pady=4)
         ctk.CTkButton(controls, text="暂停", width=36, command=self.pause_action).grid(row=0, column=1, padx=2, pady=4)
         ctk.CTkButton(controls, text="停止", width=36, command=self.stop_action).grid(row=0, column=2, padx=2, pady=4)
         ctk.CTkButton(controls, text="导出", width=36, command=self.export_action_gif).grid(row=0, column=3, padx=2, pady=4)
+        ctk.CTkLabel(controls, text="倍率", width=28).grid(row=0, column=4, padx=(6, 0), pady=4)
+        self.export_zoom_var = tk.StringVar(value="2x")
+        self.export_zoom_menu = ctk.CTkOptionMenu(
+            controls, values=["1x", "2x", "3x", "4x"], width=58,
+            variable=self.export_zoom_var, command=self.on_export_zoom_change,
+        )
+        self.export_zoom_menu.grid(row=0, column=5, padx=2, pady=4)
         self.play_state_var = tk.StringVar(value="停止")
-        ctk.CTkLabel(controls, textvariable=self.play_state_var).grid(row=0, column=4, sticky="e", padx=4, pady=4)
+        ctk.CTkLabel(controls, textvariable=self.play_state_var).grid(row=0, column=6, sticky="e", padx=4, pady=4)
 
         self.action_frames_listbox = tk.Listbox(
             parent, activestyle="dotbox", exportselection=False, height=8, width=15,
@@ -791,7 +801,11 @@ class RoleViewerApp(ctk.CTk):
 
         # 等比缩放到最大边（保留最佳比例，不做方形拉伸），像素风用最近邻保持锐利
         export_max = 400
-        scale = min(1.0, export_max / canvas_w, export_max / canvas_h)
+        export_hard_max = 1024
+        base_scale = min(1.0, export_max / canvas_w, export_max / canvas_h)
+        # 允许放大：素材本身只有 100~300px，不放大导出后在预览器/社交软件中按 1:1 显示会显得很小
+        scale = base_scale * self.export_zoom
+        scale = min(scale, export_hard_max / canvas_w, export_hard_max / canvas_h)
         out_w = max(1, int(canvas_w * scale))
         out_h = max(1, int(canvas_h * scale))
         gif_frames = [c.resize((out_w, out_h), resample) for c in gif_frames]
@@ -811,10 +825,18 @@ class RoleViewerApp(ctk.CTk):
                 disposal=2,  # 使用透明背景清除防重叠
                 optimize=True,
             )
-            self.status_var.set(f"导出成功: {filepath}")
-            messagebox.showinfo("成功", f"成功导出 GIF 到:\n{filepath}")
+            self.status_var.set(f"导出成功: {filepath}（{out_w}x{out_h}）")
+            messagebox.showinfo("成功", f"成功导出 GIF（{out_w}x{out_h}）到:\n{filepath}")
         except Exception as e:
             messagebox.showerror("导出失败", f"导出 GIF 时发生错误：\n{e}")
+
+    def on_export_zoom_change(self, value: str):
+        """切换 GIF 导出放大倍率"""
+        try:
+            zoom = float(str(value).rstrip("xX"))
+        except (TypeError, ValueError):
+            zoom = 2.0
+        self.export_zoom = zoom if zoom > 0 else 2.0
 
     def _schedule_next_frame(self, delay_ms: int):
         self.play_after_id = self.after(delay_ms, self._play_tick)

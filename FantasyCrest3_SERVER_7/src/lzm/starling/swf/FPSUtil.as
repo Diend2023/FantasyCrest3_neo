@@ -15,6 +15,10 @@ package lzm.starling.swf
       
       private var _pause:Boolean = false;
       
+      // 固定时间步长（秒）：>0 时忽略 getTimer 真实时间，每次 update 注入固定时长
+      // 用于让动画推进严格跟随逻辑帧，避免逻辑补帧时动画仍按真实时间只走一步而变慢
+      public static var fixedDelta:Number = 0; //
+      
       public function FPSUtil(fps:int)
       {
          super();
@@ -41,7 +45,8 @@ package lzm.starling.swf
             return false;
          }
          var now:Number = getTimer() / 1000;
-         var passedTime:Number = now - _lastFrameTimestamp;
+         // var passedTime:Number = now - _lastFrameTimestamp;
+         var passedTime:Number = fixedDelta > 0 ? fixedDelta : now - _lastFrameTimestamp; //
          _lastFrameTimestamp = now;
          _currentTime += passedTime;
          if(_currentTime >= _fpsTime)

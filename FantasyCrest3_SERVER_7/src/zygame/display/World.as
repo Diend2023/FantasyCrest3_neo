@@ -23,6 +23,7 @@ package zygame.display
    import starling.display.Quad;
    import starling.display.Sprite;
    import starling.events.Event;
+   import starling.events.EnterFrameEvent; // 固定步长累加器需要读取真实的 passedTime
    import starling.rendering.Painter;
    import starling.textures.RenderTexture;
    import starling.utils.Pool;
@@ -38,10 +39,12 @@ package zygame.display
    import zygame.debug.Debug;
    import zygame.event.GameMapHitType;
    import zygame.event.ZYError;
+   import zygame.run.DefalutRunModel; // 用于区分本地单机与联机/回放的帧驱动源
    import zygame.run.IRunModel;
    import zygame.tmx.Map;
    import zygame.utils.PointUtils;
    import game.view.GameSettingsView; // 导入设置界面类
+   import game.server.ReplayRunModel; // 回放的录像帧在本地数组，需排除在"强制单步"之外
    
    public class World extends KeyDisplayObject
    {
@@ -103,6 +106,14 @@ package zygame.display
       private var _sfps:FPSUtil;
       
       private var inFrame:Boolean = false;
+      
+      private static const FIXED_DT:Number = 0.016666666666666666; // 固定逻辑步长（秒）：1/60，使招式判定窗口与渲染帧率无关
+      
+      private static const MAX_LOGIC_STEPS:int = 3; // 单帧最多补跑的逻辑帧数，防止卡顿后越补越卡的死亡螺旋
+      
+      private var _logicAcc:Number = 0; // 累加器中尚未消化的时间（秒）
+      
+      private var _logicSteps:int = 0; // 上一帧实际执行的逻辑帧数，便于排查联机/回放的帧同步问题
       
       private var _refs:Vector.<DisplayObjectContainer>;
       
@@ -170,7 +181,8 @@ package zygame.display
          _sfps = new FPSUtil(1);
          _keyDict = [];
          _refs = new Vector.<DisplayObjectContainer>();
-         this.addEventListener("enterFrame",onFrameUpdate);
+         // this.addEventListener("enterFrame",onFrameUpdate);
+         this.addEventListener("enterFrame",onFrameUpdateFixed); // 改为固定步长累加器入口，onFrameUpdate 仍表示单个逻辑帧
          var preListener:PreListener = new PreListener(InteractionType.ANY,CbType.ANY_BODY,CbType.ANY_BODY,onPre);
          _nape.listeners.add(preListener);
          var collisionListener:InteractionListener = new InteractionListener(CbEvent.BEGIN,InteractionType.COLLISION,CbType.ANY_BODY,CbType.ANY_BODY,onCollide);
@@ -772,10 +784,10 @@ package zygame.display
          {
             runModel.onFrameOver();
          }
-         if(e != null && Starling.current.nativeStage.frameRate == 30)
-         {
-            onFrameUpdate(null);
-         }
+         // if(e != null && Starling.current.nativeStage.frameRate == 30)
+         // {
+         //    onFrameUpdate(null);
+         // }
          inFrame = false;
          for(r2 in _refs)
          {
@@ -787,6 +799,54 @@ package zygame.display
             super.discarded();
          }
       }
+      
+      // 固定步长累加器入口，ENTER_FRAME 实际监听此函数，内部按真实时间驱动若干个逻辑帧
+      // 逻辑恒定 60Hz 并与渲染帧率解耦：60fps 跑 1 步，30fps 跑 2 步，20fps 跑 3 步
+      // 联机/回放的 onFrame 每次调用会消耗一帧外部数据（网络帧或录像帧），故强制单步以免加速
+      public function onFrameUpdateFixed(e:Event) : void //
+      { //
+         var passedTime:Number = FIXED_DT; //
+         var maxSteps:int = MAX_LOGIC_STEPS; //
+         if(e is EnterFrameEvent) //
+         { //
+            passedTime = (e as EnterFrameEvent).passedTime; //
+         } //
+         // 异常 delta 保护：首帧、切后台返回、断点续跑都可能给出超大值
+         if(!(passedTime > 0) || passedTime > 0.25) //
+         { //
+            passedTime = FIXED_DT; //
+         } //
+         // 回放的录像帧是本地完整数组，补跑即快进到正确位置，不存在欠帧，应允许补帧以维持 60Hz 播放速度
+         // 仅联机（网络实时流，欠帧无法靠补跑获得）才强制单步
+         if(runModel && !(runModel is DefalutRunModel) && !(runModel is ReplayRunModel)) //
+         { //
+            maxSteps = 1; //
+         } //
+         _logicAcc += passedTime; //
+         _logicSteps = 0; //
+         // 逻辑步内改用固定步长驱动所有 FPSUtil（动画/特效/定时器），使动画推进量等于逻辑帧数
+         // 否则动画仍按 getTimer 真实时间每渲染帧只走一步，30fps 下会慢一半并出现重复动作帧
+         FPSUtil.fixedDelta = FIXED_DT; //
+         while(_logicAcc >= FIXED_DT && _logicSteps < maxSteps) //
+         { //
+            onFrameUpdate(e); //
+            _logicAcc -= FIXED_DT; //
+            _logicSteps++; //
+         } //
+         // 至少推进一个逻辑帧：vsync 抖动可能让累加器不足一步，跳过会造成画面停顿
+         if(_logicSteps == 0) //
+         { //
+            onFrameUpdate(e); //
+            _logicAcc -= FIXED_DT; //
+            _logicSteps = 1; //
+         } //
+         FPSUtil.fixedDelta = 0; //
+         // 跑满预算后丢弃余量，欠账也不跨帧累积，避免恢复时集中补帧形成死亡螺旋
+         if(_logicSteps >= maxSteps || _logicAcc < 0) //
+         { //
+            _logicAcc = 0; //
+         } //
+      } //
       
       public function get hitNumber() : HitNumer
       {
