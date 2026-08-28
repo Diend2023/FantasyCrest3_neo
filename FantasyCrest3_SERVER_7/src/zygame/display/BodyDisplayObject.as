@@ -36,6 +36,10 @@ package zygame.display
       public function BodyDisplayObject()
       {
          super();
+         // 战斗层对象（角色/特效/投掷物/地图/掉落物）均无需鼠标交互，关闭命中测试
+         // 否则每次鼠标移动 hitTest 都会遍历整棵显示树。需触摸的类（VirKeyView、CommonButton）
+         // 直接继承 TouchDisplayObject，不经此类，不受影响
+         this.touchable = false; //
          bodyCache = new Dictionary();
       }
       

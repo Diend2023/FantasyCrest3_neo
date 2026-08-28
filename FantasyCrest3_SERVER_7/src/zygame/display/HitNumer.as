@@ -17,6 +17,7 @@ package zygame.display
       public function HitNumer()
       {
          super();
+         this.touchable = false; // 伤害数字无需交互，关闭命中测试
       }
       
       override public function onInit() : void

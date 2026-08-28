@@ -18,6 +18,7 @@ package zygame.display
       public function HPMini(role:BaseRole)
       {
          super();
+         this.touchable = false; // 小血条无需交互，关闭命中测试
          _hpLineBg = new Quad(35,6,3355443);
          this.addChild(_hpLineBg);
          _hpLine = new Quad(35,4,role.troopid == 1 ? 65535 : 16711680);
