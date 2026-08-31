@@ -41,7 +41,8 @@ package game.view.item
             _message.isHtmlText = true;
             _message.width = stage.stageWidth / 2 < _message.width ? stage.stageWidth / 2 - 10 : _message.width;
             _skillName.text = value.actionName + "  [" + getType(value.type) + "]  " + cKey(value.key,value.type);
-            _message.text = "[技能CD：" + value.cd + "秒]  " + (value.mp > 0 ? "<font color=\'#33ffff\' size=\'12\'>[所需水晶：" + value.mp + "]</font>  " : "") + (value.noc ? "<font color=\'#FFCC00\' size=\'12\'>[无法强制]</font>  " : "") + value.msg;
+            // _message.text = "[技能CD：" + value.cd + "秒]  " + (value.mp > 0 ? "<font color=\'#33ffff\' size=\'12\'>[所需水晶：" + value.mp + "]</font>  " : "") + (value.noc ? "<font color=\'#FFCC00\' size=\'12\'>[无法强制]</font>  " : "") + value.msg;
+            _message.text = "[技能CD：" + value.cd + "秒]  " + (value.mp > 0 ? "<font color=\'#33ffff\' size=\'12\'>[所需水晶：" + value.mp + "]</font>  " : "") + ((value.noc && value.noc == "Y") ? "<font color=\'#FFCC00\' size=\'12\'>[无法强制]</font>  " : "") + value.msg; //
             if(_message.text == "")
             {
                _message.text = "无";

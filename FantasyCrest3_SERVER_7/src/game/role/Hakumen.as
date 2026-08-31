@@ -1,12 +1,17 @@
 package game.role
 {
    import flash.geom.Point;
-   import game.world._FBBaseWorld;
    import zygame.data.BeHitData;
    import zygame.data.RoleAttributeData;
    import zygame.display.BaseRole;
    import zygame.display.World;
    import feathers.data.ListCollection;
+   import zygame.display.EffectDisplay;
+   import game.world.BaseGameWorld;
+   import zygame.data.RoleFrameGroup;
+   import starling.display.Image;
+   import starling.animation.Tween;
+   import starling.core.Starling;
 
    public class Hakumen extends GameRole
    {
@@ -111,10 +116,13 @@ package game.role
         {
             this.attribute.clearCD("突进")
         }
-        if(actionName == "JD斩神" || actionName == "空投")
+        if(actionName == "JD斩神" || actionName == "空投" || actionName == "J214A咢刀" || actionName == "J214B火萤")
         {
             _KLMoveFrameCount = 0;
             _KWLMoveFrameCount = 0;
+        }
+        if(actionName == "虚空阵 雪风")
+        {
         }
       }
 
@@ -190,25 +198,128 @@ package game.role
 
       override public function playSkill(target:String):void
       {
-        if(target == "瞬步" && this.isJump())
-        {
+         if(target == "瞬步" && this.isJump())
+         {
             if(this.attribute.getCD("突进") <= 0)
             {
-                target = "突进";
-                _KLMoveFrameCount = 40;
-                _KWLMoveFrameCount = 0;
+                  target = "突进";
+                  _KLMoveFrameCount = 40;
+                  _KWLMoveFrameCount = 0;
             }
             else
             {
-                return;
+               return;
             }
-        }
-        if(target == "空中后撤" && this.attribute.getCD("空中后撤") <= 0)
-        {
+         }
+        super.playSkill(target);
+      }
+
+      override public function onShapeChange() : void
+      {
+         super.onShapeChange();
+         if(this.actionName == "虚空阵 雪风" && this.frameAt(0,16))
+         {
+            this.createShadow(0x808080);
+         }
+         if(this.actionName == "虚空阵 恶灭" && this.frameAt(0,16))
+         {
+            this.createShadow(16711680);
+         }
+      }
+
+      override public function createShadow(color:uint) : Image
+      {
+         if(this.actionName == "虚空阵 恶灭")
+         {
+            var image:Image;
+            var scaleNum:Number;
+            var tw:Tween;
+            if(!this.parent)
+            {
+                return null;
+            }
+            image = new Image((this.display as Image).texture);
+            this.parent.addChildAt(image,0);
+            scaleNum = contentScale + (1 - contentScale);
+            image.x = this.x + display.x * (this.getRawScaleX() * scaleNum); // 改用this获取scaleX
+            image.y = this.y + display.y * (this.getRawScaleY() * scaleNum); // 改用this获取scaleY
+            image.scaleX = this.scaleX;
+            image.scaleY = this.scaleY;
+            image.color = color;
+            image.blendMode = "normal";
+            tw = new Tween(image,0.5);
+            tw.animate("alpha",0);
+            Starling.juggler.add(tw);
+            tw.onComplete = function():void
+            {
+                image.removeFromParent();
+            };
+            return image;
+         }
+         return super.createShadow(color);
+      }
+
+      override public function runLockAction(str:String, canBreak:Boolean = false) : void
+      {
+         // 防反技能释放时取消播放大招动画，重写runLockAction
+         var group:RoleFrameGroup = this.roleXmlData.getGroupAt(str);
+         if(group && group.key && group.key.indexOf("O") != -1 && actionName != str && str =="236236D虚空阵 雪风" || str =="28D虚空阵 恶灭")
+         {
+            if(group && group["mp"])
+            {
+               usePoint(int(group["mp"]));
+            }
+            if(!isLock)
+            {
+               if(isKeyDown(65))
+               {
+                  this.scaleX = -1;
+               }
+               else if(isKeyDown(68))
+               {
+                  this.scaleX = 1;
+               }
+            }
+            this.action = str;
+            this.isLock = true;
+            this.canBreakAction = canBreak;
+            return;
+         }
+         if(str == "空中后撤")
+         {
             _KWLMoveFrameCount = 20;
             _KLMoveFrameCount = 0;
-        }
-        super.playSkill(target);
+         }
+         if(str == "炙热冲爆" && this.isJump())
+         {
+            str = "炙热冲爆（空中）";
+         }
+         if(str == "炙热冲爆" || str == "炙热冲爆（空中）")
+         {
+            this.attribute.resetCD("炙热冲爆");
+            this.attribute.resetCD("炙热冲爆（空中）");
+         }
+         if(str == "能力超载 鬼神" || str == "能力超载 鬼神（空中）")
+         {
+            this.attribute.resetCD("能力超载 鬼神");
+            this.attribute.resetCD("能力超载 鬼神（空中）");
+         }
+         super.runLockAction(str,canBreak);
+      }
+
+      // 播放大招动画
+      public function playSkillPainting(actionName:String):void
+      {
+         var effect:EffectDisplay = new EffectDisplay("bisha",null,this,1.5,1.5);
+         effect.x = this.x;
+         effect.y = this.y;
+         this.world.addChild(effect);
+         effect.fps = 24;
+         for(var i:BaseRole in this.world.getRoleList())
+         {
+            this.world.getRoleList()[i].cardFrame = 40;
+         }
+         (this.world as BaseGameWorld).showSkillPainting(targetName,actionName,troopid);
       }
 
    }

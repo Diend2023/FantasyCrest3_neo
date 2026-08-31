@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <application xmlns="http://ns.adobe.com/air/application/51.3">
     <id>net.zygame.hxwz</id>
     <versionNumber>1.3</versionNumber>
     <filename>幻想纹章3.0.2</filename>
-    <description />
+    <description/>
 
 
-    <!-- To localize the description, use the following format for the description element.
+    
+
+  
+
+  <!-- To localize the description, use the following format for the description element.
     <description>
         <text xml:lang="en">English App description goes here</text>
         <text xml:lang="fr">French App description goes here</text>
@@ -16,18 +20,26 @@
     <name>幻想纹章3.0.2</name>
 
 
-    <!-- To localize the name, use the following format for the name element.
+    
+
+  
+
+  <!-- To localize the name, use the following format for the name element.
     <name>
         <text xml:lang="en">English App name goes here</text>
         <text xml:lang="fr">French App name goes here</text>
         <text xml:lang="ja">Japanese App name goes here</text>
     </name>
     -->
-    <copyright />
+    <copyright/>
 
     <architecture>64</architecture>
 
-    <!-- <initialWindow>
+    
+
+  
+
+  <!-- <initialWindow>
         <content>WebRuntime.swf</content>
         <systemChrome>standard</systemChrome>
         <transparent>false</transparent>
@@ -43,7 +55,11 @@
     </initialWindow> -->
 
 
-    <!-- 使用修复的initialWindow -->
+    
+
+  
+
+  <!-- 使用修复的initialWindow -->
     <initialWindow>
         <content>WebRuntime.swf</content>
         <systemChrome>standard</systemChrome>

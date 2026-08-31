@@ -128,11 +128,11 @@ package WebRuntime_fla
          this.batch = 100;
          this.errorCount = 0;
          // this.nextLoad();
-         if(File.applicationDirectory.resolvePath("phone1.xml").exists) // 开发版跳过热更新 //
+         if(File.applicationDirectory.resolvePath("phone1.xml").exists || NativeApplication.nativeApplication.applicationID == "Maplive") // 开发版跳过热更新 //
          { //
             this.loading.start.visible = true; //
             this.loading.clear.visible = true; //
-            trace("phone1.xml found, skip update"); //
+            trace("skip update"); //
          } //
          else //
          { //
