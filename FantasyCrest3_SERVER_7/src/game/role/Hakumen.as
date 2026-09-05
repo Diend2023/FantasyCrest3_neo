@@ -30,7 +30,9 @@ package game.role
          this.listData = new ListCollection([{
             "icon":"cd_I_mp.png",
             "msg":"",
-            "len":110
+            "item":{"width":110},
+            "bg":{"width":110},
+            "lable":{"width":84}
          }]);
       }
 
@@ -46,31 +48,31 @@ package game.role
             if(this.currentFrame == 36)
             {
                 var randomNum:Number = Math.random();
-                if(randomNum < 0.4)
+                if(randomNum < 0.5)
                 {
                     this.go(0);
                 }
-                else if(0.5 <= randomNum < 0.825)
+                else if(randomNum < 0.825)
                 {
                     this.go(37);
                 }
-                else if(0.825 <= randomNum < 0.875)
+                else if(randomNum < 0.875)
                 {
                     this.go(48);
                 }
-                else if(0.875 <= randomNum < 0.925)
+                else if(randomNum < 0.925)
                 {
                     this.go(62);
                 }
-                else if(0.925 <= randomNum < 0.95)
+                else if(randomNum < 0.95)
                 {
                     this.go(87);
                 }
-                else if(0.95 <= randomNum < 0.975)
+                else if(randomNum < 0.975)
                 {
                     this.go(107);
                 }
-                else if(0.975 <= randomNum < 1.0)
+                else if(randomNum < 1.0)
                 {
                     this.go(123);
                 }
@@ -121,6 +123,13 @@ package game.role
             _KLMoveFrameCount = 0;
             _KWLMoveFrameCount = 0;
         }
+        if(actionName == "214A红莲")
+        {
+            if(this.frameAt(2,7) && this.hitRole())
+            {
+                this.go(6);
+            }
+        }
         if(actionName == "虚空阵 雪风")
         {
         }
@@ -160,6 +169,27 @@ package game.role
         //        this.currentMp.value -= 1;
         //     }
         //  }
+         if(key == 74)
+         {
+            if(this.actionName == "普通攻击")
+            {
+               if(this.frameAt(7,14))
+               {
+                  this.go(14);
+               }
+               else if(this.frameAt(30,36))
+               {
+                  this.go(36);
+               }
+            }
+            if(this.actionName == "5B5C")
+            {
+               if(this.frameAt(7,14))
+               {
+                  this.go(14);
+               }
+            }
+         }
          if(_keyObj.hasOwnProperty(key))
          {
             _keyQueue.push(_keyObj[key]);

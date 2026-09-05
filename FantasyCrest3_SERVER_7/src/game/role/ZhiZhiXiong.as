@@ -99,11 +99,6 @@ package game.role
             this.golden = 12;
             return
          }
-         else if(this.attribute.hasBuff(AttributeChangeBuff, "addAttack"))
-         {
-            _addAttactBuffTimer = 600;
-            this.golden = 12;
-         }
          super.onBeHit(beData);
       }
    }

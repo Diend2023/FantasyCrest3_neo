@@ -375,16 +375,24 @@ package game.display
          var arr:Array = [];
          var figth:XML = DataCore.getXml("fight");
          var allcoin:int = 0;
+         var unlock:XML = DataCore.getXml("unlock");
+         var unlockData:String = unlock.toString();
          if(figth)
          {
+            var version:Number = Number(figth.@version); // 提前获取版本号
             xmllist = figth.children();
-            for(var i in xmllist)
+            var len:int = xmllist.length(); //
+            // for(var i in xmllist)
+            for (var i:int = 0; i < len; i++) //
             {
                rootName = (xmllist[i] as XML).localName();
-               if(rootName != "init" && String((xmllist[i] as XML).@visible) != "false" && (!config.showCoinRole || config.showCoinRole && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0)))
+               // 原本的加载角色条件
+               // if(unlockData.indexOf("Role" + rootName) != -1 && rootName != "init" && String((xmllist[i] as XML).@visible) != "false" && (!config.showCoinRole || config.showCoinRole && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0)))
+               if(rootName != "init") // 过滤默认角色
                {
-                  if(!((int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0) && String((xmllist[i] as XML).@in4399) != "true"))
-                  {
+                  // 原本的加载角色条件
+                  // if(!(false && (int((xmllist[i] as XML).@crystal) > 0 || int((xmllist[i] as XML).@coin) > 0) && String((xmllist[i] as XML).@in4399) != "true"))
+                  // {
                      arr.push({
                         "passive":xmllist[i].@passive,
                         "head":String(xmllist[i].@head).replace(".png",""),
@@ -396,12 +404,13 @@ package game.display
                         "profession":xmllist[i].@profession,
                         "coin":int(xmllist[i].@coin),
                         "crystal":int(xmllist[i].@crystal),
-                        "isNew":String(xmllist[i].@version) == String(DataCore.getXml("fight").@version),
+                        // "isNew":String(xmllist[i].@version) == String(DataCore.getXml("fight").@version),
+                        "isNew":Number(xmllist[i].@version) >= version, //
                         "lock":true,
                         "xml":xmllist[i]
                      });
                      allcoin += int(xmllist[i].@coin);
-                  }
+                  // }
                }
             }
          }

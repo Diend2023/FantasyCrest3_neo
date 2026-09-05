@@ -5,10 +5,18 @@
     <image path="npc/hakumen.png"/>
   </content>
   <loads>
+    <sprites path="effect/bm4C"/>
+    <file path="sound/zsyinxiao/hase22.mp3"/>
+    <sprites path="effect/bm6C"/>
     <sprites path="effect/bm2C"/>
+    <sprites path="effect/bm5C"/>
+    <sprites path="effect/bmJC"/>
     <sprites path="effect/xkzn"/>
     <file path="sound/zsyinxiao/hase23.mp3"/>
-    <file path="sound/zsyinxiao/hase22.mp3"/>
+    <sprites path="effect/xkzn1"/>
+    <sprites path="effect/zs1"/>
+    <file path="sound/zsyinxiao/hase25.mp3"/>
+    <sprites path="effect/zs3"/>
     <sprites path="effect/xkzn2"/>
     <file path="sound/zsyinxiao/hase21.mp3"/>
   </loads>
@@ -287,22 +295,23 @@
       <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha214_04" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha214_05" gox="60" goy="0" effects="[]"/>
+      <SubTexture name="ha214_05" gox="60" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:5,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.5,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:200,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;bm4C\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-228,\&quot;scaleX\&quot;:1.5,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-67,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:false,\&quot;intensity\&quot;:0}&quot;]" hitPoint="246,-135 192,-125"/>
       <SubTexture name="ha214_06" gox="70" goy="0" effects="[]"/>
       <SubTexture name="ha214_07" gox="80" goy="0" effects="[]"/>
       <SubTexture name="ha214_08" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha214_09" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha214_10" gox="90" goy="0" effects="[]"/>
-      <SubTexture name="ha214_11" gox="90" goy="0" stop="stop" effects="[]"/>
-      <SubTexture name="ha212_00" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_11" gox="90" goy="0" stop="unstop" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha212_00" gox="90" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha212_01" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha212_02" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha212_03" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha212_04" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha212_04" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha212_04" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha212_05" gox="90" goy="0" effects="[]"/>
       <SubTexture name="ha212_06" gox="90" goy="0" effects="[]"/>
-      <SubTexture name="ha212_07" gox="180" goy="0" effects="[]"/>
-      <SubTexture name="ha212_07" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha212_07" gox="180" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:5,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.4,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:200,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:45,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:10,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;bm6C\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-262,\&quot;scaleX\&quot;:1.4,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-139,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:false,\&quot;intensity\&quot;:0}&quot;]"/>
       <SubTexture name="ha212_08" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha212_09" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha212_10" gox="180" goy="0" effects="[]"/>
@@ -311,15 +320,18 @@
       <SubTexture name="ha212_13" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha212_14" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha212_15" gox="180" goy="0" effects="[]"/>
-      <SubTexture name="ha212_16" gox="180" goy="0" stop="stop" effects="[]"/>
-      <SubTexture name="ha210_00" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha212_16" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha212_17" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha212_18" gox="180" goy="0" effects="[]"/>
+      <SubTexture name="ha212_19" gox="180" goy="0" stop="unstop" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha210_00" gox="180" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="stop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha210_01" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha210_02" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha210_03" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha210_03" gox="180" goy="0" effects="[]"/>
       <SubTexture name="ha210_03" gox="180" goy="0" effects="[]"/>
-      <SubTexture name="ha210_04" gox="270" goy="0" effects="[]"/>
-      <SubTexture name="ha210_05" gox="280" goy="0" effects="[]"/>
+      <SubTexture name="ha210_04" gox="270" goy="0" effects="[]" hitPoint="-67,-3 106,-200 149,-152 139,10" wFight="100" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" hitX="5" straight="30" hitY="15"/>
+      <SubTexture name="ha210_05" gox="280" goy="0" effects="[]" hitPoint="81,-121"/>
       <SubTexture name="ha210_06" gox="290" goy="0" effects="[]"/>
       <SubTexture name="ha210_07" gox="290" goy="0" effects="[]"/>
       <SubTexture name="ha210_08" gox="290" goy="0" effects="[]"/>
@@ -328,10 +340,10 @@
       <SubTexture name="ha211_00" gox="300" goy="0" effects="[]"/>
       <SubTexture name="ha211_01" gox="310" goy="0" effects="[]"/>
       <SubTexture name="ha211_02" gox="320" goy="0" effects="[]"/>
+      <SubTexture name="ha211_03" gox="320" goy="0" effects="[]" hitPoint="-64,0 44,-216 150,-131 154,17" wFight="100" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" straight="10" hitY="0" cardFrame="10"/>
       <SubTexture name="ha211_03" gox="320" goy="0" effects="[]"/>
       <SubTexture name="ha211_03" gox="320" goy="0" effects="[]"/>
-      <SubTexture name="ha211_03" gox="320" goy="0" effects="[]"/>
-      <SubTexture name="ha211_04" gox="320" goy="0" effects="[]"/>
+      <SubTexture name="ha211_04" gox="320" goy="0" effects="[]" hitPoint="-65,2 89,-168 151,-116 146,11" wFight="150" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" hitY="-10" cardFrame="10"/>
       <SubTexture name="ha211_05" gox="320" goy="0" effects="[]"/>
       <SubTexture name="ha211_06" gox="320" goy="0" effects="[]"/>
       <SubTexture name="ha211_07" gox="320" goy="0" effects="[]"/>
@@ -339,7 +351,7 @@
       <SubTexture name="ha211_09" gox="320" goy="0" effects="[]"/>
       <SubTexture name="ha211_10" gox="320" goy="0" effects="[]"/>
       <SubTexture name="ha211_11" gox="320" goy="0" effects="[]"/>
-      <SubTexture name="ha211_12" gox="320" goy="0" effects="[]"/>
+      <SubTexture name="ha211_12" gox="320" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
     <act name="J2B" key="SL" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
       <SubTexture name="ha251_00" gox="0" goy="0" effects="[]"/>
@@ -363,7 +375,7 @@
       <SubTexture name="ha232_04" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_05" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_06" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha232_07" gox="0" goy="0" effects="[&quot;{\&quot;unhit\&quot;:false,\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;wFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;through\&quot;:false,\&quot;scaleY\&quot;:1.3,\&quot;scaleX\&quot;:1.3,\&quot;goy\&quot;:0,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:false,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;intensity\&quot;:null,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;hitY\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-3,\&quot;srcColor\&quot;:-1,\&quot;time\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;y\&quot;:-294,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;name\&quot;:\&quot;bm2C\&quot;,\&quot;hitX\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;blow\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;stiff\&quot;:30,\&quot;fadeOut\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;mFight\&quot;:0}&quot;]"/>
+      <SubTexture name="ha232_07" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:5,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.3,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:200,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;isLockActionShow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:-2,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;bm2C\&quot;,\&quot;hitY\&quot;:25,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-294,\&quot;scaleX\&quot;:1.3,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-3,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:false,\&quot;intensity\&quot;:0}&quot;]" hitPoint="108,-180 128,-192"/>
       <SubTexture name="ha232_08" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_09" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_10" gox="0" goy="0" effects="[]"/>
@@ -375,18 +387,18 @@
       <SubTexture name="ha232_14" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_15" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha232_16" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha232_17" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha232_17" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
-    <act name="BC" key="WJ" type="land" cd="6" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
+    <act name="5B5C" key="WJ" type="land" cd="6" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="26" msg="">
       <SubTexture name="ha201_00" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_03" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha201_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha201_04" gox="0" goy="0" effects="[]" hitPoint="-16,-179 132,-202 147,-97 -1,-75" hitX="5" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" straight="30" wFight="100"/>
       <SubTexture name="ha201_05" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_06" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_07" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha201_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha201_08" gox="0" goy="0" effects="[]" isApplyGoPoint="false"/>
       <SubTexture name="ha201_09" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha201_10" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha202_00" gox="0" goy="0" stop="stop" effects="[]"/>
@@ -394,18 +406,18 @@
       <SubTexture name="ha202_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha202_03" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha202_04" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_05" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_06" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_07" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_08" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_09" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_10" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_11" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_12" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_13" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_14" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_15" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha202_16" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha202_05" gox="0" goy="0" effects="[]" isApplyGoPoint="true"/>
+      <SubTexture name="ha202_06" gox="100" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:15,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1.2,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:200,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:45,\&quot;isLockActionShow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:10,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;bm5C\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-249,\&quot;scaleX\&quot;:1.2,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-54,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:false,\&quot;intensity\&quot;:0}&quot;]" hitPoint="" isApplyGoPoint="true"/>
+      <SubTexture name="ha202_07" gox="100" goy="0" effects="[]" hitPoint="" wFight="100" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" hitX="10" straight="0" cardFrame="0"/>
+      <SubTexture name="ha202_08" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_09" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_10" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_11" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_12" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_13" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_14" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_15" gox="100" goy="0" effects="[]"/>
+      <SubTexture name="ha202_16" gox="100" goy="0" effects="[]"/>
     </act>
     <act name="2B2C" key="SL" type="land" cd="6" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
       <SubTexture name="ha231_00" gox="0" goy="0" effects="[]"/>
@@ -451,7 +463,7 @@
       <SubTexture name="ha406_00" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha406_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha406_02" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha406_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha406_03" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:30,\&quot;isLockActionShow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;bmJC\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-225,\&quot;scaleX\&quot;:1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-76,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:false,\&quot;intensity\&quot;:0}&quot;]"/>
       <SubTexture name="ha406_04" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha406_05" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha406_06" gox="0" goy="0" effects="[]"/>
@@ -476,7 +488,7 @@
     </act>
     <act name="5D斩神" key="U" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16">
       <SubTexture name="ha203_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha203_01" gox="0" goy="0" effects="[&quot;{\&quot;unhit\&quot;:true,\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;wFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;through\&quot;:false,\&quot;scaleY\&quot;:0.8,\&quot;scaleX\&quot;:0.8,\&quot;goy\&quot;:0,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:true,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;intensity\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;hitY\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-64,\&quot;srcColor\&quot;:-1,\&quot;time\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;y\&quot;:-237,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;name\&quot;:\&quot;xkzn\&quot;,\&quot;hitX\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;blow\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;stiff\&quot;:0,\&quot;fadeOut\&quot;:true,\&quot;fadeIn\&quot;:true,\&quot;mFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha203_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.8,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:true,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:true,\&quot;through\&quot;:false,\&quot;y\&quot;:-237,\&quot;scaleX\&quot;:0.8,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-64,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha203_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
@@ -492,9 +504,9 @@
       <SubTexture name="ha203_21" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_22" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
-    <act name="6D斩神" key="WU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="12">
+    <act name="6D斩神" key="WU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16">
       <SubTexture name="ha213_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha213_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.9,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn1\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-240,\&quot;scaleX\&quot;:0.9,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:19,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha213_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha213_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha213_10" gox="0" goy="0" effects="[]"/>
@@ -505,11 +517,11 @@
       <SubTexture name="ha213_12" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha213_13" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha213_14" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha213_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha213_15" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
-    <act name="2D斩神" key="SU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="12">
+    <act name="2D斩神" key="SU" type="land" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16">
       <SubTexture name="ha233_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha233_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.9,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn1\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-193,\&quot;scaleX\&quot;:0.9,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-21,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha233_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha233_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha233_17" gox="0" goy="0" effects="[]"/>
@@ -520,18 +532,18 @@
       <SubTexture name="ha233_19" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha233_20" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha233_21" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha233_22" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha233_22" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
-    <act name="JD斩神" key="U" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="12">
-      <SubTexture name="ha253_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha253_01" gox="0" goy="0" effects="[]"/>
+    <act name="JD斩神" key="U" type="air" cd="3" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16">
+      <SubTexture name="ha253_00" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:1,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn1\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-251,\&quot;scaleX\&quot;:1,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-8,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]"/>
+      <SubTexture name="ha253_01" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha253_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha253_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha253_12" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha253_12" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha253_13" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha253_14" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha253_15" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha253_15" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
     <act name="空投" key="SU" type="air" cd="6" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
       <SubTexture name="ha321_00" gox="0" goy="0" effects="[]"/>
@@ -550,12 +562,12 @@
     </act>
     <act name="214A红莲" key="→→I" type="land" cd="0" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
       <SubTexture name="ha400_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha400_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha400_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.6,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;normal\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;zs1\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:true,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:true,\&quot;through\&quot;:false,\&quot;y\&quot;:-193,\&quot;scaleX\&quot;:0.6,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-79,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:1}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase25" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha400_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha400_03" gox="50" goy="0" effects="[]"/>
       <SubTexture name="ha400_04" gox="100" goy="0" effects="[]"/>
       <SubTexture name="ha400_05" gox="250" goy="0" effects="[]"/>
-      <SubTexture name="ha400_06" gox="300" goy="0" effects="[]"/>
+      <SubTexture name="ha400_06" gox="300" goy="0" effects="[]" hitPoint="-51,2 209,-96 48,-163" hitX="5" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" straight="45" cardFrame="20" wFight="200"/>
       <SubTexture name="ha400_07" gox="300" goy="0" effects="[]"/>
       <SubTexture name="ha400_08" gox="300" goy="0" effects="[]"/>
       <SubTexture name="ha400_09" gox="300" goy="0" effects="[]"/>
@@ -614,9 +626,9 @@
     </act>
     <act name="214D鵺柳" key="→→↓I" type="land" cd="0" other="[{&quot;value&quot;:&quot;3&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="24">
       <SubTexture name="ha409_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha409_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha409_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.6,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;normal\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;zs3\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:true,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:true,\&quot;through\&quot;:false,\&quot;y\&quot;:-175,\&quot;scaleX\&quot;:0.6,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-91,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase25" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha409_02" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha409_03" gox="50" goy="0" effects="[]"/>
+      <SubTexture name="ha409_03" gox="50" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.9,\&quot;isLockAction\&quot;:true,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:0,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:true,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn1\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-133,\&quot;scaleX\&quot;:0.9,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:22,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase23" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha409_04" gox="100" goy="0" effects="[]"/>
       <SubTexture name="ha409_03" gox="150" goy="0" effects="[]"/>
       <SubTexture name="ha409_04" gox="200" goy="0" effects="[]"/>
@@ -742,21 +754,21 @@
     </act>
     <act name="236236D虚空阵 雪风" key="SO" type="land" cd="1" other="[{&quot;value&quot;:&quot;4&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;Y&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="16">
       <SubTexture name="ha203_00" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha203_01" gox="0" goy="0" effects="[&quot;{\&quot;unhit\&quot;:true,\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;wFight\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;through\&quot;:false,\&quot;scaleY\&quot;:0.55,\&quot;scaleX\&quot;:0.55,\&quot;goy\&quot;:0,\&quot;color\&quot;:[],\&quot;isLockActionShow\&quot;:true,\&quot;canHit\&quot;:false,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;intensity\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;hitY\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;x\&quot;:-34,\&quot;srcColor\&quot;:-1,\&quot;time\&quot;:0,\&quot;isLockAction\&quot;:false,\&quot;isABlow\&quot;:false,\&quot;addColor\&quot;:0,\&quot;y\&quot;:-254,\&quot;isBreak\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;name\&quot;:\&quot;xkzn2\&quot;,\&quot;hitX\&quot;:0,\&quot;atbottom\&quot;:false,\&quot;blow\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;stiff\&quot;:6,\&quot;fadeOut\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;mFight\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase21" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha203_01" gox="0" goy="0" effects="[&quot;{\&quot;cardFrame\&quot;:0,\&quot;gox\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;mFight\&quot;:0,\&quot;scaleY\&quot;:0.55,\&quot;isLockAction\&quot;:false,\&quot;wFight\&quot;:0,\&quot;goy\&quot;:0,\&quot;canHit\&quot;:false,\&quot;stiff\&quot;:6,\&quot;isLockActionShow\&quot;:true,\&quot;addColor\&quot;:0,\&quot;isLaunch\&quot;:false,\&quot;hitX\&quot;:0,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;isFollow\&quot;:false,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;name\&quot;:\&quot;xkzn2\&quot;,\&quot;hitY\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;fadeIn\&quot;:false,\&quot;time\&quot;:0,\&quot;isBreak\&quot;:false,\&quot;fadeOut\&quot;:false,\&quot;through\&quot;:false,\&quot;y\&quot;:-254,\&quot;scaleX\&quot;:0.55,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;rotation\&quot;:0,\&quot;hitVibrationSize\&quot;:0,\&quot;hitMap\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;blow\&quot;:false,\&quot;x\&quot;:-34,\&quot;atbottom\&quot;:false,\&quot;unhit\&quot;:true,\&quot;intensity\&quot;:0}&quot;]" isHitMapGoOn="false" soundName="zsyinxiao/hase21" stop="unstop" golden="0" turn="0" hitEffectName=""/>
       <SubTexture name="ha203_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha203_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_02" gox="0" goy="0" effects="[]" mapVibrationTime="5" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" mapVibrationSize="5"/>
       <SubTexture name="ha203_17" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_17" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha203_18" gox="0" goy="0" effects="[]" mapVibrationTime="0" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName="" mapVibrationSize="0"/>
       <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_18" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_19" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_19" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_20" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha203_21" gox="0" goy="0" effects="[]"/>
-      <SubTexture name="ha203_22" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" stop="unstop" golden="0" turn="0" hitEffectName=""/>
+      <SubTexture name="ha203_22" gox="0" goy="0" effects="[]" isHitMapGoOn="false" soundName="" stop="unstop" golden="0" turn="0" hitEffectName=""/>
     </act>
     <act name="虚空阵 雪风" key="" type="land" cd="9999" other="[{&quot;value&quot;:&quot;0&quot;,&quot;id&quot;:&quot;mp&quot;}]" fps="16">
       <SubTexture name="ha431_00" gox="0" goy="0" effects="[]"/>

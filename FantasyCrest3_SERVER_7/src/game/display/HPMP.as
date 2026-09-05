@@ -212,8 +212,8 @@ package game.display
          stateList.scaleX = this.scaleX > 0 ? 1 : -1;
          if(stateList.scaleX == -1)
          {
-            stateList.x = 5 + stateList.width - 26;
-            stateList.x -= 100; //
+            stateList.scaleX = 1; //
+            // stateList.x = 5 + stateList.width - 26;
             // (stateList.layout as HorizontalLayout).horizontalAlign = "right";
             // (stateList.layout as HorizontalLayout).paddingRight = 0;
          }
