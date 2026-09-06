@@ -2401,7 +2401,7 @@
     </JO> -->
 
 	<!-- 削弱空条承太郎 -->
-    <JO visible="true" head="JO.png" acthor="柠七" coin="900" crystal="6" name="空条承太郎" profession="超高爆发/手短无突进" passive="(已实现)血量低于50时，U、I的攻击增加70%" introduce="">
+    <JO visible="true" head="JO.png" acthor="柠七" coin="900" crystal="6" name="空条承太郎" profession="超高爆发/手短无突进" passive="(已实现)血量低于50%时，U、I的攻击增加70%" introduce="">
 
     	<data name="移动速度" value="0.8"/>
 

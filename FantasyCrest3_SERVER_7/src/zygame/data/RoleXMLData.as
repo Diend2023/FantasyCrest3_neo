@@ -60,6 +60,8 @@ package zygame.data
       private var _effects:Vector.<EffectDisplay>;
       
       public var dieSoundName:String = "";
+
+      private var _hitFrame:RoleFrame; // 当前判定体对应的攻击帧，用于多段命中恢复时重置hitData
       
       public function RoleXMLData(role:BaseRole, xml:XML)
       {
@@ -186,6 +188,7 @@ package zygame.data
                         trace("攻击恢复");
                         fight = true;
                         fightInterval = 0;
+                        applyHitData(_hitFrame); // 恢复判定时重置hitData，防止共享实例上armorScale被+=累加
                      }
                   }
                   --live;
@@ -239,6 +242,7 @@ package zygame.data
                      trace("攻击恢复");
                      fight = true;
                      fightInterval = 0;
+                     applyHitData(_hitFrame); // 恢复判定时重置hitData，防止共享实例上armorScale被+=累加
                   }
                }
                --live;
@@ -348,21 +352,23 @@ package zygame.data
          this._hitBody.userData.id = "roleXMLDataBody";
          _hitBody.gravMass = 0;
          this._hitBody.scaleShapes(this._role.currentScaleX,this._role.currentScaleY);
-         hitData.moveX = frame.hitX * this._role.scaleX;
-         hitData.moveY = frame.hitY;
-         hitData.armorScale = frame.wScale;
-         hitData.magicScale = frame.mScale;
-         hitData.straight = frame.straight;
-         hitData.hitVibrationSize = frame.hitVibrationSize;
-         hitData.cardFrame = frame.cardFrame;
-         if(frame.hitEffectName)
-         {
-            hitData.hitEffect = frame.hitEffectName;
-         }
-         if(hitData.straight == 0)
-         {
-            hitData.straight = 30;
-         }
+         // hitData.moveX = frame.hitX * this._role.scaleX;
+         // hitData.moveY = frame.hitY;
+         // hitData.armorScale = frame.wScale;
+         // hitData.magicScale = frame.mScale;
+         // hitData.straight = frame.straight;
+         // hitData.hitVibrationSize = frame.hitVibrationSize;
+         // hitData.cardFrame = frame.cardFrame;
+         // if(frame.hitEffectName)
+         // {
+         //    hitData.hitEffect = frame.hitEffectName;
+         // }
+         // if(hitData.straight == 0)
+         // {
+         //    hitData.straight = 30;
+         // }
+         this._hitFrame = frame; // 记录判定体来源帧，供多段命中恢复时重置hitData
+         applyHitData(frame); // hitData赋值抽取为独立方法，恢复fight时也要调用
       }
       
       public function clearBody() : void
@@ -525,11 +531,31 @@ package zygame.data
          _textures = null;
          _effects = null;
          _hitBody = null;
+         this._hitFrame = null; //
          this.currentRoleFrame = null;
          this.bodyVec = null;
          this.hitData = null;
          this.targetXML = null;
       }
+
+      public function applyHitData(frame:RoleFrame) : void //
+      { //
+         hitData.moveX = frame.hitX * this._role.scaleX; //
+         hitData.moveY = frame.hitY; //
+         hitData.armorScale = frame.wScale; //
+         hitData.magicScale = frame.mScale; //
+         hitData.straight = frame.straight; //
+         hitData.hitVibrationSize = frame.hitVibrationSize; //
+         hitData.cardFrame = frame.cardFrame; //
+         if(frame.hitEffectName) //
+         { //
+            hitData.hitEffect = frame.hitEffectName; //
+         } //
+         if(hitData.straight == 0) //
+         { //
+            hitData.straight = 30; //
+         } //
+      } //
       
       public function get xml() : String
       {
