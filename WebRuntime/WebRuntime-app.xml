@@ -10,6 +10,8 @@
 
   
 
+  
+
   <!-- To localize the description, use the following format for the description element.
     <description>
         <text xml:lang="en">English App description goes here</text>
@@ -21,6 +23,8 @@
 
 
     
+
+  
 
   
 
@@ -36,6 +40,8 @@
     <architecture>64</architecture>
 
     
+
+  
 
   
 
@@ -56,6 +62,8 @@
 
 
     
+
+  
 
   
 

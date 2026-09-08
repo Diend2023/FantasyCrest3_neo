@@ -117,6 +117,7 @@ package game.role
          Twelve3_1; // 添加3.1艾布鲁
          HuangFeiHong3_2; // 添加3.2黄飞鸿
          Hakumen;// 添加斩神白面
+         Blake; // 添加Blake
       }
    }
 }

@@ -604,8 +604,14 @@ package game.role
       
       override protected function onDie(beData:BeHitData) : void
       {
-         super.onDie(beData); //
+         var effects:Vector.<EffectDisplay> = this.world.getEffectsFromPid(this.pid); //
+         var i:int = 0; //
+         for(i; i < effects.length; i++) //
+         { //
+            effects[i].continuousTime = 0; //
+         } //
          this.cardFrame = 0; //
+         super.onDie(beData); //
       }
       
       public function statisticalHurt(i:int) : void

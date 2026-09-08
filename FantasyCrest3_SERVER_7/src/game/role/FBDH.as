@@ -42,6 +42,16 @@ package game.role
          }
          this.listData.updateItemAt(0);
       }
+
+      override public function hurtNumber(beHurt:int, beData:BeHitData, pos:Point) : void
+      {
+         if(isDefense())
+         {
+            beHurt = 0;
+         }
+         super.hurtNumber(beHurt,beData,pos);
+      }
+      
    }
 }
 

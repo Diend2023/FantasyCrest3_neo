@@ -12,6 +12,7 @@ package game.role
    import starling.display.Image;
    import starling.animation.Tween;
    import starling.core.Starling;
+   import flash.geom.Rectangle;
 
    public class Hakumen extends GameRole
    {
@@ -130,9 +131,17 @@ package game.role
                 this.go(6);
             }
         }
-        if(actionName == "虚空阵 雪风")
-        {
-        }
+         if(this.actionName.indexOf("后续") != -1)
+         {
+            if(this.currentFrame == 1)
+            {
+               var isHand:Boolean = hand(200, 200, 100, 200, 75, 10);
+               if(!isHand)
+               {
+                  this.breakAction();
+               }
+            }
+         }
       }
 
       override public function onMove():void
@@ -158,6 +167,13 @@ package game.role
 
       override public function onDown(key:int):void
       {
+         if(key == 75)
+         {
+            if(actionName == "2C" && this.currentFrame > 9)
+            {
+               this.breakAction();
+            }
+         }
          super.onDown(key);
         //  if(key == 85 && (this.actionName == "虚空阵 素" || this.actionName == "虚空阵 盈" || this.actionName == "虚空阵 鸣" || this.actionName == "虚空阵 尊"))
         //  {
@@ -337,6 +353,46 @@ package game.role
          super.runLockAction(str,canBreak);
       }
 
+      override public function onBeHit(beData:BeHitData) : void
+      {
+         if(this.actionName.indexOf("斩神") != -1 && this.actionName.indexOf("后续") == -1)
+         {
+            var enemy:BaseRole = beData.role;
+            switch(this.actionName)
+            {
+               case "5D斩神":
+                  if(this.frameAt(4,13))
+                  {
+                     playDNext();
+                     return;
+                  }
+                  break;
+               case "6D斩神":
+                  if(this.frameAt(3,9))
+                  {
+                     playDNext();
+                     return;
+                  }
+                  break;
+               case "2D斩神":
+                  if(this.frameAt(3,9))
+                  {
+                     playDNext();
+                     return;
+                  }
+                  break;
+               case "JD斩神":
+                  if(this.frameAt(2,8))
+                  {
+                     playDNext();
+                     return;
+                  }
+                  break;
+            }
+         }
+         super.onBeHit(beData);
+      }
+
       // 播放大招动画
       public function playSkillPainting(actionName:String):void
       {
@@ -350,6 +406,81 @@ package game.role
             this.world.getRoleList()[i].cardFrame = 40;
          }
          (this.world as BaseGameWorld).showSkillPainting(targetName,actionName,troopid);
+      }
+
+      public function playDNext():void
+      {
+         this.onDefenseEffect();
+         this.clearDebuffMove();
+         this.cardFrame = 15;
+         this.breakAction();
+         this.playSkill(this.actionName + "后续");
+         this.golden = 30;
+         if (this.currentMp.value < this.mpMax)
+         {
+            this.currentMp.value += 1;
+         }
+      }
+
+      public function hand(topRange:int = 200, bottomRange:int = 200, backRange:int = 100, frontRange:int = 200,  toX:int = 0, toY:int = 0):Boolean
+      {
+         var rect:Rectangle = this.body.bounds.toRect();
+         // 横向判定
+         if(this.scaleX > 0)
+         {
+            rect.width += frontRange;
+            rect.x -= backRange;
+            rect.width += backRange;
+         }
+         else
+         {
+            rect.x -= frontRange;
+            rect.width += frontRange;
+            rect.width += backRange;
+         }
+         // 纵向判定
+         rect.y -= topRange;
+         rect.height += topRange;
+         rect.height += bottomRange;
+
+         // 修正左边界
+         if(rect.x < 0)
+         {
+            rect.width += rect.x; // 把溢出的部分减掉
+            rect.x = 0;
+            toX = 0;
+         }
+         // 修正右边界
+         if(rect.x + rect.width > world.map.getWidth())
+         {
+            rect.width = world.map.getWidth() - rect.x;
+            toX = 0;
+         }
+
+         if(rect.width > 0 && rect.height > 0)
+         {
+            var role:BaseRole = findRole(rect);
+            if(role)
+            {
+               role.breakAction();
+               // 已处于倒地/打飞状态的目标：清除吹飞残留状态，使其进入受伤僵直，避免被二次打飞倒地
+               var handDown:Boolean = role.blow2 || role.blow || role.actionName == "打飞" || role.actionName == "倒落";
+               if (handDown)
+               {
+                  role.clearDebuffMove();
+                  role.blowtime = 0;
+               }
+               if (!handDown && role.blowtime <= 0)
+               {
+                  role.blowtime = 1;
+               }
+               role.straight = 30;
+               role.setX(this.x + toX * this.scaleX);
+               role.setY(this.y - toY);
+               return true;
+            }
+         }
+         return false;
       }
 
    }

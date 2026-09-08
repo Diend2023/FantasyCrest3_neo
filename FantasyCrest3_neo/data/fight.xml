@@ -1804,7 +1804,7 @@
 
     </zhaomei>
 
-	<MH visible="true" head="MH.png" acthor="柠七" coin="888" crystal="8" name="逢坂大河" profession="突进" passive="(已实现)每十秒，I技能将会额外增加对方当前生命6%的伤害" introduce="">
+	<MH visible="true" head="MH.png" acthor="柠七" coin="888" crystal="8" name="逢坂大河" profession="突进" passive="(已实现)每十秒，I技能将会额外增加对方当前生命6%的伤害；防御状态下受到的伤害为0" introduce="">
 
     	<data name="移动速度" value="1"/>
 
@@ -2327,7 +2327,7 @@
 
     </Weiss>
 
-     <Blake visible="true" head="Blake.png" acthor="柠七" coin="999" crystal="8" name="Blake" profession="速度" passive="(未实现)按P可召唤分身前往战斗，自身在原地无法动弹，十秒过后分身消失，分身收到伤害本体只收到3/1，本体受到伤害分身立刻消失，CD25秒" introduce="">
+     <Blake visible="true" head="Blake.png" acthor="柠七" coin="999" crystal="8" name="Blake" profession="速度" passive="(已实现)按P可召唤分身前往战斗，自身在原地无法动弹，十秒过后分身消失，分身收到伤害本体只收到3/1，本体受到伤害分身立刻消失，CD25秒" introduce="">
 
     	<data name="移动速度" value="1"/>
 

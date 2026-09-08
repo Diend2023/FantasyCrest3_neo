@@ -685,8 +685,12 @@ package WebRuntime_fla
       {
          if(this.loading.pname.text == "") // 不允许用户名为空
          { //
-               this.loginError(); //
-               return; //
+            this.loading.pname.text = "玩家" + String(Math.round(Math.random() * 10000)); //
+         } //
+         if(this.loading.pname.text == "") // 不允许用户名为空
+         { //
+            this.loginError(); //
+            return; //
          } //
          if(this.loading.pname.text.indexOf("#") > -1) // 给用户名自动添加后缀防止重复
          { //
