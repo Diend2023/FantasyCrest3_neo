@@ -1266,6 +1266,24 @@ package zygame.display
          } //
          return effects; //
       } //
+
+      public function getEffectsFormRole(findRole:BaseRole) : Vector.<EffectDisplay> //
+      { //
+         var i:int = 0; //
+         var effect:EffectDisplay = null; //
+         var effects:Vector.<EffectDisplay> = new Vector.<EffectDisplay>(); //
+         var num:int = map.roleLayer.numChildren; //
+         for(i = 0; i < num; ) //
+         { //
+            effect = map.roleLayer.getChildAt(i) as EffectDisplay; //
+            if(effect && effect.role == findRole) //
+            { //
+               effects.push(effect); //
+            } //
+            i++; //
+         } //
+         return effects; //
+      } //
       
       public function getEffects() : Vector.<EffectDisplay>
       {

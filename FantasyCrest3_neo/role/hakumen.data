@@ -26,7 +26,7 @@
     <sprites path="effect/bm28D"/>
   </loads>
   <action>
-    <act name="待机" fps="10">
+    <act name="待机" fps="12">
       <SubTexture name="ha000_00" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha000_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha000_02" gox="0" goy="0" effects="[]"/>
@@ -188,7 +188,7 @@
       <SubTexture name="ha020_07" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha020_07" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="落地" fps="10">
+    <act name="落地" fps="12">
       <SubTexture name="ha023_00" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha023_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha023_00" gox="0" goy="0" effects="[]"/>
@@ -227,7 +227,21 @@
       <SubTexture name="ha052_02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha052_03" gox="0" goy="0" effects="[]"/>
     </act>
-    <act name="防御" fps="10">
+    <act name="防御" fps="12">
+      <SubTexture name="ha010_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_05" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_06" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_07" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_08" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_09" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_10" gox="0" goy="0" effects="[]"/>
+      <!-- <SubTexture name="ha010_11" gox="0" goy="0" effects="[]"/> -->
+      <SubTexture name="ha010_12" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha010_13" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha043_00" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha043_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha043_02" gox="0" goy="0" effects="[]"/>
@@ -238,6 +252,16 @@
       <SubTexture name="ha043_02ex01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha043_02ex02" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha043_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_02ex02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha040_03" gox="0" goy="0" effects="[]"/>
     </act>
     <act name="空中攻击" fps="24">
       <SubTexture name="ha250_00" gox="0" goy="0" effects="[]"/>
@@ -291,6 +315,22 @@
       <SubTexture name="ha036_01ex01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha036_01" gox="0" goy="0" effects="[]"/>
       <SubTexture name="ha036_01ex01" gox="0" goy="0" effects="[]"/>
+    </act>
+    <act name="4C" fps="24">
+      <SubTexture name="ha214_00" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_01" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_02" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_03" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_04" gox="0" goy="0" effects="[]"/>
+      <SubTexture name="ha214_05" gox="60" goy="0" effects="[&quot;{\&quot;isLockActionShow\&quot;:true,\&quot;intensity\&quot;:0,\&quot;wFight\&quot;:200,\&quot;scaleX\&quot;:1.5,\&quot;color\&quot;:[],\&quot;hitEffectName\&quot;:\&quot;\&quot;,\&quot;isLaunch\&quot;:false,\&quot;unhit\&quot;:false,\&quot;rotation\&quot;:0,\&quot;isABlow\&quot;:false,\&quot;overrideClass\&quot;:\&quot;\&quot;,\&quot;atbottom\&quot;:false,\&quot;cardFrame\&quot;:5,\&quot;hitX\&quot;:0,\&quot;canHit\&quot;:false,\&quot;fadeIn\&quot;:false,\&quot;stiff\&quot;:30,\&quot;blendMode\&quot;:\&quot;screen\&quot;,\&quot;addColor\&quot;:0,\&quot;isFollow\&quot;:false,\&quot;isLockAction\&quot;:false,\&quot;hitVibrationSize\&quot;:0,\&quot;fadeOut\&quot;:false,\&quot;time\&quot;:0,\&quot;scaleY\&quot;:1.5,\&quot;gox\&quot;:0,\&quot;srcColor\&quot;:-1,\&quot;y\&quot;:-228,\&quot;x\&quot;:-67,\&quot;hitY\&quot;:0,\&quot;name\&quot;:\&quot;bm4C\&quot;,\&quot;blow\&quot;:false,\&quot;isBreak\&quot;:false,\&quot;through\&quot;:false,\&quot;findName\&quot;:\&quot;\&quot;,\&quot;goy\&quot;:0,\&quot;mFight\&quot;:0,\&quot;hitMap\&quot;:false}&quot;]" hitPoint="246,-135 192,-125"/>
+      <SubTexture name="ha214_06" gox="70" goy="0" effects="[]"/>
+      <SubTexture name="ha214_07" gox="80" goy="0" effects="[]"/>
+      <SubTexture name="ha214_08" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_09" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_10" gox="90" goy="0" effects="[]"/>
+      <SubTexture name="ha214_11" gox="90" goy="0" stop="unstop" effects="[]" isHitMapGoOn="false" soundName="zsyinxiao/hase22" golden="0" turn="0" hitEffectName=""/>
     </act>
     <act name="普通攻击" fps="24">
       <SubTexture name="ha214_00" gox="0" goy="0" effects="[]"/>

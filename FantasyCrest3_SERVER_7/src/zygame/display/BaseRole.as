@@ -947,8 +947,17 @@ package zygame.display
          _right = false;
          _down = false;
          _up = false;
+         this.clearDownKeys(); // "全部松开"，必须连 _downkey 一起清，否则 isKeyDown 永久为真
       }
       
+      public function releaseDownFlag() : void // 只清方向标志，不动 _downkey
+      { //
+         _left = false; //
+         _right = false; //
+         _down = false; //
+         _up = false; //
+      } //
+
       public function isStopEvent() : Boolean
       {
          return roleXmlData.ifStopTag(actionName,currentFrame);

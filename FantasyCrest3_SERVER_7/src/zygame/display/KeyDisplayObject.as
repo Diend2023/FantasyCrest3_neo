@@ -54,6 +54,13 @@ package zygame.display
       {
          _doubleKeys.splice(0,_doubleKeys.length);
       }
+
+      public function clearDownKeys() : void // 清空按键真源与双击缓存
+      { //
+         _downkey = []; //
+         _doubleKeys.splice(0,_doubleKeys.length); //
+         _doubleKeyTime = 0; //
+      } //
       
       public function onUp(key:int) : void
       {
@@ -137,6 +144,7 @@ package zygame.display
          this.onUp(65);
          this.onUp(68);
          _downkey = [];
+         this.clearDownKeys(); // 修改为统一清空（含双击缓存）
       }
       
       override public function dispose() : void

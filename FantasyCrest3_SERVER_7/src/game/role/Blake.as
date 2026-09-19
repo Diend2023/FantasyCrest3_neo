@@ -53,8 +53,7 @@ package game.role
          if(_blakeFS && _blakeFS.inFrame("分身结束",_blakeFS.roleXmlData.getActionLength("分身结束") - 1))
          {
             this.hurtNumber(int((_blakeFS.attribute.hpmax - _blakeFS.attribute.hp) * 0.33), null, new Point(this.x, this.y));
-            _blakeFS.discarded();
-            _blakeFS = null;
+            this.detachFS();
          }
          super.onFrame();
          if(_PTimer > 0)
@@ -63,8 +62,7 @@ package game.role
             {
                if(_blakeFS.attribute.hp <= 0)
                {
-                  _blakeFS.discarded();
-                  _blakeFS = null;
+                  this.detachFS();
                }
                this.playSkill("防御");
                if(this.isOut)
@@ -120,6 +118,7 @@ package game.role
             if(key != 72)
             {
                _blakeFS.onDown(key);
+               this.pushKey(key);
             }
             return;
          }
@@ -131,22 +130,31 @@ package game.role
          if(_blakeFS)
          {
             _blakeFS.onUp(key);
+            this.removeKey(key);
             return;
          }
          super.onUp(key);
+      }
+
+      override public function isKeyDown(key:int) : Boolean
+      {
+         if(_blakeFS)
+         {
+            return false;
+         }
+         return super.isKeyDown(key);
       }
 
       override protected function onDie(beData:BeHitData) : void
       {
          if(_blakeFS)
          {
-            _blakeFS.discarded();
-            _blakeFS = null;
+            this.detachFS();
          }
          super.onDie(beData);
       }
 
-      public function discardFS():void
+      private function discardFS():void
       {
          if(_blakeFS && _blakeFS.attribute.hp > 0)
          {
@@ -155,6 +163,18 @@ package game.role
             _blakeFS.runLockAction("分身结束");
             this.overDown();
          }
+      }
+
+      private function detachFS() : void
+      {
+         if(!_blakeFS)
+         {
+            return;
+         }
+         _blakeFS.stopAllKey(); // 分身侧彻底松手（含双击缓存）
+         _blakeFS.discarded();
+         _blakeFS = null;
+         this.overDown();
       }
    }
 }

@@ -382,7 +382,7 @@
       <SubTexture name="元件 10028" gox="600" goy="0" effects="[]"/>
     </act>
     <!-- <act name="分身" key="P" type="land" cd="" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg=""> -->
-    <act name="分身" key="P" type="land" cd="25" other="[{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
+    <act name="分身" key="P" type="land" cd="25" other="[{&quot;value&quot;:&quot;1&quot;,&quot;id&quot;:&quot;mp&quot;},{&quot;value&quot;:&quot;&quot;,&quot;id&quot;:&quot;noc&quot;}]" fps="18" msg="">
       <SubTexture name="元件 10301" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10302" gox="0" goy="0" effects="[]"/>
       <SubTexture name="元件 10303" gox="0" goy="0" effects="[]"/>

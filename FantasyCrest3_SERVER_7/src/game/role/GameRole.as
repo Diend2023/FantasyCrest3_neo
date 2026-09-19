@@ -604,7 +604,7 @@ package game.role
       
       override protected function onDie(beData:BeHitData) : void
       {
-         var effects:Vector.<EffectDisplay> = this.world.getEffectsFromPid(this.pid); //
+         var effects:Vector.<EffectDisplay> = this.world.getEffectsFormRole(this as BaseRole); //
          var i:int = 0; //
          for(i; i < effects.length; i++) //
          { //
@@ -752,7 +752,8 @@ package game.role
             "blow":this._blow,
             "blow2":this._blow2,
             "jump":this.isJump(),
-            "key":this.getDownKeys(),
+            // "key":this.getDownKeys(),
+            "key":this.getDownKeys().concat(), // 避免所有帧/差分缓存共享同一个活数组
             "mp":currentMp.value
          };
       }
@@ -842,9 +843,12 @@ package game.role
          var role:BaseRole = this;
          if(role)
          {
-            newKeys = data.key;
-            oldKeys = role.getDownKeys();
-            for(var i in oldKeys)
+            // newKeys = data.key;
+            newKeys = data.key == null ? [] : data.key; // 旧录像/异常包无 key 时按"全松手"处理
+            // oldKeys = role.getDownKeys();
+            oldKeys = role.getDownKeys().concat(); //
+            // for(var i in oldKeys)
+            for(var i:int = 0; i < oldKeys.length; i++)
             {
                if(inkeys.indexOf(oldKeys[i]) != -1)
                {
@@ -864,6 +868,16 @@ package game.role
                   }
                }
             }
+            var cur:Array = role.getDownKeys(); //
+            var i3:int = cur.length - 1; //
+            while(i3 >= 0) //
+            { //
+               if(inkeys.indexOf(cur[i3]) != -1 && newKeys.indexOf(cur[i3]) == -1) //
+               { //
+                  cur.splice(i3,1); // 清掉"权威数据已判松开、本地仍滞留"的键
+               } //
+               i3--; //
+            } //
          }
       }
       

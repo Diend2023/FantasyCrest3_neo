@@ -39,9 +39,9 @@ package game.role
 
       override public function onFrame():void
       {
-        if(this.inFrame("防御",8) && this.isDefense())
+        if((this.inFrame("防御",12) || this.inFrame("防御",22)) && this.isDefense())
         {
-            this.go(3);
+            this.go(2);
         }
         super.onFrame();
         if(this.actionName == "待机")
@@ -355,9 +355,9 @@ package game.role
 
       override public function onBeHit(beData:BeHitData) : void
       {
+         var enemy:BaseRole = beData.role;
          if(this.actionName.indexOf("斩神") != -1 && this.actionName.indexOf("后续") == -1)
          {
-            var enemy:BaseRole = beData.role;
             switch(this.actionName)
             {
                case "5D斩神":
@@ -388,6 +388,31 @@ package game.role
                      return;
                   }
                   break;
+            }
+         }
+         if(this.isDefense() && enemy)
+         {
+            if(enemy.isJump())
+            {
+               if(this.frameAt(25,32))
+               {
+                  this.go(26);
+               }
+               else
+               {
+                  this.go(23);
+               }
+            }
+            else
+            {
+               if(this.frameAt(15,22))
+               {
+                  this.go(16);
+               }
+               else
+               {
+                  this.go(13);
+               }
             }
          }
          super.onBeHit(beData);
