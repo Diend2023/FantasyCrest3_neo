@@ -39,98 +39,118 @@ package game.role
 
       override public function onFrame():void
       {
-        if((this.inFrame("防御",12) || this.inFrame("防御",22)) && this.isDefense())
-        {
-            this.go(2);
-        }
-        super.onFrame();
-        if(this.actionName == "待机")
-        {
+         if(this.actionName == "防御")
+         {
+            var bmFYEffect:EffectDisplay = this.world.getEffectFormName("bmFY", this);
+            if(this.currentFrame <= 12 && bmFYEffect)
+            {
+               bmFYEffect.continuousTime = 0;
+            }
+            // if((this.currentFrame == 14 || this.currentFrame == 24) && !bmFYEffect)
+            // {
+            //    bmFYEffect = new EffectDisplay("bmFY",null,this,1.2,1.2);
+            //    this.world.addChild(bmFYEffect);
+            // }
+            if((this.inFrame("防御",12) || this.inFrame("防御",22)) && this.isDefense())
+            {
+               this.go(2);
+            }
+         }
+         super.onFrame();
+         if(this.actionName == "待机")
+         {
             if(this.currentFrame == 36)
             {
-                var randomNum:Number = Math.random();
-                if(randomNum < 0.5)
-                {
-                    this.go(0);
-                }
-                else if(randomNum < 0.825)
-                {
-                    this.go(37);
-                }
-                else if(randomNum < 0.875)
-                {
-                    this.go(48);
-                }
-                else if(randomNum < 0.925)
-                {
-                    this.go(62);
-                }
-                else if(randomNum < 0.95)
-                {
-                    this.go(87);
-                }
-                else if(randomNum < 0.975)
-                {
-                    this.go(107);
-                }
-                else if(randomNum < 1.0)
-                {
-                    this.go(123);
-                }
+               var randomNum:Number = Math.random();
+               if(randomNum < 0.5)
+               {
+                  this.go(0);
+               }
+               else if(randomNum < 0.825)
+               {
+                  this.go(37);
+               }
+               else if(randomNum < 0.875)
+               {
+                  this.go(48);
+               }
+               else if(randomNum < 0.925)
+               {
+                  this.go(62);
+               }
+               else if(randomNum < 0.95)
+               {
+                  this.go(87);
+               }
+               else if(randomNum < 0.975)
+               {
+                  this.go(107);
+               }
+               else if(randomNum < 1.0)
+               {
+                  this.go(123);
+               }
             }
             switch (this.currentFrame)
             {
-                case 47:
-                case 61:
-                case 86:
-                    this.go(0);
-                    break;
-                case 106:
-                    this.currentFrame -= 6;
-                    break;
-                case 122:
-                    this.currentFrame -= 3;
-                    break;
-                case 133:
-                    this.currentFrame -= 4;
-                    break;
+               case 47:
+               case 61:
+               case 86:
+                  this.go(0);
+                  break;
+               case 106:
+                  this.currentFrame -= 6;
+                  break;
+               case 122:
+                  this.currentFrame -= 3;
+                  break;
+               case 133:
+                  this.currentFrame -= 4;
+                  break;
             }
-        }
-        if(this.inFrame("降落", this.roleXmlData.getActionLength("降落") - 1))
-        {
+         }
+         if(this.inFrame("降落", this.roleXmlData.getActionLength("降落") - 1))
+         {
             this.currentFrame -= 2;
-        }
-        if(this.actionName == "受伤")
-        {
+         }
+         if(this.actionName == "受伤")
+         {
             if(this.currentFrame == 0)
             {
-                randomNum = Math.random();
-                if(randomNum >= 0.5)
-                {
-                    this.go(4);
-                }
+               randomNum = Math.random();
+               if(randomNum >= 0.5)
+               {
+                  this.go(4);
+               }
             }
             if(this.currentFrame == 3)
             {
-                this.currentFrame -= 1;
+               this.currentFrame -= 1;
             }
-        }
-        if(!this.isJump())
-        {
+         }
+         if(!this.isJump())
+         {
             this.attribute.clearCD("突进")
-        }
-        if(actionName == "JD斩神" || actionName == "空投" || actionName == "J214A咢刀" || actionName == "J214B火萤")
-        {
+         }
+         if(actionName == "JD斩神" || actionName == "空投" || actionName == "J214A咢刀" || actionName == "J214B火萤")
+         {
             _KLMoveFrameCount = 0;
             _KWLMoveFrameCount = 0;
-        }
-        if(actionName == "214A红莲")
-        {
+         }
+         if(actionName == "214A红莲")
+         {
             if(this.frameAt(2,7) && this.hitRole())
             {
-                this.go(6);
+                  this.go(6);
             }
-        }
+         }
+         if(actionName == "41236C残铁")
+         {
+            if(this.frameAt(2,7) && this.hitRole())
+            {
+                  this.go(8);
+            }
+         }
          if(this.actionName.indexOf("后续") != -1)
          {
             if(this.currentFrame == 1)

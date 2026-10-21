@@ -1,4 +1,6 @@
 <Role type="sprite" scale="0.9" fps="24" hitEffectName="buff1">
+  <!-- 添加角色类 -->
+  <class src="game.role.YangXiaolong"/>
   <content>
     <xml path="npc/YXL.xml"/>
     <image path="npc/YXL.png"/>

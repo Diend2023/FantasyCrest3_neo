@@ -1,4 +1,6 @@
 <Role type="sprite" scale="1" fps="24" hitEffectName="">
+  <!-- 添加角色类 -->
+  <class src="game.role.ZiWan"/>
   <content>
     <xml path="npc/ziwan.xml"/>
     <image path="npc/ziwan.png"/>

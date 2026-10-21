@@ -2213,7 +2213,7 @@
 
     </HZ>
 
-     <YXL visible="true" head="YXL.png" acthor="柠七" coin="1000" crystal="7" name="Yang Xiaolong" profession="爆发" passive="(未实现)被击中有10%的几率会掉一根头发，掉下一根头发将提高5%的伤害，必杀额外8%,掉头发上限10根，接触控制后持续7秒获得额外伤害，CD15秒" introduce="">
+     <YXL visible="true" head="YXL.png" acthor="柠七" coin="1000" crystal="7" name="Yang Xiaolong" profession="爆发" passive="(已实现)被击中有10%的几率会掉一根头发，掉下一根头发将提高5%的伤害，必杀额外8%,掉头发上限10根，接触控制后持续7秒获得额外伤害，CD15秒" introduce="">
 
     	<data name="移动速度" value="1"/>
 
@@ -2254,7 +2254,7 @@
 
     </Ruby>
 
-    <ziwan visible="true" head="ziwan.png" acthor="妹红" coin="888" crystal="5" name="紫菀" profession="无限剑制" passive="(未实现)持续的高速思考下，能够在每次成功攻击敌人后随机降低其中一个技能CD1秒。" introduce="">
+    <ziwan visible="true" head="ziwan.png" acthor="妹红" coin="888" crystal="5" name="紫菀" profession="无限剑制" passive="(已实现)持续的高速思考下，能够在每次成功攻击敌人后随机降低其中一个技能CD1秒。" introduce="">
 
     	<data name="移动速度" value="1.2"/>
 

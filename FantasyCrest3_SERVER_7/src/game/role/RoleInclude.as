@@ -118,6 +118,8 @@ package game.role
          HuangFeiHong3_2; // 添加3.2黄飞鸿
          Hakumen;// 添加斩神白面
          Blake; // 添加Blake
+         YangXiaolong; //添加Yang
+         ZiWan; //添加紫菀
       }
    }
 }
