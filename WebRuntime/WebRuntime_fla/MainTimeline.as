@@ -75,17 +75,21 @@ package WebRuntime_fla
       
       public var errorCount:int;
 
-      public var baseURL:String = "https://cnb.cool/diend2023/FantasyCrest3_neo_release/-/git/raw/master/"; // 热更新服务器地址 //
+      public var baseURL:String = "https://cnb.cool/diend2023/FantasyCrest3_neo_release/-/git/raw/master/"; // 热更新服务器地址
 
-      public var localVersion:String = ""; // 本地缓存的版本号 //
+      public var localVersion:String = ""; // 本地缓存的版本号
 
-      public var remoteVersion:String = ""; // 远程md5.data中的版本号 //
+      public var remoteVersion:String = ""; // 远程md5.data中的版本号
 
-      public var _migrationRetry:Boolean = false; // 防递归标记，避免迁移时无限重拉 //
+      public var _migrationRetry:Boolean = false; // 防递归标记，避免迁移时无限重拉
 
 	   public var main0:Sound = new Sound(); // 背景音乐
 	  
       public var soundChannel:SoundChannel; // 声音通道
+
+      public var oldMap:Object; // 本地清单字典 path->md5，替代 oldFiles 的 O(n) 查找
+      
+      public var successMap:Object; // 本次成功写入磁盘的文件 path->md5
       
       public function MainTimeline()
       {
@@ -96,7 +100,7 @@ package WebRuntime_fla
          }); //
          // addFrameScript(0,this.frame1); // 帧代码已移入构造函数，FLA第1帧清空 //
          var bgmFile:File = File.applicationStorageDirectory.resolvePath("bgm/main0.mp3"); //
-         main0.load(new URLRequest((bgmFile.exists ? bgmFile.url : "bgm/main0.mp3"))); // 优先从缓存目录加载，支持热更新 //
+         main0.load(new URLRequest((bgmFile.exists ? bgmFile.url : "bgm/main0.mp3"))); // 优先从缓存目录加载，支持热更新
          soundChannel = main0.play(0, int.MAX_VALUE); //
          container = new Sprite(); //
          while(this.numChildren > 0) //
@@ -104,7 +108,7 @@ package WebRuntime_fla
             container.addChild(this.getChildAt(0)); //
          } //
          this.addChild(container); //
-         if(stage) // Bootstrap loadBytes时stage为null，延迟到addedToStage //
+         if(stage) // Bootstrap loadBytes时stage为null，延迟到addedToStage
          { //
             initStage(); //
          } //
@@ -128,7 +132,7 @@ package WebRuntime_fla
          this.batch = 100;
          this.errorCount = 0;
          // this.nextLoad();
-         if(File.applicationDirectory.resolvePath("phone1.xml").exists || NativeApplication.nativeApplication.applicationID == "Maplive") // 开发版跳过热更新 //
+         if(File.applicationDirectory.resolvePath("phone1.xml").exists || NativeApplication.nativeApplication.applicationID == "Maplive") // 开发版跳过热更新
          { //
             this.loading.start.visible = true; //
             this.loading.clear.visible = true; //
@@ -214,7 +218,7 @@ package WebRuntime_fla
          container.y = 0;
       } //
 
-      private function initStage() : void // 初始化stage相关设置 //
+      private function initStage() : void // 初始化stage相关设置
       { //
          stage.scaleMode = StageScaleMode.NO_SCALE;
          stage.align = StageAlign.TOP_LEFT;
@@ -222,7 +226,7 @@ package WebRuntime_fla
          handleStageResize(); //
       } //
 
-      private function onAddedToStage(e:Event) : void // Bootstrap loadBytes时延迟初始化 //
+      private function onAddedToStage(e:Event) : void // Bootstrap loadBytes时延迟初始化
       { //
          this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage); //
          initStage(); //
@@ -323,7 +327,7 @@ package WebRuntime_fla
          SharedObject.getLocal("net.zygame.hxwz.air").data.userCode = ""; // 清除用户密码缓存
          SharedObject.getLocal("net.zygame.hxwz.air").data.settings = {}; // 清除设置缓存
          SharedObject.getLocal("net.zygame.hxwz.air").flush(); // 刷新缓存
-         // 重置一次性清理标记，下次启动时重新清理 applicationStorageDirectory //
+         // 重置一次性清理标记，下次启动时重新清理 applicationStorageDirectory
          SharedObject.getLocal("net.zygame.hxwz.air.301").data.isClear = null; //
          SharedObject.getLocal("net.zygame.hxwz.air.301").flush(); //
          this.loading.userData = {}; // 清除当前生成的用户数据
@@ -345,11 +349,13 @@ package WebRuntime_fla
          var _loc2_:File = null;
          var _loc3_:FileStream = null;
          var _loc4_:String = null;
-         var _loc9_:Object = null; // 解析的JSON对象 //
-         var _loc10_:String = null; // 本地版本号 //
-         var _loc11_:Object = null; // 本地文件列表 //
+         var _loc9_:Object = null; // 解析的JSON对象
+         var _loc10_:String = null; // 本地版本号
+         var _loc11_:Object = null; // 本地文件列表
          this.files = [];
          this.oldFiles = [];
+         this.oldMap = {}; //
+         this.successMap = {}; //
          this.maxCount = 0;
          this.loadCount = 0;
          this.errorCount = 0;
@@ -367,16 +373,16 @@ package WebRuntime_fla
                _loc3_ = new FileStream();
                _loc3_.open(_loc2_,FileMode.READ);
                _loc4_ = _loc3_.readUTFBytes(_loc3_.bytesAvailable);
-               var _idx_:int = _loc4_.indexOf("{"); // 跳过 BOM 和空白 //
+               var _idx_:int = _loc4_.indexOf("{"); // 跳过 BOM 和空白
                if(_idx_ >= 0) // 修复 BOM 导致解析失败 //
                {
                   _loc9_ = JSON.parse(_loc4_.substr(_idx_)); //
-                  this.localVersion = _loc9_.version || ""; // 获取本地版本号 //
-                  if(_loc9_.files) // 提取本地文件列表用于逐文件MD5比对 //
+                  this.localVersion = _loc9_.version || ""; // 获取本地版本号
+                  if(_loc9_.files) // 提取本地文件列表用于逐文件MD5比对
                   {
                      for(_loc10_ in _loc9_.files) //
                      { //
-                        this.oldFiles.push(_loc10_ + ":" + _loc9_.files[_loc10_]); //
+                        this.oldMap[_loc10_] = _loc9_.files[_loc10_]; //
                      } //
                   } //
                }
@@ -390,14 +396,14 @@ package WebRuntime_fla
          catch(e:Error)
          {
          }
-         var _loc12_:String = SharedObject.getLocal("net.zygame.hxwz.air").data.baseURL as String; // 从缓存恢复上次md5.data中下发的baseURL //
-         if(_loc12_ && _loc12_ != "") // 优先使用缓存的baseURL（迁移用） //
+         var _loc12_:String = SharedObject.getLocal("net.zygame.hxwz.air").data.baseURL as String; // 从缓存恢复上次md5.data中下发的baseURL
+         if(_loc12_ && _loc12_ != "") // 优先使用缓存的baseURL（迁移用）
          { //
             this.baseURL = _loc12_; //
             trace("使用缓存baseURL: " + this.baseURL); //
          } //
          // var _loc1_:URLLoader = new URLLoader(new URLRequest(this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
-         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.baseURL + "md5.data?math=" + Math.random())); // 使用热更新服务器获取md5.data //
+         var _loc1_:URLLoader = new URLLoader(new URLRequest(this.baseURL + "md5.data?math=" + Math.random())); // 使用热更新服务器获取md5.data
          _loc1_.addEventListener(Event.COMPLETE,this.onMD5Complete);
          _loc1_.addEventListener(IOErrorEvent.IO_ERROR,this.onMD5Error);
          // trace("MD5 Start ",this.path + "md5.data?acl=GRPS000000ANONYMOUSE&math=" + Math.random());
@@ -408,7 +414,7 @@ package WebRuntime_fla
       {
          // this.loading.error_tips.visible = true;
          trace("MD5获取失败，跳过更新直接启动"); //
-         this.loading.start.visible = true; // 允许跳过更新直接进入游戏 //
+         this.loading.start.visible = true; // 允许跳过更新直接进入游戏
          this.loading.clear.visible = true; //
       }
       
@@ -551,7 +557,7 @@ package WebRuntime_fla
             SharedObject.getLocal("net.zygame.hxwz.air.301").flush();
          }
          this.nextLoad(); // 清理完成后再开始下载文件 //
-         trace(JSON.stringify(this.files));
+         // trace(JSON.stringify(this.files));
       }
       
       public function nextLoad() : void
@@ -564,14 +570,21 @@ package WebRuntime_fla
          if(this.files.length > 0)
          {
             load = this.files[0];
+            if(load.url.indexOf("..") > -1 || load.url.indexOf(":") > -1) // 拒绝越权路径
+            { //
+               this.files.shift(); //
+               ++this.loadCount; //
+               this.nextLoad(); //
+               return; //
+            } //
             // if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || File.applicationStorageDirectory.resolvePath(load.url).exists == false)
-            if(this.oldFiles.indexOf(load.url + ":" + load.md5) == -1 || (File.applicationStorageDirectory.resolvePath(load.url).exists == false && File.applicationDirectory.resolvePath(load.url).exists == false)) //
+            if(this.oldMap[load.url] != load.md5 || (File.applicationStorageDirectory.resolvePath(load.url).exists == false && File.applicationDirectory.resolvePath(load.url).exists == false)) //
             {
                this.loading.loadFile.text = load.url;
                // trace(this.path + load.url);
                trace(baseURL + load.url); //
                // loader = new URLLoader(new URLRequest(this.path + load.url + "?acl=GRPS000000ANONYMOUSE&math=" + Math.random()));
-               loader = new URLLoader(new URLRequest(baseURL + load.url + "?math=" + Math.random())); // 使用热更新服务器下载文件 //
+               loader = new URLLoader(new URLRequest(baseURL + load.url + "?v=" + (load.md5 ? String(load.md5).substr(0,10) : String(Math.random())))); // 内容变则 URL 变，不变则命中缓存
                loader.dataFormat = URLLoaderDataFormat.BINARY;
                loader.addEventListener(Event.COMPLETE,function(param1:Event):void
                {
@@ -582,6 +595,7 @@ package WebRuntime_fla
                   _loc4_.open(_loc3_,FileMode.WRITE);
                   _loc4_.writeBytes(_loc2_);
                   _loc4_.close();
+                  successMap[load.url] = load.md5; // 只有真正写盘成功的才记为新版本
                   ++loadCount;
                   loading.update.scaleX = loadCount / maxCount;
                   loading.loaded.text = loadCount + "/" + maxCount + " Error:" + errorCount;
@@ -625,9 +639,24 @@ package WebRuntime_fla
                // fileSave.open(md5File,FileMode.WRITE);
                // fileSave.writeUTFBytes(this.md5Data);
                // fileSave.close();
-               // 恢复md5保存代码，添加空值守卫避免2007错误 //
+               // 恢复md5保存代码，添加空值守卫避免2007错误
                if(this.md5Data && this.md5Data.length > 0) //
                { //
+                  var outObj:Object = JSON.parse(String(this.md5Data)); // 保留 version/baseURL 等元字段
+                  var outFiles:Object = {}; //
+                  for(var _p:String in outObj.files) //
+                  { //
+                     if(this.successMap[_p] != null) //
+                     { //
+                        outFiles[_p] = this.successMap[_p]; // 本次更新成功
+                     } //
+                     else if(this.oldMap[_p] != null) //
+                     { //
+                        outFiles[_p] = this.oldMap[_p]; // 本次未变（值本来就相等）或下载失败（值仍是旧值，下次必然重下）
+                     } //
+                  } //
+                  outObj.files = outFiles; //
+                  this.md5Data = JSON.stringify(outObj); //
                   fileSave = new FileStream(); //
                   fileSave.open(md5File,FileMode.WRITE); //
                   fileSave.writeUTFBytes(this.md5Data); //
@@ -638,12 +667,11 @@ package WebRuntime_fla
                   var remoteFiles:Object = JSON.parse(String(this.md5Data)).files; //
                   var keyList:Array = ["WebRuntime.swf","bgm/main0.mp3"]; //
                   for(var ki:String in keyList) { //
-                     if(remoteFiles[keyList[ki]]) { //
-                        if(this.oldFiles.indexOf(keyList[ki] + ":" + remoteFiles[keyList[ki]]) == -1) { //
-                           restart = true; //
-                           trace("热更重启: " + keyList[ki]); //
-                           break; //
-                        } //
+                     // if(this.oldFiles.indexOf(keyList[ki] + ":" + remoteFiles[keyList[ki]]) == -1) { //
+                     if(remoteFiles[keyList[ki]] && this.successMap[keyList[ki]] == remoteFiles[keyList[ki]]) { // 本轮确实下载成功才需要重启
+                        restart = true; //
+                        trace("热更重启: " + keyList[ki]); //
+                        break; //
                      } //
                   } //
                } catch(e:Error) {} //
@@ -652,7 +680,7 @@ package WebRuntime_fla
                   soundChannel.stop(); //
                   while(this.numChildren > 0) //
                      this.removeChildAt(0); //
-                  var restartFile:File = File.applicationStorageDirectory.resolvePath("WebRuntime.swf"); // 优先缓存 //
+                  var restartFile:File = File.applicationStorageDirectory.resolvePath("WebRuntime.swf"); // 优先缓存
                   if(!restartFile.exists) //
                      restartFile = File.applicationDirectory.resolvePath("WebRuntime.swf"); //
                   var restartUrlLoader:URLLoader = new URLLoader(); //
@@ -855,6 +883,17 @@ package WebRuntime_fla
       
       public function onError(param1:IOErrorEvent) : void
       {
+         try { (param1.target as URLLoader).close(); } catch(_cerr:Error) {} // 关掉旧加载器，避免迟到的 COMPLETE 重复 shift
+         var retry:Object = this.files[0]; //
+         if(retry == null) return; // 队列已空时的迟到事件，直接忽略
+         if(retry && int(retry.retry || 0) < 2) // 每个文件最多重试 2 次 //
+         { //
+            retry.retry = int(retry.retry || 0) + 1; //
+            trace("下载失败重试", retry.url, retry.retry); //
+            this.loading.loadFile.text = retry.url + " 重试" + retry.retry; //
+            setTimeout(this.nextLoad, 600 * retry.retry); //
+            return; //
+         } //
          ++this.errorCount;
          this.files.shift();
          ++this.loadCount;

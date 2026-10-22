@@ -19,8 +19,15 @@ package
 		public function Bootstrap()
 		{
 			super();
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;
+			try
+			{
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+				stage.align = StageAlign.TOP_LEFT;
+			}
+			catch(e:Error)
+			{
+				trace(e.message)
+			}
 
 			var updated:File = File.applicationStorageDirectory.resolvePath("WebRuntime.swf");
 			if(updated.exists)

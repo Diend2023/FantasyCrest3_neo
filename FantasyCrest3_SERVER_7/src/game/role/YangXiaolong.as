@@ -35,7 +35,9 @@ package game.role
          },
          {
             "icon":"liliang.png",
-            "msg":"Ready"
+            "msg":"Ready",
+            "bg":{"width":85},
+            "lable":{"width":60}
          }]);
       }
       
@@ -52,6 +54,7 @@ package game.role
          var data:Object = super.copyData();
          data.liliangTime = this.liliangTime;
          data.liliangCD = this.liliangCD;
+         data.hairNum = this.hairNum;
          return data;
       }
       
@@ -61,6 +64,7 @@ package game.role
          // 注意：必须在 super.setData 之后取，差分包缺失的字段此时已被合并回 value
          var t:int = this.liliangTime;
          var cd:int = this.liliangCD;
+         var h:int = this.hairNum;
          if(value.liliangTime != undefined)
          {
             t = int(value.liliangTime);
@@ -69,11 +73,16 @@ package game.role
          {
             cd = int(value.liliangCD);
          }
-         if(t != this.liliangTime || cd != this.liliangCD)
+         if(value.hairNum != undefined)
+         {
+            h = int(value.hairNum);
+         }
+         if(t != this.liliangTime || cd != this.liliangCD || h != this.hairNum)
          {
             this.liliangTime = t;
             this.liliangCD = cd;
-            this.updateLiliangMsg();
+            this.hairNum = h;
+            this.updateMsg();
          }
       }
       
@@ -102,11 +111,11 @@ package game.role
                this.liliangCD--;
             }
          }
-         this.updateLiliangMsg();
+         this.updateMsg();
       }
       
       // 三态msg刷新
-      private function updateLiliangMsg() : void
+      private function updateMsg() : void
       {
          var msg:Object = null;
          if(this.liliangTime > 0)
@@ -121,14 +130,16 @@ package game.role
          {
             msg = "Ready";
          }
+         this.listData.getItemAt(0).msg = this.hairNum;
          this.listData.getItemAt(1).msg = msg;
+         this.listData.updateItemAt(0);
          this.listData.updateItemAt(1);
       }
       
       override public function onBeHit(beData:BeHitData) : void
       {
          super.onBeHit(beData);
-         if(hairNum < 10)
+         if(hairNum < 10 && !this.isMirror)
          {
             var randomNum:Number = Math.random();
             if(randomNum < 0.1)
@@ -139,12 +150,12 @@ package game.role
             }
          }
          // 客机不跑本地结算，回放以录像数据为准，只有权威端才触发buff
-         if(!this.isMirror && this.liliangCD <= 0 && this.liliangTime <= 0 && this.straight >= 75 && !this.attribute.hasBuff(AttributeChangeBuff, "addAttack"))
+         if(!this.isMirror && this.liliangCD <= 0 && this.liliangTime <= 0 && this.straight + this.cardFrame > 100 && !this.attribute.hasBuff(AttributeChangeBuff, "addAttack"))
          {
             this.addBuff(new AttributeChangeBuff("addAttack", this, LILIANG_BUFF_TIME, new RoleAttributeData()));
             (this.attribute.hasBuff(AttributeChangeBuff, "addAttack") as AttributeChangeBuff).changeData.power = hairNum * 10;
             this.liliangTime = LILIANG_BUFF_TIME;
-            this.updateLiliangMsg();
+            this.updateMsg();
          }
       }
 
